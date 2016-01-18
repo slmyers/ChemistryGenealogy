@@ -3,4 +3,4 @@
 
 ### Wiki 
 
-Relavent documentation can be found in the [wiki](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki). Don't forget to check the 'pages' section on the right. 
+Relevant documentation can be found in the [wiki](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki). Don't forget to check the 'pages' section on the right. 
