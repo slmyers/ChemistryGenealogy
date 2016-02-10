@@ -1,14 +1,16 @@
 // web token stuff not done yet
 
+
 angular.module('chemGeno')
 .controller('loginController', ['$scope','$mdMedia', '$mdDialog', function($scope, $mdMedia, $mdDialog) {
+  // https://github.com/angular/material/issues/1413 passing stuff to dialog
   $scope.login = function($event) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
-      controller: loginController,
-      templateUrl: 'dialog1.tmpl.html',
+      controller: 'loginDialogController',
+      templateUrl: '/app/views/loginDialog.html',
       parent: angular.element(document.body),
-      targetEvent: ev,
+      targetEvent: $event,
       clickOutsideToClose:true,
       fullscreen: useFullScreen
     });
