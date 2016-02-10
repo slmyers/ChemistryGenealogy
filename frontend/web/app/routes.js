@@ -5,11 +5,11 @@ angular.module('chemGeno')
             $stateProvider
               .state('main', {
                 abstract: 'true',
-                templateUrl: 'views/main.html'
+                templateUrl: '/app/views/main.html'
               })
               .state('main.search', {
                 url: '/search',
-                controller: 'SearchCtrl',
-                templateUrl: 'views/search.html'
+                //controller: 'SearchCtrl',
+                templateUrl: '/app/views/search.html'
               });
         });

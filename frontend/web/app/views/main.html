@@ -1,17 +1,20 @@
-<div layout="column" layout-fill>
-  <header>
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>Header</h2>
-      </div>
-    </md-toolbar>
-  </header>
-  <main layout="row" flex>
-    <div ui-view></div>
-  </main>
-  <footer>
-    <div layout="row" layout-align="center center">
-      <h2>Footer</h2>
+<header>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <!-- take up first 30% of toolbar -->
+      <span flex="30"></span>
+      <span flex="40">
+        <h1>Chemistry Genealogy</h1>
+      </span>
+      <span flex="30">
+        <div ng-controller="authController">
+          <md-button aria-label="Open phone interactions menu" class="md-icon-button">
+            <md-icon md-menu-origin md-svg-icon="call:phone"></md-icon>
+          </md-button>
+        </div>
+      </span>
     </div>
-  </footer>
-</div>
+  </md-toolbar>
+</header>
+
+<div ui-view></div>

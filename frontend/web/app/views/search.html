@@ -1,8 +1,60 @@
+<style>
+  #searchContainer {
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    align-items: stretch;
+
+    border-radius: 25px;
+    border: solid 1px #00BCD4;
+
+    box-shadow: 3px 3px 5px 6px #ccc;
+
+    background-color: #B2EBF2;
+
+    margin: 2% 2%;
+
+    min-height: 80vh;
+  }
+
+  #searchContainer > #searchResults {
+    margin: 1% 1%;
+    flex: 1 1 30%;
+    order: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: green;
+  }
+
+  #searchContainer > #dataVis {
+    margin: 1% 1%;
+    background-color: blue;
+    flex: 1 1 70%;
+    order: 2;
+    overflow: scroll;
+  }
+</style>
+
 <md-content>
-  <div flex="20">
-    search bar
-  </div>
-  <div flex="60">
-    visualization
+  <div id="searchContainer">
+    <div id="searchResults">
+      <div>
+        search bar
+      </div>
+    </div>
+    <div id="dataVis">
+      <div>
+        visualization
+      </div>
+    </div>
   </div>
 </md-content>
