@@ -3,13 +3,15 @@
     <div class="md-toolbar-tools">
       <!-- take up first 30% of toolbar -->
       <span flex="30"></span>
-      <span flex="40">
-        <h1>Chemistry Genealogy</h1>
+      <span flex="60">
+
+        Chemistry Genealogy
       </span>
-      <span flex="30">
-        <div ng-controller="authController">
-          <md-button aria-label="Open phone interactions menu" class="md-icon-button">
-            <md-icon md-menu-origin md-svg-icon="call:phone"></md-icon>
+      <span flex="10">
+        <div ng-controller="loginController" layout-align="center end">
+          <!-- this color needs to be changed -->
+          <md-button class="md-fab md-accent" aria-label="login">
+            <md-icon md-svg-src="/static/img/person.svg"></md-icon>
           </md-button>
         </div>
       </span>
