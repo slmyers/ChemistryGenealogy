@@ -1,10 +1,14 @@
 angular.module('chemGeno')
-.controller('loginDialogController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
+.controller('loginDialogController', ['$scope', '$mdDialog', 'loginService',
+function($scope, $mdDialog, loginService) {
+  $scope.master = {};
+
   $scope.submit = function(user) {
-    console.log(user);
+    loginService.login(user);
   };
 
   $scope.cancel = function() {
     $mdDialog.cancel();
+    $scope.user = angular.copy($scope.master);
   };
 }]);

@@ -15,6 +15,7 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
 
     <!-- our code -->
     <!-- app level -->
@@ -25,6 +26,9 @@
     <script src="app/controllers/loginDialogController.js"></script>
     <script src="app/controllers/loginController.js"></script>
 
+    <!-- services -->
+    <script src="app/services/loginService.js"></script>
+
 
     <title>Chemistry Genealogy</title>
 
@@ -32,8 +36,7 @@
     <base href='/'>
   </head>
   <body>
+    <!-- view is rendered via ui-router -->
     <div ui-view></div>
-
-
   </body>
 </html>
