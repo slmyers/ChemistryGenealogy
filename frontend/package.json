@@ -1,0 +1,13 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "serves the angular app",
+  "main": "server.js",
+  "scripts": {
+    "start": "nohup node server.js &"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
