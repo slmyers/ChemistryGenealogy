@@ -9,10 +9,14 @@
       </span>
       <span flex="10">
         <div ng-controller="loginController" layout-align="center end">
-          <!-- this color needs to be changed -->
-          <md-button class="md-fab md-accent" aria-label="login">
-            <md-icon md-svg-src="/static/img/person.svg"></md-icon>
-          </md-button>
+          <md-menu>
+            <md-button class="md-fab md-accent" aria-label="login" ng-click="login($event)">
+              <md-icon md-svg-src="/static/img/person.svg"></md-icon>
+            </md-button>
+            <md-menu-content>
+             <md-menu-item><md-button>Login</md-button></md-menu-item>
+           </md-menu-content>
+          </md-menu>
         </div>
       </span>
     </div>
