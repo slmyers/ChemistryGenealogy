@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app='chemGeno'>
+  <head>
+    <meta charset="UTF-8">
+    <!--
+         eventually we will introduce a build process such that these files
+         are concatenated&minified
+    -->
+    <!-- <script src="build.js"></script> -->
+    <!-- 3rd party dependencies -->
+    <script src="bower_components/angular/angular.js"></script>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+
+    <!-- our code -->
+    <script src="app/module.js"></script>
+    <script src="app/routes.js"></script>
+
+    <title>Chemistry Genealogy</title>
+
+    <!-- for 'html5Mode' -->
+    <base href='/'>
+  </head>
+  <body>
+    <div ui-view></div>
+
+
+  </body>
+</html>
