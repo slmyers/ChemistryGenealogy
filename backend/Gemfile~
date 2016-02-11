@@ -16,10 +16,6 @@ gem 'bcrypt'
 
 gem 'jwt'
 
-gem 'angularjs-rails'
-
-gem 'angular-ui-bootstrap-rails'
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  namespace :api, defaults: {format: 'json'} do
-    namespace :v1 do
-      get "/greet" => "pages#greet", :as => 'greet'
-    end
+  namespace :api, :defaults => {:format => :json} do
+    resources(:users)
+  end
+
+  namespace :api, :defaults => {:format => :json} do
+    resources(:contact_us_tickets)
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
