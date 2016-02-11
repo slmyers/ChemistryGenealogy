@@ -4,18 +4,23 @@
       <!-- take up first 30% of toolbar -->
       <span flex="30"></span>
       <span flex="60">
-
         Chemistry Genealogy
       </span>
       <span flex="10">
         <div ng-controller="loginController" layout-align="center end">
-          <md-menu>
-            <md-button class="md-fab md-accent" aria-label="login" ng-click="login($event)">
-              <md-icon md-svg-src="/static/img/person.svg"></md-icon>
+          <md-button class="md-fab md-accent" aria-label="login" ng-click="login($event)" ng-show="showLogin()">
+            <md-icon md-svg-src="/static/img/person.svg"></md-icon>
+          </md-button>
+          <md-menu ng-show="showUser()">
+            <!-- this getUsername() call polls the application... -->
+            <md-button md-no-ink class="md-accent" ng-click="$mdOpenMenu($event)">
+              {{getUsername()}}
             </md-button>
-            <md-menu-content>
-             <md-menu-item><md-button>Login</md-button></md-menu-item>
-           </md-menu-content>
+            <md-menu-content width="2">
+              <md-button ng-click="logout()">
+                 <span md-menu-align-target>Logout</span>
+              </md-button>
+            </md-menu-content>
           </md-menu>
         </div>
       </span>

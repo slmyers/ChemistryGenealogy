@@ -1,9 +1,17 @@
 angular.module('chemGeno')
 .service('loginService', function(store, $q) {
-  var loggedIn = false;
+  var userNamespace = '401ChemGenoUser'
 
   var userLoggedIn = function() {
-    return loggedIn;
+    if (getUser() !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  var getUser = function() {
+    return store.get(userNamespace)
   };
 
   var loginPromise = function(user) {
@@ -14,7 +22,7 @@ angular.module('chemGeno')
 
       if (user.username && user.password) {
         deferred.resolve('Hello, ' + user.username + ' with password: ' + user.password + '!');
-        loggedIn = true;
+        store.set(userNamespace, user);
       } else {
         deferred.reject('Greeting ' + user.username + ' with ' + user.password + ' is not allowed.');
       }
@@ -25,15 +33,17 @@ angular.module('chemGeno')
 
   var login = function(user) {
     var promise = loginPromise(user);
-    promise.then(function(greeting) {
-      alert('Success: ' + greeting + ' loggedIn === ' + loggedIn);
-    }, function(reason) {
-      alert('Failed: ' + reason);
-    });
+    return promise;
+  };
+
+  var logout = function() {
+    store.remove(userNamespace);
   }
 
   return  {
     userLoggedIn: userLoggedIn,
-    login: login
+    login: login,
+    getUser: getUser,
+    logout: logout
   };
 });
