@@ -5,3 +5,5 @@
 3. `node server` in the web folder
 
 4. `npm start` is intended for deployment
+
+5. contact @slmyers if you need help running or setting up application.
