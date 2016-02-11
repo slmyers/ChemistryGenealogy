@@ -16,7 +16,7 @@ class AuthController < ApplicationController
   def authentication_payload(user)
     return nil unless user && user.id
     {
-      auth_token: AuthToken.encode({ user_id: id }),
+      auth_token: AuthToken.encode({ user_id: user.id }),
       user: { id: user.id, username: user.username } # return whatever user info you need
     }
   end
