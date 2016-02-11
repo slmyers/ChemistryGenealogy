@@ -10,13 +10,14 @@ February 10, 2016:
 * Honestly, haven't been able to do anything too solid for both
 
 
-# example test for authentication route -- when it works it should return some token provided username/password combo 
-# is correct. 
+## example test for authentication route -- when it works it should return some token provided username/password combo 
 
-curl -X POST http://localhost:3000/authenticate -H "Content-Type: application/json" -d '{"username":"xyz","password":"xyz"}'
 
-# sources
+`curl -X POST http://localhost:3000/authenticate -H "Content-Type: application/json" -d '{"username":"xyz","password":"xyz"}'`
+
+## sources
 
 http://adamalbrecht.com/2015/07/20/authentication-using-json-web-tokens-using-rails-and-react/
 
 http://adamalbrecht.com/2014/12/04/add-json-web-token-authentication-to-your-angular-rails-app/
+
