@@ -18,6 +18,11 @@ http://stackoverflow.com/questions/6885990/rails-params-explained
 curl -X POST -H 'Content-Length: 0' \ 
 'http://localhost:3000/authenticate/?username=testUser&password=testPassword'
 ```
+response: 
+
+```
+{"auth_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0NTc4MjQ0OTR9.AplIW545pEZCSXb3BtBu2j4svTriNuRPs6_imIkO_aQ","user":{"id":1,"username":"testUser"}}
+```
 
 ## sources
 
