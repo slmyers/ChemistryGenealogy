@@ -16,7 +16,7 @@ http://stackoverflow.com/questions/6885990/rails-params-explained
 
 ```
 curl -X POST -H 'Content-Length: 0' \ 
-http://localhost:3000/authenticate/?username=testUser&password=testPassword
+'http://localhost:3000/authenticate/?username=testUser&password=testPassword'
 ```
 
 ## sources
