@@ -12,8 +12,9 @@ February 10, 2016:
 
 ## example test for authentication route -- when it works it should return some token provided username/password combo 
 
+http://stackoverflow.com/questions/6885990/rails-params-explained
 
-`curl -X POST http://localhost:3000/authenticate -H "Content-Type: application/json" -d '{"username":"xyz","password":"xyz"}'`
+`curl -X POST -H 'Content-Length: 0' http://localhost:3000/authenticate/?username=testUser&password=testPassword`
 
 ## sources
 
