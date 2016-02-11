@@ -7,8 +7,9 @@ end
 
 
 class ApplicationController < ActionController::API
-  include ActionController::Serialization
-  render(:json => json_object, :status => 200)
+  # json_object throws an error... commented out until i figure it out
+  #include ActionController::Serialization
+  #render(:json => json_object, :status => 200)
 
   # http://adamalbrecht.com/2015/07/20/authentication-using-json-web-tokens-using-rails-and-react/
 
