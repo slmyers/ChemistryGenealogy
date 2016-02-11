@@ -1,2 +1,0 @@
-class ContactUsTicket < ActiveRecord::Base
-end

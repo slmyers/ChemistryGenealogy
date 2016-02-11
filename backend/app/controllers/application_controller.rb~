@@ -1,3 +1,0 @@
-class ApplicationController < ActionController::API
-  render(:json => json_object, :status => 200)
-end
