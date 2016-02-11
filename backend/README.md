@@ -21,3 +21,7 @@ http://adamalbrecht.com/2015/07/20/authentication-using-json-web-tokens-using-ra
 
 http://adamalbrecht.com/2014/12/04/add-json-web-token-authentication-to-your-angular-rails-app/
 
+
+### work on error repsonses... shouldn't be responding with HTML
+
+https://wyeworks.com/blog/2016/1/12/improvements-to-error-responses-in-rails-5-api-mode
