@@ -5,12 +5,9 @@ function($scope, $mdDialog, loginService) {
 
   $scope.submit = function(user) {
     var promise = loginService.login(user);
-    promise.then(function(res) {
-        console.log(res);
+    promise.then(function() {
         $mdDialog.cancel();
-        console.log('logged in === ' + loginService.userLoggedIn());
-      }, function(error){
-        console.log(res);
+      }, function(){
         $mdDialog.show();
       });
   };

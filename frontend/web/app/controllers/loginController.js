@@ -32,7 +32,8 @@ function($scope, $mdMedia, $mdDialog, loginService) {
 
   $scope.getUsername = function() {
     if (loginService.userLoggedIn()) {
-      return loginService.getUser().username;
+      //console.log(loginService.getUser());
+      return loginService.getUser().user.username;
     }
     return '';
   };

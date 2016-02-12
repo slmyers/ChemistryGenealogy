@@ -1,5 +1,5 @@
 angular.module('chemGeno')
-.service('loginService', function(store, $q) {
+.service('loginService', function(store, $q, $http) {
   var userNamespace = '401ChemGenoUser'
 
   var userLoggedIn = function() {
@@ -11,7 +11,7 @@ angular.module('chemGeno')
   };
 
   var getUser = function() {
-    return store.get(userNamespace)
+    return store.get(userNamespace);
   };
 
   var loginPromise = function(user) {
@@ -32,8 +32,18 @@ angular.module('chemGeno')
   };
 
   var login = function(user) {
-    var promise = loginPromise(user);
-    return promise;
+    var d = $q.defer();
+    return $http({
+      method: 'POST',
+      url: 'http://localhost:3000/authenticate',
+      params: {username: user.username, password: user.password}
+    }).success(function(resp) {
+      store.set(userNamespace, resp);
+      d.resolve(resp.user);
+    }).error(function(resp) {
+      d.reject(resp.error);
+    });
+    return d.promise;
   };
 
   var logout = function() {
