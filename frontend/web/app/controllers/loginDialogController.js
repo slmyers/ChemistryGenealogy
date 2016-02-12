@@ -7,9 +7,10 @@ function($scope, $mdDialog, loginService) {
     var promise = loginService.login(user);
     promise.then(function() {
         $mdDialog.cancel();
-      }, function(){
+      }, function(res){
+        console.log(res.error);
         $mdDialog.show();
-      });
+    });
   };
 
   $scope.cancel = function() {

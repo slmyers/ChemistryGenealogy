@@ -14,23 +14,6 @@ angular.module('chemGeno')
     return store.get(userNamespace);
   };
 
-  var loginPromise = function(user) {
-    var deferred = $q.defer();
-
-    setTimeout(function() {
-      deferred.notify('About to login ' + user + '.');
-
-      if (user.username && user.password) {
-        deferred.resolve('Hello, ' + user.username + ' with password: ' + user.password + '!');
-        store.set(userNamespace, user);
-      } else {
-        deferred.reject('Greeting ' + user.username + ' with ' + user.password + ' is not allowed.');
-      }
-    }, 1000);
-
-    return deferred.promise;
-  };
-
   var login = function(user) {
     var d = $q.defer();
     return $http({
