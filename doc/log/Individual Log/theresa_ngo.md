@@ -22,3 +22,4 @@
 * Initialized and worked a bit on the backend
 * Worked a bit on the footer on the frontend
 * Updated the GANTT chart
+* Uploaded template of individual logs to repository
