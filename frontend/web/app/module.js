@@ -2,5 +2,5 @@ var app = angular.module('chemGeno', ['ngMaterial', 'ui.router', 'angular-storag
           .config(function($mdThemingProvider) {
             $mdThemingProvider.theme('default')
               .primaryPalette('blue')
-              .accentPalette('teal');
+              .accentPalette('deep-purple');
           });
