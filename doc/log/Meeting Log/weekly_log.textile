@@ -39,3 +39,9 @@
 |Participants|Cole, Connor, Daniel, Ji Hwan, Steve, Theresa|
 |Minutes|2 hours|
 |Agenda|Meeting with the professor and TA<li>Update on project progress.</li><li>Discussed how to proceed for next week.</li>|
+
+|Date|February 12, 2016|
+|Formality|Formal|
+|Participants|Cole, Connor, Ji Hwan, Steve, Theresa|
+|Minutes|2 hours|
+|Agenda|Meeting with the TA<li>Update on project progress.</li>|
