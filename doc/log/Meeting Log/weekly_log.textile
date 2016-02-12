@@ -1,0 +1,41 @@
+|Date|January 8, 2016|
+|Formality|Informal|
+|Participants|Cole, Connor, Theresa|
+|Minutes|2 hours|
+|Agenda|Discussed questions to ask the client during the first meeting and other questions for the professor.|
+
+|Date|January 12, 2016|
+|Formality|Formal|
+|Participants|Connor, Daniel, Ji Hwan, Steve|
+|Minutes|10 minutes|
+|Agenda|Meeting with the client.|
+
+|Date|January 14, 2016|
+|Formality|Informal|
+|Participants|Cole, Steve, Theresa|
+|Minutes|2 hours|
+|Agenda|Sprint 1 meeting<li>Briefly discussed the development of the wireframes and storyboard.</li><li>Shortlisted the technology choices.</li><li>Discussed questions to e-mail the client.</li>|
+
+|Date|January 15, 2016|
+|Formality|Formal|
+|Participants|Cole, Connor, Daniel, Ji Hwan, Steve, Theresa|
+|Minutes|5 hours|
+|Agenda|Meeting with the professor and TA<li>Clarified on some questions concerning importing and repository use.</li><li>Discussion on using use cases and user stories.</li>|
+
+|Date|January 22, 2016|
+|Formality|Formal|
+|Participants|Cole, Connor, Daniel, Steve, Theresa|
+|Minutes|2 hours|
+|Agenda|Meeting with the TA<li>General feedback on sprint 1.</li><li>Clarifications on sprint 2 rubric.</li><li>Further discussion on technologies to use.</li>|
+
+|Date|January 29, 2016|
+|Formality|Formal|
+|Participants|Cole, Connor, Daniel, Ji Hwan, Steve, Theresa|
+|Minutes|2 hours|
+|Agenda|Meeting with the TA<li>Finalized technologies to use.</li><li>Decided on a plan for the upcoming weeks.</li>|
+
+|Date|February 5, 2016|
+|Formality|Formal|
+|Participants|Cole, Connor, Daniel, Ji Hwan, Steve, Theresa|
+|Minutes|2 hours|
+|Agenda|Meeting with the professor and TA<li>Update on project progress.</li><li>Discussed how to proceed for next week.</li>|
