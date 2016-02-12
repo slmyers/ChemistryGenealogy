@@ -31,7 +31,7 @@
     overflow: scroll;
   }
 </style>
-
+<body>
 <md-content class="md-accent">
   <div id="searchContainer" >
     <div id="searchResults">
@@ -46,4 +46,9 @@
     </div>
   </div>
 </md-content>
+
+<footer>
+  <p>Terms</p>
+</footer>
+</body>
 
