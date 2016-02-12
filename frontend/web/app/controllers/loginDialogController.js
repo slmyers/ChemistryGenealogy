@@ -8,8 +8,8 @@ function($scope, $mdDialog, loginService) {
     promise.then(function() {
         $mdDialog.cancel();
       }, function(res){
-        console.log(res.error);
-        $mdDialog.show();
+        console.log(res);
+        $mdDialog.cancel();
     });
   };
 
