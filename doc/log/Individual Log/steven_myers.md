@@ -43,3 +43,13 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 
 * got the frontend to request and store an authentication token from the backend 
 
+---
+
+###Sprint 3
+
+####February 13, 2016 - February 20, 2016
+* made backend (rails) runnable in Windows
+
+* installed missing dependencies 
+
+* fixed broken code to utilize Active Records instead of calling non-existent methods
