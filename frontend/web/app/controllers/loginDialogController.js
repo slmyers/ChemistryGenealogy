@@ -1,6 +1,6 @@
 angular.module('chemGeno')
-.controller('loginDialogController', ['$scope', '$mdDialog', 'loginService',
-function($scope, $mdDialog, loginService) {
+.controller('loginDialogController', ['$scope', '$mdDialog', 'loginService', '$mdToast',
+function($scope, $mdDialog, loginService, $mdToast) {
   $scope.master = {};
   $scope.invalidLogin = false;
 
@@ -8,10 +8,10 @@ function($scope, $mdDialog, loginService) {
     var promise = loginService.login(user);
     promise.then(function() {
         $mdDialog.cancel();
+        $scope.invalidLogin = false;
       }, function(res){
         console.log(res);
         $scope.invalidLogin = true;
-        console.log($scope.invalidLogin);
         $scope.user = angular.copy($scope.master);
     });
   };

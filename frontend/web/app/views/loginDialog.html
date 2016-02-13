@@ -1,6 +1,6 @@
 <md-dialog aria-label="login dialog"  ng-cloak>
-  <div ng-show="invalidLogin">
-    invalid username/password pair
+  <div ng-show="invalidLogin" layout="row" layout-align="center center">
+    <md-button ng-disabled="true" class="md-raised md-accent">Invalid login</md-button>
   </div>
   <br>
   <form name="userForm" ng-submit="submit(user)">
