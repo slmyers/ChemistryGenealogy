@@ -1,5 +1,5 @@
 # Modified from https://github.com/kirandc/rails4_crud_with_angularjs/blob/master/app/controllers/users_controller.rb
-class UserController < ApplicationController
+class Api::UserController < ApplicationController
   before_action :get_user, except: [:index, :create]
   respond_to :html, :json
 
@@ -18,7 +18,7 @@ class UserController < ApplicationController
     else
       render json: {user: @user.errors, status: :no_content}
     end
-  end      
+  end
 
   def show
     respond_with(@user.as_json)
@@ -26,7 +26,7 @@ class UserController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      render json: @user.as_json, status: :ok 
+      render json: @user.as_json, status: :ok
     else
       render json: {user: @user.errors, status: :unprocessable_entity}
     end

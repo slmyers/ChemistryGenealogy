@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  namespace :api, :defaults => {:format => :json} do
-    resources(:users)
+  namespace :api,:defaults => {:format => :json} do
+    resources(:user)
   end
 
   namespace :api, :defaults => {:format => :json} do
-    resources(:contact_us_tickets)
+    resources(:contact_us_ticket)
   end
 
   post 'authenticate' => 'auth#authenticate'

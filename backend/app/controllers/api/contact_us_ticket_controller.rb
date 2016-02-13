@@ -1,10 +1,10 @@
 # Modified from https://github.com/kirandc/rails4_crud_with_angularjs/blob/master/app/controllers/users_controller.rb
-class ContactUsTicketController < ApplicationController
+class Api::ContactUsTicketController < ApplicationController
   before_action :get_contact_us_ticket, except: [:index, :create]
   respond_to :html, :json
 
   def index
-    @contact_us_ticket = Contact_us_ticket.all
+    @contact_us_ticket = ContactUsTicket.all
     respond_with(@contact_us_ticket) do |format|
       format.json { render :json => @contact_us_ticket.as_json }
       format.html
@@ -12,13 +12,13 @@ class ContactUsTicketController < ApplicationController
   end
 
   def create
-    @contact_us_ticket = Contact_us_ticket.new(user_params)
+    @contact_us_ticket = ContactUsTicket.new(user_params)
     if @contact_us_ticket.save
       render json: @contact_us_ticket.as_json, status: :ok
     else
       render json: {contact_us_ticket: @contact_us_ticket.errors, status: :no_content}
     end
-  end      
+  end
 
   def show
     respond_with(@contact_us_ticket.as_json)

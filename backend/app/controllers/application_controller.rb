@@ -1,3 +1,5 @@
+require "application_responder"
+
 class AccessDeniedError < StandardError
 end
 class NotAuthenticatedError < StandardError
@@ -7,6 +9,9 @@ end
 
 
 class ApplicationController < ActionController::API
+  self.responder = ApplicationResponder
+  respond_to :html
+
   # json_object throws an error... commented out until i figure it out
   #include ActionController::Serialization
   #render(:json => json_object, :status => 200)
