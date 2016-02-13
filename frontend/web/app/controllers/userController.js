@@ -2,14 +2,14 @@
 
 
 angular.module('chemGeno')
-.controller('loginController', ['$scope','$mdMedia', '$mdDialog', 'loginService',
+.controller('userController', ['$scope','$mdMedia', '$mdDialog', 'loginService',
 function($scope, $mdMedia, $mdDialog, loginService) {
   // https://github.com/angular/material/issues/1413 passing stuff to dialog
   $scope.login = function($event) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
-      controller: 'loginDialogController',
-      templateUrl: '/app/views/loginDialog.html',
+      controller: 'userDialogController',
+      templateUrl: '/app/views/userDialog.html',
       parent: angular.element(document.body),
       targetEvent: $event,
       clickOutsideToClose:true,

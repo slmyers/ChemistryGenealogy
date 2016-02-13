@@ -1,0 +1,59 @@
+<md-dialog aria-label="login dialog"  ng-cloak>
+  <div ng-show="invalidLogin" layout="row" layout-align="center center">
+    <md-button ng-disabled="true" class="md-raised md-accent">Invalid login</md-button>
+  </div>
+
+
+  <div ng-show="!registration">
+    <form name="userForm" ng-submit="submitLogin(loginUser)">
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Username</label>
+        <input ng-model="loginUser.username" required>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input type="password" ng-model="loginUser.password" required>
+      </md-input-container>
+      <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary" type="submit" value="Submit">
+          login
+        </md-button>
+
+        <md-button class="md-raised md-primary" ng-click="cancelLogin()">
+          cancel
+        </md-button>
+      </div>
+      <br>
+      <div layout="column">
+        <md-button class="md-raised md-primary" ng-click="registration = true" >
+          register
+        </md-button>
+      </div>
+    </form>
+  </div>
+
+  <div ng-show="registration">
+    <form name="registerForm" ng-submit="submitRegistration(registerUser)">
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Username</label>
+        <input ng-model="registerUser.username" required>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>e-mail</label>
+        <input type="email" ng-model="registerUser.email" required>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input type="password" ng-model="registerUser.password" required>
+      </md-input-container>
+      <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary" type="submit" value="Submit">
+          login
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="cancelRegistration()">
+          cancel
+        </md-button>
+      </div>
+    </form>
+  <div>
+</md-dialog>
