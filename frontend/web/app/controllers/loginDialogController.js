@@ -3,6 +3,7 @@ angular.module('chemGeno')
 function($scope, $mdDialog, loginService, $mdToast) {
   $scope.master = {};
   $scope.invalidLogin = false;
+  $scope.registration = false;
 
   $scope.submit = function(user) {
     var promise = loginService.login(user);
