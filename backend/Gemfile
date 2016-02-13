@@ -16,6 +16,9 @@ gem 'bcrypt'
 
 gem 'jwt'
 
+# for windows
+gem 'tzinfo-data', platforms: [:x64_mingw,:mingw, :mswin]
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
