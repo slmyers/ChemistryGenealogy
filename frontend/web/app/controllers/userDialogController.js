@@ -7,7 +7,8 @@ function($scope, $mdDialog, loginService) {
 
   $scope.submitLogin = function(loginUser) {
     var promise = loginService.login(loginUser);
-    promise.then(function() {
+    promise.then(function(res) {
+        console.log('sucessful login: ' + res.data.user.username);
         $mdDialog.cancel();
         $scope.invalidLogin = false;
       }, function(res){
