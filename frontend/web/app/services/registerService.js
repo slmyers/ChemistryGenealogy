@@ -1,5 +1,6 @@
 angular.module('chemGeno')
 .service('registerService', function(store, $q, $http) {
+  // sanity check
   var _checkReturnedFields = function(returnedUsername, inputUser) {
     if(returnedUsername !== inputUser.username) {
       return false;
@@ -14,15 +15,12 @@ angular.module('chemGeno')
       url: 'http://localhost:3000/api/user',
       params: {email: user.email, username: user.username, password: user.password}
     }).success( function(res){
-      console.log('success in registration')
-      console.log(res);
+      console.log('success');
       if(!_checkReturnedFields(res.username, user)){
         d.reject({error: "expected returned username: " + user.username + " got: " + res.data.username})
       }
       d.resolve(res.user);
     }).error( function(res){
-      console.log('failure in registration')
-      console.log(res);
       d.reject(res.error);
     });
     return d.promise;

@@ -6,17 +6,20 @@ function($scope, $mdDialog, loginService, registerService) {
   $scope.invalidLogin = false;
   // turned true if user clicks the registration button
   $scope.registration = false;
+  // turned true upon recieving an error for a registration request
+  $scope.invalidRegistration = false;
+
 
   $scope.submitLogin = function(loginUser) {
     var promise = loginService.login(loginUser);
     promise.then(function(res) {
       console.log('sucessful login: ' + res.data.user.username);
-      $mdDialog.cancel();
       $scope.invalidLogin = false;
+      $mdDialog.cancel();
     }, function(error){
       console.log(error);
       $scope.invalidLogin = true;
-      $scope.user = angular.copy($scope.master);
+      $scope.loginUser = angular.copy($scope.master);
     });
   };
 
@@ -24,11 +27,13 @@ function($scope, $mdDialog, loginService, registerService) {
     var promise = registerService.register(registerUser);
     promise.then(function(res) {
       console.log(res);
+      $scope.invalidRegistration = false;
       $mdDialog.cancel();
     }, function(error){
       console.log(error);
+      $scope.invalidRegistration = true;
+      $scope.registerUser = angular.copy($scope.master);
     });
-    $mdDialog.cancel();
   };
 
   $scope.cancelLogin = function() {

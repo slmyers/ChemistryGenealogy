@@ -3,6 +3,9 @@
     <md-button ng-disabled="true" class="md-raised md-accent">Invalid login</md-button>
   </div>
 
+  <div ng-show="invalidRegistration" layout="row" layout-align="center center">
+    <md-button ng-disabled="true" class="md-raised md-accent">Invalid registration</md-button>
+  </div>
 
   <div ng-show="!registration">
     <form name="userForm" ng-submit="submitLogin(loginUser)">
