@@ -21,11 +21,11 @@ function($scope, $mdDialog, loginService, registerService) {
   };
 
   $scope.submitRegistration = function(registerUser) {
-    var promise = registerService(registerUser);
+    var promise = registerService.register(registerUser);
     promise.then(function(res) {
       console.log(res);
       $mdDialog.cancel();
-    }, funcion(error){
+    }, function(error){
       console.log(error);
     });
     $mdDialog.cancel();
