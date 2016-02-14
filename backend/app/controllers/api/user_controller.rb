@@ -11,12 +11,21 @@ class Api::UserController < ApplicationController
   end
 
   def create
-    @user = User.new(username: params[:username], password: params[:username], email: params[:email], password_digest:'pword')
+    @user = User.new_user(params[:username], params[:password], params[:email])
     if @user.save
-      render json: @user.as_json, status: :ok
+      render json: @user.as_json, status: :created
     else
-      render json: {user: @user.errors, status: :no_content}
+      # status :no_content is not a descriptive error, but it will trigger an error
+      # in the client http request
+      render json: {error: 'user exists'}, status: :bad_request
     end
+    #@user = User.new(username: params[:username], password: params[:password], email: params[:email], password_digest:'pword')
+    #puts @user.as_json
+    #if @user.save
+    #  render json: @user.as_json, status: :ok
+    #else
+    #  render json: {user: @user.errors, status: :no_content}
+    #end
   end
 
   def show
