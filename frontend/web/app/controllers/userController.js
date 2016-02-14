@@ -1,6 +1,3 @@
-// web token stuff not done yet
-
-
 angular.module('chemGeno')
 .controller('userController', ['$scope','$mdMedia', '$mdDialog', 'loginService',
 function($scope, $mdMedia, $mdDialog, loginService) {

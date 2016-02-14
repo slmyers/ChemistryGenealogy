@@ -12,7 +12,12 @@ class Api::UserController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    # sometype of problem with user_params
+    puts 'this should not be empty:'
+    puts user_params
+    @user = User.new(user_params, password_digest:'pword')
+    #@user = User.new(username: 'testUserss', password: 'testPassword', email: 'testEmail@email.com', password_digest: 'pword' )
+    puts 'in user create'
     if @user.save
       render json: @user.as_json, status: :ok
     else
@@ -48,5 +53,4 @@ class Api::UserController < ApplicationController
     render json: {status: :not_found} unless @user
   end
 
-end
 end
