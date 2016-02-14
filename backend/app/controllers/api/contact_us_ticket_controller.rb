@@ -1,5 +1,3 @@
-# Modified from https://github.com/kirandc/rails4_crud_with_angularjs/blob/master/app/controllers/users_controller.rb
-# you can use rails generators instead of tyring to copy stuff from github 
 class Api::ContactUsTicketController < ApplicationController
   respond_to :html, :json
 
