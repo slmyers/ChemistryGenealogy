@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
     return User.find_by username: username, password: password
   end
 
+  def as_json(options={})
+    super(:only => [:username])
+  end
 end

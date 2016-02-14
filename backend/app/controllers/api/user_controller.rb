@@ -11,13 +11,7 @@ class Api::UserController < ApplicationController
   end
 
   def create
-    puts 'this should not be empty:'
-    puts user_params
-    #params should be referenced like this... 
-    puts params[:username]
-    @user = User.new(user_params, password_digest:'pword')
-    #@user = User.new(username: 'testUserss', password: 'testPassword', email: 'testEmail@email.com', password_digest: 'pword' )
-    puts 'in user create'
+    @user = User.new(username: params[:username], password: params[:username], email: params[:email], password_digest:'pword')
     if @user.save
       render json: @user.as_json, status: :ok
     else
