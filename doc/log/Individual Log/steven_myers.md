@@ -50,8 +50,6 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 ####February 13, 2016 - February 20, 2016
 * made backend (rails) runnable in Windows
 
-* installed missing dependencies 
-
 * fixed broken code in backend 
 
 * implemented user login and registration -- frontend + backend
