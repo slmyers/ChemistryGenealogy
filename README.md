@@ -10,11 +10,6 @@ Relevant documentation can be found in the [wiki](https://github.com/401Chemistr
 
 # current status
 
-Backend: able to generate authentication tokens for users in database
-
-* `rails db:seed:` will seed a user with `username: testUser` and `password: `testPassword`
-* https://github.com/401ChemistryGenealogy/ChemistryGenealogy/blob/master/backend/db/seeds.rb
-
-Frontend: able to login using these credentials -- provided the backend is running at the same time
-
-* bad logins don't display an error message -- need to improve this
+* registered users are able to authenticate with backend
+* users are able to register with backend
+* client side code able to support this

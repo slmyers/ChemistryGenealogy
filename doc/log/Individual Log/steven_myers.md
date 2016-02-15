@@ -55,3 +55,5 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * fixed broken code to utilize Active Records instead of calling non-existent methods
 
 * fixed broken file structure that didn't reflect routes... Rails is Convention over Configuration 
+
+* implemented user login and registration -- frontend + backend
