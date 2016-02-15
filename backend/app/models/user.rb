@@ -16,7 +16,9 @@ class User < ActiveRecord::Base
 
   # https://quickleft.com/blog/keeping-your-json-response-lean-in-rails/
   # how to render fields selectively as json
-  def as_json(options={})
-    super(:only => [:username])
-  end
+  # for development purpose we'll just write the whole thing out, but this is
+  # probably not the best idea for deployment
+  #def as_json(options={})
+  #  super(:only => [:username])
+  #end
 end

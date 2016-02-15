@@ -12,7 +12,7 @@ class Api::UserController < ApplicationController
 
   def create
     @user = User.new_user(params[:username], params[:password], params[:email])
-    if @user != nil
+    if @user != nil && @user.save
       render json: @user.as_json, status: :created
     else
       # status :no_content is not a descriptive error, but it will trigger an error
