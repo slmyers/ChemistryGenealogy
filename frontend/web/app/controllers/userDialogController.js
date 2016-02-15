@@ -47,4 +47,10 @@ function($scope, $mdDialog, loginService, registerService) {
     $mdDialog.cancel();
     $scope.registerUser = angular.copy($scope.master);
   };
+
+  $scope.toRegistrationView = function() {
+    $scope.invalidLogin = false;
+    $scope.invalidRegistration = false;
+    $scope.registration = true;
+  }
 }]);
