@@ -26,10 +26,12 @@ function($scope, $mdDialog, loginService, registerService) {
   $scope.submitRegistration = function(registerUser) {
     var promise = registerService.register(registerUser);
     promise.then(function(res) {
+      console.log('succes registration');
       console.log(res);
       $scope.invalidRegistration = false;
       $mdDialog.cancel();
     }, function(error){
+      console.log('error in registration');
       console.log(error);
       $scope.invalidRegistration = true;
       $scope.registerUser = angular.copy($scope.master);

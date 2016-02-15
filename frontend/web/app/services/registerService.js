@@ -18,8 +18,10 @@ angular.module('chemGeno')
       console.log('success');
       if(!_checkReturnedFields(res.username, user)){
         d.reject({error: "expected returned username: " + user.username + " got: " + res.data.username})
+      } else {
+        d.resolve(res.user);
       }
-      d.resolve(res.user);
+
     }).error( function(res){
       d.reject(res.error);
     });
