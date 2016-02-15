@@ -1,0 +1,30 @@
+-- sample data recieved in email from client on Feb 15/2016
+
+Todd L. Lowary, Professor, University of Alberta
+Ph.D. Degree
+1993, Ole Hindsgaul, University of Alberta
+Postdoctoral Appointments
+1993-1995, David Bundle, University of Alberta
+1996-1996, Morten Meldel, Carlsberg Laboratory
+
+For one of my students, his information is:
+Wei Shi, Assistant Professor, University of Arkansas
+Ph.D. Degree
+2008, Todd L. Lowary, University of Alberta
+Postdoctoral Appointment
+2008–2012, Jun Liu, Johns Hopkins University
+
+For my PhD advisor, his information is:
+Ole Hindsgaul, Professor Emeritus, University of Alberta
+Ph.D. Degree
+1980, Raymond U. Lemieux, University of Alberta
+Postdoctoral Appointment
+1980-1981, Clinton E. Ballou, University of California, Berkeley
+
+For one of my postdoc mentors, his information is:
+David R. Bundle, Professor Emeritus, University of Alberta
+Ph.D. Degree
+1971,  James Baddiley, Nottingham University
+Postdoctoral Appointment
+1971-1973 Harold J. Jennings, National Research Council of Canada
+1973-1975, Raymond U. Lemieux, University of Alberta
