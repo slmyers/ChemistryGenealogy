@@ -29,7 +29,7 @@ function($scope, $mdDialog, loginService, registerService) {
       console.log('succes registration');
       console.log(res);
       $scope.invalidRegistration = false;
-      $mdDialog.cancel();
+      $scope.submitLogin(registerUser);
     }, function(error){
       console.log('error in registration');
       console.log(error);
