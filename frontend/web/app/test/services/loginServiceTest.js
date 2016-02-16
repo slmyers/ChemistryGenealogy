@@ -5,7 +5,7 @@ describe('loginService unit tests', function() {
       $httpbackend,
       authRequestHandler;
 
-  beforeEach(module('MyApp'));
+  beforeEach(module('chemGeno'));
   beforeEach(inject(function($injector){
 
     $httpbackend = $injector.get('$httpBackend');
@@ -49,4 +49,13 @@ describe('loginService unit tests', function() {
     };
 
   }));
+
+  afterEach(function() {
+     $httpBackend.verifyNoOutstandingExpectation();
+     $httpBackend.verifyNoOutstandingRequest();
+  });
+
+  it('shoud do something', function() {
+
+  });
 });

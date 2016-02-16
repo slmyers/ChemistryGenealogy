@@ -15,14 +15,15 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      // 3dr party dependencies
+      'web/bower_components/angular/angular.min.js',
+      'web/bower_components/angular-mocks/angular-mocks.js',
       // source files
       'web/app/*.js',
       'web/app/controllers/*.js',
       'web/app/services/*.js',
-      // might not need to include?
-      'web/app/view/*.js',
       // test files
-      'web/app/test/services/*.js',
+      'web/app/test/services/*.js'
     ],
 
 
@@ -57,7 +58,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
