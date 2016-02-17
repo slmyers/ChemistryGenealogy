@@ -50,10 +50,10 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 ####February 13, 2016 - February 20, 2016
 * made backend (rails) runnable in Windows
 
-* installed missing dependencies 
-
-* fixed broken code to utilize Active Records instead of calling non-existent methods
-
-* fixed broken file structure that didn't reflect routes... Rails is Convention over Configuration 
+* fixed broken code in backend 
 
 * implemented user login and registration -- frontend + backend
+
+* communicated with client: request + recieve sample data, scheduled team meeting w/ client
+
+* implemented mock search service in frontend using sample data
