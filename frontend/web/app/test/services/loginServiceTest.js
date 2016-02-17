@@ -6,7 +6,7 @@ describe('loginService unit tests', function() {
       authRequestHandler;
 
   beforeEach(module('chemGeno'));
-  beforeEach(inject(function($injector){
+  beforeEach(inject(function($injector, _loginService_){
 
     $httpbackend = $injector.get('$httpBackend');
 
@@ -20,7 +20,7 @@ describe('loginService unit tests', function() {
         }
       }
     */
-    authRequestHandler = $httpBackend.when('POST', 'http://localhost:3000/authenticate')
+    authRequestHandler = $httpbackend.when('POST', 'http://localhost:3000/authenticate')
                           .respond({
                             auth_token: 'mockToken',
                             user: {
@@ -31,9 +31,10 @@ describe('loginService unit tests', function() {
 
 
 
-    var $service = $injector.get('$service');
+    //var $service = $injector.get('$service');
 
     // store mock
+    /*
     spyOn(store, 'get').andCallFake(function(key) {
       return store[key];
     });
@@ -43,19 +44,26 @@ describe('loginService unit tests', function() {
     spyOn(store, 'remove').andCallFake(function(key) {
       delete store[key];
     });
+    */
 
+    // perhaps this mocking is easier??
+    store.get = function(key) {
+      return store[key];
+    }
+
+    //not sure if we injected mock store into service
     createService = function() {
-      return $service('loginService', {'store': store});
+      return _loginService_;
     };
 
   }));
 
   afterEach(function() {
-     $httpBackend.verifyNoOutstandingExpectation();
-     $httpBackend.verifyNoOutstandingRequest();
+     $httpbackend.verifyNoOutstandingExpectation();
+     $httpbackend.verifyNoOutstandingRequest();
   });
 
-  it('shoud do something', function() {
+  it('should do something', function() {
 
   });
 });

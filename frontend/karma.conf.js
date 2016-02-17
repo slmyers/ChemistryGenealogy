@@ -18,6 +18,13 @@ module.exports = function(config) {
       // 3dr party dependencies
       'web/bower_components/angular/angular.min.js',
       'web/bower_components/angular-mocks/angular-mocks.js',
+      'web/bower_components/angular-material/angular-material.js',
+      "web/bower_components/angular-aria/angular-aria.js",
+      "web/bower_components/angular-animate/angular-animate.js",
+      "web/bower_components/angular-messages/angular-messages.js",
+      "web/bower_components/angular-ui-router/release/angular-ui-router.js",
+      "web/bower_components/a0-angular-storage/dist/angular-storage.js",
+      "web/bower_components/d3/d3.js",
       // source files
       'web/app/*.js',
       'web/app/controllers/*.js',
