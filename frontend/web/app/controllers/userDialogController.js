@@ -15,7 +15,8 @@ function($scope, $mdDialog, loginService, registerService) {
     console.log(loginUser);
     var promise = loginService.login(loginUser);
     promise.then(function(res) {
-      console.log('sucessful login: ' + res.data.user.username);
+      console.log(res.data);
+      console.log('sucessful login: ' + res.data.user.email);
       $scope.invalidLogin = false;
       $mdDialog.cancel();
     }, function(error){

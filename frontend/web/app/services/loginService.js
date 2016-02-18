@@ -25,6 +25,7 @@ angular.module('chemGeno')
       store.set(userNamespace, resp);
       d.resolve(resp.user);
     }).error(function(resp) {
+      console.log(resp);
       d.reject(resp.error);
     });
     return d.promise;
