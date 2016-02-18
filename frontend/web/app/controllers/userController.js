@@ -1,6 +1,7 @@
 angular.module('chemGeno')
 .controller('userController', ['$scope','$mdMedia', '$mdDialog', 'loginService',
 function($scope, $mdMedia, $mdDialog, loginService) {
+  $scope.currentUser = {};
   // https://github.com/angular/material/issues/1413 passing stuff to dialog
   $scope.login = function($event) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;

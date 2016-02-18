@@ -31,7 +31,8 @@ module.exports = function(config) {
       'web/app/controllers/*.js',
       'web/app/services/*.js',
       // test files
-      'web/app/test/services/*.js'
+      'web/app/test/services/*.js',
+      'web/app/test/controllers/*.js'
     ],
 
 

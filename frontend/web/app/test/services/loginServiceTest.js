@@ -14,12 +14,16 @@ describe('loginService unit tests', function() {
       }
     */
     httpMock = $injector.get('$httpBackend');
-    httpMock.expectPOST('http://localhost:3000/authenticate?password=mockPassword&username=mockUser')
+    httpMock.expectPOST('http://localhost:3000/authenticate',
+                        {
+                          email: 'testEmail@email.ca',
+                          password: 'testPassword'
+                        })
       .respond({
         auth_token: 'mockToken',
         user: {
           id: 1,
-          username: 'mockUser'
+          email: 'testEmail@email.ca'
         }
     });
 
@@ -32,14 +36,15 @@ describe('loginService unit tests', function() {
      httpMock.verifyNoOutstandingRequest();
   });
 
-  it('login saves user profile in localstorage', function() {
-    service.login({username:'mockUser', password:'mockPassword'})
+  it('loginService.login(user) returns a thenable promise containing user data',
+  function() {
+    service.login({email:'testEmail@email.ca', password:'testPassword'})
     .then(function(resp){
       expect(resp).not.toBeNull();
       console.log(resp.data);
       expect(resp.data.auth_token).toBe('mockToken');
       expect(resp.data.user.id).toBe(1);
-      expect(resp.data.user.username).toBe('mockUser');
+      expect(resp.data.user.email).toBe('testEmail@email.ca');
     });
     httpMock.flush();
   });

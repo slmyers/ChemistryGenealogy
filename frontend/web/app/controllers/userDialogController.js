@@ -2,13 +2,14 @@ angular.module('chemGeno')
 .controller('userDialogController', ['$scope', '$mdDialog', 'loginService', 'registerService',
 function($scope, $mdDialog, loginService, registerService) {
   $scope.master = {};
+  $scope.registerUser = {};
+  $scope.loginUser = {};
   // turned true upon recieving an error for login request
   $scope.invalidLogin = false;
   // turned true if user clicks the registration button
   $scope.registration = false;
   // turned true upon recieving an error for a registration request
   $scope.invalidRegistration = false;
-
 
   $scope.submitLogin = function(loginUser) {
     console.log(loginUser);
@@ -27,7 +28,7 @@ function($scope, $mdDialog, loginService, registerService) {
   $scope.submitRegistration = function(registerUser) {
     var promise = registerService.register(registerUser);
     promise.then(function(res) {
-      console.log('succes registration');
+      console.log('success registration');
       console.log(res);
       $scope.invalidRegistration = false;
       $scope.submitLogin(registerUser);

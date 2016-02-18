@@ -58,4 +58,6 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 
 * implemented mock search service in frontend using sample data
 
-* changed user login/registration to require email/password instead of username/password -- touched full stack from db to view. 
+* changed user login/registration to require email/password instead of username/password -- touched full stack from db to view.
+
+* wrote script to reload and seed the database
