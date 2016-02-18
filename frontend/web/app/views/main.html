@@ -1,10 +1,15 @@
 <header>
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <!-- take up first 30% of toolbar -->
-      <span flex="30"></span>
-      <span flex="60">
-        Chemistry Genealogy
+      <!-- take up first 15% of toolbar -->
+      <span flex="15"></span>
+      <!-- logo that links to home page -->
+      <span flex="5">
+        <A NG-HREF="index.html"><img ng-src="/static/img/cg.png" /></A>
+      </span>
+
+      <span flex="70">
+        <A NG-HREF="index.html"><b>Chemistry Genealogy</b></A>
       </span>
       <span flex="10">
         <div ng-controller="userController" layout-align="center end">
