@@ -1,10 +1,9 @@
-describe('Service: loginService', function() {
-  var service,
-      httpMock;
+describe('loginService unit tests', function() {
+  var service, httpMock, mockStore;
   beforeEach(module('chemGeno'));
-  beforeEach( function($httpBackend, loginService) {
-    httpMock = $httpBackend;
-    service = loginService;
+  beforeEach(inject(function($injector, _loginService_) {
+    httpMock = $injector.get('$httpBackend');
+    service = _loginService_;
     /*
       this is a response from actual application
       {
@@ -15,7 +14,7 @@ describe('Service: loginService', function() {
         }
       }
     */
-    $httpBackend.whenPOST('http://localhost:3000/authenticate')
+    httpMock.whenPOST('http://localhost:3000/authenticate')
       .respond({
         auth_token: 'mockToken',
         user: {
@@ -29,7 +28,7 @@ describe('Service: loginService', function() {
 
 
     // mock a0-angular-store
-    var mockStore = {}; mockStore.vals = new Map();
+    mockStore = {}; mockStore.vals = new Map();
 
     mockStore.get = function(key) {
       return store.vals.get(key);
@@ -43,15 +42,17 @@ describe('Service: loginService', function() {
       store.vals.delete(key);
     }
 
-    module(function ($provide) {
-      $provide.value('store', mockStore);
-    });
+    
 
-  });
+    createService = function() {
+      return _loginService_;
+    };
 
-  afterEach(function($httpBackend) {
-     $httpBackend.verifyNoOutstandingExpectation();
-     $httpBackend.verifyNoOutstandingRequest();
+  }));
+
+  afterEach(function() {
+     httpMock.verifyNoOutstandingExpectation();
+     httpMock.verifyNoOutstandingRequest();
   });
 
   it('can be instantiated', function() {
