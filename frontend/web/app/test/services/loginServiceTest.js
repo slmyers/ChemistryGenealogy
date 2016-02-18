@@ -2,7 +2,6 @@ describe('loginService unit tests', function() {
   var service, httpMock, mockStore;
   beforeEach(module('chemGeno'));
   beforeEach(inject(function($injector, _loginService_) {
-    httpMock = $injector.get('$httpBackend');
     service = _loginService_;
     /*
       this is a response from actual application
@@ -14,39 +13,17 @@ describe('loginService unit tests', function() {
         }
       }
     */
-    httpMock.whenPOST('http://localhost:3000/authenticate')
+    httpMock = $injector.get('$httpBackend');
+    httpMock.expectPOST('http://localhost:3000/authenticate?password=mockPassword&username=mockUser')
       .respond({
         auth_token: 'mockToken',
         user: {
           id: 1,
           username: 'mockUser'
         }
-      });
+    });
 
 
-
-
-
-    // mock a0-angular-store
-    mockStore = {}; mockStore.vals = new Map();
-
-    mockStore.get = function(key) {
-      return store.vals.get(key);
-    }
-
-    mockStore.set = function(key, value) {
-      store.vals.set(key, value);
-    };
-
-    mockStore.remove = function(key) {
-      store.vals.delete(key);
-    }
-
-    
-
-    createService = function() {
-      return _loginService_;
-    };
 
   }));
 
@@ -55,7 +32,16 @@ describe('loginService unit tests', function() {
      httpMock.verifyNoOutstandingRequest();
   });
 
-  it('can be instantiated', function() {
-    expect(service).not.toBeNull();
+  it('login saves user profile in localstorage', function() {
+    service.login({username:'mockUser', password:'mockPassword'})
+    .then(function(resp){
+      expect(resp).not.toBeNull();
+      console.log(resp.data);
+      expect(resp.data.auth_token).toBe('mockToken');
+      expect(resp.data.user.id).toBe(1);
+      expect(resp.data.user.username).toBe('mockUser');
+    });
+    httpMock.flush();
   });
+
 });
