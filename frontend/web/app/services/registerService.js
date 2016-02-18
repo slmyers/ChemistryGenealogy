@@ -11,9 +11,10 @@ angular.module('chemGeno')
   var register = function(user) {
     var d = $q.defer();
     return $http({
+      header: 'Content-Type: application/json',
       method: 'POST',
       url: 'http://localhost:3000/api/user',
-      params: {email: user.email, username: user.username, password: user.password}
+      params: {email: user.email, password: user.password}
     }).success( function(res){
       console.log('success');
       if(!_checkReturnedFields(res.username, user)){

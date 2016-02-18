@@ -10,8 +10,8 @@
   <div ng-show="!registration">
     <form name="userForm" ng-submit="submitLogin(loginUser)">
       <md-input-container class="md-block" flex-gt-xs>
-        <label>Username</label>
-        <input ng-model="loginUser.username" required>
+        <label>Email</label>
+        <input ng-model="loginUser.email" type="email" required>
       </md-input-container>
       <md-input-container class="md-block" flex-gt-xs>
         <label>Password</label>
@@ -37,10 +37,6 @@
 
   <div ng-show="registration">
     <form name="registerForm" ng-submit="submitRegistration(registerUser)">
-      <md-input-container class="md-block" flex-gt-xs>
-        <label>Username</label>
-        <input ng-model="registerUser.username" required>
-      </md-input-container>
       <md-input-container class="md-block" flex-gt-xs>
         <label>e-mail</label>
         <input type="email" ng-model="registerUser.email" required>

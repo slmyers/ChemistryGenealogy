@@ -17,9 +17,10 @@ angular.module('chemGeno')
   var login = function(user) {
     var d = $q.defer();
     return $http({
+      header: 'Content-Type: application/json',
       method: 'POST',
       url: 'http://localhost:3000/authenticate',
-      params: {username: user.username, password: user.password}
+      data: {email: user.email, password: user.password}
     }).success(function(resp) {
       store.set(userNamespace, resp);
       d.resolve(resp.user);
