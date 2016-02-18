@@ -1,15 +1,10 @@
-describe('loginService unit tests', function() {
-  var store = {};
-
-  var createService,
-      $httpbackend,
-      authRequestHandler;
-
+describe('Service: loginService', function() {
+  var service,
+      httpMock;
   beforeEach(module('chemGeno'));
-  beforeEach(inject(function($injector, _loginService_){
-
-    $httpbackend = $injector.get('$httpBackend');
-
+  beforeEach( function($httpBackend, loginService) {
+    httpMock = $httpBackend;
+    service = loginService;
     /*
       this is a response from actual application
       {
@@ -20,50 +15,46 @@ describe('loginService unit tests', function() {
         }
       }
     */
-    authRequestHandler = $httpbackend.when('POST', 'http://localhost:3000/authenticate')
-                          .respond({
-                            auth_token: 'mockToken',
-                            user: {
-                              id: 1,
-                              username: 'mockUser'
-                            }
-                          });
+    $httpBackend.whenPOST('http://localhost:3000/authenticate')
+      .respond({
+        auth_token: 'mockToken',
+        user: {
+          id: 1,
+          username: 'mockUser'
+        }
+      });
 
 
 
-    //var $service = $injector.get('$service');
 
-    // store mock
-    /*
-    spyOn(store, 'get').andCallFake(function(key) {
-      return store[key];
-    });
-    spyOn(store, 'set').andCallFake(function(key, value) {
-      store[key] = value;
-    });
-    spyOn(store, 'remove').andCallFake(function(key) {
-      delete store[key];
-    });
-    */
 
-    // perhaps this mocking is easier??
-    store.get = function(key) {
-      return store[key];
+    // mock a0-angular-store
+    var mockStore = {}; mockStore.vals = new Map();
+
+    mockStore.get = function(key) {
+      return store.vals.get(key);
     }
 
-    //not sure if we injected mock store into service
-    createService = function() {
-      return _loginService_;
+    mockStore.set = function(key, value) {
+      store.vals.set(key, value);
     };
 
-  }));
+    mockStore.remove = function(key) {
+      store.vals.delete(key);
+    }
 
-  afterEach(function() {
-     $httpbackend.verifyNoOutstandingExpectation();
-     $httpbackend.verifyNoOutstandingRequest();
+    module(function ($provide) {
+      $provide.value('store', mockStore);
+    });
+
   });
 
-  it('should do something', function() {
+  afterEach(function($httpBackend) {
+     $httpBackend.verifyNoOutstandingExpectation();
+     $httpBackend.verifyNoOutstandingRequest();
+  });
 
+  it('can be instantiated', function() {
+    expect(service).not.toBeNull();
   });
 });

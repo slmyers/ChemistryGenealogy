@@ -25,6 +25,7 @@ module.exports = function(config) {
       "web/bower_components/angular-ui-router/release/angular-ui-router.js",
       "web/bower_components/a0-angular-storage/dist/angular-storage.js",
       "web/bower_components/d3/d3.js",
+      "node_modules/karma-jasmine-html-reporter/src/index.js",
       // source files
       'web/app/*.js',
       'web/app/controllers/*.js',
@@ -48,7 +49,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['kjhtml'],
 
 
     // web server port
