@@ -44,13 +44,29 @@
                     <!-- Spacer //-->
                 </div>
 
-                <div>
-                <!-- PhD or not switch -->
-                <md-input-container class = "md-block" flex-gt-sm>
-                    <md-switch ng-model="data.cb2" aria-label="Switch 2" ng-true-value="'yup'" ng-false-value="'nope'" class="md-warn">
-                    Switch 2 (md-warn): {{ data.cb2 }}
-                    </md-switch>
-                </md-input-container>
+
+                <!-- Degree choice choices.  -->
+                    <div>
+                        <form name="myForm">
+
+                            <md-input-container class="md-block">
+                                <label>Type of Degree</label>
+                                <md-select name="myModel" ng-model="myModel" required>
+                                    <md-option value="1">Doctorate</md-option>
+                                    <md-option value="2">Mathers</md-option>
+                                    <md-option value="3">BSc</md-option>
+                                    <md-option value="4">BA</md-option>
+                                    <md-option value="5">Highschool</md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+                            <div layout="row">
+                                <md-button ng-click="clearValue()" ng-disabled="!myModel" style="margin-right: 20px;">Clear</md-button>
+                                <md-button ng-click="save()" ng-disabled="myForm.$invalid" class="md-primary" layout layout-align="center end">Save</md-button>
+                            </div>
+                        </form>
 
                 </div>
 
@@ -59,12 +75,11 @@
                 <div flex="40" hide-xs hide-sm>
                     <!-- Spacer //-->
                 </div>
+                </div>
 
-
-            </div>
-
-
+            <!-- Start a new line YAAAS -->
             <div layout-gt-sm="row">
+                <!--  -->
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Email</label>
                     <input name="email" ng-model="user.email"
