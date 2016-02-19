@@ -45,3 +45,9 @@
 |Participants|Cole, Connor, Ji Hwan, Steve, Theresa|
 |Minutes|2 hours|
 |Agenda|Meeting with the TA<li>Update on project progress.</li>|
+
+|Date|February 19, 2016|
+|Formality|Formal|
+|Participants|Cole, Connor, Daniel, Ji Hwan, Steve, Theresa|
+|Minutes|5 hours|
+|Agenda|Meeting with the client<li>Reconsidered and clarified use cases.</li><li>Reorganized group structure and plans.</li><li>Worked on coding for registration and submitting/editing information.</li>|
