@@ -11,5 +11,9 @@ angular.module('chemGeno')
                 url: '/search',
                 //controller: 'SearchCtrl',
                 templateUrl: '/app/views/search.html'
-              });
+              })
+              .state('main.submit', {
+                url: '/submit',
+                  templateUrl: '/app/views/submit.html'
+              })
         });
