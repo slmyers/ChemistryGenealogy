@@ -13,3 +13,5 @@ Relevant documentation can be found in the [wiki](https://github.com/401Chemistr
 * registered users are able to authenticate with backend
 * users are able to register with backend
 * client side code able to support this
+* 
+slack test
