@@ -13,7 +13,9 @@
             </div>
 
 
-
+            <div flex="3" hide-xs hide-sm>
+                <!-- Spacer //-->
+            </div>
 
 
             <div layout-gt-sm="row">
@@ -40,23 +42,58 @@
                     </div>
                 </md-input-container>
 
-                <div flex="5" hide-xs hide-sm>
+                <div flex="3" hide-xs hide-sm>
                     <!-- Spacer //-->
                 </div>
 
 
-                <!-- Degree choice choices.  -->
-                    <div>
+
+                <!-- Title selection -->
+                <div>
+                    <form name2="titleForm">
+
+                        <md-input-container class="md-block">
+                            <label>Title</label>
+                            <md-select name="myTitleModel" ng-model="myTitleModel" required>
+                                <md-option titleValue="title1">Dr</md-option>
+                                <md-option titleValue="title2">Mr</md-option>
+                                <md-option titleValue="title3">Ms</md-option>
+                                <md-option titleValue="title4">Mrs</md-option>
+                                <md-option titleValue="title5">Sir Knighted Dans LeFromage</md-option>
+                            </md-select>
+                            <div class="errors" ng-messages="titleForm.myModel.$error" ng-if="myForm.$dirty">
+                                <div ng-message="required">Required</div>
+                            </div>
+                        </md-input-container>
+                        <div layout="row">
+                            <md-button ng-click="clearValue()" ng-disabled="!titleForm" style="margin-right: 20px;">Clear</md-button>
+                            <md-button ng-click="save()" ng-disabled="titleForm.$invalid" class="md-primary" layout layout-align="center end">Save</md-button>
+                        </div>
+                    </form>
+                    </div>
+
+
+                <div flex="50" hide-xs hide-sm>
+                    <!-- Spacer //-->
+                </div>
+
+                <!-- new line begins here -->
+            </div>
+            <div layout-gt-sm="row">
+
+                    <!-- Degree choice choices.  -->
+
+
                         <form name="myForm">
 
                             <md-input-container class="md-block">
                                 <label>Type of Degree</label>
                                 <md-select name="myModel" ng-model="myModel" required>
-                                    <md-option value="1">Doctorate</md-option>
-                                    <md-option value="2">Mathers</md-option>
-                                    <md-option value="3">BSc</md-option>
-                                    <md-option value="4">BA</md-option>
-                                    <md-option value="5">Highschool</md-option>
+                                    <md-option value="degree1">Doctorate</md-option>
+                                    <md-option value="degree2">Mathers</md-option>
+                                    <md-option value="degree3">BSc</md-option>
+                                    <md-option value="degree4">BA</md-option>
+                                    <md-option value="degree5">Highschool</md-option>
                                 </md-select>
                                 <div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">
                                     <div ng-message="required">Required</div>
@@ -68,13 +105,37 @@
                             </div>
                         </form>
 
-                </div>
 
 
+                <!-- Now they will state what the degree is in -->
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Current Position Title </label>
+                    <input md-maxlength="30" required name="currentPosition" ng-model="user.currentPosition" />
+                    <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                        <div ng-message="required">Position Title is required.</div>
+                        <div ng-message="md-maxlength">Please tell us the position title.</div>
+                    </div>
+                </md-input-container>
 
-                <div flex="40" hide-xs hide-sm>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Current Institution Name</label>
+                    <input md-maxlength="30" required name="institution" ng-model="user.institution" />
+                    <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                    <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                        <div ng-message="required">Institution name is required.</div>
+                        <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                    </div>
+                </md-input-container>
+
+                <div flex="50" hide-xs hide-sm>
                     <!-- Spacer //-->
                 </div>
+
+
+                </div>
+               </div>
+
+
                 </div>
 
             <!-- Start a new line YAAAS -->

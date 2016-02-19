@@ -41,3 +41,4 @@ function($scope, $mdMedia, $mdDialog, loginService) {
   };
 
 }]);
+
