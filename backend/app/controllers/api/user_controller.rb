@@ -11,6 +11,7 @@ class Api::UserController < ApplicationController
   end
 
   def create
+    puts params[:last_name]
     @user = User.new_user(params[:password], params[:email], params[:first_name], params[:last_name])
     if @user != nil && @user.save
       render json: @user.as_json, status: :created
