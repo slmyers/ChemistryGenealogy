@@ -14,7 +14,7 @@ angular.module('chemGeno')
       header: 'Content-Type: application/json',
       method: 'POST',
       url: 'http://localhost:3000/api/user',
-      data: {email: user.email, password: user.password}
+      data: {email: user.email, password: user.password, firstName: user.firstName, lastName: user.lastName}
     }).success( function(res){
       console.log('success');
       console.log(res);

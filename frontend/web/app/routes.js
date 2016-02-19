@@ -9,7 +9,6 @@ angular.module('chemGeno')
               })
               .state('main.search', {
                 url: '/search',
-                //controller: 'SearchCtrl',
                 templateUrl: '/app/views/search.html'
               });
         });
