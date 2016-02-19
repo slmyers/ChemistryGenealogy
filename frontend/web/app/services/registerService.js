@@ -14,9 +14,10 @@ angular.module('chemGeno')
       header: 'Content-Type: application/json',
       method: 'POST',
       url: 'http://localhost:3000/api/user',
-      params: {email: user.email, password: user.password}
+      data: {email: user.email, password: user.password}
     }).success( function(res){
       console.log('success');
+      console.log(res);
       if(!_checkReturnedFields(res.username, user)){
         d.reject({error: "expected returned username: " + user.username + " got: " + res.data.username})
       } else {

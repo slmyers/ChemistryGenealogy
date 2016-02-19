@@ -14,7 +14,8 @@ describe('userDialogController unit tests',  function() {
   });
 
   it('successful login should result in invalidLogin === false', function() {
-    scope.loginUser = {};
+    // should be false at instantiation
+    expect(scope.invalidLogin).toBeFalsy();
     httpMock.expectPOST('http://localhost:3000/authenticate',
                         {
                           email: 'testEmail@email.ca',
@@ -33,7 +34,8 @@ describe('userDialogController unit tests',  function() {
   });
 
   it('unsuccessful login should result in invalidLogin === true', function() {
-    scope.loginUser = {};
+    // should be false at instantiation
+    expect(scope.invalidLogin).toBeFalsy();
     httpMock.expectPOST('http://localhost:3000/authenticate',
                         {
                           email: 'testEmail@email.ca',
@@ -47,4 +49,58 @@ describe('userDialogController unit tests',  function() {
     expect(scope.invalidLogin).toBeTruthy();
   });
 
+  it('sucessful registration should result in invalidRegistration === false', function() {
+    expect(scope.invalidRegistration).toBeFalsy();
+    expect(scope.invalidLogin).toBeFalsy();
+    httpMock.expectPOST('http://localhost:3000/api/user',
+                        {
+                          email: 'testEmail@email.ca',
+                          password: 'testPassword'
+                        })
+      .respond({
+        statusText: "Created",
+        data: {
+          email: 'testEmail@email.ca',
+          password: 'testPassword'
+        }
+      });
+    httpMock.expectPOST('http://localhost:3000/authenticate',
+                        {
+                          email: 'testEmail@email.ca',
+                          password: 'testPassword'
+                        })
+      .respond({
+        auth_token: 'mockToken',
+        user: {
+          id: 1,
+          email: 'testEmail@email.ca'
+        }
+    });
+    scope.submitRegistration({email:'testEmail@email.ca', password: 'testPassword'});
+    httpMock.flush();
+    expect(scope.invalidLogin).toBeFalsy();
+    expect(scope.invalidRegistration).toBeFalsy();
+  });
+
+  it('unsuccessful registration should result in invalidRegistration === true', function() {
+    expect(scope.invalidRegistration).toBeFalsy();
+    expect(scope.invalidLogin).toBeFalsy();
+    httpMock.expectPOST('http://localhost:3000/api/user',
+                        {
+                          email: 'testEmail@email.ca',
+                          password: 'testPassword'
+                        })
+      .respond(400, {
+        statusText: "Bad Request",
+        data: {
+          error: "user exists"
+        }
+      });
+    scope.submitRegistration({email:'testEmail@email.ca', password: 'testPassword'});
+    httpMock.flush();
+    expect(scope.invalidLogin).toBeFalsy();
+    expect(scope.invalidRegistration).toBeTruthy();
+  });
+
+  
 });

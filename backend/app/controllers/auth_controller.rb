@@ -14,7 +14,7 @@ class AuthController < ApplicationController
     return nil unless user && user.id
     {
       auth_token: AuthToken.encode({ user_id: user.id }),
-      user: { id: user.id, username: user.email } # return whatever user info you need
+      user: { id: user.id, email: user.email } # return whatever user info you need
     }
   end
 end
