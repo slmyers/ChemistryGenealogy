@@ -5,18 +5,24 @@
       <span flex="15"></span>
       <!-- logo that links to home page -->
       <span flex="5">
-        <img ng-src="/static/img/cg.png" />
+        <A NG-HREF="index.html"><img ng-src="/static/img/cg.png" /></A>
       </span>
 
       <span flex="60">
 
-        <a ui-sref="main.submit"> <md-button class="md-raised">SUBMIT PAGE (TEMP?)</md-button> </a>
+
         <A NG-HREF="index.html"><b>Chemistry Genealogy</b></A>
 
-        <b>Chemistry Genealogy</b>
+
 
       </span>
-      <span flex="20">
+      <span flex="10">
+        <a ui-sref="main.submit"> <md-button class="md-fab md-accent">
+          <md-icon md-svg-src="/static/img/ic_add_black_24px.svg"></md-icon>
+        </md-button> </a>
+        </span>
+      <span flex="10">
+
         <div ng-controller="userController" layout-align="center end">
           <md-button class="md-fab md-accent" aria-label="login" ng-click="login($event)" ng-show="showLogin()">
             <md-icon md-svg-src="/static/img/person.svg"></md-icon>
