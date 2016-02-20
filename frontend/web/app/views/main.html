@@ -1,47 +1,59 @@
+<!--
+ * HTML for the Main page.
+ *
+ * Status: VIEW.
+ * Associated files: userController.js, userDialogController.js, loginService.js, registerService.js
+ *
+ * Description: This page is going to be where we have the login OR registration information displayed to the user
+ * as they are going to be involved with
+ *
+ *
+-->
+
 <header>
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <!-- take up first 15% of toolbar -->
-      <span flex="15"></span>
-      <!-- logo that links to home page -->
-      <span flex="11">
-        <A NG-HREF="index.html"><img ng-src="/static/img/cg.png" /></A>
-      </span>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+          <!-- take up first 15% of toolbar -->
+          <span flex="15"></span>
+          <!-- logo that links to home page -->
+          <span flex="11">
+            <A NG-HREF="index.html"><img ng-src="/static/img/cg.png" /></A>
+          </span>
 
-      <span flex="50">
-
-
-        <A NG-HREF="index.html"><b>Chemistry Genealogy</b></A>
+          <span flex="50">
 
 
+            <A NG-HREF="index.html"><b>Chemistry Genealogy</b></A>
 
-      </span>
-      <span flex="7">
-        <a ui-sref="main.submit"> <md-button class="md-fab md-accent">
-          <md-icon md-svg-src="/static/img/ic_add_black_24px.svg"></md-icon>
-        </md-button> </a>
-        </span>
-      <span flex="7">
 
-        <div ng-controller="userController" layout-align="center end">
-          <md-button class="md-fab md-accent" aria-label="login" ng-click="login($event)" ng-show="showLogin()">
-            <md-icon md-svg-src="/static/img/person.svg"></md-icon>
-          </md-button>
-          <md-menu ng-show="showUser()">
-            <!-- this getUsername() call polls the application... -->
-            <md-button md-no-ink class="md-accent" ng-click="$mdOpenMenu($event)">
-              {{getUsername()}}
-            </md-button>
-            <md-menu-content width="2">
-              <md-button ng-click="logout()">
-                 <span md-menu-align-target>Logout</span>
+
+          </span>
+          <span flex="7">
+            <a ui-sref="main.submit"> <md-button class="md-fab md-accent">
+              <md-icon md-svg-src="/static/img/ic_add_black_24px.svg"></md-icon>
+            </md-button> </a>
+            </span>
+          <span flex="7">
+
+            <div ng-controller="userController" layout-align="center end">
+              <md-button class="md-fab md-accent" aria-label="login" ng-click="login($event)" ng-show="showLogin()">
+                <md-icon md-svg-src="/static/img/person.svg"></md-icon>
               </md-button>
-            </md-menu-content>
-          </md-menu>
+              <md-menu ng-show="showUser()">
+                <!-- this getUsername() call polls the application... -->
+                <md-button md-no-ink class="md-accent" ng-click="$mdOpenMenu($event)">
+                  {{getUsername()}}
+                </md-button>
+                <md-menu-content width="2">
+                  <md-button ng-click="logout()">
+                     <span md-menu-align-target>Logout</span>
+                  </md-button>
+                </md-menu-content>
+              </md-menu>
+            </div>
+          </span>
         </div>
-      </span>
-    </div>
-  </md-toolbar>
+      </md-toolbar>
 </header>
 
 <div ui-view></div>
