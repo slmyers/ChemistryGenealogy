@@ -10,6 +10,8 @@
  *
  * This is associated with various services to achieve this: loginService.js, registerService.js.
  *
+ * Controllers tied directly with the viewed, and then services are injected into the controllers.
+ *
  */
 
 angular.module('chemGeno')
