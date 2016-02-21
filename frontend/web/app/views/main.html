@@ -11,7 +11,9 @@
 -->
 
 <header>
+    <!-- Places a toolbar into our application. This is our top header toolbar! -->
     <md-toolbar>
+        <!-- Have a division with the toolbar tools turned active. -->
         <div class="md-toolbar-tools">
           <!-- take up first 15% of toolbar -->
           <span flex="15"></span>
@@ -20,30 +22,39 @@
             <A NG-HREF="index.html"><img ng-src="/static/img/cg.png" /></A>
           </span>
 
+            <!-- Fill in 50% of the toolbar with the title of the app-->
           <span flex="50">
-
-
             <A NG-HREF="index.html"><b>Chemistry Genealogy</b></A>
-
-
-
           </span>
+
+            <!-- Over the next 7% of the toolbar have the submit section button -->
           <span flex="7">
+              <!-- A button that if called will evoke main.submit function through the router. -->
             <a ui-sref="main.submit"> <md-button class="md-fab md-accent">
-              <md-icon md-svg-src="/static/img/ic_add_black_24px.svg"></md-icon>
+              <md-icon md-svg-src="/static/img/ic_add_black_24px.svg"></md-icon> <!-- A default angular given button icon -->
             </md-button> </a>
             </span>
+
+
+            <!-- Over the next 7% of the toolbar size show the rest -->
           <span flex="7">
 
+              <!-- State that the controller being used is the userController(.js) controller -->
             <div ng-controller="userController" layout-align="center end">
+                <!-- Have a button that upon click will begin the login function with the event -->
               <md-button class="md-fab md-accent" aria-label="login" ng-click="login($event)" ng-show="showLogin()">
-                <md-icon md-svg-src="/static/img/person.svg"></md-icon>
+                <md-icon md-svg-src="/static/img/person.svg"></md-icon> <!-- A default angular given button icon -->
               </md-button>
+
+                <!-- Show the result of the showUser function -->
               <md-menu ng-show="showUser()">
-                <!-- this getUsername() call polls the application... -->
+
+                <!-- Button that when clicked evokes the getUsername() function -->
                 <md-button md-no-ink class="md-accent" ng-click="$mdOpenMenu($event)">
                   {{getUsername()}}
                 </md-button>
+
+                  <!--Over a width of 2 of toolbar have a logout button -->
                 <md-menu-content width="2">
                   <md-button ng-click="logout()">
                      <span md-menu-align-target>Logout</span>
@@ -51,6 +62,10 @@
                 </md-menu-content>
               </md-menu>
             </div>
+
+
+
+
           </span>
         </div>
       </md-toolbar>
