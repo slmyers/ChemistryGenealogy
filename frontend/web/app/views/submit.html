@@ -268,10 +268,14 @@
 
 
 
+            <!-- New line with row layout format -->
             <div layout-gt-sm="row">
                 <!-- This is going to be the tabs display where they can add their postdocs -->
                 <div class="sample" layout="column" ng-cloak>
                     <md-content class="md-padding">
+
+
+
                 <!-- DEGREE INFORMATION -->
                 <!-- Informing the users of what the next section is all about and a brief description -->
                 <md-input-container>
@@ -291,9 +295,9 @@
                                         ng-disabled="tab.disabled"
                                         label="{{tab.postDocID}}">
                                     <div class="demo-tab tab{{$index%4}}" style="padding: 25px;">
-                                        <div> Postdoctoral Dates:   <span ng-bind="tab.postDocDates"></span></div>
-                                        <div> Postdoctoral Supervisor:  <span ng-bind="tab.postDocSupervisor"></span></div>
-                                        <div> Postdoctoral Institution: <span ng-bind="tab.postDocInstitution"></span></div>
+                                        <div> Year Degree was Obtained: Eg: 1975   <span ng-bind="tab.degreeInfoYear"></span></div>
+                                        <div> Degree Supervisor:  <span ng-bind="tab.degreeInfoSupervisor"></span></div>
+                                        <div> Degree Institution: <span ng-bind="tab.degreeInfoInstitution"></span></div>
                                         <br/>
                                         <md-button class="md-primary md-raised" ng-click="removePDTab( tab )" ng-disabled="tabs.length <= 1">Remove Tab</md-button>
                                     </div>
@@ -304,7 +308,7 @@
 
                         <!-- This section is primarily concerned with accepting the input from the user and putting it into
                             the model. -->
-                        <form ng-submit="addPDTab(postDocDates, postDocSupervisor, postDocInstitution)" layout="column" class="md-padding" style="padding-top: 0;">
+                        <form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">
                             <div layout="row" layout-sm="column">
                                 <div flex style="position: relative;">
                                     <!-- Shouldn't need this. Commenting out for now. <h2 class="md-subhead" style="position: absolute; bottom: 0; left: 0; margin: 0; font-weight: 500; text-transform: uppercase; line-height: 35px; white-space: nowrap;">Add a new Tab:</h2> -->
@@ -312,19 +316,19 @@
                                     <!-- Input for the Start date -> End date -->
                                     <md-input-container>
                                         <label for="content">Start Date - End Date. Eg: 1993-1995</label>
-                                        <input type="text" id="content" ng-model="postDocDates">
+                                        <input type="text" id="diYear" ng-model="degreeInfoYear">
                                     </md-input-container>
 
                                     <!-- Input for the Start date -> End date -->
                                     <md-input-container>
                                         <label for="content">Supervisor Name Eg: John Doe</label>
-                                        <input type="text" id="pdSupervisorName" ng-model="postDocSupervisor">
+                                        <input type="text" id="diSupervisor" ng-model="degreeInfoSupervisor">
                                     </md-input-container>
 
                                     <!-- Input for the Start date -> End date -->
                                     <md-input-container>
                                         <label for="content">Institution Eg: University Of Alberta</label>
-                                        <input type="text" id="pdInstitution" ng-model="postDocInstitution">
+                                        <input type="text" id="diInstitution" ng-model="degreeInfoInstitution">
                                     </md-input-container>
 
                                     <!-- The button for submitting the data input into the fields above -->

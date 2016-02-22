@@ -104,10 +104,10 @@ angular.module('chemGeno')
              * the data together in such a way that we have the previous now equal to the selected, and then
              * index into the "tabs" list with the current value.
              */
-            $scope.$watch('selectedIndex', function(current, old){
+            $scope.$watch('selectedIndex', function(current2, old2){
                 previous = selected;
                 selected = degreeInfoTab[current];
-                if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previous.title + '!');
+                if ( old2 + 1 && (old2 != current)) $log.debug('Goodbye ' + previous.title + '!');
                 if ( current + 1 )                $log.debug('Hello ' + selected.title + '!');
             });
 
@@ -120,8 +120,8 @@ angular.module('chemGeno')
              */
             $scope.addDITab = function (diYear, diSupervisor, diInstitution) {
                 //view = view || title + " Content View";
-                var diID = $scope.postDocID++; //Increment global PostDocID with addition.
-                postDocTab.push({ diID: diID, degreeInfoYear: diYear, degreeInfoSupervisor: diSupervisor, degreeInfoInstitution: diInstitution, disabled: false});
+                var diID = $scope.degreeInfoID++; //Increment global degreeInfoID with addition.
+                degreeInfoTab.push({ diID: diID, degreeInfoYear: diYear, degreeInfoSupervisor: diSupervisor, degreeInfoInstitution: diInstitution, disabled: false});
             };
 
             /** DEGREE INFO FUNCTION
@@ -130,9 +130,9 @@ angular.module('chemGeno')
              * @param tab The tab to be removed.
              */
             $scope.removeDITab = function (tab) {
-                $scope.postDocID--; //Decrement global postDocID with removal.
+                $scope.degreeInfoID--; //Decrement global degreeInfoID with removal.
                 var index = postDocTab.indexOf(tab);
-                postDocTab.splice(index, 1);
+                degreeInfoTab.splice(index, 1);
             };
 
 
