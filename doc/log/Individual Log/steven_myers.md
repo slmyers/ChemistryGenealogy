@@ -61,3 +61,5 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * changed user login/registration to require email/password instead of username/password -- touched full stack from db to view.
 
 * wrote script to reload and seed the database
+
+* wrote unit tests for login and registration on the frontend

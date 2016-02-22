@@ -1,4 +1,16 @@
+/**
+ * Controller for the Visualizations
+ *
+ * Status: CONTROLLER
+ * Associated files:
+ *
+ * The visualization part of our application has this controller which is going to facilitate the process of
+ * representing the visuals of the groupings of nodes and vertices to the user in our application.
+ *
+ */
+
 angular.module('chemGeno')
+//Stating that this is a controller as well as the fact that this takes in certain information.
 .controller('visController', ['$scope', 'searchService',
 function($scope, searchService) {
   /* load search results */
@@ -25,5 +37,4 @@ function($scope, searchService) {
   };
 
   $scope.estimateDimensions();
-
 }]);

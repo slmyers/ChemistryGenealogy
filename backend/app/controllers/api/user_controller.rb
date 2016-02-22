@@ -11,7 +11,8 @@ class Api::UserController < ApplicationController
   end
 
   def create
-    @user = User.new_user(params[:password], params[:email])
+    puts params[:last_name]
+    @user = User.new_user(params[:password], params[:email], params[:first_name], params[:last_name])
     if @user != nil && @user.save
       render json: @user.as_json, status: :created
     else
@@ -37,6 +38,8 @@ class Api::UserController < ApplicationController
     @user.destroy
     render json: {status: :ok}
   end
+
+  # this code is generated earlier and doens't contribute on the actual web app
 
   private
 

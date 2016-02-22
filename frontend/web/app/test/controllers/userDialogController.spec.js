@@ -55,7 +55,9 @@ describe('userDialogController unit tests',  function() {
     httpMock.expectPOST('http://localhost:3000/api/user',
                         {
                           email: 'testEmail@email.ca',
-                          password: 'testPassword'
+                          password: 'testPassword',
+                          firstName: 'firstName',
+                          lastName: 'lastName'
                         })
       .respond({
         statusText: "Created",
@@ -76,7 +78,7 @@ describe('userDialogController unit tests',  function() {
           email: 'testEmail@email.ca'
         }
     });
-    scope.submitRegistration({email:'testEmail@email.ca', password: 'testPassword'});
+    scope.submitRegistration({email:'testEmail@email.ca', password: 'testPassword', firstName: 'firstName', lastName: 'lastName'});
     httpMock.flush();
     expect(scope.invalidLogin).toBeFalsy();
     expect(scope.invalidRegistration).toBeFalsy();
@@ -87,6 +89,8 @@ describe('userDialogController unit tests',  function() {
     expect(scope.invalidLogin).toBeFalsy();
     httpMock.expectPOST('http://localhost:3000/api/user',
                         {
+                          firstName: 'firstName',
+                          lastName: 'lastName',
                           email: 'testEmail@email.ca',
                           password: 'testPassword'
                         })
@@ -96,11 +100,11 @@ describe('userDialogController unit tests',  function() {
           error: "user exists"
         }
       });
-    scope.submitRegistration({email:'testEmail@email.ca', password: 'testPassword'});
+    scope.submitRegistration({email:'testEmail@email.ca', password: 'testPassword', firstName: 'firstName', lastName: 'lastName'});
     httpMock.flush();
     expect(scope.invalidLogin).toBeFalsy();
     expect(scope.invalidRegistration).toBeTruthy();
   });
 
-  
+
 });
