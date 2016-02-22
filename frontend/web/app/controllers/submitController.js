@@ -24,18 +24,23 @@ angular.module('chemGeno')
     .controller('submitController', ['$scope',
         function($scope) {
 
-            //POSTDOC TABS:
-            //Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
-            //Basic columns: Institution, start date, end date.
+         //POSTDOC TABS:
+         // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
+         // Tabs is part of the model as described immediately below:
+         // {postDocID, postDocDates, postDocSupervisor, postDocInstitution}
          var tabs = [
-             { title: 'One', content: "Tabs will become paginated if there isn't enough room for them."},
-             { title: 'Two', content: "You can swipe left and right on a mobile device to change tabs."},
+             { postDocID: 1, postDocDates: '1993-1995', postDocSupervisor: 'David Bundle',
+                 postDocInstitution: 'University of Alberta'},
+             { postDocID: 2, postDocDates: '1996-1996', postDocSupervisor: 'Morten Meldel',
+                 postDocInstitution: 'Carlsberg Laboratory'}
+             //{ title: 'Two', content: "You can swipe left and right on a mobile device to change tabs."},
 
          ],
              selected = null,
              previous = null;
-            $scope.tabs = tabs;
-            $scope.selectedIndex = 2;
+            $scope.tabs = tabs; //Formally assigning the list above to the scope variable.
+            $scope.selectedIndex = 2; //Index that the tabs start at.
+            $scope.postDocID = 3; //Only set to 3 here for the sample data. Set back to 1 for release.
 
             /**
              * This function when invoked will take the current and then the old tab and then it will combine
@@ -51,12 +56,13 @@ angular.module('chemGeno')
 
             /**
              * This function will add a new tab to the set of tabs that we currently have.
-             * @param title The title of the function to be addressed.
-             * @param view The view that will be assocaited with the tab being added to the total tabs list.
+             * //@param title The title of the function to be addressed.
+             * //@param view The view that will be assocaited with the tab being added to the total tabs list.
              */
-            $scope.addTab = function (title, view) {
-                view = view || title + " Content View";
-                tabs.push({ title: title, content: view, disabled: false});
+            $scope.addTab = function (pdDate, pdSupervisor, pdInstitution) {
+                //view = view || title + " Content View";
+                var pdID = $scope.postDocID++; //Increment global PostDocID with addition.
+                tabs.push({ postDocID: pdID, postDocDates: pdDate, postDocSupervisor: pdSupervisor, postDocInstitution: pdInstitution, disabled: false});
             };
 
             /**
@@ -64,6 +70,7 @@ angular.module('chemGeno')
              * @param tab The tab to be removed.
              */
             $scope.removeTab = function (tab) {
+                $scope.postDocID--; //Decrement global postDocID with removal.
                 var index = tabs.indexOf(tab);
                 tabs.splice(index, 1);
             };
