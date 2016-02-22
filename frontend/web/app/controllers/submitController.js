@@ -42,7 +42,7 @@ angular.module('chemGeno')
          //I elected to use tabs for this as people may have different supervisors for masters vs. PhD or even
          //multiple PhD/masters degrees from various fields. (Eg: Perhaps Chemistry AND Criminal Justice?)
          degreeInfoTab =[
-             { degreeInfoYear: 1993, degreeInfoSupervisor: 'Ole Hindsgaul', degreeInfoInstitution: 'University of Alberta'}
+             { degreeInfoID: 1, degreeInfoYear: 1993, degreeInfoSupervisor: 'Ole Hindsgaul', degreeInfoInstitution: 'University of Alberta'}
 
          ];
 
@@ -54,7 +54,7 @@ angular.module('chemGeno')
             //Degree Info variables.
             $scope.degreeInfoTabs = degreeInfoTab; //Formally assigning the list above to the scope tab variable.
             $scope.degreeInfoSelectedIndex = 1; //Index that the tabs start at.
-            $scope.degreeInfoID = 1; //Only set to 3 here for the sample data. Set back to 1 for release.
+            $scope.degreeInfoID = 2; //Only set to 3 here for the sample data. Set back to 1 for release.
 
 
             /** POSTDOC FUNCTION.
@@ -121,7 +121,7 @@ angular.module('chemGeno')
             $scope.addDITab = function (diYear, diSupervisor, diInstitution) {
                 //view = view || title + " Content View";
                 var diID = $scope.degreeInfoID++; //Increment global degreeInfoID with addition.
-                degreeInfoTab.push({ diID: diID, degreeInfoYear: diYear, degreeInfoSupervisor: diSupervisor, degreeInfoInstitution: diInstitution, disabled: false});
+                degreeInfoTab.push({ degreeInfoID: diID, degreeInfoYear: diYear, degreeInfoSupervisor: diSupervisor, degreeInfoInstitution: diInstitution, disabled: false});
             };
 
             /** DEGREE INFO FUNCTION
