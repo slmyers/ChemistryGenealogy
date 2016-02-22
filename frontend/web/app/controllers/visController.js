@@ -12,21 +12,29 @@
 angular.module('chemGeno')
 //Stating that this is a controller as well as the fact that this takes in certain information.
 .controller('visController', ['$scope', 'searchService',
-    function($scope, searchService) {
+function($scope, searchService) {
+  /* load search results */
+  $scope.searchResults = [];
+  $scope.search = searchService.getMockData();
+  $scope.search.then(function (data){
+    $scope.searchResults = data.slice();
+  }, function(error) {
+    console.log(error);
+  });
+  // current window dimensions
+  $scope.windowWidth = window.innerWidth;
+  $scope.windowHeight = window.innerHeight;
 
-      //Maintain a list of the results from the search done.
-      $scope.searchResults = [];
+  $scope.estimatedVisW = 0;
+  $scope.estimatedVisH  = 0;
 
-      //Assign the search variable the value of the function getMockData in the searchService.js.
-      //Which is at present a list of mock data.
-      $scope.search = searchService.getMockData();
+  // estimates the dimensions of the vis flexbox
+  // not perfect but < 10% error
+  $scope.estimateDimensions = function() {
+    // #searchContainer.min-height: 80vh;
+    $scope.estimatedVisH = 0.8*$scope.windowHeight;
+    $scope.estimatedVisW = 0.7*$scope.windowWidth - 0.02*$scope.windowWidth - 50;
+  };
 
-        /**
-         * Function that when evoked will take in a piece of data and then post the data onto the console.
-         */
-      $scope.search.then(function (data){
-        console.log(data);
-      }, function(error) {
-        console.log(error);
-      });
+  $scope.estimateDimensions();
 }]);
