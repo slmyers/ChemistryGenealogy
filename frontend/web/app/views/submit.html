@@ -11,14 +11,17 @@
  * Things that we're collecting include basic information like:
  * -first name
  * -last name
+ * -title
  * -degree type
- * -postdoc postings
- * -etc
+ * -degree information: {date obtained, primary supervisor, institution}
+ * -postdoc postings {dates, supervisor, institution}
+ * -
+ *
  *
 -->
 
 <!-- Initial layout of the first line will follow column style, and not show raw uncompiled form while browser loads-->
-<div layout="column" ng-cloak>
+<div ng-controller="submitController" layout="column" ng-cloak>
     <!-- This bit will cause the layout to follow a general padding style-->
     <md-content layout-padding>
         <!-- This form is called "userForm" -->
@@ -210,7 +213,7 @@
             <div layout-gt-sm="row">
 
                 <!-- This is going to be the tabs display where they can add their postdocs -->
-                <div ng-controller="submitController" class="sample" layout="column" ng-cloak>
+                <div class="sample" layout="column" ng-cloak>
                     <md-content class="md-padding">
 
                         <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect>
