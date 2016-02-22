@@ -33,11 +33,11 @@ angular.module('chemGeno')
                  postDocInstitution: 'University of Alberta'},
              { postDocID: 2, postDocDates: '1996-1996', postDocSupervisor: 'Morten Meldel',
                  postDocInstitution: 'Carlsberg Laboratory'}
-             //{ title: 'Two', content: "You can swipe left and right on a mobile device to change tabs."},
-
          ],
              selected = null,
              previous = null;
+
+
             $scope.tabs = tabs; //Formally assigning the list above to the scope variable.
             $scope.selectedIndex = 2; //Index that the tabs start at.
             $scope.postDocID = 3; //Only set to 3 here for the sample data. Set back to 1 for release.
@@ -56,9 +56,12 @@ angular.module('chemGeno')
 
             /**
              * This function will add a new tab to the set of tabs that we currently have.
-             * //@param title The title of the function to be addressed.
-             * //@param view The view that will be assocaited with the tab being added to the total tabs list.
+             *
+             * @param pdDate The dates of the start and ending of the postdoc appointment.
+             * @param pdSupervisor The supervisor of the postdoc appointment.
+             * @param pdInstitution The institution of the postdoc appointment.
              */
+
             $scope.addTab = function (pdDate, pdSupervisor, pdInstitution) {
                 //view = view || title + " Content View";
                 var pdID = $scope.postDocID++; //Increment global PostDocID with addition.
@@ -73,6 +76,25 @@ angular.module('chemGeno')
                 $scope.postDocID--; //Decrement global postDocID with removal.
                 var index = tabs.indexOf(tab);
                 tabs.splice(index, 1);
+            };
+
+            /**
+             * This is the model for this submission page.
+             * First name, last name, title, degree type, current position title, current institution, postdoc info
+             *
+             * @type {{usersFirstName: null, usersLastName: null, usersTitle: null, usersDegreeType: null, usersCurrentPositionTitle: null, usersCurrentInstitutionName: null, usersPostDocInfo: *[]}}
+             */
+            var submitPageModel;
+
+            submitPageModel = {
+                usersFirstName: null,
+                usersLastName: null,
+                usersTitle: null,
+                usersDegreeType: null,
+                usersCurrentPositionTitle: null,
+                usersCurrentInstitutionName: null,
+                usersPostDocInfo: tabs
+
             };
 
         }]);
