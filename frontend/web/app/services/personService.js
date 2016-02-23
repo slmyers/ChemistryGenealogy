@@ -15,24 +15,39 @@ angular.module('chemGeno')
         institution: {
           name: 'University of Alberta'
         },
-        // this is an array
-        postdoc: {
+        // this is an array with the mentor and postdoc tied together
+        postdoc:
           [
+            mentor: {
+              name: 'Eleni Stroulia'
+            },
             {
               start: 2014,
               end: 2016,
               institution: 'University of Alberta'
             }
           ]
-        },
-        mentor: {
-          name: 'Eleni Stroulia'
-        },
+        ,
         degree: {
+          supervisor: 'Meysam Feghhi',
           year: '2014',
-        },
-        supervisor: {
-          name: 'Meysam Feghhi'
+        }
+      }
+
+      typings:
+      {
+        name: string,
+        positiion: string,
+        institution: object,
+          insitiution.name: string
+        postdoc: array<MentorObj,postDocObj>
+          mentor.name: string,
+          postdoc.start: int,
+          postdoc.end: int,
+          postdoc.insitiution: string
+        degree: {
+          supervisor: string,
+          year: int
         }
       }
 
@@ -67,6 +82,7 @@ angular.module('chemGeno')
     return d.promise;
   };
 
+  // might be inefficient?? on the backend
   var updatePerson = function(person) {
     var d = $q.defer();
     return $http({
@@ -90,6 +106,15 @@ angular.module('chemGeno')
     });
     return d.promise;
   }
+
+/**************************************************************************************
+ * these methods are an idea i'm floating around. I think it will be more efficient   *
+ * to update only one row in the db if only one thing changed, ie, only the person's  *
+ * name was changed, so then we only need to update the name on the db end, but if we *
+ * include the whole person object then every column in the person might end up being *
+ * written to when only 1 thing might have changed? I'm rusty on my SQL/db stuff so   *
+ * this should be investigated.                                                       *
+ **************************************************************************************/
 
   // update the institution in the person table
   // NOTE: must check to see if institution exists on backend and create if
@@ -136,7 +161,6 @@ angular.module('chemGeno')
 
   return {
     submitPerson: submitPerson,
-    updatePersonInstitution: updatePersonInstitution,
     updatePerson: updatePerson
   }
 });
