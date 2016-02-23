@@ -2,10 +2,7 @@
  * Search Service
  *
  * Status: SERVICE
- * Associated files:
- *
- * The Register service is associated with storing and handling the local information services in the app.
- *
+ * Associated files: vis controller
  *
  */
 

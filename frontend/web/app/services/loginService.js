@@ -1,12 +1,7 @@
 /**
- * Controller for the User Dialogue
  *
- * Status: CONTROLLER
- * Associated files: userDialog.html,
- *
- * The user dialog controller is associated with registration and submission of login information. So it is
- * slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.
- *
+ * Status: service
+ * Associated files: userDialogController, userController.
  *
  */
 
@@ -31,7 +26,7 @@ angular.module('chemGeno')
       };
 
     /**
-     *  Obtain from the store (What?) the value of the userNamespace.
+     *  Obtain from local storage the value of the userNamespace key.
      * @returns {*} The value of the current user
      */
       var getUser = function() {
@@ -39,8 +34,8 @@ angular.module('chemGeno')
       };
 
     /**
-     * A service function that when invoked will attempt to log the user in. If it succeeds then we set the store
-     * to the user, else we will send an error back to the user of the app.
+     * An http call wrapped in a promise. upon success will store the user data in
+     * local storage.
      *
      * @param user A user of the app.
      * @returns {*} The promise of the user being logged in.
@@ -73,7 +68,7 @@ angular.module('chemGeno')
       };
 
     /**
-     * A bunch of return stuff (???????????) that will state what is going on with the state of the application.
+     * exposes the various functions.
      */
       return  {
         userLoggedIn: userLoggedIn,

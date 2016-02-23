@@ -2,7 +2,7 @@
  * Register Service
  *
  * Status: SERVICE
- * Associated files:
+ * Associated files: userDialogController
  *
  * The Register service is associated with storing and handling the local information services in the app.
  *
@@ -12,8 +12,7 @@
 angular.module('chemGeno')
 .service('registerService', function(store, $q, $http) {
   /**
-   * A registration function service that will be involved with the actual in depth placement of the user into the
-   * system.
+   * http request to the user route that is wrapped in a promise
    *
    * @param user A user object to register in our application.
    * @returns {*} Returns a promise associated with the registration of the user.
@@ -36,7 +35,7 @@ angular.module('chemGeno')
   }
 
   /**
-   * Return the register object as being (successfully) "register"ed)
+   * exposes the register function
    */
   return {
     register: register
