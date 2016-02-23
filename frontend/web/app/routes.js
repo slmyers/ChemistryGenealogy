@@ -25,6 +25,6 @@ angular.module('chemGeno')
                 /** Submit page information **/
               .state('main.submit', {
                 url: '/submit',
-                  templateUrl: '/app/views/submit.html'
+                templateUrl: '/app/views/submit.html'
               })
         });
