@@ -24,6 +24,9 @@ angular.module('chemGeno')
       $scope.registration = false;
       //True upon recieving an error for a registration request
       $scope.invalidRegistration = false;
+      //True upon sucessfuling posting a new user -- sets html logic to display
+      //a message about registration process
+      $scope.successRegistration = false;
 
         /**
          * Function associated with navigating through the processes of actually logging in a user from
@@ -57,13 +60,13 @@ angular.module('chemGeno')
           console.log('success registration');
           console.log(res);
           $scope.invalidRegistration = false;
-          $scope.submitLogin(registerUser);
+          $scope.successRegistration = true;
         }, function(error){
           console.log('error in registration');
           console.log(error);
           $scope.invalidRegistration = true;
           $scope.registerUser = angular.copy($scope.master);
-        });
+        })
       };
 
         /**

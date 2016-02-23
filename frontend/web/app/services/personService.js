@@ -1,8 +1,7 @@
 angular.module('chemGeno')
 .service('personService', function($q, $http, loginService) {
-
-  // this is not the ideal function to use... there will be too much work
-  // caused on backend -- lots of joins and updates.
+  // we should include the userId of the user making the change
+  // for the audit trail
   var getUserId = function() {
     return loginService.getUser().user.id;
   }
@@ -53,12 +52,12 @@ angular.module('chemGeno')
 
       you'll notice that some of the fields are missing when compared to the data model,
       this is most likely because these fields are foreign keys, so one would save a model,
-      then use it's foreign key (of the saved thing like person.institution) as a column
+      then use it's key (of the saved thing like person.institution) as a column
       in the person model
   */
 
 
-
+  // use for a totally new person
   var submitPerson = function(person) {
     var d = $q.defer();
     return $http({
@@ -66,6 +65,7 @@ angular.module('chemGeno')
       method: 'POST',
       url: 'http://localhost:3000/api/person',
       data: {
+        user: getUserId(),
         name: person.name,
         position: person.position,
         insitiution : person.insitiution,
@@ -75,13 +75,14 @@ angular.module('chemGeno')
     }).success( function(res){
       d.resolve(res.user);
     }).error( function(res){
-      console.log('submitPersonService.submitPerson error');
+      console.log('personService.submitPerson error');
       console.log(res);
       d.reject(res.error);
     });
     return d.promise;
   };
 
+  // use to update an existing person
   // might be inefficient?? on the backend
   var updatePerson = function(person) {
     var d = $q.defer();
@@ -100,7 +101,7 @@ angular.module('chemGeno')
     }).success( function(res){
       d.resolve(res.user);
     }).error( function(res){
-      console.log('updatePersonService.updatePerson error');
+      console.log('personService.updatePerson error');
       console.log(res);
       d.reject(res.error);
     });
@@ -113,7 +114,7 @@ angular.module('chemGeno')
  * name was changed, so then we only need to update the name on the db end, but if we *
  * include the whole person object then every column in the person might end up being *
  * written to when only 1 thing might have changed? I'm rusty on my SQL/db stuff so   *
- * this should be investigated.                                                       *
+ * this should be investigated. Perhaps these can be refactored to xService?          *
  **************************************************************************************/
 
   // update the institution in the person table
@@ -132,7 +133,7 @@ angular.module('chemGeno')
     }).success( function(res){
       d.resolve(res.user);
     }).error( function(res){
-      console.log('updatePersonService.updatePerson error');
+      console.log('updatePersonService.updatePersonInstitution error');
       console.log(res);
       d.reject(res.error);
     });

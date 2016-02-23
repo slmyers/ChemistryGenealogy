@@ -1,125 +1,92 @@
 <!--
- * HTML for the userDialog page. (Login/registration.)
+ * HTML for the userDialog. (Login/registration.)
  *
  * Status: VIEW.
  * Associated files: userController.js, userDialogController.js, loginService.js, registerService.js
  *
- * Description: This page is going to be where we have the login OR registration information displayed to the user
- * as they are going to be involved with
+ * Description: This is a dialog box for registration/login purposes
  *
  *
 -->
 
-<!-- State that we will have a login dialog box, that is fully loaded/compiled before shown to the user. -->
 <md-dialog aria-label="login dialog"  ng-cloak>
-    <!-- We have a centralized invalid login area for login failure. -->
-      <div ng-show="invalidLogin" layout="row" layout-align="center center">
-          <!-- Have a button for an invalid login, if we have this disabled. -->
-        <md-button ng-disabled="true" class="md-raised md-accent">Invalid login</md-button>
+  <!-- show an error message if the login is invalid -->
+  <div ng-show="invalidLogin" layout="row" layout-align="center center">
+    <!-- the button serves as a nice message -->
+    <md-button ng-disabled="true" class="md-raised md-accent">Invalid login</md-button>
+  </div>
+  <div ng-show="invalidRegistration" layout="row" layout-align="center center">
+    <md-button ng-disabled="true" class="md-raised md-accent">Invalid registration</md-button>
+  </div>
+
+  <!-- IF registration is false then we show userForm. this is login -->
+  <div ng-show="!registration">
+    <form name="userForm" ng-submit="submitLogin(loginUser)">
+
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Email</label>
+        <input ng-model="loginUser.email" type="email" required>
+      </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input type="password" ng-model="loginUser.password" required>
+      </md-input-container>
+
+      <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary" type="submit" value="Submit">
+          login
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="cancelLogin()">
+          cancel
+        </md-button>
+      </div>
+      <br>
+      <div layout="column">
+        <md-button class="md-raised md-primary" ng-click="toRegistrationView()" >
+          register
+        </md-button>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- IF registration is TRUE show the following section -->
+  <div ng-show="registration">
+    <form name="registerForm" ng-submit="submitRegistration(registerUser)">
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>e-mail</label>
+        <input type="email" ng-model="registerUser.email" required>
+      </md-input-container>
+
+
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input type="password" ng-model="registerUser.password" required>
+      </md-input-container>
+
+
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>first name</label>
+        <input type="text" ng-model="registerUser.firstName">
+      </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>last name</label>
+        <input type="text" ng-model="registerUser.lastName">
+      </md-input-container>
+
+      <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary" type="submit" value="Submit">
+          Register
+        </md-button>
+
+        <md-button class="md-raised md-primary" ng-click="cancelRegistration()">
+          cancel
+        </md-button>
       </div>
 
-    <!-- We have a cenralized invalid registration area for the failure. -->
-      <div ng-show="invalidRegistration" layout="row" layout-align="center center">
-          <!-- Have a button for an invalid login, if we have this disabled. -->
-        <md-button ng-disabled="true" class="md-raised md-accent">Invalid registration</md-button>
-      </div>
 
-    <!-- IF registration is FALSE show the following section -->
-      <div ng-show="!registration">
-          <!-- Binds angular expressions to obsubmit events, calls the submitLogin function with loginUser obj. -->
-        <form name="userForm" ng-submit="submitLogin(loginUser)">
-
-            <!-- State the parent of the input or textarea element with this container. -->
-          <md-input-container class="md-block" flex-gt-xs>
-            <label>Email</label>
-              <!-- Assign the loginUser.email to be the value of the email supplied. -->
-            <input ng-model="loginUser.email" type="email" required>
-          </md-input-container>
-
-            <!-- Set a container for how to represent the password label to the user. -->
-          <md-input-container class="md-block" flex-gt-xs>
-            <label>Password</label>
-              <!-- Obtain the password through the input and assign it to the loginUser password value
-               Oddity in spelling of the loginUser... logintUser?????? I "fixed" it... fixed?-->
-            <input type="password" ng-model="loginUser.password" required>
-          </md-input-container>
-
-            <!-- Row layout. This is a pair of buttons for login and cancel logging in  -->
-          <div layout="row" layout-align="center center">
-              <!-- Button that will be associated with the submit type and value. -->
-            <md-button class="md-raised md-primary" type="submit" value="Submit">
-              login <!-- Merely state the field that will be displayed for this -->
-            </md-button>
-              <!-- Button that when it is onClickListener'd will cancel the login process -->
-            <md-button class="md-raised md-primary" ng-click="cancelLogin()">
-              cancel <!-- Merely state the field that will be displayed for this -->
-            </md-button>
-          </div>
-          <br>
-
-            <!-- Column layout for "register button" -->
-          <div layout="column">
-              <!-- Button that when it is onClickListener'd will evoke function of toRegistrationView() -->
-            <md-button class="md-raised md-primary" ng-click="toRegistrationView()" >
-              register <!-- Merely state the field that will be displayed for this -->
-            </md-button>
-          </div>
-
-            <!-- END FORM, END DIVISION -->
-        </form>
-      </div>
-
-
-    <!-- IF registration is TRUE show the following section -->
-      <div ng-show="registration">
-          <!-- Have a form where upon submission will evoke submitRegistration() function with registerUser object. -->
-        <form name="registerForm" ng-submit="submitRegistration(registerUser)">
-
-            <!-- Have a basic edit text field for the e-mail field -->
-          <md-input-container class="md-block" flex-gt-xs>
-            <label>e-mail</label>
-              <!-- Submit the given value -->
-            <input type="email" ng-model="registerUser.email" required>
-          </md-input-container>
-
-            <!-- Have a basic edit text field for the password field -->
-          <md-input-container class="md-block" flex-gt-xs>
-            <label>Password</label>
-              <!-- Submit the given value -->
-            <input type="password" ng-model="registerUser.password" required>
-          </md-input-container>
-
-            <!-- Have a basic edit text field for the first name field -->
-          <md-input-container class="md-block" flex-gt-xs>
-            <label>first name</label>
-              <!-- Submit the given value -->
-            <input type="text" ng-model="registerUser.firstName">
-          </md-input-container>
-
-            <!-- Have a basic edit text field for the last name field-->
-          <md-input-container class="md-block" flex-gt-xs>
-            <label>last name</label>
-              <!-- Submit the given value -->
-            <input type="text" ng-model="registerUser.lastName">
-          </md-input-container>
-
-
-            <!-- Row layout. This is a pair of buttons for registration and cancel registration.  -->
-          <div layout="row" layout-align="center center">
-
-              <!-- Button that when it is onClickListener'd will evoke the registration submission process -->
-            <md-button class="md-raised md-primary" type="submit" value="Submit">
-              Register <!-- Merely state the field that will be displayed for this -->
-            </md-button>
-
-              <!-- Button that when it is onClickListener'd will cancel the registration process -->
-            <md-button class="md-raised md-primary" ng-click="cancelRegistration()">
-              cancel <!-- Merely state the field that will be displayed for this -->
-            </md-button>
-
-          </div>
-
-
-        </form>
-      <div>
+    </form>
+  </div>
 </md-dialog>
