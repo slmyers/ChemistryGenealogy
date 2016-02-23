@@ -63,3 +63,7 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * wrote script to reload and seed the database
 
 * wrote unit tests for login and registration on the frontend
+
+####February 21, 2016 - February 28, 2016
+
+* wrote up [backend data model](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/data-model)
