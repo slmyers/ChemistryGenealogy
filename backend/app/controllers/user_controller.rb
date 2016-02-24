@@ -3,10 +3,12 @@ class UserController < ApplicationController
   respond_to :html, :json
 
   def index
-    @user = User.all
-    respond_with(@users) do |format|
-      format.json { render :json => @user.as_json }
-      format.html
+    puts "in index"
+    @users = User.all
+    puts @users.length
+    puts @users[0].as_json
+    if @users != nil 
+      render :json => @users.as_json
     end
   end
 
