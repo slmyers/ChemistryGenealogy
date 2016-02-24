@@ -67,3 +67,7 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 ####February 21, 2016 - February 28, 2016
 
 * wrote up [backend data model](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/data-model)
+
+* updated frontend code to reflect new registration process -- users must be approved
+
+* cleaned up db migrations and got rid of contact_us_tickets (backend)
