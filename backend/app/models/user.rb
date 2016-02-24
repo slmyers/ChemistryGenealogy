@@ -9,10 +9,9 @@ class User < ActiveRecord::Base
   end
 
   def User.new_user(password, email, first_name, last_name)
-    puts last_name
     unless User.exists?(:email => email)
       return User.new(password: password, email: email, password_digest: PWORD_DIGST,
-                      first_name: first_name, last_name: last_name)
+                      first_name: first_name, last_name: last_name, approved: false)
     end
   end
 

@@ -1,4 +1,4 @@
-class Api::UserController < ApplicationController
+class UserController < ApplicationController
   before_action :get_user, except: [:index, :create]
   respond_to :html, :json
 
@@ -11,7 +11,6 @@ class Api::UserController < ApplicationController
   end
 
   def create
-    puts params[:last_name]
     @user = User.new_user(params[:password], params[:email], params[:first_name], params[:last_name])
     if @user != nil && @user.save
       render json: @user.as_json, status: :created
@@ -48,7 +47,7 @@ class Api::UserController < ApplicationController
   end
 
   def get_user
-    @user = User.find(params[:username])
+    @user = User.find(params[:email])
     render json: {status: :not_found} unless @user
   end
 
