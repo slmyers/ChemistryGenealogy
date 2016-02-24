@@ -32,7 +32,6 @@ angular.module('chemGeno')
 
 
       $scope.submitLogin = function(loginUser) {
-        console.log(loginUser);
         var promise = loginService.login(loginUser);
         promise.then(function(res) {
           console.log(res.data);
