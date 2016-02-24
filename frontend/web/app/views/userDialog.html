@@ -20,7 +20,7 @@
   </div>
 
   <!-- IF registration is false then we show userForm. this is login -->
-  <div ng-show="!registration">
+  <div ng-show="login">
     <form name="userForm" ng-submit="submitLogin(loginUser)">
 
       <md-input-container class="md-block" flex-gt-xs>
@@ -85,8 +85,18 @@
           cancel
         </md-button>
       </div>
-
-
     </form>
+  </div>
+
+  <div ng-show="successRegistration">
+    <md-content flex layout-padding>
+      <md-card>
+        <md-card-content>
+      You have successfully registered an account using the email address {{registerUser.email}}.
+      <br>
+      Expected to be contacted via email upon account approval.
+        </md-card-content>
+      </md-card>
+    </md-content>
   </div>
 </md-dialog>
