@@ -28,19 +28,22 @@ angular.module('chemGeno')
          // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
          // Tabs is part of the model as described immediately below:
          // {postDocID, postDocDates, postDocSupervisor, postDocInstitution}
+            // Isolate start and end dates.
+
          var postDocTab = [
              { postDocID: 1, postDocDates: '1993-1995', postDocSupervisor: 'David Bundle',
                  postDocInstitution: 'University of Alberta'},
              { postDocID: 2, postDocDates: '1996-1996', postDocSupervisor: 'Morten Meldel',
                  postDocInstitution: 'Carlsberg Laboratory'}
          ],
-             selected = null,
-             previous = null,
+             selectedPD = null,
+             previousPD = null,
 
          //DEGREE INFO TABS:
          //For our purposes the degree information is used to compile any advanced degrees that a user may have.
          //I elected to use tabs for this as people may have different supervisors for masters vs. PhD or even
          //multiple PhD/masters degrees from various fields. (Eg: Perhaps Chemistry AND Criminal Justice?)
+         //Worry less about ID.
          degreeInfoTab =[
              { degreeInfoID: 1, degreeInfoYear: 1993, degreeInfoSupervisor: 'Ole Hindsgaul', degreeInfoInstitution: 'University of Alberta'}
 
@@ -63,10 +66,10 @@ angular.module('chemGeno')
              * index into the "tabs" list with the current value.
              */
             $scope.$watch('selectedIndex', function(current, old){
-                previous = selected;
-                selected = postDocTab[current];
-                if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previous.title + '!');
-                if ( current + 1 )                $log.debug('Hello ' + selected.title + '!');
+                previousPD = selectedPD;
+                selectedPD = postDocTab[current];
+                if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previousPD.title + '!');
+                if ( current + 1 )                $log.debug('Hello ' + selectedPD.title + '!');
             });
 
             /** POSTDOC FUNCTION.
@@ -104,11 +107,11 @@ angular.module('chemGeno')
              * the data together in such a way that we have the previous now equal to the selected, and then
              * index into the "tabs" list with the current value.
              */
-            $scope.$watch('selectedIndex', function(current2, old2){
+            $scope.$watch('degreeInfoSelectedIndex', function(current2, old2){
                 previous = selected;
-                selected = degreeInfoTab[current];
-                if ( old2 + 1 && (old2 != current)) $log.debug('Goodbye ' + previous.title + '!');
-                if ( current + 1 )                $log.debug('Hello ' + selected.title + '!');
+                selected = degreeInfoTab[current2];
+                if ( old2 + 1 && (old2 != current2)) $log.debug('Goodbye ' + previous.title + '!');
+                if ( current2 + 1 )                $log.debug('Hello ' + selected.title + '!');
             });
 
             /** DEGREE INFO FUNCTION.
@@ -137,7 +140,24 @@ angular.module('chemGeno')
 
 
 
+            //Set a boolean flag to show or to not show the postdoctoral information
+            //Initially false, do not show the postdoc information.
+            $scope.postDocVisibility = false;
 
+            /**
+             * When invoked will show the postdoc info by setting the flag to true.
+             */
+            $scope.showPostDocInfo = function(){
+                $scope.postDocVisibility = true;
+                console.log("called");
+            };
+
+            /**
+             * When invoked will hide the postdoc info by setting the flag to false.
+             */
+            $scope.hidePostDocInfo = function(){
+                $scope.postDocVisibility = false;
+            };
 
 
 
