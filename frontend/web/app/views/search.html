@@ -1,57 +1,71 @@
+<!--
+ * HTML for the Search page.
+ *
+ * Status: VIEW.
+ * Associated files: visController.js
+ *
+ * Description: The search functionality of this application is core to the entire point of the app, visualizations
+ * also are strongly tied to the ability to search through the data. This html page will present the information
+ * from the searches done by the user in a beautiful manner.
+ *
+ *
+-->
+
+
 <style>
 
-  #searchContainer {
-    display: -webkit-flex;
-    -webkit-flex-direction: row;
+      #searchContainer {
+        display: -webkit-flex;
+        -webkit-flex-direction: row;
 
-    display: flex;
-    flex-direction: row;
-
-
-    justify-content: space-around;
-    align-items: stretch;
-
-    border-radius: 25px;
-    border: solid 1px #00BCD4;
-
-    box-shadow: 3px 3px 5px 6px #ccc;
-
-    background-color: dodgerblue;
+        display: flex;
+        flex-direction: row;
 
 
-    margin: 2% 2%;
+        justify-content: space-around;
+        align-items: stretch;
 
-    min-height: 80vh;
-  }
+        border-radius: 25px;
+        border: solid 1px #00BCD4;
 
-  #searchContainer > #searchResults {
-    margin: 1% 1%;
-    flex: 1 1 30%;
-    order: 1;
+        box-shadow: 3px 3px 5px 6px #ccc;
 
-    display: flex;
-    flex-direction: column;
-
-    justify-content: flex-start;
-    align-items: center;
-
-    background-color: ghostwhite;
+        background-color: dodgerblue;
 
 
-  }
+        margin: 2% 2%;
 
-  #searchContainer > #dataVis {
-    margin: 1% 1%;
-    background-color: ghostwhite;
-    flex: 1 1 70%;
-    order: 2;
-    overflow: scroll;
-    display: flex;
-    flex-direction: column;
+        min-height: 80vh;
+      }
 
-    justify-content: flex-start;
-    align-items: center;
-  }
+      #searchContainer > #searchResults {
+        margin: 1% 1%;
+        flex: 1 1 30%;
+        order: 1;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: flex-start;
+        align-items: center;
+
+        background-color: ghostwhite;
+
+
+      }
+
+     #searchContainer > #dataVis {
+        margin: 1% 1%;
+        background-color: ghostwhite;
+        flex: 1 1 70%;
+        order: 2;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+
+        justify-content: flex-start;
+        align-items: center;
+      }
 </style>
 
 <md-content class="md-accent">
@@ -62,7 +76,6 @@
       </div>
     </div>
     <div id="dataVis" ng-controller="visController">
-      <search-visual></search-visual>
     </div>
   </div>
 </md-content>

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  namespace :api,:defaults => {:format => :json} do
-    resources(:user)
-  end
+  resources :admins, except: [:new, :edit]
+  namespace :api do resources :supervisors, except: [:new, :edit] end
+  namespace :api do resources :degrees, except: [:new, :edit] end
+  namespace :api do resources :institutions, except: [:new, :edit] end
+  namespace :api do resources :postdocs, except: [:new, :edit] end
+  namespace :api do resources :mentors, except: [:new, :edit] end
+  namespace :api do resources :people, except: [:new, :edit] end
+  resources :user
 
-  namespace :api, :defaults => {:format => :json} do
-    resources(:contact_us_ticket)
-  end
 
   post 'authenticate' => 'auth#authenticate'
 

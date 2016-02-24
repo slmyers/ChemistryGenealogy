@@ -1,22 +1,38 @@
+<!--
+ * HTML for the userDialog. (Login/registration.)
+ *
+ * Status: VIEW.
+ * Associated files: userController.js, userDialogController.js, loginService.js, registerService.js
+ *
+ * Description: This is a dialog box for registration/login purposes
+ *
+ *
+-->
+
 <md-dialog aria-label="login dialog"  ng-cloak>
+  <!-- show an error message if the login is invalid -->
   <div ng-show="invalidLogin" layout="row" layout-align="center center">
+    <!-- the button serves as a nice message -->
     <md-button ng-disabled="true" class="md-raised md-accent">Invalid login</md-button>
   </div>
-
   <div ng-show="invalidRegistration" layout="row" layout-align="center center">
     <md-button ng-disabled="true" class="md-raised md-accent">Invalid registration</md-button>
   </div>
 
-  <div ng-show="!registration">
+  <!-- IF registration is false then we show userForm. this is login -->
+  <div ng-show="login">
     <form name="userForm" ng-submit="submitLogin(loginUser)">
+
       <md-input-container class="md-block" flex-gt-xs>
         <label>Email</label>
         <input ng-model="loginUser.email" type="email" required>
       </md-input-container>
+
       <md-input-container class="md-block" flex-gt-xs>
         <label>Password</label>
-        <input type="password" ng-model="logintUser.password" required>
+        <input type="password" ng-model="loginUser.password" required>
       </md-input-container>
+
       <div layout="row" layout-align="center center">
         <md-button class="md-raised md-primary" type="submit" value="Submit">
           login
@@ -34,32 +50,53 @@
     </form>
   </div>
 
+
+  <!-- IF registration is TRUE show the following section -->
   <div ng-show="registration">
     <form name="registerForm" ng-submit="submitRegistration(registerUser)">
       <md-input-container class="md-block" flex-gt-xs>
         <label>e-mail</label>
         <input type="email" ng-model="registerUser.email" required>
       </md-input-container>
+
+
       <md-input-container class="md-block" flex-gt-xs>
         <label>Password</label>
         <input type="password" ng-model="registerUser.password" required>
       </md-input-container>
+
+
       <md-input-container class="md-block" flex-gt-xs>
         <label>first name</label>
-        <input type="text" ng-model="registerUser.firstName">
+        <input type="text" ng-model="registerUser.firstName" required>
       </md-input-container>
+
       <md-input-container class="md-block" flex-gt-xs>
         <label>last name</label>
-        <input type="text" ng-model="loginUser.lastName">
+        <input type="text" ng-model="registerUser.lastName" required>
       </md-input-container>
+
       <div layout="row" layout-align="center center">
         <md-button class="md-raised md-primary" type="submit" value="Submit">
           Register
         </md-button>
+
         <md-button class="md-raised md-primary" ng-click="cancelRegistration()">
           cancel
         </md-button>
       </div>
     </form>
-  <div>
+  </div>
+
+  <div ng-show="successRegistration">
+    <md-content flex layout-padding>
+      <md-card>
+        <md-card-content>
+      You have successfully registered an account using the email address {{registerUser.email}}.
+      <br>
+      Expected to be contacted via email upon account approval.
+        </md-card-content>
+      </md-card>
+    </md-content>
+  </div>
 </md-dialog>
