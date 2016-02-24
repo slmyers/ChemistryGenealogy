@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219211357) do
+ActiveRecord::Schema.define(version: 20160224041314) do
 
   create_table "contact_us_tickets", force: :cascade do |t|
     t.string   "email"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160219211357) do
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "approved"
   end
 
 end
