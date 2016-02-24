@@ -3,10 +3,6 @@ Rails.application.routes.draw do
     resources(:user)
   end
 
-  namespace :api, :defaults => {:format => :json} do
-    resources(:contact_us_ticket)
-  end
-
   post 'authenticate' => 'auth#authenticate'
 
 
