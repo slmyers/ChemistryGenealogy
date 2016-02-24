@@ -70,4 +70,4 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 
 * updated frontend code to reflect new registration process -- users must be approved
 
-* cleaned up db migrations and got rid of contact_us_tickets (backend)
+* cleaned up db migrations and got rid of `contact_us_tickets` and `information` table (backend)
