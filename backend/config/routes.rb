@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :search, except: [:new, :edit, :create, :show, :update, :destroy]
   resources :admins, except: [:new, :edit]
   namespace :api do resources :supervisors, except: [:new, :edit] end
   namespace :api do resources :degrees, except: [:new, :edit] end
