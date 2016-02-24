@@ -345,10 +345,13 @@
                         <md-card-header>
                             <md-card-avatar ng-click="showPostDocInfo()">
                                 <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
+                                <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                                    Click here to expand the postdoc information.
+                                </md-tooltip>
                             </md-card-avatar>
                             <md-card-header-text>
                                 <span class="md-title">PostDoctoral Information</span>
-                                <span class="md-subhead">subhead</span>
+                                <span class="md-subhead">For each postdoc please enter the requested data for each.</span>
                             </md-card-header-text>
                         </md-card-header>
                         </md-card>
@@ -359,20 +362,38 @@
                                 <md-card-header>
                                     <md-card-avatar ng-click="hidePostDocInfo()">
                                         <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
+                                        <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                                            Click here to collapse the postdoc information.
+                                        </md-tooltip>
                                     </md-card-avatar>
                                     <md-card-header-text>
-                                        <span class="md-title">Title</span>
-                                        <span class="md-subhead">subhead</span>
+                                        <span class="md-title">PostDoctoral Information</span>
+                                        <span class="md-subhead">For each postdoc please enter the requested data for each.</span>
                                     </md-card-header-text>
                                 </md-card-header>
                                 <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
                                 <md-card-title>
                                     <md-card-title-text>
-                                        <span class="md-headline">In-card actions</span>
-                                        <span class="md-subhead">Description</span>
+                                        <!-- Input for the Start date -> End date -->
+                                        <md-input-container>
+                                            <label for="content">Year Degree was Issued Eg: 1975</label>
+                                            <input type="text" id="diYear" ng-model="degreeInfoYear">
+                                        </md-input-container>
+
+                                        <!-- Input for the Start date -> End date -->
+                                        <md-input-container>
+                                            <label for="content">Supervisor Name Eg: John Doe</label>
+                                            <input type="text" id="diSupervisor" ng-model="degreeInfoSupervisor">
+                                        </md-input-container>
+
+                                        <!-- Input for the Start date -> End date -->
+                                        <md-input-container>
+                                            <label for="content">Institution Eg: University Of Alberta</label>
+                                            <input type="text" id="diInstitution" ng-model="degreeInfoInstitution">
+                                        </md-input-container>
                                     </md-card-title-text>
                                 </md-card-title>
-                                <md-card-actions layout="row" layout-align="start center">
+                                <md-card-actions layout="row" layout-align="right">
                                     <md-button>Action 1</md-button>
                                     <md-button>Action 2</md-button>
                                 </md-card-actions>
