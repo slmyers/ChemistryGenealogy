@@ -73,3 +73,5 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * cleaned up db migrations and got rid of `contact_us_tickets` and `information` table (backend)
 
 * [issue 25](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/issues/25)
+
+* created routes and db schema for [backend data model](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/data-model)
