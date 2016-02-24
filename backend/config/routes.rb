@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :api do resources :supervisors, except: [:new, :edit] end
+  namespace :api do resources :degrees, except: [:new, :edit] end
+  namespace :api do resources :institutions, except: [:new, :edit] end
+  namespace :api do resources :postdocs, except: [:new, :edit] end
+  namespace :api do resources :mentors, except: [:new, :edit] end
+  namespace :api do resources :people, except: [:new, :edit] end
   resources :user
 
 
