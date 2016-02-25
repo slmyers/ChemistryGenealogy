@@ -1,2 +1,2 @@
-class Api::Supervisor < ActiveRecord::Base
+class Supervisor < ActiveRecord::Base
 end

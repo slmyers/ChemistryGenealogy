@@ -1,2 +1,2 @@
-class Api::Person < ActiveRecord::Base
+class Person < ActiveRecord::Base
 end

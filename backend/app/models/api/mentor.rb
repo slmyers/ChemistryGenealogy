@@ -1,2 +1,2 @@
-class Api::Mentor < ActiveRecord::Base
+class Mentor < ActiveRecord::Base
 end
