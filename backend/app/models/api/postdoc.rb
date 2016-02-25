@@ -1,2 +1,2 @@
-class Api::Postdoc < ActiveRecord::Base
+class Postdoc < ActiveRecord::Base
 end
