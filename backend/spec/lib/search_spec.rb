@@ -5,4 +5,6 @@ describe Search do
     @search = Search.new()
     expect(@search).not_to eql(nil)
   end
+
+
 end
