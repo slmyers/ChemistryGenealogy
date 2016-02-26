@@ -12,7 +12,7 @@ class CreateSupervisors < ActiveRecord::Migration
 
       t.index :degree_id
       t.index :person_id
-      t.index :supervisor_id 
+      t.index :supervisor_id
 
       t.timestamps null: false
     end
