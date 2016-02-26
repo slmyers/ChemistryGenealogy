@@ -6,6 +6,7 @@
  *
  */
 
+
 angular.module('chemGeno')
 .service('searchService', function($q) {
       // source of mock data: https://github.com/401ChemistryGenealogy/ChemistryGenealogy/blob/master/sample_data/data.txt
