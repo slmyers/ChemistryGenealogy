@@ -192,6 +192,7 @@ angular.module('chemGeno')
                 }
             ];
 
+            //$scope.imagePath = "/static/img/new-zealand-679068_1280.jpg"
             /**
              * Function evoked when the submit button is hit on the postdoc card on the submit page.
              * Creates a new postDocInstance (object with postdoc data) with the data in the card's fields.
