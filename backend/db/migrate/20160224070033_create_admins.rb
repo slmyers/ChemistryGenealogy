@@ -4,7 +4,7 @@ class CreateAdmins < ActiveRecord::Migration
       t.timestamps null: false
       t.boolean :approved
       t.index :approved
-      t.integer :user
+      t.integer :user_id
     end
   end
 end

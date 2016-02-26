@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160224070033) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean  "approved"
-    t.integer  "user"
+    t.integer  "user_id"
   end
 
   add_index "admins", ["approved"], name: "index_admins_on_approved"

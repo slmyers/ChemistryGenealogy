@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :admin
   validates :email, :password, :password_digest, presence: true
   # :password_digest is some type of bcrypt salt??
   PWORD_DIGST = "pword"
