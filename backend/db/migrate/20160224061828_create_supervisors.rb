@@ -6,13 +6,13 @@ class CreateSupervisors < ActiveRecord::Migration
       t.boolean :approved
       t.index :approved
 
-      t.integer :degree
-      t.integer :person
-      t.integer :supervisor_key
+      t.integer :degree_id
+      t.integer :person_id
+      t.integer :supervisor_id
 
-      t.index :degree
-      t.index :person
-      t.index :supervisor_key 
+      t.index :degree_id
+      t.index :person_id
+      t.index :supervisor_id 
 
       t.timestamps null: false
     end

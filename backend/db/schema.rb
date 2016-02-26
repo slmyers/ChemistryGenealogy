@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   create_table "degrees", force: :cascade do |t|
     t.integer  "year"
     t.boolean  "approved"
-    t.integer  "institution"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "institution_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "degrees", ["approved"], name: "index_degrees_on_approved"
@@ -82,17 +82,17 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   create_table "supervisors", force: :cascade do |t|
     t.string   "name"
     t.boolean  "approved"
-    t.integer  "degree"
-    t.integer  "person"
-    t.integer  "supervisor_key"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "degree_id"
+    t.integer  "person_id"
+    t.integer  "supervisor_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "supervisors", ["approved"], name: "index_supervisors_on_approved"
-  add_index "supervisors", ["degree"], name: "index_supervisors_on_degree"
-  add_index "supervisors", ["person"], name: "index_supervisors_on_person"
-  add_index "supervisors", ["supervisor_key"], name: "index_supervisors_on_supervisor_key"
+  add_index "supervisors", ["degree_id"], name: "index_supervisors_on_degree_id"
+  add_index "supervisors", ["person_id"], name: "index_supervisors_on_person_id"
+  add_index "supervisors", ["supervisor_id"], name: "index_supervisors_on_supervisor_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "password"

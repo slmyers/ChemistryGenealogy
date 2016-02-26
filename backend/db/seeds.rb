@@ -26,9 +26,11 @@ Institution.create!([
   {name: 'university of alberta', approved: true}
 ])
 
+# the last two are not correct... just using to test relationship creations
 Person.create!([
   {name: 'todd lowary', position: 'professor', institution_id: 1, approved: true},
-  {name: 'david bundle', position: 'professor', institution_id: 1, approved: true}
+  {name: 'david bundle', position: 'professor', institution_id: 1, approved: true},
+  {name: 'ole hindsgaul', position: 'professor', institution_id: 1, approved: true}
 ])
 
 Postdoc.create!([
@@ -36,5 +38,13 @@ Postdoc.create!([
 ])
 
 Mentor.create!([
-  {name: 'david bundle', person_id: 1, postdoc_id: 1, mentor_id: 2}
+  {name: 'david bundle', person_id: 1, postdoc_id: 1, mentor_id: 2, approved: true}
+])
+
+Degree.create!([
+  {year: 1993, institution_id: 1, approved: true}
+])
+
+Supervisor.create!([
+  {approved: true, degree_id: 1, person_id: 1, supervisor_id:3}
 ])
