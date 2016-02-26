@@ -1,12 +1,12 @@
 class CreateDegrees < ActiveRecord::Migration
   def change
     create_table :degrees do |t|
-      t.integer :year
+      t.integer :year, :null => false
 
-      t.boolean :approved
+      t.boolean :approved, :null => false
       t.index :approved
 
-      t.integer :institution_id 
+      t.integer :institution_id, :null => false 
 
       t.timestamps null: false
     end

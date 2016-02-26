@@ -16,16 +16,16 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean  "approved"
-    t.integer  "user_id"
+    t.boolean  "approved",   null: false
+    t.integer  "user_id",    null: false
   end
 
   add_index "admins", ["approved"], name: "index_admins_on_approved"
 
   create_table "degrees", force: :cascade do |t|
-    t.integer  "year"
-    t.boolean  "approved"
-    t.integer  "institution_id"
+    t.integer  "year",           null: false
+    t.boolean  "approved",       null: false
+    t.integer  "institution_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   add_index "degrees", ["approved"], name: "index_degrees_on_approved"
 
   create_table "institutions", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "approved"
+    t.string   "name",       null: false
+    t.boolean  "approved",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 20160224070033) do
 
   create_table "mentors", force: :cascade do |t|
     t.string   "name"
-    t.integer  "person_id"
-    t.integer  "postdoc_id"
-    t.integer  "mentor_id"
-    t.boolean  "approved"
+    t.integer  "person_id",  null: false
+    t.integer  "postdoc_id", null: false
+    t.integer  "mentor_id",  null: false
+    t.boolean  "approved",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   add_index "mentors", ["postdoc_id"], name: "index_mentors_on_postdoc_id"
 
   create_table "people", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",           null: false
     t.string   "position"
-    t.boolean  "approved"
-    t.integer  "institution_id"
+    t.boolean  "approved",       null: false
+    t.integer  "institution_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   add_index "people", ["name"], name: "index_people_on_name"
 
   create_table "postdocs", force: :cascade do |t|
-    t.integer  "start"
-    t.integer  "end"
-    t.boolean  "approved"
-    t.integer  "institution_id"
+    t.integer  "start",          null: false
+    t.integer  "end",            null: false
+    t.boolean  "approved",       null: false
+    t.integer  "institution_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 20160224070033) do
 
   create_table "supervisors", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "approved"
-    t.integer  "degree_id"
-    t.integer  "person_id"
-    t.integer  "supervisor_id"
+    t.boolean  "approved",      null: false
+    t.integer  "degree_id",     null: false
+    t.integer  "person_id",     null: false
+    t.integer  "supervisor_id", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -95,14 +95,14 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   add_index "supervisors", ["supervisor_id"], name: "index_supervisors_on_supervisor_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "password"
-    t.string   "password_digest"
+    t.string   "password",        null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.boolean  "approved"
+    t.string   "email",           null: false
+    t.string   "first_name",      null: false
+    t.string   "last_name",       null: false
+    t.boolean  "approved",        null: false
   end
 
   add_index "users", ["approved"], name: "index_users_on_approved"
