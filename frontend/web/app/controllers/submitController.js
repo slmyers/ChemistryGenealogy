@@ -64,13 +64,14 @@ angular.module('chemGeno')
              * This function when invoked will take the current and then the old tab and then it will combine
              * the data together in such a way that we have the previous now equal to the selected, and then
              * index into the "tabs" list with the current value.
-             */
+             *
             $scope.$watch('selectedIndex', function(current, old){
                 previousPD = selectedPD;
                 selectedPD = postDocTab[current];
                 if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previousPD.title + '!');
                 if ( current + 1 )                $log.debug('Hello ' + selectedPD.title + '!');
             });
+             */
 
             /** POSTDOC FUNCTION.
              * This function will add a new tab to the set of tabs that we currently have.
@@ -107,13 +108,13 @@ angular.module('chemGeno')
              * This function when invoked will take the current and then the old tab and then it will combine
              * the data together in such a way that we have the previous now equal to the selected, and then
              * index into the "tabs" list with the current value.
-             */
+             *
             $scope.$watch('degreeInfoSelectedIndex', function(current2, old2){
                 previous = selected;
                 selected = degreeInfoTab[current2];
                 if ( old2 + 1 && (old2 != current2)) $log.debug('Goodbye ' + previous.title + '!');
                 if ( current2 + 1 )                $log.debug('Hello ' + selected.title + '!');
-            });
+            });*/
 
             /** DEGREE INFO FUNCTION.
              * This function will add a new tab to the set of tabs that we currently have.
@@ -183,11 +184,11 @@ angular.module('chemGeno')
 
             $scope.postDocInformation = [
                 {
-                    pdStartYear: "1990", pdEndYear: "1994", pdSupervisor: "Goo", pdInstitution: "Goobers"
+                    pdStartYear: "1980", pdEndYear: "1981", pdSupervisor: "Clinton E. Ballou", pdInstitution: "University of California"
 
                 },
                 {
-                    pdStartYear:"0010", pdEndYear: "3999", pdSupervisor: "gooey", pdInstitution: "whatever"
+                    pdStartYear:"1971", pdEndYear: "1973", pdSupervisor: "Harold J. Jennings", pdInstitution: "National Research Council of Canada"
                 }
             ];
 
@@ -211,9 +212,6 @@ angular.module('chemGeno')
                 pdStartYear= "";
                 pdSupervisor = "";
                 pdInstitution = "";
-
-                //Refresh the view of the scope.
-                $scope.$apply();
             };
 
             $scope.editPostDoc = function(){
@@ -240,15 +238,14 @@ angular.module('chemGeno')
              */
             $scope.removePostDocInstance = function(postDocInstance){
                 console.log("removePostDocInstance called with index" + postDocInstance);
+                console.log($scope.postDocInformation.length);
 
                 var index = $scope.postDocInformation.indexOf(postDocInstance);
+                console.log($scope.postDocInformation.length);
                 //Splice out the entry that is desired to be removed.
                 $scope.postDocInformation.splice(index,1);
                 console.log($scope.postDocInformation);
 
-                //Apply the changes to the scope.
-                $scope.apply();
-                console.log($scope.postDocInformation);
 
             };
 
@@ -256,6 +253,16 @@ angular.module('chemGeno')
             /** Degrees Section:
              * This section deals with the cards associated with the degrees a user may have.
              */
+
+            $scope.degreeInformation = [
+                {
+                    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta"
+
+                },
+                {
+                    year:"1980", supervisor: "Raymond U. Lemieux", institution: "University of Alberta"
+                }
+            ];
 
             //Set to false to hide the details of the degree info information.
             $scope.degreeInfoVisibility = false;
@@ -271,14 +278,52 @@ angular.module('chemGeno')
             /**
              * Hides the degree info information when invoked.
              */
-            $scope.hidePostDocInfo = function(){
+            $scope.hideDegreeInfo = function(){
                 $scope.degreeInfoVisibility = false;
             };
 
 
 
+            /**
+             * Information regarding the postdoc appointments furnished on the submit page.
+             *
+             */
+            $scope.diYear = null;
+            $scope.diSupervisor = null;
+            $scope.diInstitution = null;
 
-            //Order by date descending. <- for the output to the user. 
+            function DegreeInfoInstance(diYear, diSupervisor, diInstitution)
+            {
+                this.year = diYear;
+                    this.supervisor = diSupervisor;
+                    this.institution = diInstitution;
+            }
+
+
+            $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution) {
+                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution);
+                $scope.degreeInformation.push(newDegreeInfoInstance);
+                console.log("AddPostDocInstance Called on" + $scope.degreeInfoInformation);
+
+
+                //Refresh the view of the scope.
+                $scope.$apply();
+            };
+
+            $scope.removeDegreeInfoInstance = function(degreeInfoInstance){
+                console.log("removePostDocInstance called with index" + degreeInfoInstance);
+                console.log($scope.postDocInformation.length);
+
+                var index = $scope.degreeInformation.indexOf(degreeInfoInstance);
+                console.log($scope.degreeInformation.length);
+                //Splice out the entry that is desired to be removed.
+                $scope.degreeInformation.splice(index,1);
+                console.log($scope.degreeInformation);
+            };
+
+
+
+            //Order by date descending. <- for the output to the user.
 
             /**Basic Info Section:
              * This section deals with trivial information collection on the submit page such as first and last names.
@@ -329,6 +374,7 @@ angular.module('chemGeno')
                 this.currentInstitutionName = currentInstitutionName;
                 this.postDocInformation = postDocInformation;
             }
+
 
             /**
              * Function evoked when the final submission button is hit, creates a new model object for the entire
