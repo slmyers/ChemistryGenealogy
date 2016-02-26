@@ -43,26 +43,26 @@ ActiveRecord::Schema.define(version: 20160224070033) do
 
   create_table "mentors", force: :cascade do |t|
     t.string   "name"
-    t.integer  "person"
-    t.integer  "postdoc"
-    t.integer  "mentor_key"
+    t.integer  "person_id"
+    t.integer  "postdoc_id"
+    t.integer  "mentor_id"
     t.boolean  "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "mentors", ["approved"], name: "index_mentors_on_approved"
-  add_index "mentors", ["mentor_key"], name: "index_mentors_on_mentor_key"
-  add_index "mentors", ["person"], name: "index_mentors_on_person"
-  add_index "mentors", ["postdoc"], name: "index_mentors_on_postdoc"
+  add_index "mentors", ["mentor_id"], name: "index_mentors_on_mentor_id"
+  add_index "mentors", ["person_id"], name: "index_mentors_on_person_id"
+  add_index "mentors", ["postdoc_id"], name: "index_mentors_on_postdoc_id"
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
     t.string   "position"
     t.boolean  "approved"
-    t.integer  "institution"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "institution_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "people", ["approved"], name: "index_people_on_approved"
@@ -72,9 +72,9 @@ ActiveRecord::Schema.define(version: 20160224070033) do
     t.integer  "start"
     t.integer  "end"
     t.boolean  "approved"
-    t.integer  "institution"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "institution_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "postdocs", ["approved"], name: "index_postdocs_on_approved"

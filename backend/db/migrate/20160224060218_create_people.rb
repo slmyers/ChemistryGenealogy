@@ -8,7 +8,7 @@ class CreatePeople < ActiveRecord::Migration
       t.index :approved
       t.index :name
 
-      t.integer :institution 
+      t.integer :institution_id 
 
       t.timestamps null: false
     end

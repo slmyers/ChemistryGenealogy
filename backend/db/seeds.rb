@@ -19,5 +19,22 @@ User.create!([
 
 # add Todd Lowary as an admin
 Admin.create!([
-    {user_id: 2, approved: true}
+  {user_id: 2, approved: true}
+])
+
+Institution.create!([
+  {name: 'university of alberta', approved: true}
+])
+
+Person.create!([
+  {name: 'todd lowary', position: 'professor', institution_id: 1, approved: true},
+  {name: 'david bundle', position: 'professor', institution_id: 1, approved: true}
+])
+
+Postdoc.create!([
+  {start:1993, end:1995, institution_id:1, approved:true}
+])
+
+Mentor.create!([
+  {name: 'david bundle', person_id: 1, postdoc_id: 1, mentor_id: 2}
 ])

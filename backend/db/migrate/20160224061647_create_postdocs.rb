@@ -7,7 +7,7 @@ class CreatePostdocs < ActiveRecord::Migration
       t.boolean :approved
       t.index :approved
 
-      t.integer :institution 
+      t.integer :institution_id 
 
       t.timestamps null: false
     end
