@@ -27,12 +27,13 @@ class Search
   end
 
   # builds a hash containing the postdoc information
-  def postdoc_by_id(person_id)
-    @person_mentor = Mentor.find(person_id)
+  # returns nil if there is no mentor for the postdoc
+  def Search.postdoc_by_id(person_id)
+    @person_mentor = Mentor.where(person_id: person_id, approved: true)
     unless @person_mentor.blank?
-      @postdoc = Postdoc.find(@person_mentor.postdoc)
+      @postdoc = Postdoc.where(id: @person_mentor.postdoc_id, approved: true)
       unless @postdoc.blank?
-        @postdoc_institution = Institution.find(@postdoc.institution_id)
+        @postdoc_institution = Institution.where(id: @postdoc.institution_id, approved: true)
         unless @postdoc_institution.blank?
           return {
                     :mentor => @person_mentor,
@@ -47,6 +48,6 @@ class Search
       end
       return {:mentor => @person_mentor}
     end
-    return {}
+    return nil
   end
 end

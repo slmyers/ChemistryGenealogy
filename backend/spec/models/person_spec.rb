@@ -1,5 +1,5 @@
-require_relative '../../app/models/api/person.rb'
-require_relative '../../app/models/api.rb'
+require_relative '../../app/models/person.rb'
+
 
 
 # sanity checks
