@@ -11,27 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224070335) do
+ActiveRecord::Schema.define(version: 20160224070033) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean  "approved"
-    t.integer  "users_id"
+    t.integer  "user"
   end
 
-  add_index "admins", ["users_id"], name: "index_admins_on_users_id"
+  add_index "admins", ["approved"], name: "index_admins_on_approved"
 
   create_table "degrees", force: :cascade do |t|
     t.integer  "year"
     t.boolean  "approved"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "institution_id"
+    t.integer  "institution"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "degrees", ["approved"], name: "index_degrees_on_approved"
-  add_index "degrees", ["institution_id"], name: "index_degrees_on_institution_id"
 
   create_table "institutions", force: :cascade do |t|
     t.string   "name"
@@ -44,54 +43,56 @@ ActiveRecord::Schema.define(version: 20160224070335) do
 
   create_table "mentors", force: :cascade do |t|
     t.string   "name"
+    t.integer  "person"
+    t.integer  "postdoc"
+    t.integer  "mentor_key"
     t.boolean  "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "people_id"
-    t.integer  "postdoc_id"
   end
 
   add_index "mentors", ["approved"], name: "index_mentors_on_approved"
-  add_index "mentors", ["people_id"], name: "index_mentors_on_people_id"
-  add_index "mentors", ["postdoc_id"], name: "index_mentors_on_postdoc_id"
+  add_index "mentors", ["mentor_key"], name: "index_mentors_on_mentor_key"
+  add_index "mentors", ["person"], name: "index_mentors_on_person"
+  add_index "mentors", ["postdoc"], name: "index_mentors_on_postdoc"
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
     t.string   "position"
     t.boolean  "approved"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "institution_id"
+    t.integer  "institution"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "people", ["approved"], name: "index_people_on_approved"
-  add_index "people", ["institution_id"], name: "index_people_on_institution_id"
   add_index "people", ["name"], name: "index_people_on_name"
 
   create_table "postdocs", force: :cascade do |t|
     t.integer  "start"
     t.integer  "end"
     t.boolean  "approved"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "institution_id"
+    t.integer  "institution"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "postdocs", ["approved"], name: "index_postdocs_on_approved"
-  add_index "postdocs", ["institution_id"], name: "index_postdocs_on_institution_id"
 
   create_table "supervisors", force: :cascade do |t|
     t.string   "name"
     t.boolean  "approved"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "degree_id"
-    t.integer  "person_id"
+    t.integer  "degree"
+    t.integer  "person"
+    t.integer  "supervisor_key"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "supervisors", ["approved"], name: "index_supervisors_on_approved"
-  add_index "supervisors", ["degree_id"], name: "index_supervisors_on_degree_id"
-  add_index "supervisors", ["person_id"], name: "index_supervisors_on_person_id"
+  add_index "supervisors", ["degree"], name: "index_supervisors_on_degree"
+  add_index "supervisors", ["person"], name: "index_supervisors_on_person"
+  add_index "supervisors", ["supervisor_key"], name: "index_supervisors_on_supervisor_key"
 
   create_table "users", force: :cascade do |t|
     t.string   "password"

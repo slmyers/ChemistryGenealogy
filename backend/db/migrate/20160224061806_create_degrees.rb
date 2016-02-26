@@ -1,10 +1,12 @@
-class CreateApiDegrees < ActiveRecord::Migration
+class CreateDegrees < ActiveRecord::Migration
   def change
     create_table :degrees do |t|
       t.integer :year
-      t.boolean :approved
 
+      t.boolean :approved
       t.index :approved
+
+      t.integer :institution 
 
       t.timestamps null: false
     end

@@ -1,4 +1,4 @@
-class CreateApiPeople < ActiveRecord::Migration
+class CreatePeople < ActiveRecord::Migration
   def change
     create_table :people do |t|
       t.string :name
@@ -7,6 +7,8 @@ class CreateApiPeople < ActiveRecord::Migration
 
       t.index :approved
       t.index :name
+
+      t.integer :institution 
 
       t.timestamps null: false
     end

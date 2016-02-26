@@ -1,11 +1,13 @@
-class CreateApiPostdocs < ActiveRecord::Migration
+class CreatePostdocs < ActiveRecord::Migration
   def change
     create_table :postdocs do |t|
       t.integer :start
       t.integer :end
-      t.boolean :approved
 
+      t.boolean :approved
       t.index :approved
+
+      t.integer :institution 
 
       t.timestamps null: false
     end
