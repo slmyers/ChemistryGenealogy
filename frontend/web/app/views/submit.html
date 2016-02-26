@@ -340,11 +340,11 @@
 
                 </div>
 
-                        <md-card  ng-if="!postDocVisibility">
+                        <md-card  ng-if="postDocVisibility">
 
                         <md-card-header>
                             <md-card-avatar ng-click="showPostDocInfo()">
-                                <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
+                                <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_add_black_24px.svg"></md-icon>
                                 <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                                     Click here to expand the postdoc information.
                                 </md-tooltip>
@@ -358,7 +358,7 @@
 
                         <!-- Trying to make it so that we have a card system instead -->
 
-                            <md-card  ng-if="postDocVisibility">
+                            <md-card  ng-if="!postDocVisibility">
                                 <md-card-header>
                                     <md-card-avatar ng-click="hidePostDocInfo()">
                                         <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
@@ -374,39 +374,107 @@
                                 <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
                                 <md-card-title>
                                     <md-card-title-text>
-                                        <!-- Input for the Start date -> End date -->
-                                        <md-input-container>
-                                            <label for="content">Year Degree was Issued Eg: 1975</label>
-                                            <input type="text" id="diYear" ng-model="degreeInfoYear">
-                                        </md-input-container>
+                                        <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
+                                            <!-- Input for the Start date -> End date -->
+                                            <md-input-container>
+                                                <label for="content">Year PostDoctoral Appointment Began Eg: 1975</label>
+                                                <input type="text" ng-model="pdStartYear">
+                                            </md-input-container>
 
-                                        <!-- Input for the Start date -> End date -->
-                                        <md-input-container>
-                                            <label for="content">Supervisor Name Eg: John Doe</label>
-                                            <input type="text" id="diSupervisor" ng-model="degreeInfoSupervisor">
-                                        </md-input-container>
+                                            <md-input-container>
+                                                <label for="content">Year PostDoctoral Appointment Ended Eg: 1978</label>
+                                                <input type="text" ng-model="pdEndYear">
+                                            </md-input-container>
 
-                                        <!-- Input for the Start date -> End date -->
-                                        <md-input-container>
-                                            <label for="content">Institution Eg: University Of Alberta</label>
-                                            <input type="text" id="diInstitution" ng-model="degreeInfoInstitution">
-                                        </md-input-container>
+                                            <!-- Input for the Start date -> End date -->
+                                            <md-input-container>
+                                                <label for="content">Supervisor Name Eg: John Doe</label>
+                                                <input type="text" ng-model="pdSupervisor">
+                                            </md-input-container>
+
+                                            <!-- Input for the Start date -> End date -->
+                                            <md-input-container>
+                                                <label for="content">Institution Eg: University Of Alberta</label>
+                                                <input type="text" ng-model="pdInstitution">
+                                            </md-input-container>
+                                        <!--</form>-->
+
                                     </md-card-title-text>
                                 </md-card-title>
+
+                                <!-- Action buttons to either confirm the submission or cancel it -->
                                 <md-card-actions layout="row" layout-align="right">
-                                    <md-button>Action 1</md-button>
-                                    <md-button>Action 2</md-button>
+
+                                    <!-- Submission button -->
+                                    <md-button ng-click="addPostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)">Submit
+                                        <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                                            Click here to Submit this PostDoc Instance
+                                        </md-tooltip>
+                                    </md-button>
+
+                                    <!-- Clear Fields Button -->
+                                    <md-button ng-click="clearPostDocFields()">Clear Fields
+                                        <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                                            Click here to clear the fields of this current PostDoc Instance.
+                                        </md-tooltip>
+                                    </md-button>
                                 </md-card-actions>
-                                <md-card-content>
-                                    <p>
-                                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                                    </p>
-                                </md-card-content>
                             </md-card>
 
 
+                        <!-- Here is where I will be showing to the user the psotdoc information they already
+                             entered into the system -->
+                        <div ng-controller="submitController" ng-repeat="item in postDocInformation">
+                            <md-card>
+                                <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                                    Previously submitted information for a single postdoc instance.
+                                    Please press the X button on the side if you want to remove this instance.
+                                </md-tooltip>
+                                <md-card-header>
+                                    <md-card-avatar ng-click="hidePostDocInfo()">
+                                    </md-card-avatar>
+                                    <md-card-header-text>
+                                        <div layout = "column">PostDoc {{$index+1}}</div>
 
+                                    </md-card-header-text>
+                                </md-card-header>
+
+                                <div layout="column" align="center">
+
+
+                                <span>Starting Year: {{item.pdStartYear}}</span>
+                                <span>Ending Year: {{item.pdEndYear}}</span>
+                                <span>Supervisor: {{item.pdSupervisor}}</span>
+                                <span>Institution: {{item.pdInstitution}}</span>
+                                </div>
+
+                                <!-- Buttons for each of the viewable cards.
+                                     Contains:
+                                     -Remove Button
+                                     -Edit Button
+                                  -->
+                                <md-card-actions layout="column" layout-align="right">
+
+                                    <!-- Submission button -->
+                                    <md-button ng-click="removePostDocInstance($index)">Remove
+                                        <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                                            Click here to Remove this PostDocInstance.
+                                        </md-tooltip>
+                                    </md-button>
+
+                                    <!-- Clear Fields Button -->
+                                    <md-button ng-click="clearPostDocFields()">Edit
+                                        <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                                            Click here to edit the fields of this current PostDoc Instance.
+                                        </md-tooltip>
+                                    </md-button>
+                                </md-card-actions>
+
+
+
+                            </md-card>
+
+                        </div>
 
 
                         <div ng-if="!postDocVisibility">
@@ -427,7 +495,7 @@
                 <!-- Styling that came with the angular materials -->
                 <style>
                     /*
-                     * The Material demos system does not currently allow targeting the body element, so this
+                     * The Material demos system does not currently al1ow targeting the body element, so this
                      * must go here in the HTML.
                      */
                     body[dir=rtl] .hint {
