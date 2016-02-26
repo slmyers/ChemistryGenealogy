@@ -11,96 +11,98 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224070335) do
+ActiveRecord::Schema.define(version: 20160224070033) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "users_id"
+    t.boolean  "approved",   null: false
+    t.integer  "user_id",    null: false
   end
 
-  add_index "admins", ["users_id"], name: "index_admins_on_users_id"
+  add_index "admins", ["approved"], name: "index_admins_on_approved"
 
-  create_table "degree", force: :cascade do |t|
-    t.date     "year"
-    t.boolean  "approved"
+  create_table "degrees", force: :cascade do |t|
+    t.integer  "year",           null: false
+    t.boolean  "approved",       null: false
+    t.integer  "institution_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "institution_id"
   end
 
-  add_index "degree", ["approved"], name: "index_degree_on_approved"
-  add_index "degree", ["institution_id"], name: "index_degree_on_institution_id"
+  add_index "degrees", ["approved"], name: "index_degrees_on_approved"
 
-  create_table "institution", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "approved"
+  create_table "institutions", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.boolean  "approved",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "institution", ["approved"], name: "index_institution_on_approved"
+  add_index "institutions", ["approved"], name: "index_institutions_on_approved"
 
-  create_table "mentor", force: :cascade do |t|
+  create_table "mentors", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "approved"
+    t.integer  "person_id",  null: false
+    t.integer  "postdoc_id", null: false
+    t.integer  "mentor_id",  null: false
+    t.boolean  "approved",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "people_id"
-    t.integer  "postdoc_id"
   end
 
-  add_index "mentor", ["approved"], name: "index_mentor_on_approved"
-  add_index "mentor", ["people_id"], name: "index_mentor_on_people_id"
-  add_index "mentor", ["postdoc_id"], name: "index_mentor_on_postdoc_id"
+  add_index "mentors", ["approved"], name: "index_mentors_on_approved"
+  add_index "mentors", ["mentor_id"], name: "index_mentors_on_mentor_id"
+  add_index "mentors", ["person_id"], name: "index_mentors_on_person_id"
+  add_index "mentors", ["postdoc_id"], name: "index_mentors_on_postdoc_id"
 
   create_table "people", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",           null: false
     t.string   "position"
-    t.boolean  "approved"
+    t.boolean  "approved",       null: false
+    t.integer  "institution_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "institution_id"
   end
 
   add_index "people", ["approved"], name: "index_people_on_approved"
-  add_index "people", ["institution_id"], name: "index_people_on_institution_id"
   add_index "people", ["name"], name: "index_people_on_name"
 
-  create_table "postdoc", force: :cascade do |t|
-    t.date     "start"
-    t.date     "end"
-    t.boolean  "approved"
+  create_table "postdocs", force: :cascade do |t|
+    t.integer  "start",          null: false
+    t.integer  "end",            null: false
+    t.boolean  "approved",       null: false
+    t.integer  "institution_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "institution_id"
   end
 
-  add_index "postdoc", ["approved"], name: "index_postdoc_on_approved"
-  add_index "postdoc", ["institution_id"], name: "index_postdoc_on_institution_id"
+  add_index "postdocs", ["approved"], name: "index_postdocs_on_approved"
 
-  create_table "supervisor", force: :cascade do |t|
+  create_table "supervisors", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "approved"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "degree_id"
-    t.integer  "person_id"
+    t.boolean  "approved",      null: false
+    t.integer  "degree_id",     null: false
+    t.integer  "person_id",     null: false
+    t.integer  "supervisor_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "supervisor", ["approved"], name: "index_supervisor_on_approved"
-  add_index "supervisor", ["degree_id"], name: "index_supervisor_on_degree_id"
-  add_index "supervisor", ["person_id"], name: "index_supervisor_on_person_id"
+  add_index "supervisors", ["approved"], name: "index_supervisors_on_approved"
+  add_index "supervisors", ["degree_id"], name: "index_supervisors_on_degree_id"
+  add_index "supervisors", ["person_id"], name: "index_supervisors_on_person_id"
+  add_index "supervisors", ["supervisor_id"], name: "index_supervisors_on_supervisor_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "password"
-    t.string   "password_digest"
+    t.string   "password",        null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.boolean  "approved"
+    t.string   "email",           null: false
+    t.string   "first_name",      null: false
+    t.string   "last_name",       null: false
+    t.boolean  "approved",        null: false
   end
 
   add_index "users", ["approved"], name: "index_users_on_approved"

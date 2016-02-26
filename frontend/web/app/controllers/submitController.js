@@ -64,22 +64,24 @@ angular.module('chemGeno')
              * This function when invoked will take the current and then the old tab and then it will combine
              * the data together in such a way that we have the previous now equal to the selected, and then
              * index into the "tabs" list with the current value.
-             */
+             *
             $scope.$watch('selectedIndex', function(current, old){
                 previousPD = selectedPD;
                 selectedPD = postDocTab[current];
                 if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previousPD.title + '!');
                 if ( current + 1 )                $log.debug('Hello ' + selectedPD.title + '!');
             });
+             */
 
             /** POSTDOC FUNCTION.
              * This function will add a new tab to the set of tabs that we currently have.
              *
-             * @param pdDate The dates of the start and ending of the postdoc appointment.
+             * @param pdYearStart The dates of the start of the postdoc appointment.
+             * @param pdYearEnd The date of the end of the postdoc appointment.
              * @param pdSupervisor The supervisor of the postdoc appointment.
              * @param pdInstitution The institution of the postdoc appointment.
              */
-            $scope.addPDTab = function (pdDate, pdSupervisor, pdInstitution) {
+            $scope.addPDInfo = function (pdYearStart, pdYearEnd, pdSupervisor, pdInstitution) {
                 //view = view || title + " Content View";
                 var pdID = $scope.postDocID++; //Increment global PostDocID with addition.
                 postDocTab.push({ postDocID: pdID, postDocDates: pdDate, postDocSupervisor: pdSupervisor, postDocInstitution: pdInstitution, disabled: false});
@@ -106,13 +108,13 @@ angular.module('chemGeno')
              * This function when invoked will take the current and then the old tab and then it will combine
              * the data together in such a way that we have the previous now equal to the selected, and then
              * index into the "tabs" list with the current value.
-             */
+             *
             $scope.$watch('degreeInfoSelectedIndex', function(current2, old2){
                 previous = selected;
                 selected = degreeInfoTab[current2];
                 if ( old2 + 1 && (old2 != current2)) $log.debug('Goodbye ' + previous.title + '!');
                 if ( current2 + 1 )                $log.debug('Hello ' + selected.title + '!');
-            });
+            });*/
 
             /** DEGREE INFO FUNCTION.
              * This function will add a new tab to the set of tabs that we currently have.
@@ -121,7 +123,7 @@ angular.module('chemGeno')
              * @param diSupervisor The supervisor who oversaw the degree.
              * @param diInstitution The institution that awarded the degree.
              */
-            $scope.addDITab = function (diYear, diSupervisor, diInstitution) {
+            $scope.addDI = function (diYear, diSupervisor, diInstitution) {
                 //view = view || title + " Content View";
                 var diID = $scope.degreeInfoID++; //Increment global degreeInfoID with addition.
                 degreeInfoTab.push({ degreeInfoID: diID, degreeInfoYear: diYear, degreeInfoSupervisor: diSupervisor, degreeInfoInstitution: diInstitution, disabled: false});
@@ -160,26 +162,231 @@ angular.module('chemGeno')
             };
 
 
+            /**
+             * Information regarding the postdoc appointments furnished on the submit page.
+             *
+             */
+
+            $scope.pdEndYear = null;
+            $scope.pdStartYear = null;
+            $scope.pdSupervisor = null;
+            $scope.pdInstitution = null;
+
+            function PostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)
+                {
+                    this.pdStartYear = pdStartYear,
+                    this.pdEndYear = pdEndYear,
+                    this.pdSupervisor = pdSupervisor,
+                    this.pdInstitution = pdInstitution
+                }
 
 
-            /** MODEL
+
+            $scope.postDocInformation = [
+                {
+                    pdStartYear: "1980", pdEndYear: "1981", pdSupervisor: "Clinton E. Ballou", pdInstitution: "University of California"
+
+                },
+                {
+                    pdStartYear:"1971", pdEndYear: "1973", pdSupervisor: "Harold J. Jennings", pdInstitution: "National Research Council of Canada"
+                }
+            ];
+
+            /**
+             * Function evoked when the submit button is hit on the postdoc card on the submit page.
+             * Creates a new postDocInstance (object with postdoc data) with the data in the card's fields.
+             * Afterwards refreshes the view of the scope.
+             *
+             * @param pdStartYear Starting year of the postdoc appointment.
+             * @param pdEndYear Ending year of the postdoc appointment.
+             * @param pdSupervisor Supervisor of the postdoc appointment.
+             * @param pdInstitution Institution of the postdoc appointment.
+             */
+            $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
+                var newPostDocInstance = new PostDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution);
+                $scope.postDocInformation.push(newPostDocInstance);
+                console.log("AddPostDocInstance Called on" + $scope.postDocInformation);
+
+                //"Clear" all of the fields.
+                pdEndYear = null;
+                pdStartYear= "";
+                pdSupervisor = "";
+                pdInstitution = "";
+            };
+
+            $scope.editPostDoc = function(){
+              console.log("editPostDoc function called");
+
+
+            };
+
+
+            /**
+            $scope.clearPostDocFields = function(){
+                pdStartYear = "";
+                pdEndYear = "";
+                pdSupervisor = "";
+                pdInstitution = "";
+                console.log("clearPostDocFields called! :)");
+            }; **/
+
+
+            /**
+             * Function that when invoked will remove the selected postdoc instance from the submit page and
+             * the particular individual's object model.
+             * @param postDocInstanceIndex of the postDocInformation array that should be removed.
+             */
+            $scope.removePostDocInstance = function(postDocInstance){
+                console.log("removePostDocInstance called with index" + postDocInstance);
+                console.log($scope.postDocInformation.length);
+
+                var index = $scope.postDocInformation.indexOf(postDocInstance);
+                console.log($scope.postDocInformation.length);
+                //Splice out the entry that is desired to be removed.
+                $scope.postDocInformation.splice(index,1);
+                console.log($scope.postDocInformation);
+
+
+            };
+
+
+            /** Degrees Section:
+             * This section deals with the cards associated with the degrees a user may have.
+             */
+
+            $scope.degreeInformation = [
+                {
+                    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta"
+
+                },
+                {
+                    year:"1980", supervisor: "Raymond U. Lemieux", institution: "University of Alberta"
+                }
+            ];
+
+            //Set to false to hide the details of the degree info information.
+            $scope.degreeInfoVisibility = false;
+
+
+            /**
+             * Shows the degree info information when invoked.
+             */
+            $scope.showDegreeInfo = function(){
+                $scope.degreeInfoVisibility = true;
+            };
+
+            /**
+             * Hides the degree info information when invoked.
+             */
+            $scope.hideDegreeInfo = function(){
+                $scope.degreeInfoVisibility = false;
+            };
+
+
+
+            /**
+             * Information regarding the postdoc appointments furnished on the submit page.
+             *
+             */
+            $scope.diYear = null;
+            $scope.diSupervisor = null;
+            $scope.diInstitution = null;
+
+            function DegreeInfoInstance(diYear, diSupervisor, diInstitution)
+            {
+                this.year = diYear;
+                    this.supervisor = diSupervisor;
+                    this.institution = diInstitution;
+            }
+
+
+            $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution) {
+                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution);
+                $scope.degreeInformation.push(newDegreeInfoInstance);
+                console.log("AddPostDocInstance Called on" + $scope.degreeInfoInformation);
+
+
+                //Refresh the view of the scope.
+                $scope.$apply();
+            };
+
+            $scope.removeDegreeInfoInstance = function(degreeInfoInstance){
+                console.log("removePostDocInstance called with index" + degreeInfoInstance);
+                console.log($scope.postDocInformation.length);
+
+                var index = $scope.degreeInformation.indexOf(degreeInfoInstance);
+                console.log($scope.degreeInformation.length);
+                //Splice out the entry that is desired to be removed.
+                $scope.degreeInformation.splice(index,1);
+                console.log($scope.degreeInformation);
+            };
+
+
+
+            //Order by date descending. <- for the output to the user.
+
+            /**Basic Info Section:
+             * This section deals with trivial information collection on the submit page such as first and last names.
+             */
+            $scope.firstName = null;
+            $scope.lastName = null;
+            $scope.individualTitle = null;
+            $scope.typeOfDegree = null;
+            $scope.currentPositionTitle = null;
+            $scope.currentInstitutionName = null;
+
+            $scope.testBasicInputs = function(){
+                console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title + " " + $scope.typeOfDegree
+                    + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
+            };
+
+
+
+
+            /** MODEL AND FINAL SUBMISSION
              * This is the model for this submission page.
              * First name, last name, title, degree type, current position title, current institution, postdoc info
              *
              * @type {{usersFirstName: null, usersLastName: null, usersTitle: null, usersDegreeType: null, usersCurrentPositionTitle: null, usersCurrentInstitutionName: null, usersPostDocInfo: *[]}}
              */
-            var submitPageModel;
 
-            submitPageModel = {
-                usersFirstName: null,
-                usersLastName: null,
-                usersTitle: null,
-                usersDegreeType: null,
-                usersCurrentPositionTitle: null,
-                usersCurrentInstitutionName: null,
-                usersPostDocInfo: postDocTab
+
+            /**
+             *  This is the constructor for bundling all of the submission page information into one object.
+             *  Called by hitting the final submission button, which evokes a function that plops this together.
+             *
+             *  Params are self explanitory I'd hope?
+             * @param firstName
+             * @param lastName
+             * @param individualTitle
+             * @param typeOfDegree
+             * @param currentPositionTitle
+             * @param currentInstitutionName
+             * @param postDocInformation
+             */
+            function SubmissionPageModelObject(firstName, lastName, typeOfDegree, currentPositionTitle,
+                        currentInstitutionName, postDocInformation)
+            {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.typeOfDegree = typeOfDegree;
+                this.currentPositionTitle = currentPositionTitle;
+                this.currentInstitutionName = currentInstitutionName;
+                this.postDocInformation = postDocInformation;
+            }
+
+
+            /**
+             * Function evoked when the final submission button is hit, creates a new model object for the entire
+             * submission page.
+             */
+            $scope.finalSubmitButtonFunction = function(){
+                console.log("finalSubmitButtonFunction was called");
+                var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
+                $scope.typeOfDegree, $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation);
 
             };
+
 
         }]);
 

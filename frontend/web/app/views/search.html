@@ -66,6 +66,10 @@
         justify-content: flex-start;
         align-items: center;
       }
+      ul
+      {
+          list-style-type: none;
+      }
 </style>
 
 
@@ -76,27 +80,21 @@
 
 
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-2">
-                    <!--Sidebar content-->
+        <div id="searchContent">
+            <!--search bar-->
+            <input ng-model="query">
 
-                    Search: <input ng-model="query">
+                 <!--items-->
+            <ul>
+                <li ng-repeat="person in people | filter:query">
+                    <span>{{person.name}}</span>
+                    <br>&emsp;&emsp;{{person.institution}}</br>
+                    <br></br>
+                </li>
+            </ul>
 
-                </div>
-                <div class="col-md-10">
 
-                    <!--Body content-->
 
-                    <ul class="phones">
-                        <li ng-repeat="phone in phones | filter:query">
-                            <span>{{phone.name}}</span>
-                            <p>{{phone.snippet}}</p>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
         </div>
     </div>
     <div id="dataVis" ng-controller="visController">
