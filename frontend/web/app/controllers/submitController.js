@@ -75,11 +75,12 @@ angular.module('chemGeno')
             /** POSTDOC FUNCTION.
              * This function will add a new tab to the set of tabs that we currently have.
              *
-             * @param pdDate The dates of the start and ending of the postdoc appointment.
+             * @param pdYearStart The dates of the start of the postdoc appointment.
+             * @param pdYearEnd The date of the end of the postdoc appointment.
              * @param pdSupervisor The supervisor of the postdoc appointment.
              * @param pdInstitution The institution of the postdoc appointment.
              */
-            $scope.addPDTab = function (pdDate, pdSupervisor, pdInstitution) {
+            $scope.addPDInfo = function (pdYearStart, pdYearEnd, pdSupervisor, pdInstitution) {
                 //view = view || title + " Content View";
                 var pdID = $scope.postDocID++; //Increment global PostDocID with addition.
                 postDocTab.push({ postDocID: pdID, postDocDates: pdDate, postDocSupervisor: pdSupervisor, postDocInstitution: pdInstitution, disabled: false});
@@ -121,7 +122,7 @@ angular.module('chemGeno')
              * @param diSupervisor The supervisor who oversaw the degree.
              * @param diInstitution The institution that awarded the degree.
              */
-            $scope.addDITab = function (diYear, diSupervisor, diInstitution) {
+            $scope.addDI = function (diYear, diSupervisor, diInstitution) {
                 //view = view || title + " Content View";
                 var diID = $scope.degreeInfoID++; //Increment global degreeInfoID with addition.
                 degreeInfoTab.push({ degreeInfoID: diID, degreeInfoYear: diYear, degreeInfoSupervisor: diSupervisor, degreeInfoInstitution: diInstitution, disabled: false});
@@ -160,6 +161,89 @@ angular.module('chemGeno')
             };
 
 
+            /**
+             * Information regarding the postdoc appointments furnished on the submit page.
+             *
+             */
+
+            $scope.pdEndYear = null;
+            $scope.pdStartYear = null;
+            $scope.pdSupervisor = null;
+            $scope.pdInstitution = null;
+
+            function postDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)
+                {
+                    this.pdStartYear = pdStartYear,
+                    this.pdEndYear = pdEndYear,
+                    this.pdSupervisor = pdSupervisor,
+                    this.pdInstitution = pdInstitution
+                }
+
+
+
+            $scope.postDocInformation = [
+                {
+                    pdStartYear: "1990", pdEndYear: "1994", pdSupervisor: "Goo", pdInstitution: "Goobers"
+
+                },
+                {
+                    pdStartYear:"0010", pdEndYear: "3999", pdSupervisor: "gooey", pdInstitution: "whatever"
+                }
+            ];
+
+            /**
+             * Function evoked when the submit button is hit on the postdoc card on the submit page.
+             * Creates a new postDocInstance (object with postdoc data) with the data in the card's fields.
+             * Afterwards refreshes the view of the scope.
+             *
+             * @param pdStartYear Starting year of the postdoc appointment.
+             * @param pdEndYear Ending year of the postdoc appointment.
+             * @param pdSupervisor Supervisor of the postdoc appointment.
+             * @param pdInstitution Institution of the postdoc appointment.
+             */
+            $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
+                var newPostDocInstance = new postDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution);
+                $scope.postDocInformation.push(newPostDocInstance);
+                console.log("AddPostDocInstance Called on" + $scope.postDocInformation);
+
+                //"Clear" all of the fields.
+                pdEndYear = null;
+                pdStartYear= "";
+                pdSupervisor = "";
+                pdInstitution = "";
+
+                //Refresh the view of the scope.
+                $scope.$apply();
+            };
+
+
+            /**
+            $scope.clearPostDocFields = function(){
+                pdStartYear = "";
+                pdEndYear = "";
+                pdSupervisor = "";
+                pdInstitution = "";
+                console.log("clearPostDocFields called! :)");
+            }; **/
+
+
+            /**
+             * Function that when invoked will remove the selected postdoc instance from the submit page and
+             * the particular individual's object model.
+             * @param postDocRemoveIndex Index of the postDocInformation array that should be removed.
+             */
+            $scope.removePostDocInstance = function(postDocRemoveIndex){
+                console.log("removePostDocInstance called with index" + postDocRemoveIndex);
+                console.log(postDocRemoveIndex + " " +  (postDocRemoveIndex+1));
+
+                //Splice out the entry that is desired to be removed.
+                $scope.postDocInformation.splice(postDocRemoveIndex,postDocRemoveIndex+1);
+                console.log($scope.postDocInformation);
+
+                //Apply the changes to the scope.
+                $scope.apply();
+
+            };
 
 
             /** MODEL
