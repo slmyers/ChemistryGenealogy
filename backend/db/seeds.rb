@@ -22,6 +22,8 @@ Admin.create!([
     {users_id: 2, approved: true}
 ])
 
+# add Todd Lowary's information
+
 Institution.create!([
     {name: 'university of alberta', approved: true}
 ])
@@ -35,5 +37,24 @@ Degree.create!([
 ])
 
 Supervisor.create!([
-    {name: 'ole hindsgaul', person_id: 1, degree_id: 1}
+    {name: 'ole hindsgaul', person_id: 1, degree_id: 1, approved: true}
+])
+
+# add Wei Shi's information
+
+Institution.create!([
+    {name: 'johns hopkins university', approved: true},
+    {name: 'university of arkansas', approved: true}
+])
+
+Person.create!([
+    {name: 'wei shi', position: 'assistant professor', institution_id: 3, approved: true}
+])
+
+Degree.create!([
+    {year: 2008, institution_id: 1, approved: true}
+])
+
+Supervisor.create!([
+    {name: 'todd lowary', person_id: 2, degree_id: 2}
 ])
