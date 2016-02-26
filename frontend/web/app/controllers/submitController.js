@@ -171,7 +171,7 @@ angular.module('chemGeno')
             $scope.pdSupervisor = null;
             $scope.pdInstitution = null;
 
-            function postDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)
+            function PostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)
                 {
                     this.pdStartYear = pdStartYear,
                     this.pdEndYear = pdEndYear,
@@ -202,7 +202,7 @@ angular.module('chemGeno')
              * @param pdInstitution Institution of the postdoc appointment.
              */
             $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
-                var newPostDocInstance = new postDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution);
+                var newPostDocInstance = new PostDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution);
                 $scope.postDocInformation.push(newPostDocInstance);
                 console.log("AddPostDocInstance Called on" + $scope.postDocInformation);
 
@@ -237,7 +237,7 @@ angular.module('chemGeno')
                 console.log(postDocRemoveIndex + " " +  (postDocRemoveIndex+1));
 
                 //Splice out the entry that is desired to be removed.
-                $scope.postDocInformation.splice(postDocRemoveIndex,postDocRemoveIndex+1);
+                $scope.postDocInformation.splice(postDocRemoveIndex,1);
                 console.log($scope.postDocInformation);
 
                 //Apply the changes to the scope.
