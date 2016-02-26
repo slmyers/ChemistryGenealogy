@@ -28,28 +28,28 @@
         <form name="userForm">
 
             <!-- Their switch thing to show hints or not. -->
-            <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-                <div flex-gt-sm="20">
+            <!--<div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">-->
+                <!--<div flex-gt-sm="20">-->
 
-                </div>
-                <md-input-container>
-                    <md-switch ng-model="showHints">Showing {{showHints ? "Hints" : "Errors"}}</md-switch>
-                </md-input-container>
-            </div>
+                <!--</div>-->
+                <!--&lt;!&ndash;<md-input-container>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<md-switch ng-model="showHints">Showing {{showHints ? "Hints" : "Errors"}}</md-switch>&ndash;&gt;-->
+                <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
+            <!--</div>-->
 
             <!-- Spacer //-->
-            <div flex="3" hide-xs hide-sm>
-            </div>
+            <!--<div flex="3" hide-xs hide-sm>-->
+            <!--</div>-->
 
 
             <!-- Set the current layout for this line to be the row layout style -->
-            <div layout-gt-sm="row">
+            <div layout="row" layout-align="center" class="block">
 
                 <!-- First name edit text field -->
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>First Name</label> <!-- State what the field is concerning -->
                     <input md-maxlength="30" required name="firstname" ng-model="firstName" />
-                    <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+
                     <!-- If there is an error flag, display the text following -->
                     <div ng-messages="userForm.name.$error" ng-if="!showHints">
                         <div ng-message="required">First name is required.</div>
@@ -61,7 +61,7 @@
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Last Name</label> <!-- State what the field is concerning -->
                     <input md-maxlength="30" required name="lastname" ng-model="lastName" />
-                    <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+
 
                     <!-- If there is an error flag, display the text following. ngmessages checks flag -->
                     <div ng-messages="userForm.name.$error" ng-if="!showHints">
@@ -100,12 +100,9 @@
                     </form>
                     </div>
 
-                <!-- LARGE Spacer //-->
-                <div flex="50" hide-xs hide-sm>
-                </div>
 
 
-                <md-button class="md-primary md-raised" ng-click="testBasicInputs()"> test basic inputs </md-button>
+                <!--<md-button class="md-primary md-raised" ng-click="testBasicInputs()"> test basic inputs </md-button>-->
 
 
 
@@ -163,16 +160,15 @@
                     <input md-maxlength="30" required name="institution" ng-model="currentInstitutionName" />
 
                     <!-- If there is an error then show the error messages. -->
-                    <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+
                     <div ng-messages="userForm.name.$error" ng-if="!showHints">
                         <div ng-message="required">Institution name is required.</div>
                         <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
                     </div>
                 </md-input-container>
 
-                <!-- LARGE Spacer //-->
-                <div flex="50" hide-xs hide-sm>
-                </div>
+
+
 
             <!-- Start a new line YAAAS -->
             </div>
@@ -182,7 +178,7 @@
 
 
             <!-- POSTDOC INFORMATION COLLECTION BEGINS HERE -->
-            <md-input-container>
+            <md-input-container style="font-variant:small-caps;">
                 <h1>Postdoctoral Appointments Section</h1>
                 Please enter information here about postdoctoral positions you may have held in the past.
             </md-input-container>
@@ -190,7 +186,7 @@
 
                 <md-card-header>
                     <md-card-avatar ng-click="showPostDocInfo()">
-                        <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
+                        <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
                         <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                             Click here to expand the postdoc information.
                         </md-tooltip>
@@ -206,7 +202,7 @@
 
             <md-card  ng-if="postDocVisibility">
                 <md-card-header>
-                    <md-card-avatar ng-click="hidePostDocInfo()">
+                    <md-card-avatar style="cursor:pointer" ng-click="hidePostDocInfo()">
                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
                         <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                             Collapse the postdoc information.
@@ -252,14 +248,14 @@
                 <md-card-actions layout="row" layout-align="right">
 
                     <!-- Submission button -->
-                    <md-button ng-click="addPostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)">Submit
+                    <md-button style="cursor:pointer" ng-click="addPostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)">Submit
                         <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                             Click here to Submit this PostDoc Instance
                         </md-tooltip>
                     </md-button>
 
                     <!-- Clear Fields Button -->
-                    <md-button ng-click="clearPostDocFields()">Clear Fields
+                    <md-button style="cursor:pointer" ng-click="clearPostDocFields()">Clear Fields
                         <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
                             Click here to clear the fields of this current PostDoc Instance.
                         </md-tooltip>
@@ -302,7 +298,7 @@
 
 
                                     <!-- Submission button -->
-                                    <md-button ng-click="removePostDocInstance(item)">Remove
+                                    <md-button style="cursor:pointer" ng-click="removePostDocInstance(item)">Remove
                                         <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                             Click here to Remove this PostDocInstance.
                                         </md-tooltip>
@@ -328,7 +324,7 @@
 
                         <!-- Section for degree information to be input by the User -->
 
-                        <md-input-container>
+                        <md-input-container style="font-variant:small-caps;">
                             <h1>Degree Information Section</h1>
                             Please enter information here about any degrees you have obtained in the past.
                         </md-input-container>
@@ -337,7 +333,7 @@
                             <md-card  ng-if="!degreeInfoVisibility">
 
                                 <md-card-header>
-                                    <md-card-avatar ng-click="showDegreeInfo()">
+                                    <md-card-avatar style="cursor:pointer" ng-click="showDegreeInfo()">
                                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
                                         <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                                             Click here to expand the degree information section.
@@ -354,7 +350,7 @@
 
                             <md-card  ng-if="degreeInfoVisibility">
                                 <md-card-header>
-                                    <md-card-avatar ng-click="hideDegreeInfo()">
+                                    <md-card-avatar style="cursor:pointer" ng-click="hideDegreeInfo()">
                                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
                                         <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                                             Collapse the Degree Information Section.
@@ -477,9 +473,9 @@
 
                         <!-- The ultimate submission button -->
                         <div align="center">
-                        <div>By clicking this button you will submit all data on this page to the Administrator</div>
+                        <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all data on this page to the Administrator</div>
 
-                            <md-button class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
+                            <md-button style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
                                 <md-tooltip md-visible="finalSubmissionButton.showTooltip" md-direction="{{demo.tipDirection}}">
                                     Pressing this button will submit ALL data on this page for Administrator approval.
                                 </md-tooltip>
