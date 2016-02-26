@@ -216,6 +216,12 @@ angular.module('chemGeno')
                 $scope.$apply();
             };
 
+            $scope.editPostDoc = function(){
+              console.log("editPostDoc function called");
+
+
+            };
+
 
             /**
             $scope.clearPostDocFields = function(){
@@ -230,40 +236,111 @@ angular.module('chemGeno')
             /**
              * Function that when invoked will remove the selected postdoc instance from the submit page and
              * the particular individual's object model.
-             * @param postDocRemoveIndex Index of the postDocInformation array that should be removed.
+             * @param postDocInstanceIndex of the postDocInformation array that should be removed.
              */
-            $scope.removePostDocInstance = function(postDocRemoveIndex){
-                console.log("removePostDocInstance called with index" + postDocRemoveIndex);
-                console.log(postDocRemoveIndex + " " +  (postDocRemoveIndex+1));
+            $scope.removePostDocInstance = function(postDocInstance){
+                console.log("removePostDocInstance called with index" + postDocInstance);
 
+                var index = $scope.postDocInformation.indexOf(postDocInstance);
                 //Splice out the entry that is desired to be removed.
-                $scope.postDocInformation.splice(postDocRemoveIndex,1);
+                $scope.postDocInformation.splice(index,1);
                 console.log($scope.postDocInformation);
 
                 //Apply the changes to the scope.
                 $scope.apply();
+                console.log($scope.postDocInformation);
 
             };
 
 
-            /** MODEL
+            /** Degrees Section:
+             * This section deals with the cards associated with the degrees a user may have.
+             */
+
+            //Set to false to hide the details of the degree info information.
+            $scope.degreeInfoVisibility = false;
+
+
+            /**
+             * Shows the degree info information when invoked.
+             */
+            $scope.showDegreeInfo = function(){
+                $scope.degreeInfoVisibility = true;
+            };
+
+            /**
+             * Hides the degree info information when invoked.
+             */
+            $scope.hidePostDocInfo = function(){
+                $scope.degreeInfoVisibility = false;
+            };
+
+
+
+
+            //Order by date descending. <- for the output to the user. 
+
+            /**Basic Info Section:
+             * This section deals with trivial information collection on the submit page such as first and last names.
+             */
+            $scope.firstName = null;
+            $scope.lastName = null;
+            $scope.individualTitle = null;
+            $scope.typeOfDegree = null;
+            $scope.currentPositionTitle = null;
+            $scope.currentInstitutionName = null;
+
+            $scope.testBasicInputs = function(){
+                console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title + " " + $scope.typeOfDegree
+                    + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
+            };
+
+
+
+
+            /** MODEL AND FINAL SUBMISSION
              * This is the model for this submission page.
              * First name, last name, title, degree type, current position title, current institution, postdoc info
              *
              * @type {{usersFirstName: null, usersLastName: null, usersTitle: null, usersDegreeType: null, usersCurrentPositionTitle: null, usersCurrentInstitutionName: null, usersPostDocInfo: *[]}}
              */
-            var submitPageModel;
 
-            submitPageModel = {
-                usersFirstName: null,
-                usersLastName: null,
-                usersTitle: null,
-                usersDegreeType: null,
-                usersCurrentPositionTitle: null,
-                usersCurrentInstitutionName: null,
-                usersPostDocInfo: postDocTab
+
+            /**
+             *  This is the constructor for bundling all of the submission page information into one object.
+             *  Called by hitting the final submission button, which evokes a function that plops this together.
+             *
+             *  Params are self explanitory I'd hope?
+             * @param firstName
+             * @param lastName
+             * @param individualTitle
+             * @param typeOfDegree
+             * @param currentPositionTitle
+             * @param currentInstitutionName
+             * @param postDocInformation
+             */
+            function SubmissionPageModelObject(firstName, lastName, typeOfDegree, currentPositionTitle,
+                        currentInstitutionName, postDocInformation)
+            {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.typeOfDegree = typeOfDegree;
+                this.currentPositionTitle = currentPositionTitle;
+                this.currentInstitutionName = currentInstitutionName;
+                this.postDocInformation = postDocInformation;
+            }
+
+            /**
+             * Function evoked when the final submission button is hit, creates a new model object for the entire
+             * submission page.
+             */
+            $scope.finalSubmitButtonFunction = function(){
+                console.log("finalSubmitButtonFunction was called");
+                var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
+                $scope.typeOfDegree, $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation);
 
             };
+
 
         }]);
 
