@@ -1,6 +1,6 @@
 class CreateApiSupervisors < ActiveRecord::Migration
   def change
-    create_table :supervisor do |t|
+    create_table :supervisors do |t|
       t.string :name
       t.boolean :approved
 

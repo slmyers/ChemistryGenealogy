@@ -16,32 +16,33 @@ ActiveRecord::Schema.define(version: 20160224070335) do
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "approved"
     t.integer  "users_id"
   end
 
   add_index "admins", ["users_id"], name: "index_admins_on_users_id"
 
-  create_table "degree", force: :cascade do |t|
-    t.date     "year"
+  create_table "degrees", force: :cascade do |t|
+    t.integer  "year"
     t.boolean  "approved"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "institution_id"
   end
 
-  add_index "degree", ["approved"], name: "index_degree_on_approved"
-  add_index "degree", ["institution_id"], name: "index_degree_on_institution_id"
+  add_index "degrees", ["approved"], name: "index_degrees_on_approved"
+  add_index "degrees", ["institution_id"], name: "index_degrees_on_institution_id"
 
-  create_table "institution", force: :cascade do |t|
+  create_table "institutions", force: :cascade do |t|
     t.string   "name"
     t.boolean  "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "institution", ["approved"], name: "index_institution_on_approved"
+  add_index "institutions", ["approved"], name: "index_institutions_on_approved"
 
-  create_table "mentor", force: :cascade do |t|
+  create_table "mentors", force: :cascade do |t|
     t.string   "name"
     t.boolean  "approved"
     t.datetime "created_at", null: false
@@ -50,9 +51,9 @@ ActiveRecord::Schema.define(version: 20160224070335) do
     t.integer  "postdoc_id"
   end
 
-  add_index "mentor", ["approved"], name: "index_mentor_on_approved"
-  add_index "mentor", ["people_id"], name: "index_mentor_on_people_id"
-  add_index "mentor", ["postdoc_id"], name: "index_mentor_on_postdoc_id"
+  add_index "mentors", ["approved"], name: "index_mentors_on_approved"
+  add_index "mentors", ["people_id"], name: "index_mentors_on_people_id"
+  add_index "mentors", ["postdoc_id"], name: "index_mentors_on_postdoc_id"
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
@@ -67,19 +68,19 @@ ActiveRecord::Schema.define(version: 20160224070335) do
   add_index "people", ["institution_id"], name: "index_people_on_institution_id"
   add_index "people", ["name"], name: "index_people_on_name"
 
-  create_table "postdoc", force: :cascade do |t|
-    t.date     "start"
-    t.date     "end"
+  create_table "postdocs", force: :cascade do |t|
+    t.integer  "start"
+    t.integer  "end"
     t.boolean  "approved"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "institution_id"
   end
 
-  add_index "postdoc", ["approved"], name: "index_postdoc_on_approved"
-  add_index "postdoc", ["institution_id"], name: "index_postdoc_on_institution_id"
+  add_index "postdocs", ["approved"], name: "index_postdocs_on_approved"
+  add_index "postdocs", ["institution_id"], name: "index_postdocs_on_institution_id"
 
-  create_table "supervisor", force: :cascade do |t|
+  create_table "supervisors", force: :cascade do |t|
     t.string   "name"
     t.boolean  "approved"
     t.datetime "created_at", null: false
@@ -88,9 +89,9 @@ ActiveRecord::Schema.define(version: 20160224070335) do
     t.integer  "person_id"
   end
 
-  add_index "supervisor", ["approved"], name: "index_supervisor_on_approved"
-  add_index "supervisor", ["degree_id"], name: "index_supervisor_on_degree_id"
-  add_index "supervisor", ["person_id"], name: "index_supervisor_on_person_id"
+  add_index "supervisors", ["approved"], name: "index_supervisors_on_approved"
+  add_index "supervisors", ["degree_id"], name: "index_supervisors_on_degree_id"
+  add_index "supervisors", ["person_id"], name: "index_supervisors_on_person_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "password"

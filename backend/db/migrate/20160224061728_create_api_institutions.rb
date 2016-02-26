@@ -1,6 +1,6 @@
 class CreateApiInstitutions < ActiveRecord::Migration
   def change
-    create_table :institution do |t|
+    create_table :institutions do |t|
       t.string :name
       t.boolean :approved
 

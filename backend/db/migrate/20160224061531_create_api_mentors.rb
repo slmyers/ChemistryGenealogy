@@ -1,6 +1,6 @@
 class CreateApiMentors < ActiveRecord::Migration
   def change
-    create_table :mentor do |t|
+    create_table :mentors do |t|
       t.string :name
       t.boolean :approved
 
