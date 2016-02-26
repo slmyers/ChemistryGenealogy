@@ -30,9 +30,9 @@ class Search
   # returns nil if there is no mentor for the postdoc
 
   # TODO: edit so that there is more than only one record/postdoc taken
+  # because a person can have many postdocs
   def Search.postdoc_by_id(person_id)
     @person_mentor = Mentor.where(person_id: person_id, approved: true).first
-    puts @person_mentor.postdoc_id
     unless @person_mentor.blank?
       @postdoc = Postdoc.where(id: @person_mentor.postdoc_id, approved: true).first
       unless @postdoc.blank?

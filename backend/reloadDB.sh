@@ -3,4 +3,4 @@
 rake db:drop
 rake db:migrate
 rake db:schema:load
-rake db:seed RAILS_ENV=development
+rake db:seed RAILS_ENV=test
