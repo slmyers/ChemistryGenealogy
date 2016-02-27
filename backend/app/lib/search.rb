@@ -1,4 +1,4 @@
-require 'set'
+require 'json'
 # i'm just going to run sequential active record find_by queries
 # this is a naive approach?
 
@@ -37,10 +37,10 @@ class Search
     @institutions = self.get_institutions(@people)
 
 
-    @results = { "mentors" => @mentors, "mentored" => @mentored,
-                "supervisors" => @supervisors, "supervised" => @supervised,
-                "people" => @people, "institutions" => @institutions
-              }
+    @results = { 'mentors' => @mentors, 'mentored' => @mentored,
+                'supervisors' => @supervisors, 'supervised' => @supervised,
+                'people' => @people, 'institutions' => @institutions
+               }
     return @results
   end
 
