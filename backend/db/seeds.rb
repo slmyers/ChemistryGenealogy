@@ -38,7 +38,7 @@ Postdoc.create!([
 ])
 
 Mentor.create!([
-  {name: 'david bundle', person_id: 1, postdoc_id: 1, mentor_id: 2, approved: true}
+  {person_id: 1, postdoc_id: 1, mentor_id: 2, approved: true}
 ])
 
 Degree.create!([

@@ -1,7 +1,6 @@
 class CreateSupervisors < ActiveRecord::Migration
   def change
     create_table :supervisors do |t|
-      t.string :name
 
       t.boolean :approved, :null => false
       t.index :approved

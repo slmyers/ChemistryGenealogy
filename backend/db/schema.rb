@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   add_index "institutions", ["approved"], name: "index_institutions_on_approved"
 
   create_table "mentors", force: :cascade do |t|
-    t.string   "name"
     t.integer  "person_id",  null: false
     t.integer  "postdoc_id", null: false
     t.integer  "mentor_id",  null: false
@@ -60,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160224070033) do
     t.string   "name",           null: false
     t.string   "position"
     t.boolean  "approved",       null: false
-    t.integer  "institution_id", null: false
+    t.integer  "institution_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -80,7 +79,6 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   add_index "postdocs", ["approved"], name: "index_postdocs_on_approved"
 
   create_table "supervisors", force: :cascade do |t|
-    t.string   "name"
     t.boolean  "approved",      null: false
     t.integer  "degree_id",     null: false
     t.integer  "person_id",     null: false
@@ -99,7 +97,7 @@ ActiveRecord::Schema.define(version: 20160224070033) do
     t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "email",           null: false
+    t.string   "email"
     t.string   "first_name",      null: false
     t.string   "last_name",       null: false
     t.boolean  "approved",        null: false
