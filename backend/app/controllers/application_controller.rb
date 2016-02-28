@@ -1,5 +1,12 @@
 require "application_responder"
 
+class AccessDeniedError < StandardError
+end
+class NotAuthenticatedError < StandardError
+end
+class AuthenticationTimeoutError < StandardError
+end
+
 class ApplicationController < ActionController::API
   self.responder = ApplicationResponder
   respond_to :html
@@ -15,6 +22,7 @@ class ApplicationController < ActionController::API
   # When an error occurs, respond with the proper private method below
   rescue_from AuthenticationTimeoutError, with: :authentication_timeout
   rescue_from NotAuthenticatedError, with: :user_not_authenticated
+  rescue_from ActionController::RoutingError, with: :render_404
 
   protected
 
@@ -64,5 +72,8 @@ class ApplicationController < ActionController::API
   end
   def user_not_authenticated
     render json: { errors: ['Not Authenticated'] }, status: :unauthorized
+  end
+  def render_404
+    render json: { errors: ['Route Not Found'] }, status: 404
   end
 end
