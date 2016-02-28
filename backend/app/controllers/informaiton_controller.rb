@@ -11,7 +11,7 @@ class InformaitonController < ApplicationController
 		elsif !param[:mentors].present? || !param[:postdocs].present?
 			# if mentors and postdocs fields are left blank, due to some reasons
 			# leave it blank until the user edits.
-		
+		end
 	end
 
 	def edit_information
