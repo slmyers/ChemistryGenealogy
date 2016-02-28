@@ -1,7 +1,8 @@
 class AutoCompleteController < ApplicationController
   def index
     if params.has_key?(:name)
-      @response = AutoComplete.find(:name)
+      puts
+      @response = AutoComplete.find(params[:name])
       render :json => @response.to_json
     else
       #error is not rendered properly
