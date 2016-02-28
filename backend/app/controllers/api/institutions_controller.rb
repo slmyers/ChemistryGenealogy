@@ -1,4 +1,4 @@
-class Api::InstitutionsController < ApplicationController
+class Api::InstitutionsController < ApiController
   before_action :set_api_institution, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

@@ -1,4 +1,4 @@
-class Api::MentorsController < ApplicationController
+class Api::MentorsController < ApiController
   before_action :set_api_mentor, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

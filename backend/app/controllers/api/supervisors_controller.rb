@@ -1,4 +1,4 @@
-class Api::SupervisorsController < ApplicationController
+class Api::SupervisorsController < ApiController
   before_action :set_api_supervisor, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

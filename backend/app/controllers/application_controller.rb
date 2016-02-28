@@ -9,29 +9,21 @@ end
 
 class ApplicationController < ActionController::API
   self.responder = ApplicationResponder
-  respond_to :html
-
-  # json_object throws an error... commented out until i figure it out
-  #include ActionController::Serialization
-  #render(:json => json_object, :status => 200)
-
-  # http://adamalbrecht.com/2015/07/20/authentication-using-json-web-tokens-using-rails-and-react/
-
+  respond_to :html, :json
   attr_reader :current_user
 
   # When an error occurs, respond with the proper private method below
   rescue_from AuthenticationTimeoutError, with: :authentication_timeout
   rescue_from NotAuthenticatedError, with: :user_not_authenticated
-  rescue_from ActionController::RoutingError, with: :render_404
 
   protected
-
   # This method gets the current user based on the user_id included
   # in the Authorization header (json web token).
   #
   # Call this from child controllers in a before_action or from
   # within the action method itself
   def authenticate_request!
+    Rails.logger.info('authenticate called')
     fail NotAuthenticatedError unless user_id_included_in_auth_token?
     @current_user = User.find(decoded_auth_token[:user_id])
   rescue JWT::ExpiredSignature

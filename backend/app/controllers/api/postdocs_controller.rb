@@ -1,4 +1,4 @@
-class Api::PostdocsController < ApplicationController
+class Api::PostdocsController < ApiController
   before_action :set_api_postdoc, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

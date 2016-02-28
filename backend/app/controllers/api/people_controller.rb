@@ -1,4 +1,4 @@
-class Api::PeopleController < ApplicationController
+class Api::PeopleController < ApiController
   before_action :set_api_person, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
