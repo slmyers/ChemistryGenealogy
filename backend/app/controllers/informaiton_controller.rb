@@ -3,12 +3,12 @@ class EditInformaitonController < ApplicationController
 	# We assume the information being edit pre exists
 	# degrees, institutions, mentors, people, postdocs should be editted
 	# user informtion such as name should be editted too
-	def edit_information
-		# information changes on post, i.e. degree, institution, etc
-		# need to check all parameters
-		# not there at all, there but nil, there but false value(how to tell?)
-		# and there but an empty string
+	def submit_information
+	end
 
+	def edit_information
+		# Assume parameters with no value in it will not replace the old params
+		if !params.has_key(:degree)
 	end
 
 	def edit_user
