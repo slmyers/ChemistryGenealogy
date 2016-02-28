@@ -1,52 +1,72 @@
 # i'm just going to run sequential active record find_by queries
 # this is a naive approach?
+
+# in the end I think it's more of an sqlite issue, ie, we should probably be
+# using elasticsearch or some other type of full text search engine
 class Search
 
-  # search the data model for a name and return their information found in the
-  # people, postdoc and degree information
-  def by_name(name)
-    # check to see if a name is found in people, supervisor or mentor
-    @person = Person.find_by name: name
-    @supervisor = Supervisor.find_by name: name
-    @mentor = Mentor.find_by name: name
-
-    # find the institution where the person is employed
-    unless @person.blank?
-      @person_institution = Institution.find(@person.institution_id)
+  def Search.relations_by_name(name)
+    if Person.exists?(name: name)
+      @person_id = Person.find_by(name: name).id
+      return self.relations_by_id(@person_id)
     end
+    return {}
+  end
 
-    # find the postdoc information
-    unless @person.blank?
-      @person_mentor = Mentor.find(@person.id)
-      unless @person_mentor.blank?
-        @postdoc = Postdoc.find(@person_mentor.postdoc)
-        @postdoc_institution = Institution.find(@postdoc.institution_id)
-      end
-    end
+  # TODO: optimize this... far too sequential
+  # returns a hash that contains the relations to a person
+  # and the person/institution records
+  def Search.relations_by_id(person_id)
+    @relations = Array.new
+    #sequentially search the db... bleh
+    @mentors = Mentor.where(person_id: person_id, approved: true)
+    @mentored = Mentor.where(mentor_id: person_id, approved: true)
+    @supervisors = Supervisor.where(person_id: person_id, approved: true)
+    @supervised = Supervisor.where(supervisor_id: person_id, approved: true)
+
+    @relations.push(@mentors)
+    @relations.push(@mentored)
+    @relations.push(@supervisors)
+    @relations.push(@supervised)
+    # filter out blank relations
+    @relations = @relations.select {|r| !r.blank?}
+    # get the people in these relations
+    @people = self.get_people(@relations)
+    # get the institutions associated with these people
+    @institutions = self.get_institutions(@people)
+
+
+    return {
+             'mentors' => @mentors, 'mentored' => @mentored,
+             'supervisors' => @supervisors, 'supervised' => @supervised,
+             'people' => @people, 'institutions' => @institutions
+           }
 
   end
 
-  # builds a hash containing the postdoc information
-  def postdoc_by_id(person_id)
-    @person_mentor = Mentor.find(person_id)
-    unless @person_mentor.blank?
-      @postdoc = Postdoc.find(@person_mentor.postdoc)
-      unless @postdoc.blank?
-        @postdoc_institution = Institution.find(@postdoc.institution_id)
-        unless @postdoc_institution.blank?
-          return {
-                    :mentor => @person_mentor,
-                    :postdoc => @postdoc,
-                    :institution => @postdoc_institution
-                  }
+  # gets the people records associated with each relation
+  def Search.get_people(relations_array)
+    @ids_array = Array.new
+    # O(n^2) ??
+    relations_array.each do |rel|
+      rel.each do |r|
+        @ids_array.push(r.person_id)
+        if r.instance_of?(Mentor)
+          @ids_array.push(r.mentor_id)
+        elsif r.instance_of?(Supervisor)
+          @ids_array.push(r.supervisor_id)
         end
-        return {
-                  :mentor => @person_mentor,
-                  :postdoc => @postdoc
-                }
       end
-      return {:mentor => @person_mentor}
     end
-    return {}
+    return Person.where(:id => @ids_array)
+  end
+
+  # returns the institutions associated with a set of people
+  def Search.get_institutions(people_array)
+    @institution_array = Array.new
+    people_array.each do |rel|
+      @institution_array.push(rel.institution_id)
+    end
+    return Institution.where(:id => @institution_array)
   end
 end

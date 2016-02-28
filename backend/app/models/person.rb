@@ -3,4 +3,8 @@ class Person < ActiveRecord::Base
   has_many :postdocs
   has_many :mentors
   has_many :supervisors
+
+  def as_json(options={})
+    super(:except => [:created_at, :updated_at])
+  end
 end
