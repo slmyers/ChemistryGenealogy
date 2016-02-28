@@ -1,4 +1,3 @@
-require 'json'
 # i'm just going to run sequential active record find_by queries
 # this is a naive approach?
 
@@ -11,7 +10,7 @@ class Search
       @person_id = Person.find_by(name: name).id
       return self.relations_by_id(@person_id)
     end
-    return nil
+    return {}
   end
 
   # TODO: optimize this... far too sequential
