@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160224070033) do
 
   create_table "degrees", force: :cascade do |t|
     t.integer  "year",           null: false
+    t.string   "degree_type",    null: false
     t.boolean  "approved",       null: false
     t.integer  "institution_id", null: false
     t.datetime "created_at",     null: false
@@ -42,12 +43,13 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   add_index "institutions", ["approved"], name: "index_institutions_on_approved"
 
   create_table "mentors", force: :cascade do |t|
-    t.integer  "person_id",  null: false
-    t.integer  "postdoc_id", null: false
-    t.integer  "mentor_id",  null: false
-    t.boolean  "approved",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "mentor_name"
+    t.integer  "person_id",   null: false
+    t.integer  "postdoc_id",  null: false
+    t.integer  "mentor_id"
+    t.boolean  "approved",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "mentors", ["approved"], name: "index_mentors_on_approved"
@@ -79,12 +81,13 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   add_index "postdocs", ["approved"], name: "index_postdocs_on_approved"
 
   create_table "supervisors", force: :cascade do |t|
-    t.boolean  "approved",      null: false
-    t.integer  "degree_id",     null: false
-    t.integer  "person_id",     null: false
-    t.integer  "supervisor_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "supervisor_name"
+    t.boolean  "approved",        null: false
+    t.integer  "degree_id",       null: false
+    t.integer  "person_id",       null: false
+    t.integer  "supervisor_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "supervisors", ["approved"], name: "index_supervisors_on_approved"
@@ -97,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160224070033) do
     t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "email"
+    t.string   "email",           null: false
     t.string   "first_name",      null: false
     t.string   "last_name",       null: false
     t.boolean  "approved",        null: false
