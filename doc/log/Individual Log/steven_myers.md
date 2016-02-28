@@ -77,3 +77,9 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * created routes and db schema for [backend data model](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/data-model)
 
 * learned [rspec testing framework for ruby](http://rspec.info/)
+
+* implemented backend data model 
+
+* implemented backend search + unit tested 
+
+* implmented backend autocomplete + unit tested
