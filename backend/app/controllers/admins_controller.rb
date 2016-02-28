@@ -1,47 +1,31 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:show, :edit, :update, :destroy]
-
-  respond_to :html
+  respond_to :json
 
   def index
-    @admins = Admin.all
-    respond_with(@admins)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def show
-    respond_with(@admin)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def new
-    @admin = Admin.new
-    respond_with(@admin)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def edit
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def create
-    @admin = Admin.new(admin_params)
-    @admin.save
-    respond_with(@admin)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def update
-    @admin.update(admin_params)
-    respond_with(@admin)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def destroy
-    @admin.destroy
-    respond_with(@admin)
+    render json: {warning: 'not implemented'}, status: 200
   end
-
-  private
-    def set_admin
-      @admin = Admin.find(params[:id])
-    end
-
-    def admin_params
-      params.require(:admin).permit(:references)
-    end
 end

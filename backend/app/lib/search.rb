@@ -19,6 +19,8 @@ class Search
   def self.relations_by_id(person_id)
     @relations = Array.new
     #sequentially search the db... bleh
+    #investigate using joins or raw sql
+    #basically this code is ugly because of time issues 
     @mentors = Mentor.where(person_id: person_id, approved: true)
     @mentored = Mentor.where(mentor_id: person_id, approved: true)
     @supervisors = Supervisor.where(person_id: person_id, approved: true)
