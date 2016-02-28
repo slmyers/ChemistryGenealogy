@@ -5,7 +5,7 @@
 # using elasticsearch or some other type of full text search engine
 class Search
 
-  def Search.relations_by_name(name)
+  def self.relations_by_name(name)
     if Person.exists?(name: name)
       @person_id = Person.find_by(name: name).id
       return self.relations_by_id(@person_id)
@@ -16,7 +16,7 @@ class Search
   # TODO: optimize this... far too sequential
   # returns a hash that contains the relations to a person
   # and the person/institution records
-  def Search.relations_by_id(person_id)
+  def self.relations_by_id(person_id)
     @relations = Array.new
     #sequentially search the db... bleh
     @mentors = Mentor.where(person_id: person_id, approved: true)
@@ -45,7 +45,7 @@ class Search
   end
 
   # gets the people records associated with each relation
-  def Search.get_people(relations_array)
+  def self.get_people(relations_array)
     @ids_array = Array.new
     # O(n^2) ??
     relations_array.each do |rel|
@@ -62,7 +62,7 @@ class Search
   end
 
   # returns the institutions associated with a set of people
-  def Search.get_institutions(people_array)
+  def self.get_institutions(people_array)
     @institution_array = Array.new
     people_array.each do |rel|
       @institution_array.push(rel.institution_id)

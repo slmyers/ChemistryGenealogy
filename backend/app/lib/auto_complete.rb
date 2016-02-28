@@ -1,5 +1,5 @@
 class AutoComplete
-  def AutoComplete.find(name)
+  def self.find(name)
     @name = "%#{name}%".downcase
     @response = Person.where("name LIKE ?", @name)
     @institutions = Search.get_institutions(@response)

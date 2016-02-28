@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   post 'authenticate' => 'auth#authenticate'
 
+  # 404 error goes to error controller
   match '*a', :to => 'errors#routing', via: [:get]
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -8,28 +8,26 @@ describe SearchController, :type => :controller do
   describe "GET #index" do
     it 'should assign to response when given name' do
       get :index, :format => :json, :name => 'TODD lowary'
+      expect(response.status).to eq 200
       expect(assigns(:response)).not_to be_nil
-      expect(assigns(:response["people"])).not_to be_nil
-      expect(assigns(:response["mentors"])).not_to be_nil
-      expect(assigns(:response["supervisors"])).not_to be_nil
-      expect(assigns(:response["supervised"])).not_to be_nil
-      expect(assigns(:response["institutions"])).not_to be_nil
+      expect(response.body == assigns(:response).to_json).to be(true)
     end
 
     it 'should assign to response when given id' do
       get :index, :format => :json, :id => 1
+      expect(response.status).to eq 200
       expect(assigns(:response)).not_to be_nil
-      expect(assigns(:response["people"])).not_to be_nil
-      expect(assigns(:response["mentors"])).not_to be_nil
-      expect(assigns(:response["supervisors"])).not_to be_nil
-      expect(assigns(:response["supervised"])).not_to be_nil
-      expect(assigns(:response["institutions"])).not_to be_nil
+      expect(response.body == assigns(:response).to_json).to be(true)
     end
 
     it 'should throw an error without id or name' do
       get :index, :format => :json
-      expect(assigns(:response["error"])).not_to eql(nil)
-      expect(assigns(:response)).not_to be_nil
+      expect(response.status).to eq 400
+    end
+
+    it 'should respond with an error if both id and name are params' do
+      get :index, :format => :json, :name => 'todd lowary', :id => 1
+      expect(response.status).to eq 400
     end
   end
 end
