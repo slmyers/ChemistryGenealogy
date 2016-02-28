@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:except => [:created_at, :updated_at])
+    super(:except => [:created_at, :updated_at, :password, :password_digest])
   end
 end

@@ -52,12 +52,12 @@ describe('userDialogController unit tests',  function() {
   it('sucessful registration should result in invalidRegistration === false', function() {
     expect(scope.invalidRegistration).toBeFalsy();
     expect(scope.invalidLogin).toBeFalsy();
-    httpMock.expectPOST('http://localhost:3000/api/user',
+    httpMock.expectPOST('http://localhost:3000/user',
                         {
                           email: 'testEmail@email.ca',
                           password: 'testPassword',
-                          firstName: 'firstName',
-                          lastName: 'lastName'
+                          first_name: 'firstName',
+                          last_name: 'lastName'
                         })
       .respond({
         statusText: "Created",
@@ -66,18 +66,6 @@ describe('userDialogController unit tests',  function() {
           password: 'testPassword'
         }
       });
-    httpMock.expectPOST('http://localhost:3000/authenticate',
-                        {
-                          email: 'testEmail@email.ca',
-                          password: 'testPassword'
-                        })
-      .respond({
-        auth_token: 'mockToken',
-        user: {
-          id: 1,
-          email: 'testEmail@email.ca'
-        }
-    });
     scope.submitRegistration({email:'testEmail@email.ca', password: 'testPassword', firstName: 'firstName', lastName: 'lastName'});
     httpMock.flush();
     expect(scope.invalidLogin).toBeFalsy();
@@ -87,10 +75,10 @@ describe('userDialogController unit tests',  function() {
   it('unsuccessful registration should result in invalidRegistration === true', function() {
     expect(scope.invalidRegistration).toBeFalsy();
     expect(scope.invalidLogin).toBeFalsy();
-    httpMock.expectPOST('http://localhost:3000/api/user',
+    httpMock.expectPOST('http://localhost:3000/user',
                         {
-                          firstName: 'firstName',
-                          lastName: 'lastName',
+                          first_name: 'firstName',
+                          last_name: 'lastName',
                           email: 'testEmail@email.ca',
                           password: 'testPassword'
                         })
