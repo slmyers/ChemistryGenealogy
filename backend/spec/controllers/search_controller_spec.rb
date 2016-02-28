@@ -5,7 +5,7 @@ RSpec.configure do |config|
 end
 
 describe SearchController, :type => :controller do
-  describe "GET index" do
+  describe "GET #index" do
     it 'should assign to response when given name' do
       get :index, :format => :json, :name => 'TODD lowary'
       expect(assigns(:response)).not_to be_nil
