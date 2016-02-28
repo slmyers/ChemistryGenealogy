@@ -1,13 +1,5 @@
 require "application_responder"
 
-class AccessDeniedError < StandardError
-end
-class NotAuthenticatedError < StandardError
-end
-class AuthenticationTimeoutError < StandardError
-end
-
-
 class ApplicationController < ActionController::API
   self.responder = ApplicationResponder
   respond_to :html

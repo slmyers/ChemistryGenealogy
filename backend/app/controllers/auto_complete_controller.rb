@@ -5,7 +5,6 @@ class AutoCompleteController < ApplicationController
       @response = AutoComplete.find(params[:name])
       render :json => @response.to_json
     else
-      #error is not rendered properly
       @response = {'error' => 'must use name param', 'status' => 400}
       render :json => @response.to_json
     end
