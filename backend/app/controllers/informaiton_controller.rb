@@ -1,4 +1,4 @@
-class EditInformaitonController < ApplicationController
+class InformaitonController < ApplicationController
 	# editing information won't need a user to track if the information exists
 	# We assume the information being edit pre exists
 	# degrees, institutions, mentors, people, postdocs should be editted

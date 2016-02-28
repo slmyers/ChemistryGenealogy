@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe EditInformaitonController, type: :controller do
+RSpec.describe InformaitonController, type: :controller do
 
 end
