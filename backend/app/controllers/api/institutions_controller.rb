@@ -1,47 +1,31 @@
 class Api::InstitutionsController < ApiController
-  before_action :set_api_institution, only: [:show, :edit, :update, :destroy]
-
-  respond_to :html
+  respond_to :json
 
   def index
-    @api_institutions = Api::Institution.all
-    respond_with(@api_institutions)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def show
-    respond_with(@api_institution)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def new
-    @api_institution = Api::Institution.new
-    respond_with(@api_institution)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def edit
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def create
-    @api_institution = Api::Institution.new(api_institution_params)
-    @api_institution.save
-    respond_with(@api_institution)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def update
-    @api_institution.update(api_institution_params)
-    respond_with(@api_institution)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def destroy
-    @api_institution.destroy
-    respond_with(@api_institution)
+    render json: {warning: 'not implemented'}, status: 200
   end
-
-  private
-    def set_api_institution
-      @api_institution = Api::Institution.find(params[:id])
-    end
-
-    def api_institution_params
-      params.require(:api_institution).permit(:name, :approved)
-    end
 end
