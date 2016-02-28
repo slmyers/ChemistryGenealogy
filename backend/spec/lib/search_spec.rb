@@ -1,10 +1,3 @@
-require_relative '../../app/lib/search.rb'
-require_relative '../../app/models/postdoc.rb'
-require_relative '../../app/models/mentor.rb'
-require_relative '../../app/models/institution.rb'
-require_relative '../../app/models/person.rb'
-require 'set'
-
 describe Search do
   it "is instantiable" do
     @search = Search.new()

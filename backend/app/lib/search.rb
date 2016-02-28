@@ -36,11 +36,12 @@ class Search
     @institutions = self.get_institutions(@people)
 
 
-    @results = { 'mentors' => @mentors, 'mentored' => @mentored,
-                'supervisors' => @supervisors, 'supervised' => @supervised,
-                'people' => @people, 'institutions' => @institutions
-               }
-    return @results
+    return {
+             'mentors' => @mentors, 'mentored' => @mentored,
+             'supervisors' => @supervisors, 'supervised' => @supervised,
+             'people' => @people, 'institutions' => @institutions
+           }
+
   end
 
   # gets the people records associated with each relation
