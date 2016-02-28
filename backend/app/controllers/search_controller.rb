@@ -1,19 +1,17 @@
 class SearchController < ApplicationController
-
   def index
-    @search_type = params[:type]
-    case @search_type
-    when 'person'
-      call_person(params[:person])
+    if params.has_key?(:name) && params.has_key?(:id)
+      @response = {'error' => 'use only name or id param', 'status' => 400}
+      render :json => @response.to_json
+    elsif params.has_key?(:name)
+      @response = Search.relations_by_name(params[:name].downcase)
+      render :json => @response.to_json
+    elsif params.has_key?(:id)
+      @response = Search.relations_by_id(params[:id])
+      render :json => @response.to_json
     else
-      puts 'not found'
+      @response = {'error' => 'must use name or id param', 'status' => 400}
+      render :json => @response.to_json
     end
   end
-
-  private
-
-  def call_person(person)
-    puts person
-  end
-
 end

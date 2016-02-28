@@ -7,7 +7,7 @@ class UserController < ApplicationController
     @users = User.all
     puts @users.length
     puts @users[0].as_json
-    if @users != nil 
+    if @users != nil
       render :json => @users.as_json
     end
   end

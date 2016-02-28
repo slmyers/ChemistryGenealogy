@@ -1,14 +1,14 @@
 class CreateMentors < ActiveRecord::Migration
   def change
     create_table :mentors do |t|
-      t.string :name
-
+      # in case the mentor is not in people
+      t.string :mentor_name
       # foreign keys to person and postdoc table
       t.integer :person_id, :null => false
       t.integer :postdoc_id, :null => false
 
       # !nil if mentor is in people table
-      t.integer :mentor_id, :null => false
+      t.integer :mentor_id
 
       t.boolean :approved, :null => false
       t.index :approved

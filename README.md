@@ -5,13 +5,12 @@
 
 Relevant documentation can be found in the [wiki](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki). Don't forget to check the 'pages' section on the right. 
 
-# If you're looking for SPRINT information go to the [wiki](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki)
+# running instructions for backend 
 
+_assuming dependencies have been installed etc_
 
-# current status
+1) in the `backend` folder run `chmod +x reloadDB.sh`, and then `./reloadDB.sh` this will run migrations, load schema and buil test + development db
 
-* registered users are able to authenticate with backend
-* users are able to register with backend
-* client side code able to support this
-* 
-slack test
+2) to run tests: make sure `RAILS_ENV=test` and run `rake spec`, otherwise the testing framework can't access the database
+
+3) to live demo: make sure `RAILS_ENV=development` and run `rails s`

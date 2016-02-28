@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :admin
-  
+
   validates :email, :password, :password_digest, presence: true
   # :password_digest is some type of bcrypt salt??
   PWORD_DIGST = "pword"
@@ -17,11 +17,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  # https://quickleft.com/blog/keeping-your-json-response-lean-in-rails/
-  # how to render fields selectively as json
-  # for development purpose we'll just write the whole thing out, but this is
-  # probably not the best idea for deployment
-  #def as_json(options={})
-  #  super(:only => [:email])
-  #end
+  def as_json(options={})
+    super(:except => [:created_at, :updated_at, :password, :password_digest])
+  end
 end
