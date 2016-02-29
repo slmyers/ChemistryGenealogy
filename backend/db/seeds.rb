@@ -31,7 +31,13 @@ Person.create!([
   {name: 'todd lowary', position: 'professor', institution_id: 1, approved: true},
   {name: 'wei shi', position: 'assistant professor', institution_id: 3, approved: true},
   {name: 'ole hindsgaul', position: 'professor emeritus', institution_id: 1, approved: true},
-  {name: 'david bundle', position: 'professor emeritus', institution_id: 1, approved: true}
+  {name: 'david bundle', position: 'professor emeritus', institution_id: 1, approved: true},
+  {name: 'moreten meldel', position: nil, institution_id: nil, approved: true},
+  {name: 'raymond lemieux', position: nil, institution_id: nil, approved: true},
+  {name: 'james baddiley', position: nil, institution_id: nil, approved: true},
+  {name: 'jun liu', position: nil, institution_id: nil, approved: true},
+  {name: 'clinton ballou', position: nil, institution_id: nil, approved: true},
+  {name: 'harold jennings', position: nil, institution_id: nil, approved: true}
 ])
 
 Degree.create!([
@@ -42,10 +48,10 @@ Degree.create!([
 ])
 
 Supervisor.create!([
-  {approved: true, degree_id: 1, person_id: 1, supervisor_id: 3, supervisor_name: 'ole hindsgaul'},
-  {approved: true, degree_id: 2, person_id: 2, supervisor_id: 1, supervisor_name: 'todd lowary'},
-  {approved: true, degree_id: 3, person_id: 3, supervisor_id: nil, supervisor_name: 'raymond u. lemieux'},
-  {approved: true, degree_id: 4, person_id: 4, supervisor_id: nil, supervisor_name: 'james baddiley'}
+  {approved: true, degree_id: 1, person_id: 1, supervisor_id: 3},
+  {approved: true, degree_id: 2, person_id: 2, supervisor_id: 1},
+  {approved: true, degree_id: 3, person_id: 3, supervisor_id: 6},
+  {approved: true, degree_id: 4, person_id: 4, supervisor_id: 7}
 ])
 
 Postdoc.create!([
@@ -58,16 +64,17 @@ Postdoc.create!([
 ])
 
 Mentor.create!([
-  {person_id: 1, postdoc_id: 1, mentor_id: 4, mentor_name: 'david bundle', approved: true},
-  {person_id: 1, postdoc_id: 2, mentor_id: nil, mentor_name: 'morten meldel', approved: true},
-  {person_id: 2, postdoc_id: 3, mentor_id: nil, mentor_name: 'jun liu', approved: true},
-  {person_id: 3, postdoc_id: 4, mentor_id: nil, mentor_name: 'clinton e. ballou', approved: true},
-  {person_id: 4, postdoc_id: 5, mentor_id: nil, mentor_name: 'harold j. jennings', approved: true},
-  {person_id: 4, postdoc_id: 6, mentor_id: nil, mentor_name: 'raymond u. lemieux', approved: true}
+  {person_id: 1, postdoc_id: 1, mentor_id: 4, approved: true},
+  {person_id: 1, postdoc_id: 2, mentor_id: 5, approved: true},
+  {person_id: 2, postdoc_id: 3, mentor_id: 8, approved: true},
+  {person_id: 3, postdoc_id: 4, mentor_id: 9, approved: true},
+  {person_id: 4, postdoc_id: 5, mentor_id: 10, approved: true},
+  {person_id: 4, postdoc_id: 6, mentor_id: 6, approved: true}
 ])
 
-# test database
-if Rails.env == 'test'
+
+### make more accurate test cases later
+=begin
   Person.create!([
     {name: 'person 1', position: 'professor', institution_id: 1, approved: true}, #id = 5
     {name: 'person 2', position: 'professor', institution_id: 2, approved: true},
@@ -102,4 +109,4 @@ if Rails.env == 'test'
     {person_id: 7, postdoc_id: 7, mentor_id: 8, mentor_name: 'person 4', approved: true},
     {person_id: 7, postdoc_id: 8, mentor_id: nil, mentor_name: 'some dude', approved: true},
   ])
-end
+=end

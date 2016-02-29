@@ -1,8 +1,6 @@
 class CreateMentors < ActiveRecord::Migration
   def change
     create_table :mentors do |t|
-      # in case the mentor is not in people
-      t.string :mentor_name
       # foreign keys to person and postdoc table
       t.integer :person_id, :null => false
       t.integer :postdoc_id, :null => false
