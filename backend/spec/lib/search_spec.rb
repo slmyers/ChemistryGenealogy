@@ -8,7 +8,6 @@ describe Search do
     @result = Search.relations_by_id(1)
     expect(@result["target"]).not_to eql(nil)
     expect(@result["mentors"]).not_to eql(nil)
-    expect(@result["people"]).not_to eql(nil)
     expect(@result["supervisors"]).not_to eql(nil)
     expect(@result["supervised"]).not_to eql(nil)
     expect(@result["institutions"]).not_to eql(nil)
@@ -31,12 +30,11 @@ describe Search do
   it "for every mentor there is a person obj" do
     @result = Search.relations_by_id(11)
     @mentors = @result["mentors"]
-    @people = @result["people"]
     expect(@mentors.length > 0).to be(true)
     expect(@mentors.length == 2).to be(true)
     # test that there is a person for each mentor_id
     @mentors.each do |m|
-      expect(@people.find(m.id)).not_to eql(nil)
+      expect(m.id).not_to eql(nil)
       expect(m.name).not_to eql(nil)
     end
   end
@@ -46,11 +44,10 @@ describe Search do
     # TODO: figure out test setup, ie run next line before each test in Search
     @result = Search.relations_by_id(14)
     @supervisors = @result["supervisors"]
-    @people = @result["people"]
     expect(@supervisors.length > 0).to be(true)
     expect(@supervisors.length == 2).to be(true)
     @supervisors.each do |s|
-      expect(@people.find(s.id)).not_to eql(nil)
+      expect(s.id).not_to eql(nil)
       expect(s.name).not_to eql(nil)
     end
   end
@@ -62,7 +59,7 @@ describe Search do
     expect(@supervised.length > 0).to be(true)
     expect(@supervised.length == 2).to be(true)
     @supervised.each do |s|
-      expect(@people.find(s.id)).not_to eql(nil)
+      expect(s.id).not_to eql(nil)
       expect(s.name).not_to eql(nil)
     end
   end
@@ -75,21 +72,19 @@ describe Search do
     expect(@mentored.length == 2).to be(true)
     # test that there is a person for each mentor_id
     @mentored.each do |m|
-      expect(@people.find(m.id)).not_to eql(nil)
+      expect(m.id).not_to eql(nil)
       expect(m.name).not_to eql(nil)
     end
   end
 
 
-  it "for every person with an institution_id there is an institution" do
+  it "for a person with an institution_id there is an institution" do
     @result = Search.relations_by_id(5)
     @institutions = @result["institutions"]
-    @people = @result["people"]
+    @target = @result["target"]
     expect(@institutions.blank?).to be(false)
-    expect(@people.blank?).to be(false)
-    @people.each do |p|
-      expect(@institutions.find(p.institution_id)).not_to eql(nil)
-    end
+    expect(@target.blank?).to be(false)
+    expect(@institutions.find(@target.institution_id).blank?).to be(false)
   end
 
 # for the every x is linked to the search id
@@ -130,17 +125,6 @@ describe Search do
     expect(@mentored.length == 2).to eql(true)
     expect(@mentored.find(19).blank?).to eql(false)
     expect(@mentored.find(20).blank?).to eql(false)
-  end
-
-  it "does not contain duplicate people objs" do
-    @result = Search.relations_by_id(5)
-    @people = @result["people"]
-    @people_ids = Array.new
-    @people.each do |p|
-      @people_ids.push(p.id)
-    end
-    @people_set = @people_ids.to_set
-    expect(@people_set.length == @people_ids.length).to be(true)
   end
 
   it "does not contain duplicate instution objs" do

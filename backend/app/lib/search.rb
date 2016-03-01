@@ -17,10 +17,11 @@ class Search
     end
 
     @persons = Set.new
-    @concrete_institutions = Set.new
+    @institutions = Set.new
 
     @search_target = Person.where('id' => person_id)
                      .where('approved' => true)
+                     .includes(:institution).first
     if @search_target.blank?
       return  {
                 'target' => Array.new,
@@ -30,23 +31,25 @@ class Search
               }
     end
 
-    unless @search_target.blank? then @persons.add(@search_target) end
-
     @mentors = Person.joins('LEFT OUTER JOIN mentorships ON mentorships.mentor_id = people.id')
                .where('mentorships.person_id' => person_id).where('approved' => true)
+               .includes(:institution)
 
     unless @mentors.blank? then @persons.add(@mentors) end
 
     @mentored = Person.joins(:mentorships)
                 .where('mentorships.mentor_id' => person_id).where('approved' => true)
+                .includes(:institution)
     unless @mentored.blank? then @persons.add(@mentored) end
 
     @supervisors = Person.joins('LEFT OUTER JOIN supervisions ON supervisions.supervisor_id = people.id')
                    .where('supervisions.person_id' => person_id).where('approved' => true)
+                   .includes(:institution)
     unless @supervisors.blank? then @persons.add(@supervisors) end
 
     @supervised = Person.joins(:supervisions)
                   .where('supervisions.supervisor_id' => person_id).where('approved' => true)
+                  .includes(:institution)
     unless @supervised.blank? then @persons.add(@supervised) end
 
     # there is a possible optimization to make, but doing so makes the returned values unwieldy
@@ -55,19 +58,18 @@ class Search
 
     @persons.each do |p|
       p.each do |person|
-        unless person.institution_id == nil
-          @concrete_institutions.add(person.institution_id)
-        end
+        @institutions.add(person.institution)
       end
     end
 
-    @institutions = Institution.select('id, name').where(:id => @concrete_institutions.to_a)
 
     return  {
               'target' => @search_target,
               'mentors' => @mentors, 'mentored' => @mentored,
               'supervisors' => @supervisors, 'supervised' => @supervised,
-              'institutions' => @institutions, 'people' => @persons.to_a.flatten
+              'institutions' => @institutions
             }
   end
+
+
 end
