@@ -36,12 +36,14 @@
         margin: 2% 2%;
 
         min-height: 80vh;
+
       }
 
       #searchContainer > #searchResults {
         margin: 1% 1%;
         flex: 1 1 30%;
         order: 1;
+          overflow: auto;
 
         display: flex;
         flex-direction: column;
@@ -50,6 +52,7 @@
         align-items: center;
 
         background-color: ghostwhite;
+
 
 
       }
@@ -66,9 +69,23 @@
         justify-content: flex-start;
         align-items: center;
       }
-      ul
-      {
-          list-style-type: none;
+      ul,li {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          width: 100%;
+      }
+      a {
+          display: block;
+          width: 100%;
+          height: 100%;
+      }
+      .dynamicList {
+
+
+          height:500px;
+          overflow-y:auto;
+          width:90%;
       }
 </style>
 
@@ -80,22 +97,24 @@
 
 
 
-        <div id="searchContent">
+
             <!--search bar-->
             <input ng-model="query">
-
+            <hr></hr>
+            <div class="dynamicList">
                  <!--items-->
             <ul>
                 <li ng-repeat="person in people | filter:query">
-                    <span>{{person.name}}</span>
-                    <br>&emsp;&emsp;{{person.institution}}</br>
-                    <br></br>
+                    <a href="#" style="color: #000000; text-decoration: none;">
+                    <span>&emsp;{{person.name}}</span>
+                    <br>&emsp;&emsp;&emsp;Institution: {{person.institution}}</br>
+                    <hr></hr></a>
                 </li>
             </ul>
 
+            </div>
 
 
-        </div>
     </div>
     <div id="dataVis" ng-controller="visController">
     </div>

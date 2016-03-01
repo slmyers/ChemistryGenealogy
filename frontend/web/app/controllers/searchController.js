@@ -22,8 +22,13 @@ angular.module('chemGeno')
                 {'name': 'Harold J. Jennings',
                     'institution': 'National Research Council of Canada'},
                 {'name': 'Harold J. Jennings',
+                    'institution': 'National Research Council of Canada'},
+                {'name': 'Harold J. Jennings',
+                    'institution': 'National Research Council of Canada'},
+                {'name': 'Harold J. Jennings',
+                    'institution': 'National Research Council of Canada'},
+                {'name': 'Harold J. Jennings',
                     'institution': 'National Research Council of Canada'}
-                
 
 
 
