@@ -107,6 +107,7 @@ angular.module('chemGeno')
         }
       ];
 
+
     /**
      * Basic getter method to get the mock data.
      * $q is a service that runs functions asynchronously and then returns their return value when they are done.
