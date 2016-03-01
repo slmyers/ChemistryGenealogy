@@ -19,6 +19,11 @@ class Search
     @persons = Set.new
     @concrete_institutions = Set.new
 
+    @search_target = Person.select('name, id, institution_id')
+                     .where('id' => person_id)
+                     .where('approved' => true)
+    @persons.add(@search_target)
+
     @mentors = Person.select('people.name, people.id, people.institution_id')
                .joins('LEFT OUTER JOIN mentorships ON mentorships.mentor_id = people.id')
                .where('mentorships.person_id' => person_id).where('approved' => true)
@@ -55,6 +60,7 @@ class Search
 
 
     return  {
+              'target' => @search_target,
               'mentors' => @mentors, 'mentored' => @mentored,
               'supervisors' => @supervisors, 'supervised' => @supervised,
               'institutions' => @institutions, 'people' => @persons

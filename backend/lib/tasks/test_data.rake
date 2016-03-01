@@ -1,6 +1,6 @@
 # http://www.kbedell.com/2011/03/15/seed-data-versus-testing-data-and-custom-rake-tasks-for-ruby-on-rails/
 
-# RAILS_ENV=test rake db:drop db:create db:migrate db:seed app:load_demo_data
+# rake db:drop db:create db:migrate db:seed app:load_demo_data RAILS_ENV=test
 namespace :app do
   desc <<-DESC
     Load testing data.
@@ -58,6 +58,6 @@ namespace :app do
     {person_id: 5, mentor_id: 4, start: 1993, end: 1995, institution_id: 1, approved: true},
     {person_id: 6, mentor_id: 5, start: 1996, end: 1996, institution_id: 2, approved: true}
   ])
-
+  puts 'completed'
   end
 end
