@@ -16,17 +16,17 @@ class Search
     end
 
     # make a view instead ?
-    @mentors = Person.joins('LEFT OUTER JOIN mentors ON mentors.mentor_id = people.id')
+    @mentors = Person.joins('LEFT OUTER JOIN mentors ON mentorship.mentor_id = people.id')
                .where('mentors.person_id' => person_id)
 
-    @mentored = Person.joins(:mentors)
+    @mentored = Person.joins(:mentorship)
                 .where('mentors.mentor_id' => person_id)
 
-    @supervisors = Person.joins('LEFT OUTER JOIN supervisors ON supervisors.supervisor_id = people.id')
-                   .where('supervisors.person_id' => person_id)
+    @supervisors = Person.joins('LEFT OUTER JOIN supervisors ON supervision.supervisor_id = people.id')
+                   .where('supervision.person_id' => person_id)
 
-    @supervised = Person.joins(:supervisors)
-                  .where('supervisors.supervisor_id' => person_id)
+    @supervised = Person.joins(:supervision)
+                  .where('supervision.supervisor_id' => person_id)
 
     @people = {
                 'mentors' => @mentors, 'mentored' => @mentored,
@@ -34,6 +34,7 @@ class Search
               }
 
     #TODO: get a list of institutions
+
 
     @institutions = self.get_institutions(@people)
 
