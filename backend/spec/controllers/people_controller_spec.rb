@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.configure do |config|
@@ -18,3 +19,4 @@ describe Api::PeopleController, :type => :controller do
     end
   end
 end
+=end

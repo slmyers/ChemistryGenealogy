@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.configure do |config|
@@ -24,3 +25,4 @@ describe AutoCompleteController, :type => :controller do
     end
   end
 end
+=end

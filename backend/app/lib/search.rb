@@ -19,35 +19,40 @@ class Search
     @persons = Set.new
     @concrete_institutions = Set.new
 
-    @search_target = Person.select('name, id, institution_id')
-                     .where('id' => person_id)
+    @search_target = Person.where('id' => person_id)
                      .where('approved' => true)
-    @persons.add(@search_target)
+    if @search_target.blank?
+      return  {
+                'target' => Array.new,
+                'mentors' => Array.new, 'mentored' => Array.new,
+                'supervisors' => Array.new, 'supervised' => Array.new,
+                'institutions' => Array.new, 'people' => Array.new
+              }
+    end
 
-    @mentors = Person.select('people.name, people.id, people.institution_id')
-               .joins('LEFT OUTER JOIN mentorships ON mentorships.mentor_id = people.id')
+    unless @search_target.blank? then @persons.add(@search_target) end
+
+    @mentors = Person.joins('LEFT OUTER JOIN mentorships ON mentorships.mentor_id = people.id')
                .where('mentorships.person_id' => person_id).where('approved' => true)
 
-    @persons.add(@mentors)
+    unless @mentors.blank? then @persons.add(@mentors) end
 
-    @mentored = Person.select('people.name, people.id, people.institution_id')
-                .joins(:mentorships)
+    @mentored = Person.joins(:mentorships)
                 .where('mentorships.mentor_id' => person_id).where('approved' => true)
-    @persons.add(@mentored)
+    unless @mentored.blank? then @persons.add(@mentored) end
 
-    @supervisors = Person.select('people.name, people.id, people.institution_id')
-                   .joins('LEFT OUTER JOIN supervisions ON supervisions.supervisor_id = people.id')
+    @supervisors = Person.joins('LEFT OUTER JOIN supervisions ON supervisions.supervisor_id = people.id')
                    .where('supervisions.person_id' => person_id).where('approved' => true)
-    @persons.add(@supervisors)
+    unless @supervisors.blank? then @persons.add(@supervisors) end
 
-    @supervised = Person.select('people.name, people.id, people.institution_id')
-                  .joins(:supervisions)
+    @supervised = Person.joins(:supervisions)
                   .where('supervisions.supervisor_id' => person_id).where('approved' => true)
-    @persons.add(@supervised)
+    unless @supervised.blank? then @persons.add(@supervised) end
 
-    # this code is not executed synchronously!
-    # see here for interesting trace:
+    # there is a possible optimization to make, but doing so makes the returned values unwieldy
+    # check here for more info
     # https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/interesting-trace-from-search
+
     @persons.each do |p|
       p.each do |person|
         unless person.institution_id == nil
@@ -58,12 +63,11 @@ class Search
 
     @institutions = Institution.select('id, name').where(:id => @concrete_institutions.to_a)
 
-
     return  {
               'target' => @search_target,
               'mentors' => @mentors, 'mentored' => @mentored,
               'supervisors' => @supervisors, 'supervised' => @supervised,
-              'institutions' => @institutions, 'people' => @persons
+              'institutions' => @institutions, 'people' => @persons.to_a.flatten
             }
   end
 end

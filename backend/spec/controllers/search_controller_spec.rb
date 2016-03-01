@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.configure do |config|
@@ -31,3 +32,4 @@ describe SearchController, :type => :controller do
     end
   end
 end
+=end

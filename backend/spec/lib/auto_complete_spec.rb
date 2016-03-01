@@ -1,4 +1,4 @@
-
+=begin
 describe AutoComplete do
   it "is instantiable" do
     @auto = AutoComplete.new
@@ -31,3 +31,4 @@ describe AutoComplete do
     expect(@institutions.find(@people.first.institution_id)).not_to eql(nil)
   end
 end
+=end

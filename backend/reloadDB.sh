@@ -1,4 +1,6 @@
 #!/bin/bash
+# i'm sure not all these are required, but my god i've been given so many
+# headaches i'm just using the hammer here
 # uses migrations to construct database then seeds database with test data
 rake db:drop
 rake db:migrate
