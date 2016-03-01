@@ -54,7 +54,7 @@ class Search
 
     @persons.each do |p|
       p.each do |person|
-        @institutions.add(person.institution)
+        unless person.institution.blank? then @institutions.add(person.institution) end
       end
     end
 

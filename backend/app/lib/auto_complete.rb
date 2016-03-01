@@ -5,7 +5,7 @@ class AutoComplete
     @response = Person.where("name LIKE ?", @name).includes(:institution)
     @institutions = Set.new
     @response.each do |p|
-      @institutions.add(p.institution)
+      unless p.institution.blank? then @institutions.add(p.institution) end
     end
 
     return {'people' => @response, 'institutions' => @institutions}
