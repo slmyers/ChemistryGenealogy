@@ -40,10 +40,14 @@ class Search
                   .where('supervisions.supervisor_id' => person_id).where('approved' => true)
     @persons.add(@supervised)
 
+    # this code is not executed synchronously!
+    # see here for interesting trace:
+    # https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/interesting-trace-from-search
     @persons.each do |p|
       p.each do |person|
-        puts 'here'
-        @concrete_institutions.add(person.id)
+        unless person.institution_id == nil
+          @concrete_institutions.add(person.institution_id)
+        end
       end
     end
 
@@ -55,18 +59,5 @@ class Search
               'supervisors' => @supervisors, 'supervised' => @supervised,
               'institutions' => @institutions, 'people' => @persons
             }
-
-    #TODO: get a list of institutions
-  end
-
-
-
-  # returns the institutions associated with a set of people
-  def self.get_institutions(people_array)
-    @institution_array = Array.new
-    people_array.each do |rel|
-      @institution_array.push(rel.institution_id)
-    end
-    return Institution.where(:id => @institution_array)
   end
 end
