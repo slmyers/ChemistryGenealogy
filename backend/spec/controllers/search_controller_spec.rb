@@ -10,7 +10,6 @@ describe SearchController, :type => :controller do
       get :index, :format => :json, :name => 'set all_relations_focal'
       expect(response.status).to eq 200
       expect(assigns(:response)).not_to be_nil
-      puts assigns(:response).to_json
       expect(response.body == assigns(:response).to_json).to be(true)
     end
 

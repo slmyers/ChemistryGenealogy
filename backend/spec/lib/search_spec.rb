@@ -4,7 +4,7 @@ describe Search do
     expect(@search).not_to eql(nil)
   end
 
-  it "returns 6 required fields in hash" do
+  it "returns 5 required fields in hash" do
     @result = Search.relations_by_id(1)
     expect(@result["target"]).not_to eql(nil)
     expect(@result["mentors"]).not_to eql(nil)
@@ -24,7 +24,6 @@ describe Search do
     expect(@result["supervisors"].length).to eql(0)
     expect(@result["supervised"].length).to eql(0)
     expect(@result["institutions"].length).to eql(0)
-    expect(@result["people"].length).to eql(0)
   end
 
   it "for every mentor there is a person obj" do

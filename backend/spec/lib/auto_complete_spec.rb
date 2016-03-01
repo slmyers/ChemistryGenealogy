@@ -1,4 +1,4 @@
-=begin
+
 describe AutoComplete do
   it "is instantiable" do
     @auto = AutoComplete.new
@@ -21,14 +21,13 @@ describe AutoComplete do
   end
 
   it "tod will return todd lowary and university of alberta" do
-    @res = AutoComplete.find('tod')
+    @res = AutoComplete.find('no')
     @people = @res["people"]
     expect(@people.length == 1).to be(true)
-    expect(@people.first.name == 'todd lowary').to be(true)
+    expect(@people.first.name == 'no relations').to be(true)
     @institutions = @res["institutions"]
     expect(@institutions.length == 1).to be(true)
     expect(@institutions.first.name == 'university of alberta').to be(true)
     expect(@institutions.find(@people.first.institution_id)).not_to eql(nil)
   end
 end
-=end

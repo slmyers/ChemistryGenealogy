@@ -27,7 +27,7 @@ class Search
                 'target' => Array.new,
                 'mentors' => Array.new, 'mentored' => Array.new,
                 'supervisors' => Array.new, 'supervised' => Array.new,
-                'institutions' => Array.new, 'people' => Array.new
+                'institutions' => Array.new
               }
     end
 
@@ -51,10 +51,6 @@ class Search
                   .where('supervisions.supervisor_id' => person_id).where('approved' => true)
                   .includes(:institution)
     unless @supervised.blank? then @persons.add(@supervised) end
-
-    # there is a possible optimization to make, but doing so makes the returned values unwieldy
-    # check here for more info
-    # https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/interesting-trace-from-search
 
     @persons.each do |p|
       p.each do |person|

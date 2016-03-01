@@ -19,6 +19,13 @@ namespace :app do
   Supervision.delete_all
   Mentorship.delete_all
 
+  User.create!([
+    {
+      password: 'testPassword', email: 'testEmail@email.ca', password_digest: 'pword',
+      first_name: 'first', last_name: 'last', approved: true
+    }
+  ])
+
   # Other test data should be added here...
   Institution.create!([
     {name: 'university of alberta', approved: true},
