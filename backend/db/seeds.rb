@@ -47,29 +47,20 @@ Degree.create!([
   {year: 1971, institution_id: 6, degree_type: 'phd', approved: true}
 ])
 
-Supervisor.create!([
+Supervision.create!([
   {approved: true, degree_id: 1, person_id: 1, supervisor_id: 3},
   {approved: true, degree_id: 2, person_id: 2, supervisor_id: 1},
   {approved: true, degree_id: 3, person_id: 3, supervisor_id: 6},
   {approved: true, degree_id: 4, person_id: 4, supervisor_id: 7}
 ])
 
-Postdoc.create!([
-  {start: 1993, end: 1995, institution_id: 1, approved: true},
-  {start: 1996, end: 1996, institution_id: 2, approved: true},
-  {start: 2008, end: 2012, institution_id: 4, approved: true},
-  {start: 1980, end: 1981, institution_id: 5, approved: true},
-  {start: 1971, end: 1973, institution_id: 7, approved: true},
-  {start: 1973, end: 1975, institution_id: 1, approved: true}
-])
-
-Mentor.create!([
-  {person_id: 1, postdoc_id: 1, mentor_id: 4, approved: true},
-  {person_id: 1, postdoc_id: 2, mentor_id: 5, approved: true},
-  {person_id: 2, postdoc_id: 3, mentor_id: 8, approved: true},
-  {person_id: 3, postdoc_id: 4, mentor_id: 9, approved: true},
-  {person_id: 4, postdoc_id: 5, mentor_id: 10, approved: true},
-  {person_id: 4, postdoc_id: 6, mentor_id: 6, approved: true}
+Mentorship.create!([
+  {person_id: 1, mentor_id: 4, start: 1993, end: 1995, institution_id: 1, approved: true},
+  {person_id: 1, mentor_id: 5, start: 1996, end: 1996, institution_id: 2, approved: true},
+  {person_id: 2, mentor_id: 8, start: 2008, end: 2012, institution_id: 4, approved: true},
+  {person_id: 3, mentor_id: 9, start: 1980, end: 1981, institution_id: 5, approved: true},
+  {person_id: 4, mentor_id: 10, start: 1971, end: 1973, institution_id: 7, approved: true},
+  {person_id: 4, mentor_id: 6, start: 1973, end: 1975, institution_id: 1, approved: true}
 ])
 
 

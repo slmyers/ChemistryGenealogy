@@ -1,4 +1,4 @@
-class Api::PostdocsController < ApiController
+class Api::SupervisionController < ApiController
   respond_to :json
 
   def index

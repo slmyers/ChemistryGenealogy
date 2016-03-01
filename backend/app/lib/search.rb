@@ -15,18 +15,21 @@ class Search
       return {}
     end
 
-    # make a view instead ?
-    @mentors = Person.joins('LEFT OUTER JOIN mentors ON mentorship.mentor_id = people.id')
-               .where('mentors.person_id' => person_id)
+    @mentors = Person.select('people.name, people.id, people.institution_id')
+               .joins('LEFT OUTER JOIN mentorships ON mentorships.mentor_id = people.id')
+               .where('mentorships.person_id' => person_id).where('approved' => true)
 
-    @mentored = Person.joins(:mentorship)
-                .where('mentors.mentor_id' => person_id)
+    @mentored = Person.select('people.name, people.id, people.institution_id')
+                .joins(:mentorships)
+                .where('mentorships.mentor_id' => person_id).where('approved' => true)
 
-    @supervisors = Person.joins('LEFT OUTER JOIN supervisors ON supervision.supervisor_id = people.id')
-                   .where('supervision.person_id' => person_id)
+    @supervisors = Person.select('people.name, people.id, people.institution_id')
+                   .joins('LEFT OUTER JOIN supervisions ON supervisions.supervisor_id = people.id')
+                   .where('supervisions.person_id' => person_id).where('approved' => true)
 
-    @supervised = Person.joins(:supervision)
-                  .where('supervision.supervisor_id' => person_id)
+    @supervised = Person.select('people.name, people.id, people.institution_id')
+                  .joins(:supervisions)
+                  .where('supervisions.supervisor_id' => person_id).where('approved' => true)
 
     @people = {
                 'mentors' => @mentors, 'mentored' => @mentored,
@@ -34,13 +37,6 @@ class Search
               }
 
     #TODO: get a list of institutions
-
-
-    @institutions = self.get_institutions(@people)
-
-
-
-
   end
 
 
