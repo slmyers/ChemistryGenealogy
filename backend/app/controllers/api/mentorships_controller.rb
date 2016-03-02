@@ -1,4 +1,4 @@
-class Api::MentorshipController < ApiController
+class Api::MentorshipsController < ApiController
   respond_to :json
 
   def index

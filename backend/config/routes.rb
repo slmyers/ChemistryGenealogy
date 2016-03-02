@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   resources :search, except: [:new, :edit, :create, :show, :update, :destroy], :defaults => { :format => :json }
   resources :auto_complete, except: [:new, :edit, :create, :show, :update, :destroy]
   resources :admins, except: [:new, :edit]
-  namespace :api do resources :supervisors, except: [:new, :edit] end
-  namespace :api do resources :degrees, except: [:new, :edit] end
-  namespace :api do resources :institutions, except: [:new, :edit] end
-  namespace :api do resources :postdocs, except: [:new, :edit] end
-  namespace :api do resources :mentors, except: [:new, :edit] end
-  namespace :api do resources :people, except: [:new, :edit] end
+  namespace :api do
+    resources :supervisions
+    resources :degrees
+    resources :institutions
+    resources :mentorships
+    resources :people
+  end
   resources :user
 
 

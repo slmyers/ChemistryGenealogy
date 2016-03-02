@@ -1,4 +1,4 @@
-class AdminsController < ApplicationController
+class Api::SupervisionsController < ApiController
   respond_to :json
 
   def index

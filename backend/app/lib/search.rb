@@ -1,7 +1,7 @@
 require 'set'
 class Search
 
-  def Search.relations_by_name(name)
+  def self.relations_by_name(name)
     if Person.exists?(name: name)
       @person_id = Person.find_by(name: name).id
       return self.relations_by_id(@person_id)
@@ -11,7 +11,7 @@ class Search
 
   # returns a hash that contains the relations to a person
   # and the person/institution records
-  def Search.relations_by_id(person_id)
+  def self.relations_by_id(person_id)
     if !person_id.is_a? Integer
       return {}
     end
