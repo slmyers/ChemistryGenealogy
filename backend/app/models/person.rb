@@ -11,6 +11,7 @@ class Person < ActiveRecord::Base
     name = name.downcase
     position = position.downcase
     institution_id = Institution.find_id(institution_name)
+
     return Person.new(name: name,
                       position: position,
                       institution_id: institution_id,
