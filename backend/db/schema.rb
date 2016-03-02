@@ -42,20 +42,20 @@ ActiveRecord::Schema.define(version: 20160224070033) do
 
   add_index "institutions", ["approved"], name: "index_institutions_on_approved"
 
-  create_table "mentors", force: :cascade do |t|
-    t.string   "mentor_name"
-    t.integer  "person_id",   null: false
-    t.integer  "postdoc_id",  null: false
-    t.integer  "mentor_id"
-    t.boolean  "approved",    null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "mentorships", force: :cascade do |t|
+    t.integer  "person_id",      null: false
+    t.integer  "mentor_id",      null: false
+    t.integer  "institution_id", null: false
+    t.integer  "start"
+    t.integer  "end"
+    t.boolean  "approved",       null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  add_index "mentors", ["approved"], name: "index_mentors_on_approved"
-  add_index "mentors", ["mentor_id"], name: "index_mentors_on_mentor_id"
-  add_index "mentors", ["person_id"], name: "index_mentors_on_person_id"
-  add_index "mentors", ["postdoc_id"], name: "index_mentors_on_postdoc_id"
+  add_index "mentorships", ["approved"], name: "index_mentorships_on_approved"
+  add_index "mentorships", ["mentor_id"], name: "index_mentorships_on_mentor_id"
+  add_index "mentorships", ["person_id"], name: "index_mentorships_on_person_id"
 
   create_table "people", force: :cascade do |t|
     t.string   "name",           null: false
@@ -80,20 +80,19 @@ ActiveRecord::Schema.define(version: 20160224070033) do
 
   add_index "postdocs", ["approved"], name: "index_postdocs_on_approved"
 
-  create_table "supervisors", force: :cascade do |t|
-    t.string   "supervisor_name"
-    t.boolean  "approved",        null: false
-    t.integer  "degree_id",       null: false
-    t.integer  "person_id",       null: false
+  create_table "supervisions", force: :cascade do |t|
+    t.boolean  "approved",      null: false
+    t.integer  "degree_id",     null: false
+    t.integer  "person_id",     null: false
     t.integer  "supervisor_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "supervisors", ["approved"], name: "index_supervisors_on_approved"
-  add_index "supervisors", ["degree_id"], name: "index_supervisors_on_degree_id"
-  add_index "supervisors", ["person_id"], name: "index_supervisors_on_person_id"
-  add_index "supervisors", ["supervisor_id"], name: "index_supervisors_on_supervisor_id"
+  add_index "supervisions", ["approved"], name: "index_supervisions_on_approved"
+  add_index "supervisions", ["degree_id"], name: "index_supervisions_on_degree_id"
+  add_index "supervisions", ["person_id"], name: "index_supervisions_on_person_id"
+  add_index "supervisions", ["supervisor_id"], name: "index_supervisions_on_supervisor_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "password",        null: false

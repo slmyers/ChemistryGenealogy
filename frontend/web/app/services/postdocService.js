@@ -4,12 +4,13 @@ angular.module('chemGeno')
     return loginService.getUser().user.id;
   }
 
+  // rough draft not tested etc
   var updatePostdoc = function(person, postdoc) {
     var d = $q.defer();
     return $http({
       header: 'Content-Type: application/json',
       method: 'PUT',
-      url: 'http://localhost:3000/api/postdoc' + postdoc.id.toString(),
+      url: ':3000/api/postdoc' + postdoc.id.toString(),
       data: {
         user: getUserId(),
         person: person.id,

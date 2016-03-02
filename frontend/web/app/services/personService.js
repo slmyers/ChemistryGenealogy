@@ -1,3 +1,6 @@
+/*
+  everything here is very rough and untested... use at own peril 
+*/
 angular.module('chemGeno')
 .service('personService', function($q, $http, loginService) {
   // we should include the userId of the user making the change

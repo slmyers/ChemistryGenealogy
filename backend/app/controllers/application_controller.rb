@@ -1,15 +1,15 @@
 require "application_responder"
 
+class AccessDeniedError < StandardError
+end
+class NotAuthenticatedError < StandardError
+end
+class AuthenticationTimeoutError < StandardError
+end
+
 class ApplicationController < ActionController::API
   self.responder = ApplicationResponder
-  respond_to :html
-
-  # json_object throws an error... commented out until i figure it out
-  #include ActionController::Serialization
-  #render(:json => json_object, :status => 200)
-
-  # http://adamalbrecht.com/2015/07/20/authentication-using-json-web-tokens-using-rails-and-react/
-
+  respond_to :html, :json
   attr_reader :current_user
 
   # When an error occurs, respond with the proper private method below
@@ -17,7 +17,6 @@ class ApplicationController < ActionController::API
   rescue_from NotAuthenticatedError, with: :user_not_authenticated
 
   protected
-
   # This method gets the current user based on the user_id included
   # in the Authorization header (json web token).
   #
@@ -64,5 +63,8 @@ class ApplicationController < ActionController::API
   end
   def user_not_authenticated
     render json: { errors: ['Not Authenticated'] }, status: :unauthorized
+  end
+  def render_404
+    render json: { errors: ['Route Not Found'] }, status: 404
   end
 end

@@ -1,11 +1,7 @@
-# i'm just going to run sequential active record find_by queries
-# this is a naive approach?
-
-# in the end I think it's more of an sqlite issue, ie, we should probably be
-# using elasticsearch or some other type of full text search engine
+require 'set'
 class Search
 
-  def Search.relations_by_name(name)
+  def self.relations_by_name(name)
     if Person.exists?(name: name)
       @person_id = Person.find_by(name: name).id
       return self.relations_by_id(@person_id)
@@ -13,60 +9,63 @@ class Search
     return {}
   end
 
-  # TODO: optimize this... far too sequential
   # returns a hash that contains the relations to a person
   # and the person/institution records
-  def Search.relations_by_id(person_id)
-    @relations = Array.new
-    #sequentially search the db... bleh
-    @mentors = Mentor.where(person_id: person_id, approved: true)
-    @mentored = Mentor.where(mentor_id: person_id, approved: true)
-    @supervisors = Supervisor.where(person_id: person_id, approved: true)
-    @supervised = Supervisor.where(supervisor_id: person_id, approved: true)
+  def self.relations_by_id(person_id)
+    if !person_id.is_a? Integer
+      return {}
+    end
 
-    @relations.push(@mentors)
-    @relations.push(@mentored)
-    @relations.push(@supervisors)
-    @relations.push(@supervised)
-    # filter out blank relations
-    @relations = @relations.select {|r| !r.blank?}
-    # get the people in these relations
-    @people = self.get_people(@relations)
-    # get the institutions associated with these people
-    @institutions = self.get_institutions(@people)
+    @persons = Set.new
+    @institutions = Set.new
 
+    @search_target = Person.where('id' => person_id)
+                     .where('approved' => true)
+                     .includes(:institution).first
+    if @search_target.blank?
+      return  {
+                'target' => Array.new,
+                'mentors' => Array.new, 'mentored' => Array.new,
+                'supervisors' => Array.new, 'supervised' => Array.new,
+                'institutions' => Array.new
+              }
+    end
 
-    return {
-             'mentors' => @mentors, 'mentored' => @mentored,
-             'supervisors' => @supervisors, 'supervised' => @supervised,
-             'people' => @people, 'institutions' => @institutions
-           }
+    @mentors = Person.joins('LEFT OUTER JOIN mentorships ON mentorships.mentor_id = people.id')
+               .where('mentorships.person_id' => person_id).where('approved' => true)
+               .includes(:institution)
 
-  end
+    unless @mentors.blank? then @persons.add(@mentors) end
 
-  # gets the people records associated with each relation
-  def Search.get_people(relations_array)
-    @ids_array = Array.new
-    # O(n^2) ??
-    relations_array.each do |rel|
-      rel.each do |r|
-        @ids_array.push(r.person_id)
-        if r.instance_of?(Mentor)
-          @ids_array.push(r.mentor_id)
-        elsif r.instance_of?(Supervisor)
-          @ids_array.push(r.supervisor_id)
-        end
+    @mentored = Person.joins(:mentorships)
+                .where('mentorships.mentor_id' => person_id).where('approved' => true)
+                .includes(:institution)
+    unless @mentored.blank? then @persons.add(@mentored) end
+
+    @supervisors = Person.joins('LEFT OUTER JOIN supervisions ON supervisions.supervisor_id = people.id')
+                   .where('supervisions.person_id' => person_id).where('approved' => true)
+                   .includes(:institution)
+    unless @supervisors.blank? then @persons.add(@supervisors) end
+
+    @supervised = Person.joins(:supervisions)
+                  .where('supervisions.supervisor_id' => person_id).where('approved' => true)
+                  .includes(:institution)
+    unless @supervised.blank? then @persons.add(@supervised) end
+
+    @persons.each do |p|
+      p.each do |person|
+        unless person.institution.blank? then @institutions.add(person.institution) end
       end
     end
-    return Person.where(:id => @ids_array)
+
+
+    return  {
+              'target' => @search_target,
+              'mentors' => @mentors, 'mentored' => @mentored,
+              'supervisors' => @supervisors, 'supervised' => @supervised,
+              'institutions' => @institutions
+            }
   end
 
-  # returns the institutions associated with a set of people
-  def Search.get_institutions(people_array)
-    @institution_array = Array.new
-    people_array.each do |rel|
-      @institution_array.push(rel.institution_id)
-    end
-    return Institution.where(:id => @institution_array)
-  end
+
 end

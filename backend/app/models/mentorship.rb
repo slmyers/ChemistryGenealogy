@@ -1,4 +1,6 @@
-class Postdoc < ActiveRecord::Base
+class Mentorship < ActiveRecord::Base
+  belongs_to :person, :class_name => 'Person'
+  belongs_to :mentor, :class_name => 'Person'
   belongs_to :institution, :class_name => 'Institution'
 
   def as_json(options={})

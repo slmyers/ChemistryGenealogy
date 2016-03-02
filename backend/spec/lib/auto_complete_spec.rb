@@ -20,11 +20,11 @@ describe AutoComplete do
     end
   end
 
-  it "tod will return todd lowary and university of alberta" do
-    @res = AutoComplete.find('tod')
+  it "no will return 1 result + 1 institutions" do
+    @res = AutoComplete.find('no')
     @people = @res["people"]
     expect(@people.length == 1).to be(true)
-    expect(@people.first.name == 'todd lowary').to be(true)
+    expect(@people.first.name == 'no relations').to be(true)
     @institutions = @res["institutions"]
     expect(@institutions.length == 1).to be(true)
     expect(@institutions.first.name == 'university of alberta').to be(true)

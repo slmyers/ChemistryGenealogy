@@ -6,10 +6,8 @@
  */
 
 angular.module('chemGeno')
-.service('loginService', function(store, $q, $http) {
-
-
-      var userNamespace = '401ChemGenoUser'
+.service('loginService', function(store, $q, $http, $state) {
+  var userNamespace = '401ChemGenoUser'
 
     /**
      * When evoked will check if the user can be obtained, if the user is not equal to null we must have a user logged
@@ -38,7 +36,7 @@ angular.module('chemGeno')
      * local storage.
      *
      * @param user A user of the app.
-     * @returns {*} The promise of the user being logged in.
+     * @returns {*} A promise that encapsulates the server response.
      */
       var login = function(user) {
         var d = $q.defer();
@@ -65,6 +63,9 @@ angular.module('chemGeno')
      */
       var logout = function() {
         store.remove(userNamespace);
+        if ($state.$current.name !== 'main.search') {
+          $state.go('main.search');
+        }
       };
 
     /**

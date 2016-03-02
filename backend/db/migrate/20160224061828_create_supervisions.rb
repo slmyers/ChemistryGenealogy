@@ -1,9 +1,6 @@
-class CreateSupervisors < ActiveRecord::Migration
+class CreateSupervisions < ActiveRecord::Migration
   def change
-    create_table :supervisors do |t|
-      # in case the supervisor is not in the people table
-      t.string :supervisor_name
-
+    create_table :supervisions do |t|
       t.boolean :approved, :null => false
       t.index :approved
 
