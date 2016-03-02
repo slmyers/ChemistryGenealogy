@@ -16,7 +16,8 @@ class InformationController < ApplicationController
 
 	def edit_information
 		# Assume parameters with no value in it will not replace the old params
-		if !params.has_key(:degrees)
+		#if !params.has_key(:degrees)
+		#end
 	end
 
 	def edit_user
