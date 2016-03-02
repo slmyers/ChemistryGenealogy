@@ -3,7 +3,8 @@ class Degree < ActiveRecord::Base
   has_many :supervisors
 
   # creates a new degree
-  def Degree.new_degree(year, degree_type, institution_id)
+  def Degree.new_degree(year, degree_type, institution_name)
+    degree_type = degree_type.downcase
     institution_id = Institution.find_id(institution_name)
     return Degree.new(year: year,
                       degree_type: degree_type,

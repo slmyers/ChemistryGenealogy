@@ -9,6 +9,7 @@ class Supervisor < ActiveRecord::Base
   # already be found beforehand?
   # probably after a new degree is created so that the degree_id can be found?
   def Supervisor.new_supervisor(supervisor_name, degree_id, person_id, supervisor_id)
+    supervisor_name = supervisor_name.downcase
     return Supervisor.new(supervisor_name: supervisor_name,
                           degree_id: degree_id,
                           person_id: person_id,

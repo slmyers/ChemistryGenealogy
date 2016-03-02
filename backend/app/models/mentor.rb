@@ -9,6 +9,7 @@ class Mentor < ActiveRecord::Base
   # already be found beforehand?
   # probably after a new postdoc is created so that the postdoc_id can be found?
   def Mentor.new_mentor(mentor_name, person_id, postdoc_id, mentor_id)
+    mentor_name = mentor_name.downcase
     return Mentor.new(mentor_name: mentor_name,
                       person_id: person_id,
                       postdoc_id: postdoc_id,
