@@ -9,6 +9,10 @@ angular.module('chemGeno')
 .service('loginService', function(store, $q, $http, $state) {
   var userNamespace = '401ChemGenoUser'
 
+
+   //Will get a var.getLoginToken later. :)
+   //With that we can go to the store, get the access token and such.
+
     /**
      * When evoked will check if the user can be obtained, if the user is not equal to null we must have a user logged
      * into our app. Otherwise return false (if null), as we do not have a user.
