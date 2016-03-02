@@ -21,8 +21,8 @@
 angular.module('chemGeno')
 
 //Stating that this is a controller for this project.
-    .controller('submitController', ['$scope',
-        function($scope) {
+    .controller('submitController', ['$scope', 'submitService',
+        function($scope, submitService) {
 
          //POSTDOC TABS:
          // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
@@ -421,7 +421,13 @@ angular.module('chemGeno')
                     $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation,
                     $scope.degreeInformation);
 
+
                 $scope.submitPageObject = newSubmitObject;
+
+                //Invoke the services for this submit page to send the submitPageObject.
+                console.log($scope.submitPageObject);
+                submitService.sendSumbitObjectToBackend($scope.submitPageObject);
+
 
 
                 //Debugging and checking out what is going on here.
