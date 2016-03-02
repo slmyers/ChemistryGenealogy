@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :institutions
     resources :mentorships
     resources :people
+    resources :aggregated
   end
   resources :user
 
