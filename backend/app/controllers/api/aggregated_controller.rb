@@ -1,7 +1,6 @@
 # Aggregated controller for control of db tables
 class Api::AggregatedController < ApiController
   respond_to :json
-	780  
 	# editing information won't need a user to track if the information exists
 	# We assume the information being edit pre exists
 	# degrees, institutions, mentors, postdocs should be editted
