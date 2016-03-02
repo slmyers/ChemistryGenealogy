@@ -1,6 +1,6 @@
 class Degree < ActiveRecord::Base
   belongs_to :institution, :class_name => 'Institution'
-  has_many :supervisors
+  has_many :supervisions
 
   # creates a new degree
   def Degree.new_degree(year, degree_type, institution_name)

@@ -1,6 +1,5 @@
 class Institution < ActiveRecord::Base
   has_many :people
-  has_many :postdocs
   has_many :degrees
 
   # finds the institution id given the name
@@ -27,6 +26,6 @@ class Institution < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:except => [:created_at, :updated_at])
+    super(:except => [:created_at, :updated_at, :approved])
   end
 end

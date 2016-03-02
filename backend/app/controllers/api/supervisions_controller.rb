@@ -1,4 +1,4 @@
-class Api::PostdocsController < ApiController
+class Api::SupervisionsController < ApiController
   respond_to :json
 
   def index
@@ -18,7 +18,13 @@ class Api::PostdocsController < ApiController
   end
 
   def create
-    render json: {warning: 'not implemented'}, status: 200
+    Rails.logger.info(params)
+    if params.has_key?(:name)
+      # check if the person exists, since person is a mentor
+      unless Person.exists(:name)
+        # hmm then I can't add to mentor table, I gotta add to people table
+        # seems like I could instead just call method from person model or people controller
+    #render json: {warning: 'not implemented'}, status: 200
   end
 
   def update

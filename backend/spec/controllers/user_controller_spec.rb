@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.configure do |config|
@@ -17,3 +18,4 @@ describe UserController, :type => :controller do
     end
   end
 end
+=end

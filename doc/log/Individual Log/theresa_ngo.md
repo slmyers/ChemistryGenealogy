@@ -23,3 +23,17 @@
 * Worked a bit on the footer on the frontend
 * Updated the GANTT chart
 * Uploaded template of individual logs to repository
+
+---
+
+###Sprint 3
+
+#####February 13, 2016 - February 19, 2016
+* Updated use cases document to reflect recent changes
+
+#####February 20, 2016 - February 26, 2016
+* Updated use cases document based on changes made after the client meeting
+* Updated use case digrams to reflect overhaul of use cases
+
+#####February 27, 2016 - March 4, 2016
+* Worked on backend submit and edit information models

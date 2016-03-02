@@ -20,34 +20,34 @@
 
 angular.module('chemGeno')
 
-//Stating that this is a controller for this project.
-    .controller('submitController', ['$scope',
+    //Stating that this is a controller for this project.
+    .controller('editController', ['$scope',
         function($scope) {
 
-         //POSTDOC TABS:
-         // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
-         // Tabs is part of the model as described immediately below:
-         // {postDocID, postDocDates, postDocSupervisor, postDocInstitution}
+            //POSTDOC TABS:
+            // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
+            // Tabs is part of the model as described immediately below:
+            // {postDocID, postDocDates, postDocSupervisor, postDocInstitution}
             // Isolate start and end dates.
 
-         var postDocTab = [
-             { postDocID: 1, postDocDates: '1993-1995', postDocSupervisor: 'David Bundle',
-                 postDocInstitution: 'University of Alberta'},
-             { postDocID: 2, postDocDates: '1996-1996', postDocSupervisor: 'Morten Meldel',
-                 postDocInstitution: 'Carlsberg Laboratory'}
-         ],
-             selectedPD = null,
-             previousPD = null,
+            var postDocTab = [
+                    { postDocID: 1, postDocDates: '1993-1995', postDocSupervisor: 'David Bundle',
+                        postDocInstitution: 'University of Alberta'},
+                    { postDocID: 2, postDocDates: '1996-1996', postDocSupervisor: 'Morten Meldel',
+                        postDocInstitution: 'Carlsberg Laboratory'}
+                ],
+                selectedPD = null,
+                previousPD = null,
 
-         //DEGREE INFO TABS:
-         //For our purposes the degree information is used to compile any advanced degrees that a user may have.
-         //I elected to use tabs for this as people may have different supervisors for masters vs. PhD or even
-         //multiple PhD/masters degrees from various fields. (Eg: Perhaps Chemistry AND Criminal Justice?)
-         //Worry less about ID.
-         degreeInfoTab =[
-             { degreeInfoID: 1, degreeInfoYear: 1993, degreeInfoSupervisor: 'Ole Hindsgaul', degreeInfoInstitution: 'University of Alberta'}
+            //DEGREE INFO TABS:
+            //For our purposes the degree information is used to compile any advanced degrees that a user may have.
+            //I elected to use tabs for this as people may have different supervisors for masters vs. PhD or even
+            //multiple PhD/masters degrees from various fields. (Eg: Perhaps Chemistry AND Criminal Justice?)
+            //Worry less about ID.
+                degreeInfoTab =[
+                    { degreeInfoID: 1, degreeInfoYear: 1993, degreeInfoSupervisor: 'Ole Hindsgaul', degreeInfoInstitution: 'University of Alberta'}
 
-         ];
+                ];
 
             //Postdoc Variables.
             $scope.postDocTabs = postDocTab; //Formally assigning the list above to the scope tab variable.
@@ -60,18 +60,25 @@ angular.module('chemGeno')
             $scope.degreeInfoID = 2; //Only set to 3 here for the sample data. Set back to 1 for release.
 
 
-            /** POSTDOC FUNCTION.
-             * This function when invoked will take the current and then the old tab and then it will combine
-             * the data together in such a way that we have the previous now equal to the selected, and then
-             * index into the "tabs" list with the current value.
-             *
-            $scope.$watch('selectedIndex', function(current, old){
-                previousPD = selectedPD;
-                selectedPD = postDocTab[current];
-                if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previousPD.title + '!');
-                if ( current + 1 )                $log.debug('Hello ' + selectedPD.title + '!');
-            });
+
+            /**SPECIFIC TO EDIT FUNCTIONALITY! **/
+
+            /**Basic Info Section:
+             * This section deals with trivial information collection on the submit page such as first and last names.
              */
+            $scope.firstName = "AlreadyExistingFirstName";
+            $scope.lastName = "AlreadyExistingLastName";
+            $scope.currentPositionTitle = "Professor";
+            $scope.currentInstitutionName = "Some School";
+
+            $scope.testBasicInputs = function(){
+                console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
+                    + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
+            };
+
+
+
+
 
             /** POSTDOC FUNCTION.
              * This function will add a new tab to the set of tabs that we currently have.
@@ -109,7 +116,7 @@ angular.module('chemGeno')
              * the data together in such a way that we have the previous now equal to the selected, and then
              * index into the "tabs" list with the current value.
              *
-            $scope.$watch('degreeInfoSelectedIndex', function(current2, old2){
+             $scope.$watch('degreeInfoSelectedIndex', function(current2, old2){
                 previous = selected;
                 selected = degreeInfoTab[current2];
                 if ( old2 + 1 && (old2 != current2)) $log.debug('Goodbye ' + previous.title + '!');
@@ -173,12 +180,12 @@ angular.module('chemGeno')
             $scope.pdInstitution = null;
 
             function PostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)
-                {
-                    this.pdStartYear = pdStartYear,
+            {
+                this.pdStartYear = pdStartYear,
                     this.pdEndYear = pdEndYear,
                     this.pdSupervisor = pdSupervisor,
                     this.pdInstitution = pdInstitution
-                }
+            }
 
 
 
@@ -216,14 +223,14 @@ angular.module('chemGeno')
             };
 
             $scope.editPostDoc = function(){
-              console.log("editPostDoc function called");
+                console.log("editPostDoc function called");
 
 
             };
 
 
             /**
-            $scope.clearPostDocFields = function(){
+             $scope.clearPostDocFields = function(){
                 pdStartYear = "";
                 pdEndYear = "";
                 pdSupervisor = "";
@@ -353,20 +360,7 @@ angular.module('chemGeno')
 
             //Order by date descending. <- for the output to the user.
 
-            /**Basic Info Section:
-             * This section deals with trivial information collection on the submit page such as first and last names.
-             */
-            $scope.firstName = null;
-            $scope.lastName = null;
-            $scope.individualTitle = null;
-            $scope.typeOfDegree = null;
-            $scope.currentPositionTitle = null;
-            $scope.currentInstitutionName = null;
 
-            $scope.testBasicInputs = function(){
-                console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
-                    + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
-            };
 
 
 
@@ -386,22 +380,24 @@ angular.module('chemGeno')
              *  Params are self explanitory I'd hope?
              * @param firstName
              * @param lastName
-             * @param individualTitle
-             * @param typeOfDegree
              * @param currentPositionTitle
              * @param currentInstitutionName
              * @param postDocInformation
              */
             function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
-                        currentInstitutionName, postDocInformation, degreeInformation)
+                                               currentInstitutionName, postDocInformation, degreeInformation)
             {
+                //Single units of data for this object.
+                //this.firstName = firstName;
+                //this.lastName = lastName;
+
                 //Concatenating the first and last name together with a space between for now...
                 var concatednatedNames = firstName + " " + lastName;
                 this.name = concatednatedNames ;
                 this.currentPositionTitle = currentPositionTitle;
                 this.currentInstitutionName = currentInstitutionName;
 
-                //Now the arrays of postdoc appointments and degrees.
+                //Now the arrays.
                 this.postDocInformation = postDocInformation;
                 this.degreeInformation = degreeInformation;
             }

@@ -1,8 +1,7 @@
 class Person < ActiveRecord::Base
   belongs_to :institution, :class_name => 'Institution'
-  has_many :postdocs
-  has_many :mentors
-  has_many :supervisors
+  has_many :mentorships
+  has_many :supervisions
 
   # creates a new person with the submitted information
   # adds a new institution if it doesn't exist (not sure if this is supposed to be in controller?)
@@ -20,6 +19,6 @@ class Person < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:except => [:created_at, :updated_at])
+    super(:except => [:created_at, :updated_at, :approved])
   end
 end

@@ -1,7 +1,7 @@
-class Mentor < ActiveRecord::Base
+class Mentorship < ActiveRecord::Base
   belongs_to :person, :class_name => 'Person'
   belongs_to :mentor, :class_name => 'Person'
-  belongs_to :postdoc, :class_name => 'Postdoc'
+  belongs_to :institution, :class_name => 'Institution'
 
   # creates a new mentor
   # for this one, since it should only be called when adding a new mentor
