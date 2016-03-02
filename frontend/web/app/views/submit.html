@@ -23,9 +23,10 @@
 <!-- Initial layout of the first line will follow column style, and not show raw uncompiled form while browser loads-->
 <div ng-controller="submitController" layout="column" ng-cloak>
     <!-- This bit will cause the layout to follow a general padding style-->
-    <md-content layout-padding>
+    <md-content layout-padding align="center">
         <!-- This form is called "userForm" -->
         <form name="userForm">
+            <div id="primarySubmitScreenContainer">
 
 
             <!-- Their switch thing to show hints or not. -->
@@ -493,6 +494,7 @@
 
 
 
+
 <style>
     #primarySubmitScreenContainer {
     -webkit-flex-direction: row;
@@ -505,20 +507,20 @@
     justify-content: space-around;
     align-items: stretch;
 
-    border-radius: 25px;
-    border: solid 1px #00BCD4;
+    /*border-radius: 25px;*/
+    /*border: solid 1px #00BCD4;*/
 
-    box-shadow: 3px 3px 5px 6px #ccc;
+    /*box-shadow: 3px 3px 5px 6px #ccc;*/
 
-    background-color: #006699;
+    /*background-color: #006699;*/
 
 
-    margin: 15% 15%;
+    margin: 0% 10%;
 
     min-height: 80vh;
 }</style>
 
-
+</md-content>
 
             <!--<div id="primarySubmitScreenContainer">-->
                 <!--BALLINCIAGAAAAAAAAAH-->
@@ -561,6 +563,8 @@
 
 
 
+
+    </div>
 
 
         </form>

@@ -21,7 +21,7 @@
 angular.module('chemGeno')
 
     //Stating that this is a controller for this project.
-    .controller('submitController', ['$scope',
+    .controller('editController', ['$scope',
         function($scope) {
 
             //POSTDOC TABS:
@@ -60,18 +60,25 @@ angular.module('chemGeno')
             $scope.degreeInfoID = 2; //Only set to 3 here for the sample data. Set back to 1 for release.
 
 
-            /** POSTDOC FUNCTION.
-             * This function when invoked will take the current and then the old tab and then it will combine
-             * the data together in such a way that we have the previous now equal to the selected, and then
-             * index into the "tabs" list with the current value.
-             *
-             $scope.$watch('selectedIndex', function(current, old){
-                previousPD = selectedPD;
-                selectedPD = postDocTab[current];
-                if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previousPD.title + '!');
-                if ( current + 1 )                $log.debug('Hello ' + selectedPD.title + '!');
-            });
+
+            /**SPECIFIC TO EDIT FUNCTIONALITY! **/
+
+            /**Basic Info Section:
+             * This section deals with trivial information collection on the submit page such as first and last names.
              */
+            $scope.firstName = "AlreadyExistingFirstName";
+            $scope.lastName = "AlreadyExistingLastName";
+            $scope.currentPositionTitle = "Professor";
+            $scope.currentInstitutionName = "Some School";
+
+            $scope.testBasicInputs = function(){
+                console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
+                    + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
+            };
+
+
+
+
 
             /** POSTDOC FUNCTION.
              * This function will add a new tab to the set of tabs that we currently have.
@@ -353,20 +360,7 @@ angular.module('chemGeno')
 
             //Order by date descending. <- for the output to the user.
 
-            /**Basic Info Section:
-             * This section deals with trivial information collection on the submit page such as first and last names.
-             */
-            $scope.firstName = null;
-            $scope.lastName = null;
-            $scope.individualTitle = null;
-            $scope.typeOfDegree = null;
-            $scope.currentPositionTitle = null;
-            $scope.currentInstitutionName = null;
 
-            $scope.testBasicInputs = function(){
-                console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
-                    + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
-            };
 
 
 
@@ -386,8 +380,6 @@ angular.module('chemGeno')
              *  Params are self explanitory I'd hope?
              * @param firstName
              * @param lastName
-             * @param individualTitle
-             * @param typeOfDegree
              * @param currentPositionTitle
              * @param currentInstitutionName
              * @param postDocInformation
