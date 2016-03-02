@@ -9,6 +9,7 @@ class Person < ActiveRecord::Base
   # we have not decided how to handle people with same names
   def Person.new_person(name, position, institution_name)
     institution_id = Institution.find_id(institution_name)
+
     return Person.new(name: name,
                       position: position,
                       institution_id: institution_id,
