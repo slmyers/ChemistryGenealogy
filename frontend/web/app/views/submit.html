@@ -75,31 +75,31 @@
                 <div flex="3" hide-xs hide-sm>
                 </div>
 
-                <!-- Title selection Done using a dropdown menu -->
-                <div>
-                    <form name2="titleForm">
+                <!--&lt;!&ndash; Title selection Done using a dropdown menu &ndash;&gt;-->
+                <!--<div>-->
+                    <!--<form name2="titleForm">-->
 
-                        <md-input-container class="md-block">
-                            <label>Title</label> <!-- indicate to the user what this item is -->
-                            <!-- Basic md-selector that will show all of the possible options -->
-                            <md-select name="title" ng-model="individualTitle" required>
-                                <md-option value="Dr">Dr</md-option>
-                                <md-option value="Mr">Mr</md-option>
-                                <md-option value="Ms">Ms</md-option>
-                                <md-option value="Mrs">Mrs</md-option>
-                                <md-option value="Sir Knighted Dans LeFromage">Sir Knighted Dans LeFromage</md-option>
-                            </md-select>
-                            <!-- If there is an error flag that this is required -->
-                            <div class="errors" ng-messages="titleForm.myModel.$error" ng-if="myForm.$dirty">
-                                <div ng-message="required">Required</div>
-                            </div>
-                        </md-input-container>
-                        <!-- Extra buttons I don't feel we need but keeping incase for now. <div layout="row">
-                            <md-button ng-click="clearValue()" ng-disabled="!titleForm" style="margin-right: 20px;">Clear</md-button>
-                            <md-button ng-click="save()" ng-disabled="titleForm.$invalid" class="md-primary" layout layout-align="center end">Save</md-button>
-                        </div>-->
-                    </form>
-                    </div>
+                        <!--<md-input-container class="md-block">-->
+                            <!--<label>Title</label> &lt;!&ndash; indicate to the user what this item is &ndash;&gt;-->
+                            <!--&lt;!&ndash; Basic md-selector that will show all of the possible options &ndash;&gt;-->
+                            <!--<md-select name="title" ng-model="individualTitle" required>-->
+                                <!--<md-option value="Dr">Dr</md-option>-->
+                                <!--<md-option value="Mr">Mr</md-option>-->
+                                <!--<md-option value="Ms">Ms</md-option>-->
+                                <!--<md-option value="Mrs">Mrs</md-option>-->
+                                <!--<md-option value="Sir Knighted Dans LeFromage">Sir Knighted Dans LeFromage</md-option>-->
+                            <!--</md-select>-->
+                            <!--&lt;!&ndash; If there is an error flag that this is required &ndash;&gt;-->
+                            <!--<div class="errors" ng-messages="titleForm.myModel.$error" ng-if="myForm.$dirty">-->
+                                <!--<div ng-message="required">Required</div>-->
+                            <!--</div>-->
+                        <!--</md-input-container>-->
+                        <!--&lt;!&ndash; Extra buttons I don't feel we need but keeping incase for now. <div layout="row">-->
+                            <!--<md-button ng-click="clearValue()" ng-disabled="!titleForm" style="margin-right: 20px;">Clear</md-button>-->
+                            <!--<md-button ng-click="save()" ng-disabled="titleForm.$invalid" class="md-primary" layout layout-align="center end">Save</md-button>-->
+                        <!--</div>&ndash;&gt;-->
+                    <!--</form>-->
+                    <!--</div>-->
 
 
 
@@ -115,31 +115,6 @@
             <!-- State that the layout will follow the row format-->
             <div layout-gt-sm="row">
 
-                    <!-- Degree choice choices. Presented. -->
-                        <form name="myForm">
-
-                            <!-- The style is going to be against the md-block thing -->
-                            <md-input-container class="md-block">
-                                <label>Type of Degree</label> <!-- State what the field is -->
-                                <!-- Have the listing of all of the selectable options -->
-                                <md-select name="myModel" ng-model="typeOfDegree" required>
-                                    <md-option value="Doctorate">Doctorate</md-option>
-                                    <md-option value="Masters">Masters</md-option>
-                                    <md-option value="BSc">BSc</md-option>
-                                    <md-option value="BA">BA</md-option>
-                                    <md-option value="Highschool">Highschool</md-option>
-                                </md-select>
-                                <!-- Have the error messages be displayed to the user -->
-                                <div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">
-                                    <div ng-message="required">Required</div>
-                                </div>
-                            </md-input-container>
-                            <!-- Commenting these out because I don't feel that we actually need these for now
-                            <div layout="row">
-                                <md-button ng-click="clearValue()" ng-disabled="!myModel" style="margin-right: 20px;">Clear</md-button>
-                                <md-button ng-click="save()" ng-disabled="myForm.$invalid" class="md-primary" layout layout-align="center end">Save</md-button>
-                            </div> -->
-                        </form>
 
 
                 <!-- Position Edit text field -->
@@ -369,6 +344,34 @@
                                         <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
                                         <!-- Input for the Start date -> End date -->
 
+
+
+                                        <!-- Degree choice choices. Presented. -->
+                                        <form name="myForm">
+
+                                            <!-- The style is going to be against the md-block thing -->
+                                            <md-input-container class="md-block">
+                                                <label>Type of Degree</label> <!-- State what the field is -->
+                                                <!-- Have the listing of all of the selectable options -->
+                                                <md-select name="myModel" ng-model="diType" required>
+                                                    <md-option value="Doctorate">Doctorate</md-option>
+                                                    <md-option value="Masters">Masters</md-option>
+                                                    <md-option value="BSc">BSc</md-option>
+                                                    <md-option value="BA">BA</md-option>
+                                                    <md-option value="Highschool">Highschool</md-option>
+                                                </md-select>
+                                                <!-- Have the error messages be displayed to the user -->
+                                                <!--<div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">-->
+                                                    <!--<div ng-message="required">Required</div>-->
+                                                <!--</div>-->
+                                            </md-input-container>
+                                            <!-- Commenting these out because I don't feel that we actually need these for now
+                                            <div layout="row">
+                                                <md-button ng-click="clearValue()" ng-disabled="!myModel" style="margin-right: 20px;">Clear</md-button>
+                                                <md-button ng-click="save()" ng-disabled="myForm.$invalid" class="md-primary" layout layout-align="center end">Save</md-button>
+                                            </div> -->
+                                        </form>
+
                                         <md-input-container>
                                             <label for="content">Year Degree Was Rewarded Eg: 1978</label>
                                             <input type="text" ng-model="diYear">
@@ -394,7 +397,7 @@
                                 <md-card-actions layout="row" layout-align="right">
 
                                     <!-- Submission button -->
-                                    <md-button ng-click="addDegreeInfoInstance(diYear, diSupervisor, diInstitution)">Submit
+                                    <md-button ng-click="addDegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)">Submit
                                         <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                             Click here to Submit this Degree.
                                         </md-tooltip>
@@ -465,13 +468,9 @@
 
 
 
-
-
-
-
                         </div>
             <div layout="row" layout-padding layout-margin layout-fill style="min-height: 224px;">
-                <div flex>I am using all three at once.</div>
+                <!--<div flex>I am using all three at once.</div>-->
             </div>
 
 
@@ -486,6 +485,12 @@
                                 <md-icon md-svg-icon="static/img/ic_done_all_black_24px.svg"></md-icon>
                             </md-button>
                         </div>
+
+
+<md-button ng-click="checkOutTHISObject()"> click here to look at the object for this page</md-button>
+
+
+
 
 
 <style>
@@ -514,40 +519,41 @@
 }</style>
 
 
-            <div id="primarySubmitScreenContainer">
-                BALLINCIAGAAAAAAAAAH
+
+            <!--<div id="primarySubmitScreenContainer">-->
+                <!--BALLINCIAGAAAAAAAAAH-->
 
 
 
-            </div>
-            -->
-            <div>
-              BEYONCEEEEEEEEEEEEEEEEEEE
-            <div>
-            <div>
-              <button>
-                flexed
-              </button>
-            </div>
+            <!--</div>-->
+            <!--&ndash;&gt;-->
+            <!--<div>-->
+              <!--BEYONCEEEEEEEEEEEEEEEEEEE-->
+            <!--<div>-->
+            <!--<div>-->
+              <!--<button>-->
+                <!--flexed-->
+              <!--</button>-->
+            <!--</div>-->
 
-            <div>
-              <button>
-                flexed
-              </button>
-            </div>
+            <!--<div>-->
+              <!--<button>-->
+                <!--flexed-->
+              <!--</button>-->
+            <!--</div>-->
 
-                <!-- Styling that came with the angular materials -->
-                <style>
-                    /*
-                     * The Material demos system does not currently al1ow targeting the body element, so this
-                     * must go here in the HTML.
-                     */
-                    body[dir=rtl] .hint {
-                        right: 2px;
-                        left: auto;
-                    }
-                </style>
-            </div>
+                <!--&lt;!&ndash; Styling that came with the angular materials &ndash;&gt;-->
+                <!--<style>-->
+                    <!--/*-->
+                     <!--* The Material demos system does not currently al1ow targeting the body element, so this-->
+                     <!--* must go here in the HTML.-->
+                     <!--*/-->
+                    <!--body[dir=rtl] .hint {-->
+                        <!--right: 2px;-->
+                        <!--left: auto;-->
+                    <!--}-->
+                <!--</style>-->
+            <!--</div>-->
 
 
 
