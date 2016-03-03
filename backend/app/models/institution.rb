@@ -8,20 +8,24 @@ class Institution < ActiveRecord::Base
   # basically makes sure the name is lower cased before searching for the id
   # and if it doesn't exist, then it makes a new institution before searching
   # still needs to actually test this
-  def Institution.find_id(name)
-    lowercase_name = name.downcase
-    unless Institution.exists?(:name => lowercase_name)
-      Institution.new_institution(lowercase_name)
+  def Institution.find_institution_id(name)
+    name = name.downcase
+    unless Institution.exists?(:name => name)
+      Institution.new_institution(name)
     end
-    institution_id = Institution.find_by(name: lowercase_name).id
+    institution_id = Institution.find_by(name: name).id
     return institution_id
   end
 
   # creates a new institution with the name given
+
+  # ***REMEMBER TO REMOVE LOGGER.INFO LATER***
+
   def Institution.new_institution(name)
-    lowercase_name = name.downcase
-    unless Institution.exists?(:name => lowercase_name)
-      return Institution.new(name: lowercase_name, approved: false)
+    name = name.downcase
+    unless Institution.exists?(:name => name)
+      logger.info("New institution created")
+      return Institution.new(name: name, approved: false)
     end
   end
 

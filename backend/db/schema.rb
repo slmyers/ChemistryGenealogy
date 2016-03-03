@@ -69,6 +69,17 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   add_index "people", ["approved"], name: "index_people_on_approved"
   add_index "people", ["name"], name: "index_people_on_name"
 
+  create_table "postdocs", force: :cascade do |t|
+    t.integer  "start",          null: false
+    t.integer  "end",            null: false
+    t.boolean  "approved",       null: false
+    t.integer  "institution_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "postdocs", ["approved"], name: "index_postdocs_on_approved"
+
   create_table "supervisions", force: :cascade do |t|
     t.boolean  "approved",      null: false
     t.integer  "degree_id",     null: false
