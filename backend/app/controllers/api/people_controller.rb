@@ -28,6 +28,8 @@ class Api::PeopleController < ApiController
         person = Person.new_person(params[:name], params[:position], params[:institution])
         person.save
         # hmm call render json?
+      end
+    end
     #render json: {warning: 'not implemented'}, status: 200
   end
 
