@@ -18,6 +18,10 @@ class Api::DegreesController < ApiController
   end
 
   def create
+    Rails.logger.info(params)
+    if params.has_key?(:year) && params.has_key?(:degree_type)
+      unless Degree.exists?(:degree_type)
+        # need to find the way to find institution id so i can pass it as a parameter
     render json: {warning: 'not implemented'}, status: 200
   end
 

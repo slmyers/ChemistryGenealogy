@@ -18,7 +18,12 @@ class Api::InstitutionsController < ApiController
   end
 
   def create
-    render json: {warning: 'not implemented'}, status: 200
+    Rails.logger.info(params)
+    if params.has_key?(:name)
+      unless Institution.exists?(:name)
+        institution = Institution.new_institution(params[:name])
+        institution.save
+    #render json: {warning: 'not implemented'}, status: 200
   end
 
   def update
