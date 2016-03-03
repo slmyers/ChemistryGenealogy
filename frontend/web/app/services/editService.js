@@ -46,7 +46,7 @@ angular.module('chemGeno')
             //Update: Say they update degree, may make it a very specific button.
             //Then button press, package the thing and then send it to aggregated controller to some update route
             //or some post route. And then they will iterate over this and update each thing in there. Won't be
-            //too bad! 
+            //too bad!
 
         };
 

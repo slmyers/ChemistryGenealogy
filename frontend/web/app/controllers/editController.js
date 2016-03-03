@@ -60,6 +60,37 @@ angular.module('chemGeno')
             $scope.degreeInfoID = 2; //Only set to 3 here for the sample data. Set back to 1 for release.
 
 
+            /**
+             * Mock Object.
+             */
+
+            $scope.mockObjectRecieved = {
+
+                name: "Cheese Knight",
+                currentPositionTitle: "Honorable Knight of Cheese",
+                currentInstitutionName: "NeverEverLand",
+                postDocInformation:{
+                    year: 2078, supervisor: "the cheese goddess", institution: "NeverEverLand", type: ""
+                },
+
+                degreeInformation:{
+                    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta", type:  "Doctorate"
+
+                }
+            };
+            function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
+                                               currentInstitutionName, postDocInformation, degreeInformation)
+            {
+                //Concatenating the first and last name together with a space between for now...
+                var concatednatedNames = firstName + " " + lastName;
+                this.name = concatednatedNames ;
+                this.currentPositionTitle = currentPositionTitle;
+                this.currentInstitutionName = currentInstitutionName;
+
+                //Now the arrays of postdoc appointments and degrees.
+                this.postDocInformation = postDocInformation;
+                this.degreeInformation = degreeInformation;
+            }
 
             /**SPECIFIC TO EDIT FUNCTIONALITY! **/
 
@@ -76,6 +107,12 @@ angular.module('chemGeno')
                     + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
             };
 
+
+            $scope.editDeityButton = function(){
+
+
+
+            };
 
 
 
