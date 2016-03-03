@@ -127,6 +127,8 @@ angular.module('chemGeno')
         return d.promise;
       };
 
+
+
     /**
      * This is a javascript object. getdata is that function and then this returns the javascript object
      * composed of functions. Returning an object comporsed of functions and their services.

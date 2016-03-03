@@ -14,35 +14,37 @@ angular.module('chemGeno')
     .service('simpleSearchService', function($q) {
         // source of mock data: https://github.com/401ChemistryGenealogy/ChemistryGenealogy/blob/master/sample_data/data.txt
         //This is just used to temporarily populate our application with temp data.
-        var simpleMockData = [
-            {'name': 'Todd L. Lowary',
-                'institution': 'University of Alberta'},
-            {'name': 'Ole Hindsgaul',
-                'institution': 'University of Alberta'},
-            {'name': 'David R. Bundle',
-                'institution': 'University of Alberta'},
-            {'name': 'Morten Meldel',
-                'institution': 'Carlsberg Laboratory'},
-            {'name': 'Wei Shi',
-                'institution': 'University of Arkansas'},
-            {'name': 'Raymond U. Lemieux',
-                'institution': 'University of Alberta'},
-            {'name': 'Clinton E. Ballou',
-                'institution': 'University of California, Berkeley'},
-            {'name': 'James Baddiley',
-                'institution': 'Nottingham University'},
-            {'name': 'Harold J. Jennings',
-                'institution': 'National Research Council of Canada'},
-            {'name': 'Harold J. Jennings',
-                'institution': 'National Research Council of Canada'},
-            {'name': 'Harold J. Jennings',
-                'institution': 'National Research Council of Canada'},
-            {'name': 'Harold J. Jennings',
-                'institution': 'National Research Council of Canada'},
-            {'name': 'Harold J. Jennings',
-                'institution': 'National Research Council of Canada'}
+        var people = [
+            {
+                "id":1,
+                "name":"todd lowary",
+                "position":"professor",
+                "institution_id":8
+            },
+            {
+                "id":2,
+                "name":"wei shi",
+                "position":"assistant professor",
+                "institution_id":3
+            },
+            {
+                "id":3,
+                "name":"ole hindsgaul",
+                "position":"professor emeritus",
+                "institution_id":1
+            }];
 
-        ];
+        var institutions = [
+            {
+                "id":1,
+                "name":"university of alberta",
+                "approved":true
+            },
+            {
+                "id":3,
+                "name":"university of arkansas",
+                "approved":true
+            }];
 
         /**
          * Basic getter method to get the mock data.
@@ -63,6 +65,9 @@ angular.module('chemGeno')
             return d.promise;
         };
 
+
+
+
         /**
          * This is a javascript object. getdata is that function and then this returns the javascript object
          * composed of functions. Returning an object comporsed of functions and their services.
@@ -71,6 +76,8 @@ angular.module('chemGeno')
          * That is like public vs. private.
          */
         return {
-            getSimpleMockData: getSimpleMockData
+            getSimpleMockData: getSimpleMockData,
+            people: people,
+            institutions: institutions
         }
     });
