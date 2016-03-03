@@ -103,17 +103,18 @@
 
 
 
-
+        {{joinData}}
             <!--search bar-->
             <input ng-model="query">
             <hr></hr>
             <div class="dynamicList">
                  <!--items-->
             <ul>
+
                 <li ng-repeat="person in people | filter:query">
                     <a href="#" style="color: #000000; text-decoration: none;">
                     <span>&emsp;{{person.name}}</span>
-                    <br>&emsp;&emsp;&emsp;Institution: {{getInstitution(person.institution_id)}}</br>
+                    <br>&emsp;&emsp;&emsp;Institution: {{person.institution_id}}</br>
                     <hr></hr></a>
                 </li>
             </ul>
