@@ -1,9 +1,6 @@
 require 'set'
 class AutoComplete
-  #keeping naming to maintain test integrity and UML
-  #will change after sprint
-  #TODO: change find -> find_names
-  def self.find(name)
+  def self.find_names(name)
     @name = "%#{name}%".downcase
     @response = Person.where("name LIKE ?", @name).includes(:institution)
     @institutions = Set.new
@@ -14,8 +11,9 @@ class AutoComplete
     return {'people' => @response, 'institutions' => @institutions}
   end
 
-  #TODO: implement method to autocomplete institutions
   def self.find_institutions(institution)
-
+    @institution = "%#{institution}%".downcase
+    @response = Institution.where("name LIKE ?", @institution)
+    return {'institutions' => @response}
   end
 end

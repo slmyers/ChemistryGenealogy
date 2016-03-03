@@ -6,7 +6,7 @@ describe AutoComplete do
   end
 
   it "any empty string will return all people and institutions linked to them" do
-    @res = AutoComplete.find('')
+    @res = AutoComplete.find_names('')
     @people = @res["people"]
     @people_count = Person.count
     expect(@people_count == @people.length).to be(true)
@@ -21,7 +21,7 @@ describe AutoComplete do
   end
 
   it "no will return 1 result + 1 institutions" do
-    @res = AutoComplete.find('no')
+    @res = AutoComplete.find_names('no')
     @people = @res["people"]
     expect(@people.length == 1).to be(true)
     expect(@people.first.name == 'no relations').to be(true)
