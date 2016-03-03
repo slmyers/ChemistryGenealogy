@@ -362,6 +362,7 @@ angular.module('chemGeno')
             $scope.typeOfDegree = null;
             $scope.currentPositionTitle = null;
             $scope.currentInstitutionName = null;
+            $scope.Name = null;
 
             $scope.testBasicInputs = function(){
                 console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
@@ -431,7 +432,7 @@ angular.module('chemGeno')
 
 
                 //Debugging and checking out what is going on here.
-                console.log(   "name: " + $scope.name);
+                console.log(   "name: " + $scope.firstName + " " + $scope.lastName);
                 //console.log($scope.lastName);
                 console.log(   "currentPositionTitle: " + $scope.currentPositionTitle);
                 console.log(   "currentInstName: " + $scope.currentInstitutionName);
