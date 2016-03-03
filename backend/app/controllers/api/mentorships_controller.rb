@@ -18,6 +18,8 @@ class Api::MentorshipsController < ApiController
   end
 
   def create
+    Rails.logger.info(params)
+    
     render json: {warning: 'not implemented'}, status: 200
   end
 

@@ -20,16 +20,20 @@ class Api::PeopleController < ApiController
   end
 
   def create
-    # creating a new user, but do we want to check if user already exists?
     Rails.logger.info(params)
-    # check if parameter is there or null
-    if params.has_key?(:submitFileObject.name) && params.has_key?(:submitFileObject.currentPositionTitle) && params.has_key?(:submitFileObject.currentInstitutionName)
-      unless Person.exists?(:submitFileObject.name) # check if the person already in db
-        person = Person.new_person(params[:submitFileObject.name], params[:submitFileObject.currentPositionTitle], params[:submitFileObject.currentInstitutionName])
-        if person != nil && person.save
-          render json: person.as_json, status: :created
-          return
+    # check if all the criterias are filled
+    # first I just continue to create iff name, positionl, institution exists
+    if params.has_key?(:name) && params.has_key?(:position) && params.has_key?(:institution)
+      # check if the person already exists? The person might exists as a mentor of other maybe
+      unless Person.exists?(name: params[:name])
+        @person = Person.new_person(params[:name], params[:position], params[:institution])
+        if @person != nil && @person.save
+          render json: @person.as_json, status: :created
+          return 
         end
+      else
+        render json: {error: 'person exists'}, status: :bad_request
+      end
     end
     #render json: {warning: 'not implemented'}, status: 200
   end

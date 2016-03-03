@@ -19,6 +19,7 @@ class Api::DegreesController < ApiController
 
   def create
     Rails.logger.info(params)
+    # have to retrieve the array degreeInformation from submitFileObject
     if params.has_key?(:year) && params.has_key?(:degree_type)
       unless Degree.exists?(:degree_type)
         # need to find the way to find institution id so i can pass it as a parameter
