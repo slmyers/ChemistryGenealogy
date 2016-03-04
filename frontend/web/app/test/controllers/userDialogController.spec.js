@@ -28,6 +28,11 @@ describe('userDialogController unit tests',  function() {
           email: 'testEmail@email.ca'
         }
     });
+    httpMock.expectGET('/app/views/main.html')
+      .respond({});
+    httpMock.expectGET('/app/views/search.html')
+      .respond({});
+
     scope.submitLogin({email: 'testEmail@email.ca', password: 'testPassword'});
     httpMock.flush();
     expect(scope.invalidLogin).toBeFalsy();
@@ -44,6 +49,11 @@ describe('userDialogController unit tests',  function() {
       .respond(401, {
         errors: ["invalid email or password"]
       });
+    httpMock.expectGET('/app/views/main.html')
+      .respond({});
+    httpMock.expectGET('/app/views/search.html')
+      .respond({});
+
     scope.submitLogin({email:'testEmail@email.ca', password: 'badPassword'});
     httpMock.flush();
     expect(scope.invalidLogin).toBeTruthy();
@@ -66,6 +76,11 @@ describe('userDialogController unit tests',  function() {
           password: 'testPassword'
         }
       });
+    httpMock.expectGET('/app/views/main.html')
+      .respond({});
+    httpMock.expectGET('/app/views/search.html')
+      .respond({});
+
     scope.submitRegistration({email:'testEmail@email.ca', password: 'testPassword', firstName: 'firstName', lastName: 'lastName'});
     httpMock.flush();
     expect(scope.invalidLogin).toBeFalsy();
@@ -88,6 +103,11 @@ describe('userDialogController unit tests',  function() {
           error: "user exists"
         }
       });
+    httpMock.expectGET('/app/views/main.html')
+      .respond({});
+    httpMock.expectGET('/app/views/search.html')
+      .respond({});
+
     scope.submitRegistration({email:'testEmail@email.ca', password: 'testPassword', firstName: 'firstName', lastName: 'lastName'});
     httpMock.flush();
     expect(scope.invalidLogin).toBeFalsy();
