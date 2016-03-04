@@ -69,14 +69,14 @@ angular.module('chemGeno')
                 name: "Cheese Knight",
                 currentPositionTitle: "Honorable Knight of Cheese",
                 currentInstitutionName: "NeverEverLand",
-                postDocInformation:{
-                    year: 2078, supervisor: "the cheese goddess", institution: "NeverEverLand", type: ""
-                },
+                postDocInformation:[{
+                    pdStartYear: 2078, pdSupervisor: "the cheese goddess", pdInstitution: "NeverEverLand", pdEndYear: "0007"
+                }],
 
-                degreeInformation:{
-                    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta", type:  "Doctorate"
+                degreeInformation:[{
+                    year: "2973", supervisor: "Cheese King", institution: "University of NeverEverLand", type:  "Doctorate"
 
-                }
+                }]
             };
 
 
@@ -105,6 +105,8 @@ angular.module('chemGeno')
             $scope.lastName = $scope.mockObjectRecieved.name.split(" ")[1];
             $scope.currentPositionTitle = $scope.mockObjectRecieved.currentPositionTitle;
             $scope.currentInstitutionName = $scope.mockObjectRecieved.currentInstitutionName;
+            $scope.degreeInformation = $scope.mockObjectRecieved.degreeInformation;
+            $scope.postDocInformation = $scope.mockObjectRecieved.postDocInformation;
 
             $scope.testBasicInputs = function(){
                 console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
@@ -230,15 +232,7 @@ angular.module('chemGeno')
 
 
 
-            $scope.postDocInformation = [
-                {
-                    pdStartYear: "1980", pdEndYear: "1981", pdSupervisor: "Clinton E. Ballou", pdInstitution: "University of California"
 
-                },
-                {
-                    pdStartYear:"1971", pdEndYear: "1973", pdSupervisor: "Harold J. Jennings", pdInstitution: "National Research Council of Canada"
-                }
-            ];
 
             //$scope.imagePath = "/static/img/new-zealand-679068_1280.jpg"
             /**
@@ -303,15 +297,7 @@ angular.module('chemGeno')
              * This section deals with the cards associated with the degrees a user may have.
              */
 
-            $scope.degreeInformation = [
-                {
-                    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta", type:  "Doctorate"
 
-                },
-                {
-                    year:"1980", supervisor: "Raymond U. Lemieux", institution: "University of Alberta", type: "Doctorate"
-                }
-            ];
 
             //Set to false to hide the details of the degree info information.
             $scope.degreeInfoVisibility = false;
