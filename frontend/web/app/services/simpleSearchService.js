@@ -17,21 +17,46 @@ angular.module('chemGeno')
         var people = [
             {
                 "id":1,
-                "name":"todd lowary",
+                "name":"Todd L. Lowary",
                 "position":"professor",
-                "institution_id":8
+                "institution_id":"University of Alberta"
             },
             {
                 "id":2,
-                "name":"wei shi",
+                "name":"Ole Hindsgaul",
                 "position":"assistant professor",
-                "institution_id":3
+                "institution_id":"University of Alberta"
             },
             {
                 "id":3,
-                "name":"ole hindsgaul",
+                "name":"David R. Bundle",
                 "position":"professor emeritus",
-                "institution_id":1
+                "institution_id":"University of Alberta"
+            },
+            {
+                "id":2,
+                "name":"Morten Meldel",
+                "position":"assistant professor",
+                "institution_id":"Carlsberg Laboratory"
+            },
+            {
+                "id":2,
+                "name":"Wei Shi",
+                "position":"assistant professor",
+                "institution_id":"University of Arkansas"
+            },
+            {
+                "id":2,
+                "name":"Raymond U. Lemieux",
+                "position":"assistant professor",
+                "institution_id":"University of Alberta"
+            },
+            {
+                "id":2,
+                "name":"James Baddiley",
+                "position":"assistant professor",
+                "institution_id":"Nottingham University"
+
             }];
 
         var institutions = [
