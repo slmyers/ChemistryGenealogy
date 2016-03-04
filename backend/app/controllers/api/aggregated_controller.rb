@@ -29,6 +29,8 @@ class Api::AggregatedController < ApiController
     if params.has_key?(:@name) && params.has_key?(:@position) && params.has_key?(:@institution)
       unless Person.exists?(name: params[:@name])
         @person = Person.new_person(params[:@name], params[:@position], params[:@institution])
+        # check if the degree exists
+
         if @person != nil && @person.save
           render json: @person.as_json, status: :created
           return 
@@ -37,6 +39,9 @@ class Api::AggregatedController < ApiController
         # if person exists in table, then update person's variable
         # find that person in the table
         @person = Person.find_by_name(:@name)
+        
+        #if @degree = Degree.find_by_degree
+        #end
         
         #render json: {error: 'person exists'}, status: :bad_request
       end
