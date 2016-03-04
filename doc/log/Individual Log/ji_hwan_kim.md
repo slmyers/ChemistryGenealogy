@@ -20,3 +20,18 @@
 #####February 6, 2016 - February 12, 2016
 * Had some major installation problem, struggling week
 * Trying to get familiarized with Ruby on rails, watched tutorials
+
+#####February 13, 2016 - February 19, 2016
+* Health Hacking Hackathon
+
+#####February 20, 2016 - February 26, 2016
+* 
+
+#####February 27, 2016 - March 4, 2016
+* 
+
+#####March 5, 2016 - March 11, 2016
+* 
+
+#####March 12, 2016 - March 18, 2016
+* 
