@@ -67,7 +67,13 @@ angular.module('chemGeno')
                         },
                     method: 'PUT',
                     url: 'http://localhost:3000/aggregated',
-                    data: {name: modifications.name, position: modifications.currentPositionTitle, institution: modifications.currentInstitutionName}
+                    data: {
+                        name: modifications.name,
+                        position: modifications.currentPositionTitle,
+                        institution: modifications.currentInstitutionName,
+                        degree: modifications.degreeInformation,
+                        postdoc: modifications.postDocInformation
+                    }
                 }).success(function(resp) {
                     d.resolve(resp);
                 }).error(function(resp) {
@@ -79,7 +85,7 @@ angular.module('chemGeno')
             };
 
 
-         
+
 
         /**
          * This is just needed for the service to actually work. Just standard notation.
