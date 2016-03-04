@@ -21,8 +21,8 @@
 angular.module('chemGeno')
 
 //Stating that this is a controller for this project.
-    .controller('submitController', ['$scope', 'submitService',
-        function($scope, submitService) {
+    .controller('submitController', ['$scope', '$state', 'submitService',
+        function($scope, $state, submitService) {
 
          //POSTDOC TABS:
          // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
@@ -458,7 +458,9 @@ angular.module('chemGeno')
              * Meant to return back to the main.search page, not working though.
              */
             $scope.goBackToMain = function () {
-                $location.url('/search');
+                if ($state.$current.name !== 'main.search') {
+                    $state.go('main.search');
+                }
 
             };
 
