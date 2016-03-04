@@ -21,8 +21,8 @@
 angular.module('chemGeno')
 
     //Stating that this is a controller for this project.
-    .controller('editController', ['$scope',
-        function($scope) {
+    .controller('editController', ['$scope', 'editService',
+        function($scope, editService) {
 
             //POSTDOC TABS:
             // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
@@ -59,9 +59,15 @@ angular.module('chemGeno')
             $scope.degreeInfoSelectedIndex = 1; //Index that the tabs start at.
             $scope.degreeInfoID = 2; //Only set to 3 here for the sample data. Set back to 1 for release.
 
+            /**
+             * This function will be how I retrieve the proper object from the backend, through the editService
+             * file.
+             */
+            //$scope.realObjectFromBackend = obtainUserInformationFromBackEnd
 
             /**
-             * Mock Object. This is what I will be expecting to recieve from the backend.
+             * Mock Object. This is what I will be expecting to recieve from the backend throughthe function
+             * "obtainUserInformationFromBackEnd".
              */
 
             $scope.mockObjectRecieved = {
@@ -108,13 +114,93 @@ angular.module('chemGeno')
             $scope.degreeInformation = $scope.mockObjectRecieved.degreeInformation;
             $scope.postDocInformation = $scope.mockObjectRecieved.postDocInformation;
 
+            /**
+             * Simple function that I can invoke when I want to see what the contents of the basic inputs are.
+             */
             $scope.testBasicInputs = function(){
                 console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
                     + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
             };
 
 
-            $scope.editDeityButton = function(){
+            /**
+             * This function is evoked when the user decides to commit their edits to the page and send it off to
+             * the backend of the server.
+             *
+             * PRIMARY GOAL: Create a brand new object (extremely similar to the submit page) of all of the inputs
+             * from the user on this page.
+             *
+             *
+             * SECONDARY GOAL: This second goal is to take the data that we already had given to us from
+             * the backend and then to individually element-by-element in the objects check if there was any
+             * difference in the edited object (made when this button is hit) and if there is then it is packed
+             * into a new object that is a differences object which is sent to the backend.
+             *
+             * The differences object will contain "nulled" (As a very weird string that likely will be unique in most
+             * cases?) if there were no changes in the data. This allows the specific items of concern to be
+             * determined by the backend relatively easily. If it is "nulled" then just move on, no changes.
+             *
+             * This function makes use ot the editServices file to achieve this goal.
+             */
+            $scope.editMasterButton = function(){
+                console.log("editMasterButton function called");
+
+
+                //Create the new object for the submission page.
+                var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
+                    $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation,
+                    $scope.degreeInformation);
+
+                //Create a new repository for information to be put into.
+                //If the value is null then there are no changes to be made to the dataset.
+                var differenceObject = {
+                    name: "nulled",
+                    currentPositionTitle :"nulled",
+                    currentInstitutionName: "nulled",
+                    degreeInformation: "nulled",
+                    postDocInformation: "nulled"
+
+                };
+
+
+                $scope.submitPageObject = newSubmitObject;
+
+                //The goal of this following section is to analyze the contents of the newly created object
+                //and the old object. If the fields ARE different then it will parse together a specific object to be
+                //sent to the backend indicating the specific fields that need to be changed.
+
+                //console.log(Object.keys($scope.submitPageObject).length);
+
+
+                //If there are no changes and the objects are equal, then send the completely null-object to the
+                //backend.
+                if($scope.submitPageObject == $scope.mockObjectRecieved){
+                    editService.sendEditedData(differenceObject);
+                }
+
+                //If the name is different then load the new name into difference object and send it to backend.
+                if($scope.submitPageObject.name != $scope.mockObjectRecieved.name){
+                    differenceObject.name = $scope.submitPageObject.name;
+                }
+
+                //If the institution name is different, then add it to the difference object. Send it to backend.(ntyet)
+                if($scope.submitPageObject.currentInstitutionName != $scope.mockObjectRecieved.currentInstitutionName){
+                    differenceObject.currentInstitutionName = $scope.submitPageObject.currentInstitutionName;
+                }
+
+                //If the degreeInformation is different, then add it to the difference object.
+                if($scope.submitPageObject.degreeInformation != $scope.mockObjectRecieved.degreeInformation){
+                    differenceObject.degreeInformation= $scope.submitPageObject.degreeInformation;
+                }
+
+                //If the postDocInformation is different, then add it to the difference object.
+                if($scope.submitPageObject.postDocInformation != $scope.mockObjectRecieved.postDocInformation){
+                    differenceObject.postDocInformation = $scope.submitPageObject.postDocInformation;
+                }
+
+                //Once all of these conditionals have been iterated through, take the object and hurl it at the backend.
+                editService.sendEditedData(differenceObject);
+
 
 
 
@@ -461,7 +547,7 @@ angular.module('chemGeno')
                 }
 
                 //Check out the items in the degree information list.
-                for(var i = 0; i < $scope.degreeInformation.length; i++){
+                for(i = 0; i < $scope.degreeInformation.length; i++){
                     console.log($scope.degreeInformation[i]);
 
                 }

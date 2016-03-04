@@ -183,13 +183,13 @@ angular.module('chemGeno')
 
 
             $scope.postDocInformation = [
-                {
-                    pdStartYear: "1980", pdEndYear: "1981", pdSupervisor: "Clinton E. Ballou", pdInstitution: "University of California"
-
-                },
-                {
-                    pdStartYear:"1971", pdEndYear: "1973", pdSupervisor: "Harold J. Jennings", pdInstitution: "National Research Council of Canada"
-                }
+                //{
+                //    pdStartYear: "1980", pdEndYear: "1981", pdSupervisor: "Clinton E. Ballou", pdInstitution: "University of California"
+                //
+                //},
+                //{
+                //    pdStartYear:"1971", pdEndYear: "1973", pdSupervisor: "Harold J. Jennings", pdInstitution: "National Research Council of Canada"
+                //}
             ];
 
             //$scope.imagePath = "/static/img/new-zealand-679068_1280.jpg"
@@ -256,13 +256,13 @@ angular.module('chemGeno')
              */
 
             $scope.degreeInformation = [
-                {
-                    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta", type:  "Doctorate"
-
-                },
-                {
-                    year:"1980", supervisor: "Raymond U. Lemieux", institution: "University of Alberta", type: "Doctorate"
-                }
+                //{
+                //    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta", type:  "Doctorate"
+                //
+                //},
+                //{
+                //    year:"1980", supervisor: "Raymond U. Lemieux", institution: "University of Alberta", type: "Doctorate"
+                //}
             ];
 
             //Set to false to hide the details of the degree info information.
