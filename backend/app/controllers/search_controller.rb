@@ -1,19 +1,15 @@
 class SearchController < ApplicationController
-
   def index
-    @search_type = params[:type]
-    case @search_type
-    when 'person'
-      call_person(params[:person])
+    if params.has_key?(:name) && params.has_key?(:id)
+      render json: { errors: ['query can not contain both id and name param'] }, status: :bad_request
+    elsif params.has_key?(:name)
+      @response = Search.relations_by_name(params[:name].downcase)
+      render :json => @response.to_json
+    elsif params.has_key?(:id)
+      @response = Search.relations_by_id(params[:id])
+      render :json => @response.to_json
     else
-      puts 'not found'
+      render json: { errors: ['must use name or id param'] }, status: :bad_request
     end
   end
-
-  private
-
-  def call_person(person)
-    puts person
-  end
-
 end

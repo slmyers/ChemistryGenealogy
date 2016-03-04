@@ -1,47 +1,48 @@
-class Api::PeopleController < ApplicationController
-  before_action :set_api_person, only: [:show, :edit, :update, :destroy]
-
-  respond_to :html
+class Api::PeopleController < ApiController
+  respond_to :json
 
   def index
-    @api_people = Api::Person.all
-    respond_with(@api_people)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def show
-    respond_with(@api_person)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def new
-    @api_person = Api::Person.new
-    respond_with(@api_person)
+    # differences between new and create?
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def edit
+    # differences between edit and update?
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def create
-    @api_person = Api::Person.new(api_person_params)
-    @api_person.save
-    respond_with(@api_person)
+    Rails.logger.info(params)
+    # check if all the criterias are filled
+    # first I just continue to create iff name, positionl, institution exists
+    if params.has_key?(:name) && params.has_key?(:position) && params.has_key?(:institution)
+      # check if the person already exists? The person might exists as a mentor of other maybe
+      unless Person.exists?(name: params[:name])
+        @person = Person.new_person(params[:name], params[:position], params[:institution])
+        if @person != nil && @person.save
+          render json: @person.as_json, status: :created
+          return 
+        end
+      else
+        render json: {error: 'person exists'}, status: :bad_request
+      end
+    end
+    #render json: {warning: 'not implemented'}, status: 200
   end
 
   def update
-    @api_person.update(api_person_params)
-    respond_with(@api_person)
+    render json: {warning: 'not implemented'}, status: 200
   end
 
   def destroy
-    @api_person.destroy
-    respond_with(@api_person)
+    render json: {warning: 'not implemented'}, status: 200
   end
-
-  private
-    def set_api_person
-      @api_person = Api::Person.find(params[:id])
-    end
-
-    def api_person_params
-      params.require(:api_person).permit(:name, :position, :approved)
-    end
 end

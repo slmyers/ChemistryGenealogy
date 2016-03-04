@@ -32,7 +32,7 @@ angular.module('chemGeno')
       d.reject(res.error);
     });
     return d.promise;
-  }
+  };
 
   /**
    * exposes the register function

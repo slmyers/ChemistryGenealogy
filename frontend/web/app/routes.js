@@ -55,4 +55,9 @@ angular.module('chemGeno')
                 url: '/submit',
                 templateUrl: '/app/views/submit.html'
               })
+
+                .state('main.edit',{
+                    url: '/edit',
+                    templateUrl: '/app/views/edit.html'
+                })
         });

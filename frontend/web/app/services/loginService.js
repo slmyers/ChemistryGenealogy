@@ -6,10 +6,12 @@
  */
 
 angular.module('chemGeno')
-.service('loginService', function(store, $q, $http) {
+.service('loginService', function(store, $q, $http, $state) {
+  var userNamespace = '401ChemGenoUser'
 
 
-      var userNamespace = '401ChemGenoUser'
+   //Will get a var.getLoginToken later. :)
+   //With that we can go to the store, get the access token and such.
 
     /**
      * When evoked will check if the user can be obtained, if the user is not equal to null we must have a user logged
@@ -33,12 +35,16 @@ angular.module('chemGeno')
         return store.get(userNamespace);
       };
 
+      var getAuthToken = function() {
+        return store.get(userNamespace).auth_token;
+      }
+
     /**
      * An http call wrapped in a promise. upon success will store the user data in
      * local storage.
      *
      * @param user A user of the app.
-     * @returns {*} The promise of the user being logged in.
+     * @returns {*} A promise that encapsulates the server response.
      */
       var login = function(user) {
         var d = $q.defer();
@@ -65,6 +71,9 @@ angular.module('chemGeno')
      */
       var logout = function() {
         store.remove(userNamespace);
+        if ($state.$current.name !== 'main.search') {
+          $state.go('main.search');
+        }
       };
 
     /**
@@ -74,6 +83,7 @@ angular.module('chemGeno')
         userLoggedIn: userLoggedIn,
         login: login,
         getUser: getUser,
-        logout: logout
+        logout: logout,
+        getAuthToken: getAuthToken
       };
 });

@@ -21,11 +21,12 @@ gem 'tzinfo-data', platforms: [:x64_mingw,:mingw, :mswin]
 
 gem 'responders'
 
-gem 'rspec'
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'rspec-expectations'
+end
 
-gem 'rspec-rails'
-
-gem 'rspec-expectations'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

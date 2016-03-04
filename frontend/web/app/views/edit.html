@@ -1,0 +1,566 @@
+<!--
+ * HTML for the Submission page.
+ *
+ * Status: VIEW.
+ * Associated files: submitController.js
+ *
+ * Description: The submission page is going to be the core of where the users will be able to supply information to
+ * begin a new page for a given particular user. This page is going to be essentially a massive collection of
+ * information that we will be inserting into the system.
+ *
+ * Things that we're collecting include basic information like:
+ * -first name
+ * -last name
+ * -title
+ * -degree type
+ * -degree information: {date obtained, primary supervisor, institution}
+ * -postdoc postings {dates, supervisor, institution}
+ * -
+ *
+ *
+-->
+
+<!-- Initial layout of the first line will follow column style, and not show raw uncompiled form while browser loads-->
+<div ng-controller="editController" layout="column" ng-cloak>
+    <!-- This bit will cause the layout to follow a general padding style-->
+    <md-content layout-padding>
+        <!-- This form is called "userForm" -->
+        <form name="userForm">
+
+            <div id="primarySubmitScreenContainer">
+            <!-- Their switch thing to show hints or not. -->
+            <!--<div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">-->
+            <!--<div flex-gt-sm="20">-->
+
+            <!--</div>-->
+            <!--&lt;!&ndash;<md-input-container>&ndash;&gt;-->
+            <!--&lt;!&ndash;<md-switch ng-model="showHints">Showing {{showHints ? "Hints" : "Errors"}}</md-switch>&ndash;&gt;-->
+            <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
+            <!--</div>-->
+
+            <!-- Spacer //-->
+            <!--<div flex="3" hide-xs hide-sm>-->
+            <!--</div>-->
+
+            <md-card flex-xs flex-gt-xs="50" layout-align-lg="center">
+                <!-- Set the current layout for this line to be the row layout style -->
+                <div layout="row" layout-align="center" class="block">
+
+                    <!-- First name edit text field -->
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>First Name</label> <!-- State what the field is concerning -->
+                        <input md-maxlength="30" required name="firstname" ng-model="firstName" />
+
+                        <!-- If there is an error flag, display the text following -->
+                        <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                            <div ng-message="required">First name is required.</div>
+                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <!-- Last name edit text -->
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Last Name</label> <!-- State what the field is concerning -->
+                        <input md-maxlength="30" required name="lastname" ng-model="lastName" />
+
+
+                        <!-- If there is an error flag, display the text following. ngmessages checks flag -->
+                        <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                            <div ng-message="required">Last name is required.</div>
+                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <!-- Spacer //-->
+                    <div flex="3" hide-xs hide-sm>
+                    </div>
+
+                    <!--&lt;!&ndash; Title selection Done using a dropdown menu &ndash;&gt;-->
+                    <!--<div>-->
+                    <!--<form name2="titleForm">-->
+
+                    <!--<md-input-container class="md-block">-->
+                    <!--<label>Title</label> &lt;!&ndash; indicate to the user what this item is &ndash;&gt;-->
+                    <!--&lt;!&ndash; Basic md-selector that will show all of the possible options &ndash;&gt;-->
+                    <!--<md-select name="title" ng-model="individualTitle" required>-->
+                    <!--<md-option value="Dr">Dr</md-option>-->
+                    <!--<md-option value="Mr">Mr</md-option>-->
+                    <!--<md-option value="Ms">Ms</md-option>-->
+                    <!--<md-option value="Mrs">Mrs</md-option>-->
+                    <!--<md-option value="Sir Knighted Dans LeFromage">Sir Knighted Dans LeFromage</md-option>-->
+                    <!--</md-select>-->
+                    <!--&lt;!&ndash; If there is an error flag that this is required &ndash;&gt;-->
+                    <!--<div class="errors" ng-messages="titleForm.myModel.$error" ng-if="myForm.$dirty">-->
+                    <!--<div ng-message="required">Required</div>-->
+                    <!--</div>-->
+                    <!--</md-input-container>-->
+                    <!--&lt;!&ndash; Extra buttons I don't feel we need but keeping incase for now. <div layout="row">-->
+                    <!--<md-button ng-click="clearValue()" ng-disabled="!titleForm" style="margin-right: 20px;">Clear</md-button>-->
+                    <!--<md-button ng-click="save()" ng-disabled="titleForm.$invalid" class="md-primary" layout layout-align="center end">Save</md-button>-->
+                    <!--</div>&ndash;&gt;-->
+                    <!--</form>-->
+                    <!--</div>-->
+
+
+
+                    <!--<md-button class="md-primary md-raised" ng-click="testBasicInputs()"> test basic inputs </md-button>-->
+
+
+            </md-card>
+
+
+            <!-- new line begins here -->
+</div>
+
+<!-- State that the layout will follow the row format-->
+<div layout-gt-sm="row">
+
+
+
+    <!-- Position Edit text field -->
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>Current Position Title </label> <!-- Inform the user on what the field is -->
+        <!-- State the position of the user as the particular submitted input.-->
+        <input md-maxlength="30" required name="currentPosition" ng-model="currentPositionTitle" />
+
+        <!-- If there is an error then show the error messages. -->
+        <div ng-messages="userForm.name.$error" ng-if="!showHints">
+            <div ng-message="required">Position Title is required.</div>
+            <div ng-message="md-maxlength">Please tell us the position title.</div>
+        </div>
+    </md-input-container>
+
+    <!-- Current Institution edit text field. -->
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>Current Institution Name</label> <!-- Label defined for the user -->
+        <!-- Obtain the input, with a few limitations and assign it -->
+        <input md-maxlength="30" required name="institution" ng-model="currentInstitutionName" />
+
+        <!-- If there is an error then show the error messages. -->
+
+        <div ng-messages="userForm.name.$error" ng-if="!showHints">
+            <div ng-message="required">Institution name is required.</div>
+            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+    </md-input-container>
+
+
+
+
+    <!-- Start a new line YAAAS -->
+</div>
+
+<!-- Card section begins at this point. For the postdoc information collection process as well as
+     the process for degree information -->
+
+
+<!-- POSTDOC INFORMATION COLLECTION BEGINS HERE -->
+<md-input-container style="font-variant:small-caps;">
+    <h1>Postdoctoral Appointments Section</h1>
+</md-input-container>
+<md-card  ng-if="!postDocVisibility">
+
+    <md-card-header>
+        <md-card-avatar ng-click="showPostDocInfo()">
+            <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
+            <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                Click here to expand the postdoc information.
+            </md-tooltip>
+        </md-card-avatar>
+        <md-card-header-text>
+            <span class="md-title">PostDoctoral Information</span>
+        </md-card-header-text>
+    </md-card-header>
+</md-card>
+
+<!-- Trying to make it so that we have a card system instead -->
+
+<md-card  ng-if="postDocVisibility">
+    <md-card-header>
+        <md-card-avatar style="cursor:pointer" ng-click="hidePostDocInfo()">
+            <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
+            <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                Collapse the postdoc information.
+            </md-tooltip>
+        </md-card-avatar>
+        <md-card-header-text>
+            <span class="md-title">PostDoctoral Information</span>
+        </md-card-header-text>
+    </md-card-header>
+    <img ng-src="{{imagePath}}" class="md-card-image" alt="Edit Information Directly Below">
+    <md-card-title>
+        <md-card-title-text>
+            <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
+            <!-- Input for the Start date -> End date -->
+            <md-input-container>
+                <label for="content">Year PostDoctoral Appointment Began Eg: 1975</label>
+                <input type="text" ng-model="pdStartYear">
+            </md-input-container>
+
+            <md-input-container>
+                <label for="content">Year PostDoctoral Appointment Ended Eg: 1978</label>
+                <input type="text" ng-model="pdEndYear">
+            </md-input-container>
+
+            <!-- Input for the Start date -> End date -->
+            <md-input-container>
+                <label for="content">Supervisor Name Eg: John Doe</label>
+                <input type="text" ng-model="pdSupervisor">
+            </md-input-container>
+
+            <!-- Input for the Start date -> End date -->
+            <md-input-container>
+                <label for="content">Institution Eg: University Of Alberta</label>
+                <input type="text" ng-model="pdInstitution">
+            </md-input-container>
+            <!--</form>-->
+
+        </md-card-title-text>
+    </md-card-title>
+
+    <!-- Action buttons to either confirm the submission or cancel it -->
+    <md-card-actions layout="row" layout-align="right">
+
+        <!-- Submission button -->
+        <md-button style="cursor:pointer" ng-click="addPostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)">Submit
+            <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                Click here to Submit this PostDoc Instance
+            </md-tooltip>
+        </md-button>
+
+        <!-- Clear Fields Button -->
+        <md-button style="cursor:pointer" ng-click="clearPostDocFields()">Clear Fields
+            <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                Click here to clear the fields of this current PostDoc Instance.
+            </md-tooltip>
+        </md-button>
+    </md-card-actions>
+</md-card>
+
+
+<!-- Here is where I will be showing to the user the psotdoc information they already
+     entered into the system -->
+<div ng-if="postDocVisibility" ng-repeat="item in postDocInformation" >
+    <md-card>
+        <md-card-header>
+            <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_check_circle_black_24px.svg"></md-icon>
+            <md-tooltip md-visible="postDocShowing.showTooltip" md-direction="{{demo.tipDirection}}">
+                This information has been accepted for submission.
+            </md-tooltip>
+            </md-card-avatar>
+            <md-card-header-text>
+                <div layout = "column">PostDoc {{$index+1}}</div>
+
+            </md-card-header-text>
+        </md-card-header>
+
+        <div layout="column" align="center">
+
+
+            <span>Starting Year: {{item.pdStartYear}}</span>
+            <span>Ending Year: {{item.pdEndYear}}</span>
+            <span>Supervisor: {{item.pdSupervisor}}</span>
+            <span>Institution: {{item.pdInstitution}}</span>
+        </div>
+
+        <!-- Buttons for each of the viewable cards.
+             Contains:
+             -Remove Button
+             -Edit Button
+          -->
+        <md-card-actions layout="column" layout-align="right">
+
+
+            <!-- Submission button -->
+            <md-button style="cursor:pointer" ng-click="removePostDocInstance(item)">Remove
+                <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                    Click here to Remove this PostDocInstance.
+                </md-tooltip>
+            </md-button>
+
+            <!-- Clear Fields Button -->
+            <md-button ng-click="clearPostDocFields()">Edit
+                <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                    Click here to edit the fields of this current PostDoc Instance.
+                </md-tooltip>
+            </md-button>
+        </md-card-actions>
+
+
+
+    </md-card>
+
+</div>
+
+
+
+
+
+<!-- Section for degree information to be input by the User -->
+
+<md-input-container style="font-variant:small-caps;">
+    <h1>Degree Information Section</h1>
+</md-input-container>
+
+<div>
+    <md-card  ng-if="!degreeInfoVisibility">
+
+        <md-card-header>
+            <md-card-avatar style="cursor:pointer" ng-click="showDegreeInfo()">
+                <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
+                <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                    Click here to expand the degree information section.
+                </md-tooltip>
+            </md-card-avatar>
+            <md-card-header-text>
+                <span class="md-title">Degree Information</span>
+            </md-card-header-text>
+        </md-card-header>
+    </md-card>
+
+    <!-- Trying to make it so that we have a card system instead -->
+
+    <md-card  ng-if="degreeInfoVisibility">
+        <md-card-header>
+            <md-card-avatar style="cursor:pointer" ng-click="hideDegreeInfo()">
+                <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
+                <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                    Collapse the Degree Information Section.
+                </md-tooltip>
+            </md-card-avatar>
+            <md-card-header-text>
+                <span class="md-title">Degree Information</span>
+                <!--<span class="md-subhead">For each Degree please enter the requested data for each.</span>-->
+            </md-card-header-text>
+        </md-card-header>
+        <img ng-src="{{imagePath}}" class="md-card-image" alt="Edit Information Directly Below">
+        <md-card-title>
+            <md-card-title-text>
+                <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
+                <!-- Input for the Start date -> End date -->
+
+
+
+                <!-- Degree choice choices. Presented. -->
+                <form name="myForm">
+
+                    <!-- The style is going to be against the md-block thing -->
+                    <md-input-container class="md-block">
+                        <label>Type of Degree</label> <!-- State what the field is -->
+                        <!-- Have the listing of all of the selectable options -->
+                        <md-select name="myModel" ng-model="diType" required>
+                            <md-option value="Doctorate">Doctorate</md-option>
+                            <md-option value="Masters">Masters</md-option>
+                            <md-option value="BSc">BSc</md-option>
+                            <md-option value="BA">BA</md-option>
+                        </md-select>
+                        <!-- Have the error messages be displayed to the user -->
+                        <!--<div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">-->
+                        <!--<div ng-message="required">Required</div>-->
+                        <!--</div>-->
+                    </md-input-container>
+                    <!-- Commenting these out because I don't feel that we actually need these for now
+                    <div layout="row">
+                        <md-button ng-click="clearValue()" ng-disabled="!myModel" style="margin-right: 20px;">Clear</md-button>
+                        <md-button ng-click="save()" ng-disabled="myForm.$invalid" class="md-primary" layout layout-align="center end">Save</md-button>
+                    </div> -->
+                </form>
+
+                <md-input-container>
+                    <label for="content">Year Degree Was Rewarded Eg: 1978</label>
+                    <input type="text" ng-model="diYear">
+                </md-input-container>
+
+                <!-- Input for the Start date -> End date -->
+                <md-input-container>
+                    <label for="content">Supervisor Name Eg: John Doe</label>
+                    <input type="text" ng-model="diSupervisor">
+                </md-input-container>
+
+                <!-- Input for the Start date -> End date -->
+                <md-input-container>
+                    <label for="content">Institution Eg: University Of Alberta</label>
+                    <input type="text" ng-model="diInstitution">
+                </md-input-container>
+                <!--</form>-->
+
+            </md-card-title-text>
+        </md-card-title>
+
+        <!-- Action buttons to either confirm the submission or cancel it -->
+        <md-card-actions layout="row" layout-align="right">
+
+            <!-- Submission button -->
+            <md-button ng-click="addDegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)">Submit
+                <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                    Click here to Submit this Degree.
+                </md-tooltip>
+            </md-button>
+
+            <!-- Clear Fields Button -->
+            <md-button ng-click="clearDegreeInfoFields()">Clear Fields
+                <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                    Click here to clear the fields of this current Degree.
+                </md-tooltip>
+            </md-button>
+        </md-card-actions>
+    </md-card>
+
+    <!-- Here is where I will be showing to the user the psotdoc information they already
+entered into the system -->
+    <div ng-repeat="item in degreeInformation" ng-if="degreeInfoVisibility">
+        <md-card>
+            <md-card-header>
+                <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_check_circle_black_24px.svg"></md-icon>
+                <md-tooltip md-visible="postDocShowing.showTooltip" md-direction="{{demo.tipDirection}}">
+                    This information has been accepted for submission.
+                </md-tooltip>
+                </md-card-avatar>
+                <md-card-header-text>
+                    <div layout = "column">Degree {{$index+1}}</div>
+
+                </md-card-header-text>
+            </md-card-header>
+
+            <div layout="column" align="center">
+
+                <span>Year Awarded: {{item.year}}</span>
+                <span>Supervisor: {{item.supervisor}}</span>
+                <span>Institution: {{item.institution}}</span>
+
+            </div>
+
+            <!-- Buttons for each of the viewable cards.
+                 Contains:
+                 -Remove Button
+                 -Edit Button
+              -->
+            <md-card-actions layout="column" layout-align="right">
+
+                <!-- Submission button -->
+                <md-button ng-click="removeDegreeInfoInstance(item)">Remove
+                    <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                        Click here to Remove this PostDocInstance.
+                    </md-tooltip>
+                </md-button>
+
+                <!-- Clear Fields Button -->
+                <md-button ng-click="clearPostDocFields()">Edit
+                    <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                        Click here to edit the fields of this current PostDoc Instance.
+                    </md-tooltip>
+                </md-button>
+            </md-card-actions>
+
+
+
+        </md-card>
+
+    </div>
+
+
+
+
+
+</div>
+<div layout="row" layout-padding layout-margin layout-fill style="min-height: 224px;">
+    <!--<div flex>I am using all three at once.</div>-->
+</div>
+
+
+<!-- The ultimate submission button -->
+<div align="center">
+    <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all data on this page to the Administrator</div>
+
+    <md-button style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
+        <md-tooltip md-visible="finalSubmissionButton.showTooltip" md-direction="{{demo.tipDirection}}">
+            Pressing this button will submit ALL data on this page for Administrator approval.
+        </md-tooltip>
+        <md-icon md-svg-icon="static/img/ic_done_all_black_24px.svg"></md-icon>
+    </md-button>
+</div>
+
+
+<md-button ng-click="checkOutTHISObject()"> click here to look at the object for this page</md-button>
+            </form>
+        </md-content>
+    </div>
+
+
+
+
+
+
+<style>
+    #primarySubmitScreenContainer {
+        -webkit-flex-direction: row;
+        display: -webkit-flex;
+
+        display: flex;
+        flex-direction: row;
+
+
+        justify-content: space-around;
+        align-items: stretch;
+
+        /*border-radius: 25px;*/
+        /*border: solid 1px #00BCD4;*/
+
+        /*box-shadow: 3px 3px 5px 6px #ccc;*/
+
+        /*background-color: #006699;*/
+
+
+        margin: 0% 10%;
+
+        min-height: 80vh;
+    }</style>
+
+
+
+<!--<div id="primarySubmitScreenContainer">-->
+<!--BALLINCIAGAAAAAAAAAH-->
+
+
+
+<!--</div>-->
+<!--&ndash;&gt;-->
+<!--<div>-->
+<!--BEYONCEEEEEEEEEEEEEEEEEEE-->
+<!--<div>-->
+<!--<div>-->
+<!--<button>-->
+<!--flexed-->
+<!--</button>-->
+<!--</div>-->
+
+<!--<div>-->
+<!--<button>-->
+<!--flexed-->
+<!--</button>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Styling that came with the angular materials &ndash;&gt;-->
+<!--<style>-->
+<!--/*-->
+<!--* The Material demos system does not currently al1ow targeting the body element, so this-->
+<!--* must go here in the HTML.-->
+<!--*/-->
+<!--body[dir=rtl] .hint {-->
+<!--right: 2px;-->
+<!--left: auto;-->
+<!--}-->
+<!--</style>-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+</form>
+</md-content>
+</div>

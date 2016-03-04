@@ -21,8 +21,8 @@
 angular.module('chemGeno')
 
 //Stating that this is a controller for this project.
-    .controller('submitController', ['$scope',
-        function($scope) {
+    .controller('submitController', ['$scope', 'submitService',
+        function($scope, submitService) {
 
          //POSTDOC TABS:
          // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
@@ -192,6 +192,7 @@ angular.module('chemGeno')
                 }
             ];
 
+            //$scope.imagePath = "/static/img/new-zealand-679068_1280.jpg"
             /**
              * Function evoked when the submit button is hit on the postdoc card on the submit page.
              * Creates a new postDocInstance (object with postdoc data) with the data in the card's fields.
@@ -256,11 +257,11 @@ angular.module('chemGeno')
 
             $scope.degreeInformation = [
                 {
-                    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta"
+                    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta", type:  "Doctorate"
 
                 },
                 {
-                    year:"1980", supervisor: "Raymond U. Lemieux", institution: "University of Alberta"
+                    year:"1980", supervisor: "Raymond U. Lemieux", institution: "University of Alberta", type: "Doctorate"
                 }
             ];
 
@@ -291,17 +292,39 @@ angular.module('chemGeno')
             $scope.diYear = null;
             $scope.diSupervisor = null;
             $scope.diInstitution = null;
+            $scope.diType = null;
 
-            function DegreeInfoInstance(diYear, diSupervisor, diInstitution)
+
+            /**
+             * Constructor for the DegreeInfoInstance Object.
+             * This is the object that holds together the information of a single degree for a particular individual.
+             *
+             * @param diYear Year of the degree being awarded.
+             * @param diSupervisor Supervisor of the degree.
+             * @param diInstitution Institution degree was awarded from.
+             * @param diType Type of this degree.
+             *
+             * @constructor
+             */
+            function DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)
             {
                 this.year = diYear;
-                    this.supervisor = diSupervisor;
-                    this.institution = diInstitution;
+                this.supervisor = diSupervisor;
+                this.institution = diInstitution;
+                this.type = diType;
+
             }
 
 
-            $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution) {
-                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution);
+            /**
+             *
+             * @param diYear Year of the degree being awarded.
+             * @param diSupervisor Supervisor of the degree.
+             * @param diInstitution Institution degree was awarded from.
+             * @param diType Type of this degree.
+             */
+            $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution, diType) {
+                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType);
                 $scope.degreeInformation.push(newDegreeInfoInstance);
                 console.log("AddPostDocInstance Called on" + $scope.degreeInfoInformation);
 
@@ -310,6 +333,11 @@ angular.module('chemGeno')
                 $scope.$apply();
             };
 
+            /**
+             * Removes the object passed in from the individual's degree information.
+             *
+             * @param degreeInfoInstance The degree that is desired to be removed.
+             */
             $scope.removeDegreeInfoInstance = function(degreeInfoInstance){
                 console.log("removePostDocInstance called with index" + degreeInfoInstance);
                 console.log($scope.postDocInformation.length);
@@ -334,9 +362,10 @@ angular.module('chemGeno')
             $scope.typeOfDegree = null;
             $scope.currentPositionTitle = null;
             $scope.currentInstitutionName = null;
+            $scope.Name = null;
 
             $scope.testBasicInputs = function(){
-                console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title + " " + $scope.typeOfDegree
+                console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
                     + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
             };
 
@@ -364,16 +393,21 @@ angular.module('chemGeno')
              * @param currentInstitutionName
              * @param postDocInformation
              */
-            function SubmissionPageModelObject(firstName, lastName, typeOfDegree, currentPositionTitle,
-                        currentInstitutionName, postDocInformation)
+            function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
+                        currentInstitutionName, postDocInformation, degreeInformation)
             {
-                this.firstName = firstName;
-                this.lastName = lastName;
-                this.typeOfDegree = typeOfDegree;
+                //Concatenating the first and last name together with a space between for now...
+                var concatednatedNames = firstName + " " + lastName;
+                this.name = concatednatedNames ;
                 this.currentPositionTitle = currentPositionTitle;
                 this.currentInstitutionName = currentInstitutionName;
+
+                //Now the arrays of postdoc appointments and degrees.
                 this.postDocInformation = postDocInformation;
+                this.degreeInformation = degreeInformation;
             }
+
+            $scope.submitPageObject= null;
 
 
             /**
@@ -382,10 +416,56 @@ angular.module('chemGeno')
              */
             $scope.finalSubmitButtonFunction = function(){
                 console.log("finalSubmitButtonFunction was called");
+
+                //Create the new object for the submission page.
                 var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
-                $scope.typeOfDegree, $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation);
+                    $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation,
+                    $scope.degreeInformation);
+
+
+                $scope.submitPageObject = newSubmitObject;
+
+                //Invoke the services for this submit page to send the submitPageObject.
+                console.log($scope.submitPageObject);
+                submitService.sendSumbitObjectToBackend($scope.submitPageObject);
+
+
+
+                //Debugging and checking out what is going on here.
+                console.log(   "name: " + $scope.firstName + " " + $scope.lastName);
+                //console.log($scope.lastName);
+                console.log(   "currentPositionTitle: " + $scope.currentPositionTitle);
+                console.log(   "currentInstName: " + $scope.currentInstitutionName);
+                console.log(   "postDocInfo: " + $scope.postDocInformation);
+
+
+                //Check out the items in the postdoc information list.
+                for(var i = 0; i < $scope.postDocInformation.length; i++){
+                    console.log($scope.postDocInformation[i]);
+                }
+
+                //Check out the items in the degree information list.
+                for(var i = 0; i < $scope.degreeInformation.length; i++){
+                    console.log($scope.degreeInformation[i]);
+
+                }
+
 
             };
+
+            /**
+             * Function that once it is called will dump all of the information of the object for this submission
+             * page!
+             */
+            $scope.checkOutTHISObject = function(){
+                console.log("Here are the results of the object of this page");
+                console.log("Yes, this will be large.");
+
+                console.log($scope.submitPageObject);
+
+
+
+            }
 
 
         }]);
