@@ -25,7 +25,7 @@ class Api::AggregatedController < ApiController
     Rails.logger.info(params)
     # no need to check if the params are filled since they will be checked on other api controllers
     # I assume that the credential input from the user is new person, so call people controller method
-
+    
     if params.has_key?(:@name) && params.has_key?(:@position) && params.has_key?(:@institution)
       # check if the person already exists? The person might exists as a mentor of other maybe
       unless Person.exists?(name: params[:@name])
@@ -44,7 +44,7 @@ class Api::AggregatedController < ApiController
     end
   	#render json: {warning: 'not implemented'}, status: 200
   end
-
+|
   def update
   	render json: {warning: 'not implemented'}, status: 200
   end
