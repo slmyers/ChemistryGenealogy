@@ -454,7 +454,13 @@ angular.module('chemGeno')
             };
 
 
+            /**
+             * Meant to return back to the main.search page, not working though.
+             */
+            $scope.goBackToMain = function () {
+                $location.url('/search');
 
+            };
 
             /**
              * Function that once it is called will dump all of the information of the object for this submission

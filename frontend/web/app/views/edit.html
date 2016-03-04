@@ -42,9 +42,15 @@
             <!--<div flex="3" hide-xs hide-sm>-->
             <!--</div>-->
 
-            <md-card flex-xs flex-gt-xs="50" layout-align-lg="center">
-                <!-- Set the current layout for this line to be the row layout style -->
-                <div layout="row" layout-align="center" class="block">
+
+
+                <md-card flex-xs flex-gt-xs="50" layout-align-lg="center">
+                    <md-input-container style="font-variant:small-caps;">
+                        <h1>Basic Information Section</h1>
+                        Please enter information below for the individual.
+                    </md-input-container>
+                    <!-- Set the current layout for this line to be the row layout style -->
+                    <div layout="row" layout-align="center" class="block">
 
                     <!-- First name edit text field -->
                     <md-input-container class="md-block" flex-gt-sm>
@@ -470,7 +476,7 @@ entered into the system -->
 
 <!-- The ultimate submission button -->
 <div align="center">
-    <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all data on this page to the Administrator</div>
+    <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all edits on this page to the Administrator</div>
 
     <md-button style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
         <md-tooltip md-visible="finalSubmissionButton.showTooltip" md-direction="{{demo.tipDirection}}">
