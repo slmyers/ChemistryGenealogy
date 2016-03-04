@@ -1,3 +1,6 @@
+# temporarily filled out but not used yet (just AggregatedController used)
+# will have to figure out how to pass the json parameters to this controller
+
 class Api::PeopleController < ApiController
   respond_to :json
 
@@ -19,6 +22,11 @@ class Api::PeopleController < ApiController
     render json: {warning: 'not implemented'}, status: 200
   end
 
+  # creates a new person
+  # parameters from JSON: name, position, institution
+  # currently assumes that all parameters are not nil
+  # only checks if the name exists in the database
+  # not sure if we should render as json
   def create
     Rails.logger.info(params)
     # check if all the criterias are filled
@@ -29,7 +37,7 @@ class Api::PeopleController < ApiController
         @person = Person.new_person(params[:name], params[:position], params[:institution])
         if @person != nil && @person.save
           render json: @person.as_json, status: :created
-          return 
+          return
         end
       else
         render json: {error: 'person exists'}, status: :bad_request
