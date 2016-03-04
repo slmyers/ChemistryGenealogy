@@ -27,7 +27,7 @@
         <!-- This form is called "userForm" -->
         <form name="userForm">
 
-
+            <div id="primarySubmitScreenContainer">
             <!-- Their switch thing to show hints or not. -->
             <!--<div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">-->
             <!--<div flex-gt-sm="20">-->
@@ -157,7 +157,6 @@
 <!-- POSTDOC INFORMATION COLLECTION BEGINS HERE -->
 <md-input-container style="font-variant:small-caps;">
     <h1>Postdoctoral Appointments Section</h1>
-    Please enter information here about postdoctoral positions you may have held in the past.
 </md-input-container>
 <md-card  ng-if="!postDocVisibility">
 
@@ -170,7 +169,6 @@
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">PostDoctoral Information</span>
-            <span class="md-subhead">For each postdoc please enter the requested data for each.</span>
         </md-card-header-text>
     </md-card-header>
 </md-card>
@@ -187,10 +185,9 @@
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">PostDoctoral Information</span>
-            <span class="md-subhead">For each postdoc please enter the requested data for each.</span>
         </md-card-header-text>
     </md-card-header>
-    <img ng-src="{{imagePath}}" class="md-card-image" alt="Please Enter Information Directly Below">
+    <img ng-src="{{imagePath}}" class="md-card-image" alt="Edit Information Directly Below">
     <md-card-title>
         <md-card-title-text>
             <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
@@ -303,7 +300,6 @@
 
 <md-input-container style="font-variant:small-caps;">
     <h1>Degree Information Section</h1>
-    Please enter information here about any degrees you have obtained in the past.
 </md-input-container>
 
 <div>
@@ -318,7 +314,6 @@
             </md-card-avatar>
             <md-card-header-text>
                 <span class="md-title">Degree Information</span>
-                <span class="md-subhead">For each Degree please enter the requested data for each.</span>
             </md-card-header-text>
         </md-card-header>
     </md-card>
@@ -335,10 +330,10 @@
             </md-card-avatar>
             <md-card-header-text>
                 <span class="md-title">Degree Information</span>
-                <span class="md-subhead">For each Degree please enter the requested data for each.</span>
+                <!--<span class="md-subhead">For each Degree please enter the requested data for each.</span>-->
             </md-card-header-text>
         </md-card-header>
-        <img ng-src="{{imagePath}}" class="md-card-image" alt="Please Enter Information Directly Below">
+        <img ng-src="{{imagePath}}" class="md-card-image" alt="Edit Information Directly Below">
         <md-card-title>
             <md-card-title-text>
                 <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
@@ -358,7 +353,6 @@
                             <md-option value="Masters">Masters</md-option>
                             <md-option value="BSc">BSc</md-option>
                             <md-option value="BA">BA</md-option>
-                            <md-option value="Highschool">Highschool</md-option>
                         </md-select>
                         <!-- Have the error messages be displayed to the user -->
                         <!--<div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">-->
@@ -488,6 +482,10 @@ entered into the system -->
 
 
 <md-button ng-click="checkOutTHISObject()"> click here to look at the object for this page</md-button>
+            </form>
+        </md-content>
+    </div>
+
 
 
 
@@ -505,15 +503,15 @@ entered into the system -->
         justify-content: space-around;
         align-items: stretch;
 
-        border-radius: 25px;
-        border: solid 1px #00BCD4;
+        /*border-radius: 25px;*/
+        /*border: solid 1px #00BCD4;*/
 
-        box-shadow: 3px 3px 5px 6px #ccc;
+        /*box-shadow: 3px 3px 5px 6px #ccc;*/
 
-        background-color: #006699;
+        /*background-color: #006699;*/
 
 
-        margin: 15% 15%;
+        margin: 0% 10%;
 
         min-height: 80vh;
     }</style>

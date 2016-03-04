@@ -7,7 +7,7 @@
  */
 
 angular.module('chemGeno')
-    .service('submitService', function($q, $http, $state){
+    .service('submitService', function($q, $http, $state, loginService){
 
 
             /**
@@ -17,8 +17,12 @@ angular.module('chemGeno')
              */
         var sendSumbitObjectToBackend = function(submitFileObject){
             var d = $q.defer();
+            var token = loginService.getAuthToken();
             return $http({
-                header: 'Content-Type: application/json',
+                headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": token
+                },
                 method: 'POST',
                 url: 'http://localhost:3000/api/aggregated',
                 data: {name: submitFileObject.name, position: submitFileObject.currentPositionTitle,
@@ -31,8 +35,6 @@ angular.module('chemGeno')
                 d.reject(resp.error);
             });
             return d.promise;
-
-
         };
 
 
@@ -89,4 +91,3 @@ angular.module('chemGeno')
 //
 //
 //};
-

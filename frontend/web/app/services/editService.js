@@ -7,7 +7,7 @@
  */
 
 angular.module('chemGeno')
-    .service('editService', function($q, $http, $state) {
+    .service('editService', function($q, $http, $state, loginService) {
 
         /**
          * Pass some param like name or id, and that will obtain all information I need. May need to parse it all.
@@ -18,7 +18,7 @@ angular.module('chemGeno')
             var d = $q.defer();
             return $http({
                 header: 'Content-Type: application/json',
-                method: 'POST',
+                method: 'GET',
                 url: 'http://localhost:3000/aggregated',
                 data: id //Sending this id as a json with the ID in it.
             }).success(function(resp) {
@@ -46,7 +46,7 @@ angular.module('chemGeno')
             //Update: Say they update degree, may make it a very specific button.
             //Then button press, package the thing and then send it to aggregated controller to some update route
             //or some post route. And then they will iterate over this and update each thing in there. Won't be
-            //too bad! 
+            //too bad!
 
         };
 
