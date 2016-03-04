@@ -27,7 +27,7 @@
         <!-- This form is called "userForm" -->
         <form name="userForm">
 
-
+            <div id="primarySubmitScreenContainer">
             <!-- Their switch thing to show hints or not. -->
             <!--<div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">-->
             <!--<div flex-gt-sm="20">-->
@@ -42,32 +42,38 @@
             <!--<div flex="3" hide-xs hide-sm>-->
             <!--</div>-->
 
-            <md-card flex-xs flex-gt-xs="50" layout-align-lg="center">
-                <!-- Set the current layout for this line to be the row layout style -->
-                <div layout="row" layout-align="center" class="block">
+
+
+                <md-card flex-xs flex-gt-xs="50" layout-align-lg="center">
+                    <md-input-container style="font-variant:small-caps;">
+                        <h1>Basic Information Section</h1>
+                        Please enter information below for the individual.
+                    </md-input-container>
+                    <!-- Set the current layout for this line to be the row layout style -->
+                    <div layout="row" layout-align="center" class="block">
 
                     <!-- First name edit text field -->
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>First Name</label> <!-- State what the field is concerning -->
-                        <input md-maxlength="30" required name="firstname" ng-model="firstName" />
+                        <input required name="firstname" ng-model="firstName" />
 
                         <!-- If there is an error flag, display the text following -->
                         <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                            <div ng-message="required">First name is required.</div>
-                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                            <!--<div ng-message="required">First name is required.</div>-->
+                            <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
                         </div>
                     </md-input-container>
 
                     <!-- Last name edit text -->
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Last Name</label> <!-- State what the field is concerning -->
-                        <input md-maxlength="30" required name="lastname" ng-model="lastName" />
+                        <input required name="lastname" ng-model="lastName" />
 
 
                         <!-- If there is an error flag, display the text following. ngmessages checks flag -->
                         <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                            <div ng-message="required">Last name is required.</div>
-                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                            <!--<div ng-message="required">Last name is required.</div>-->
+                            <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
                         </div>
                     </md-input-container>
 
@@ -121,12 +127,12 @@
     <md-input-container class="md-block" flex-gt-sm>
         <label>Current Position Title </label> <!-- Inform the user on what the field is -->
         <!-- State the position of the user as the particular submitted input.-->
-        <input md-maxlength="30" required name="currentPosition" ng-model="currentPositionTitle" />
+        <input required name="currentPosition" ng-model="currentPositionTitle" />
 
         <!-- If there is an error then show the error messages. -->
         <div ng-messages="userForm.name.$error" ng-if="!showHints">
-            <div ng-message="required">Position Title is required.</div>
-            <div ng-message="md-maxlength">Please tell us the position title.</div>
+            <!--<div ng-message="required">Position Title is required.</div>-->
+            <!--<div ng-message="md-maxlength">Please tell us the position title.</div>-->
         </div>
     </md-input-container>
 
@@ -134,13 +140,13 @@
     <md-input-container class="md-block" flex-gt-sm>
         <label>Current Institution Name</label> <!-- Label defined for the user -->
         <!-- Obtain the input, with a few limitations and assign it -->
-        <input md-maxlength="30" required name="institution" ng-model="currentInstitutionName" />
+        <input required name="institution" ng-model="currentInstitutionName" />
 
         <!-- If there is an error then show the error messages. -->
 
         <div ng-messages="userForm.name.$error" ng-if="!showHints">
-            <div ng-message="required">Institution name is required.</div>
-            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+            <!--<div ng-message="required">Institution name is required.</div>-->
+            <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
         </div>
     </md-input-container>
 
@@ -157,7 +163,6 @@
 <!-- POSTDOC INFORMATION COLLECTION BEGINS HERE -->
 <md-input-container style="font-variant:small-caps;">
     <h1>Postdoctoral Appointments Section</h1>
-    Please enter information here about postdoctoral positions you may have held in the past.
 </md-input-container>
 <md-card  ng-if="!postDocVisibility">
 
@@ -170,7 +175,6 @@
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">PostDoctoral Information</span>
-            <span class="md-subhead">For each postdoc please enter the requested data for each.</span>
         </md-card-header-text>
     </md-card-header>
 </md-card>
@@ -187,10 +191,9 @@
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">PostDoctoral Information</span>
-            <span class="md-subhead">For each postdoc please enter the requested data for each.</span>
         </md-card-header-text>
     </md-card-header>
-    <img ng-src="{{imagePath}}" class="md-card-image" alt="Please Enter Information Directly Below">
+    <img ng-src="{{imagePath}}" class="md-card-image" alt="Edit Information Directly Below">
     <md-card-title>
         <md-card-title-text>
             <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
@@ -303,7 +306,6 @@
 
 <md-input-container style="font-variant:small-caps;">
     <h1>Degree Information Section</h1>
-    Please enter information here about any degrees you have obtained in the past.
 </md-input-container>
 
 <div>
@@ -318,7 +320,6 @@
             </md-card-avatar>
             <md-card-header-text>
                 <span class="md-title">Degree Information</span>
-                <span class="md-subhead">For each Degree please enter the requested data for each.</span>
             </md-card-header-text>
         </md-card-header>
     </md-card>
@@ -335,10 +336,10 @@
             </md-card-avatar>
             <md-card-header-text>
                 <span class="md-title">Degree Information</span>
-                <span class="md-subhead">For each Degree please enter the requested data for each.</span>
+                <!--<span class="md-subhead">For each Degree please enter the requested data for each.</span>-->
             </md-card-header-text>
         </md-card-header>
-        <img ng-src="{{imagePath}}" class="md-card-image" alt="Please Enter Information Directly Below">
+        <img ng-src="{{imagePath}}" class="md-card-image" alt="Edit Information Directly Below">
         <md-card-title>
             <md-card-title-text>
                 <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
@@ -358,7 +359,6 @@
                             <md-option value="Masters">Masters</md-option>
                             <md-option value="BSc">BSc</md-option>
                             <md-option value="BA">BA</md-option>
-                            <md-option value="Highschool">Highschool</md-option>
                         </md-select>
                         <!-- Have the error messages be displayed to the user -->
                         <!--<div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">-->
@@ -476,7 +476,7 @@ entered into the system -->
 
 <!-- The ultimate submission button -->
 <div align="center">
-    <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all data on this page to the Administrator</div>
+    <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all edits on this page to the Administrator</div>
 
     <md-button style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
         <md-tooltip md-visible="finalSubmissionButton.showTooltip" md-direction="{{demo.tipDirection}}">
@@ -488,6 +488,10 @@ entered into the system -->
 
 
 <md-button ng-click="checkOutTHISObject()"> click here to look at the object for this page</md-button>
+            </form>
+        </md-content>
+    </div>
+
 
 
 
@@ -505,15 +509,15 @@ entered into the system -->
         justify-content: space-around;
         align-items: stretch;
 
-        border-radius: 25px;
-        border: solid 1px #00BCD4;
+        /*border-radius: 25px;*/
+        /*border: solid 1px #00BCD4;*/
 
-        box-shadow: 3px 3px 5px 6px #ccc;
+        /*box-shadow: 3px 3px 5px 6px #ccc;*/
 
-        background-color: #006699;
+        /*background-color: #006699;*/
 
 
-        margin: 15% 15%;
+        margin: 0% 10%;
 
         min-height: 80vh;
     }</style>

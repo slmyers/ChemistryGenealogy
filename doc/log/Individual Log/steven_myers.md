@@ -91,4 +91,6 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * refactored backend search code
 * [issue 29](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/issues/29)
 * [issue 30](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/issues/30)
-
+* connected frontend submit service to backend aggregated route 
+* made UML for front and backend 
+* made documentation section of wiki 

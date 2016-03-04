@@ -36,6 +36,7 @@ angular.module('chemGeno')
         promise.then(function(res) {
           console.log(res.data);
           console.log('sucessful login: ' + res.data.user.email);
+          console.log('auth token: ' + loginService.getAuthToken())
           $scope.invalidLogin = false;
           $mdDialog.cancel();
         }, function(error){

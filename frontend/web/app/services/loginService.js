@@ -35,6 +35,10 @@ angular.module('chemGeno')
         return store.get(userNamespace);
       };
 
+      var getAuthToken = function() {
+        return store.get(userNamespace).auth_token;
+      }
+
     /**
      * An http call wrapped in a promise. upon success will store the user data in
      * local storage.
@@ -79,6 +83,7 @@ angular.module('chemGeno')
         userLoggedIn: userLoggedIn,
         login: login,
         getUser: getUser,
-        logout: logout
+        logout: logout,
+        getAuthToken: getAuthToken
       };
 });

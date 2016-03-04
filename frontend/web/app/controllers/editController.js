@@ -60,22 +60,65 @@ angular.module('chemGeno')
             $scope.degreeInfoID = 2; //Only set to 3 here for the sample data. Set back to 1 for release.
 
 
+            /**
+             * Mock Object. This is what I will be expecting to recieve from the backend.
+             */
+
+            $scope.mockObjectRecieved = {
+
+                name: "Cheese Knight",
+                currentPositionTitle: "Honorable Knight of Cheese",
+                currentInstitutionName: "NeverEverLand",
+                postDocInformation:[{
+                    pdStartYear: 2078, pdSupervisor: "the cheese goddess", pdInstitution: "NeverEverLand", pdEndYear: "0007"
+                }],
+
+                degreeInformation:[{
+                    year: "2973", supervisor: "Cheese King", institution: "University of NeverEverLand", type:  "Doctorate"
+
+                }]
+            };
+
+
+
+
+            function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
+                                               currentInstitutionName, postDocInformation, degreeInformation)
+            {
+                //Concatenating the first and last name together with a space between for now...
+                var concatednatedNames = firstName + " " + lastName;
+                this.name = concatednatedNames ;
+                this.currentPositionTitle = currentPositionTitle;
+                this.currentInstitutionName = currentInstitutionName;
+
+                //Now the arrays of postdoc appointments and degrees.
+                this.postDocInformation = postDocInformation;
+                this.degreeInformation = degreeInformation;
+            }
 
             /**SPECIFIC TO EDIT FUNCTIONALITY! **/
 
             /**Basic Info Section:
              * This section deals with trivial information collection on the submit page such as first and last names.
              */
-            $scope.firstName = "AlreadyExistingFirstName";
-            $scope.lastName = "AlreadyExistingLastName";
-            $scope.currentPositionTitle = "Professor";
-            $scope.currentInstitutionName = "Some School";
+            $scope.firstName = $scope.mockObjectRecieved.name.split(" ")[0];
+            $scope.lastName = $scope.mockObjectRecieved.name.split(" ")[1];
+            $scope.currentPositionTitle = $scope.mockObjectRecieved.currentPositionTitle;
+            $scope.currentInstitutionName = $scope.mockObjectRecieved.currentInstitutionName;
+            $scope.degreeInformation = $scope.mockObjectRecieved.degreeInformation;
+            $scope.postDocInformation = $scope.mockObjectRecieved.postDocInformation;
 
             $scope.testBasicInputs = function(){
                 console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
                     + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
             };
 
+
+            $scope.editDeityButton = function(){
+
+
+
+            };
 
 
 
@@ -189,15 +232,7 @@ angular.module('chemGeno')
 
 
 
-            $scope.postDocInformation = [
-                {
-                    pdStartYear: "1980", pdEndYear: "1981", pdSupervisor: "Clinton E. Ballou", pdInstitution: "University of California"
 
-                },
-                {
-                    pdStartYear:"1971", pdEndYear: "1973", pdSupervisor: "Harold J. Jennings", pdInstitution: "National Research Council of Canada"
-                }
-            ];
 
             //$scope.imagePath = "/static/img/new-zealand-679068_1280.jpg"
             /**
@@ -262,15 +297,7 @@ angular.module('chemGeno')
              * This section deals with the cards associated with the degrees a user may have.
              */
 
-            $scope.degreeInformation = [
-                {
-                    year: "2008", supervisor: "Todd L. Lowry", institution: "University of Alberta", type:  "Doctorate"
 
-                },
-                {
-                    year:"1980", supervisor: "Raymond U. Lemieux", institution: "University of Alberta", type: "Doctorate"
-                }
-            ];
 
             //Set to false to hide the details of the degree info information.
             $scope.degreeInfoVisibility = false;
