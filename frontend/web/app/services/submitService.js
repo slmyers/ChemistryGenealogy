@@ -27,6 +27,8 @@ angular.module('chemGeno')
                 url: 'http://localhost:3000/api/aggregated',
                 data: {name: submitFileObject.name, position: submitFileObject.currentPositionTitle,
                     institution: submitFileObject.currentInstitutionName,
+                    degree: submitFileObject.dereeInformation,
+                    postdoc:submitFileObject.postDocInformaiton
                     }
             }).success(function(resp) {
                 d.resolve(resp);
