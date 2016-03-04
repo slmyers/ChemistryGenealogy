@@ -59,11 +59,15 @@ angular.module('chemGeno')
              */
             var sendEditedData = function(modifications){
                 var d = $q.defer();
+                var token = loginService.getAuthToken(); //Obtain the authentication token from the login service.
                 return $http({
-                    header: 'Content-Type: application/json',
+                        headers: {
+                            "Content-Type": "application/json'",
+                            "Authorization": token
+                        },
                     method: 'PUT',
                     url: 'http://localhost:3000/aggregated',
-                    data: modifications //Sending the modifications as a large JSON object!
+                    data: {name: modifications.name, position: modifications.currentPositionTitle, institution: modifications.currentInstitutionName}
                 }).success(function(resp) {
                     d.resolve(resp);
                 }).error(function(resp) {
@@ -74,6 +78,8 @@ angular.module('chemGeno')
 
             };
 
+
+         
 
         /**
          * This is just needed for the service to actually work. Just standard notation.
