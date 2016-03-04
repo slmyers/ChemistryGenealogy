@@ -61,7 +61,7 @@ angular.module('chemGeno')
 
 
             /**
-             * Mock Object.
+             * Mock Object. This is what I will be expecting to recieve from the backend.
              */
 
             $scope.mockObjectRecieved = {
@@ -78,6 +78,10 @@ angular.module('chemGeno')
 
                 }
             };
+
+
+
+
             function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
                                                currentInstitutionName, postDocInformation, degreeInformation)
             {
@@ -97,10 +101,10 @@ angular.module('chemGeno')
             /**Basic Info Section:
              * This section deals with trivial information collection on the submit page such as first and last names.
              */
-            $scope.firstName = "AlreadyExistingFirstName";
-            $scope.lastName = "AlreadyExistingLastName";
-            $scope.currentPositionTitle = "Professor";
-            $scope.currentInstitutionName = "Some School";
+            $scope.firstName = $scope.mockObjectRecieved.name.split(" ")[0];
+            $scope.lastName = $scope.mockObjectRecieved.name.split(" ")[1];
+            $scope.currentPositionTitle = $scope.mockObjectRecieved.currentPositionTitle;
+            $scope.currentInstitutionName = $scope.mockObjectRecieved.currentInstitutionName;
 
             $scope.testBasicInputs = function(){
                 console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
