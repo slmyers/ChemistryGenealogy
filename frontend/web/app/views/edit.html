@@ -42,32 +42,38 @@
             <!--<div flex="3" hide-xs hide-sm>-->
             <!--</div>-->
 
-            <md-card flex-xs flex-gt-xs="50" layout-align-lg="center">
-                <!-- Set the current layout for this line to be the row layout style -->
-                <div layout="row" layout-align="center" class="block">
+
+
+                <md-card flex-xs flex-gt-xs="50" layout-align-lg="center">
+                    <md-input-container style="font-variant:small-caps;">
+                        <h1>Basic Information Section</h1>
+                        Please enter information below for the individual.
+                    </md-input-container>
+                    <!-- Set the current layout for this line to be the row layout style -->
+                    <div layout="row" layout-align="center" class="block">
 
                     <!-- First name edit text field -->
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>First Name</label> <!-- State what the field is concerning -->
-                        <input md-maxlength="30" required name="firstname" ng-model="firstName" />
+                        <input required name="firstname" ng-model="firstName" />
 
                         <!-- If there is an error flag, display the text following -->
                         <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                            <div ng-message="required">First name is required.</div>
-                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                            <!--<div ng-message="required">First name is required.</div>-->
+                            <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
                         </div>
                     </md-input-container>
 
                     <!-- Last name edit text -->
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Last Name</label> <!-- State what the field is concerning -->
-                        <input md-maxlength="30" required name="lastname" ng-model="lastName" />
+                        <input required name="lastname" ng-model="lastName" />
 
 
                         <!-- If there is an error flag, display the text following. ngmessages checks flag -->
                         <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                            <div ng-message="required">Last name is required.</div>
-                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                            <!--<div ng-message="required">Last name is required.</div>-->
+                            <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
                         </div>
                     </md-input-container>
 
@@ -121,12 +127,12 @@
     <md-input-container class="md-block" flex-gt-sm>
         <label>Current Position Title </label> <!-- Inform the user on what the field is -->
         <!-- State the position of the user as the particular submitted input.-->
-        <input md-maxlength="30" required name="currentPosition" ng-model="currentPositionTitle" />
+        <input required name="currentPosition" ng-model="currentPositionTitle" />
 
         <!-- If there is an error then show the error messages. -->
         <div ng-messages="userForm.name.$error" ng-if="!showHints">
-            <div ng-message="required">Position Title is required.</div>
-            <div ng-message="md-maxlength">Please tell us the position title.</div>
+            <!--<div ng-message="required">Position Title is required.</div>-->
+            <!--<div ng-message="md-maxlength">Please tell us the position title.</div>-->
         </div>
     </md-input-container>
 
@@ -134,13 +140,13 @@
     <md-input-container class="md-block" flex-gt-sm>
         <label>Current Institution Name</label> <!-- Label defined for the user -->
         <!-- Obtain the input, with a few limitations and assign it -->
-        <input md-maxlength="30" required name="institution" ng-model="currentInstitutionName" />
+        <input required name="institution" ng-model="currentInstitutionName" />
 
         <!-- If there is an error then show the error messages. -->
 
         <div ng-messages="userForm.name.$error" ng-if="!showHints">
-            <div ng-message="required">Institution name is required.</div>
-            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+            <!--<div ng-message="required">Institution name is required.</div>-->
+            <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
         </div>
     </md-input-container>
 
@@ -470,7 +476,7 @@ entered into the system -->
 
 <!-- The ultimate submission button -->
 <div align="center">
-    <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all data on this page to the Administrator</div>
+    <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all edits on this page to the Administrator</div>
 
     <md-button style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
         <md-tooltip md-visible="finalSubmissionButton.showTooltip" md-direction="{{demo.tipDirection}}">

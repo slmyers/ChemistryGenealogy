@@ -27,6 +27,10 @@ describe('loginService unit tests', function() {
         }
     });
 
+    httpMock.expectGET('/app/views/main.html')
+      .respond({});
+    httpMock.expectGET('/app/views/search.html')
+      .respond({});
 
 
   }));
