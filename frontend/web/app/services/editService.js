@@ -14,20 +14,21 @@ angular.module('chemGeno')
          * @params id Can be a name or some numerical id number.
          */
 
-        var obtainUserInformationFromBackEnd = function(id){
+        var obtainUserInformationFromBackEnd = function(id) {
             var d = $q.defer();
             return $http({
                 header: 'Content-Type: application/json',
                 method: 'GET',
                 url: 'http://localhost:3000/aggregated',
                 data: id //Sending this id as a json with the ID in it.
-            }).success(function(resp) {
+            }).success(function (resp) {
                 d.resolve(resp);
-            }).error(function(resp) {
+            }).error(function (resp) {
                 console.log(resp);
                 d.reject(resp.error);
             });
             return d.promise;
+        };
 
             //Get the thing, populate fields in edit page with this information
             //Then difficult part is making a change to degree, may want to just post that change to degree route.
@@ -48,7 +49,52 @@ angular.module('chemGeno')
             //or some post route. And then they will iterate over this and update each thing in there. Won't be
             //too bad!
 
-        };
+
+            /**
+             * This service when called will PUT the edited data object onto the aggregated url, sending it to
+             * the backend to be parsed and the modifications made in the server.
+             *
+             * @param modifications A specialized object of the modifications
+             * @returns {*} A promise of the event occurance.
+             */
+            var sendEditedData = function(modifications){
+                var d = $q.defer();
+                var token = loginService.getAuthToken(); //Obtain the authentication token from the login service.
+                return $http({
+                        headers: {
+                            "Content-Type": "application/json'",
+                            "Authorization": token
+                        },
+                    method: 'PUT',
+                    url: 'http://localhost:3000/aggregated',
+                    data: {
+                        name: modifications.name,
+                        position: modifications.currentPositionTitle,
+                        institution: modifications.currentInstitutionName,
+                        degree: modifications.degreeInformation,
+                        postdoc: modifications.postDocInformation
+                    }
+                }).success(function(resp) {
+                    d.resolve(resp);
+                }).error(function(resp) {
+                    console.log(resp);
+                    d.reject(resp.error);
+                });
+                return d.promise;
+
+            };
+
+
+
+
+        /**
+         * This is just needed for the service to actually work. Just standard notation.
+         */
+            return  {
+                obtainUserInformationFromBackEnd: obtainUserInformationFromBackEnd,
+                sendEditedData:sendEditedData
+            };
+
 
 
 
