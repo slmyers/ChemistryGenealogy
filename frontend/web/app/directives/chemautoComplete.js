@@ -7,20 +7,19 @@ angular.module('chemGeno')
       type: '='
     },
     templateUrl: function(elem, attr){
-      return '/app/views/chemauto-' + attr.type +'.html';
+      return '/app/views/chemauto' + attr.type +'.html';
     },
     controller: function($scope) {
       $scope.selectedItem = {};
       $scope.searchText = {};
-      
+
       this.queryNameSearch = function(name){
         console.log('in querySearch ' + name)
         var d = $q.defer();
         $http({
           method: 'GET',
           url: 'localhost:3000/autocomplete',
-          params
-          data: {term: term}
+          params: name
         }).then(function (result){
           console.log(result)
           d.resolve(result.data);
