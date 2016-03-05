@@ -1,15 +1,15 @@
-<!--
- * HTML for the userDialog. (Login/registration.)
- *
- * Status: VIEW.
- * Associated files: userController.js, userDialogController.js, loginService.js, registerService.js
- *
- * Description: This is a dialog box for registration/login purposes
- *
- *
--->
+<style>
+  #userDialog {
+    padding: 50px;
+  }
+  #userDialogContainer {
+    min-height: 80vh;
+    min-width: 80vh;
+  }
+</style>
 
-<md-dialog aria-label="login dialog"  ng-cloak>
+<div id="userDialogContainer">
+<md-dialog id="userDialog" aria-label="login dialog"  ng-cloak>
   <!-- show an error message if the login is invalid -->
   <div ng-show="invalidLogin" layout="row" layout-align="center center">
     <!-- the button serves as a nice message -->
@@ -100,3 +100,4 @@
     </md-content>
   </div>
 </md-dialog>
+</div>
