@@ -1,34 +1,26 @@
-<!--
- * HTML for the Main page.
- *
- * Status: VIEW.
- * Associated files: userController.js, userDialogController.js, loginService.js, registerService.js
- *
- * Description: This page is going to be where we have the login OR registration information displayed to the user
- * as they are going to be involved with
- *
- *
--->
+
 
 <header>
-  <!-- Places a toolbar into our application. This is our top header toolbar! -->
   <md-toolbar>
-    <!-- Have a division with the toolbar tools turned active. -->
     <div class="md-toolbar-tools">
-      <!-- take up first 15% of toolbar -->
-      <span flex="15"></span>
-      <!-- logo that links to home page -->
-      <span flex="11">
+      <span flex="5"></span>
+      <span flex="16">
         <A NG-HREF="index.html"><img ng-src="/static/img/cg.png" /></A>
       </span>
-      <!-- Fill in 50% of the toolbar with the title of the app-->
-      <span flex="50">
+      <span flex="15">
         <A NG-HREF="index.html"><b>Chemistry Genealogy</b></A>
       </span>
+      <span flex="5"></span>
+      <span flex="3">
+        <md-icon md-svg-src="/static/img/ic_search_black_24px.svg" aria-label="search"></md-icon>
+      </span>
+      <span flex="40">
+        <chemauto-complete type="person"></chemauto-complete>
+      </span>
+      <span flex="20"></span>
       <div ng-controller="userController" layout="row" layout-align="center end">
       <!-- Over the next 7% of the toolbar have the submit section button -->
       <span flex="7">
-      <!-- A button that if called will evoke main.submit function through the router. -->
       <div ng-show="showUser()">
         <a ui-sref="main.submit">
           <md-button class="md-fab md-accent">

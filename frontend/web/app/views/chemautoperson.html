@@ -1,10 +1,21 @@
-<md-autocomplete id="searchBar"
+<style>
+  #peopleSearchInput:focus  {
+    background-color: white;
+    border-radius: 5px;
+  }
+</style>
+
+<md-autocomplete id="peopleSearch"
   md-no-cache="true"
-  md-selected-item="ctrl.selectedItem"
-  md-search-text="ctrl.searchText"
-  md-items="item in ctrl.queryNameSearch(ctrl.searchText)"
+  md-selected-item="selectedItem"
+  md-search-text="searchText"
+  md-items="item in queryNameSearch(searchText)"
+  md-selected-item-change="selectedItemChange(item)"
   md-item-text="item.name"
   md-floating-label="Search People"
+  input-name="autocompleteField"
+  md-input-id="peopleSearchInput"
+  ng-model-options="{debounce: 500}"
   md-min-length="1">
 
   <md-item-template>

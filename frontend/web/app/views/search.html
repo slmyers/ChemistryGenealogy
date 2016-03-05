@@ -8,16 +8,12 @@
     justify-content: space-around;
     align-items: stretch;
     border-radius: 25px;
-    border: solid 1px #00BCD4;
-    box-shadow: 3px 3px 5px 6px #ccc;
+    border: solid 1px #d3d3d3;
     /*background-color: dodgerblue;*/
     margin: 2% 2%;
     min-height: 80vh;
     overflow: hidden;
     position: relative;
-  }
-  #searchBar {
-    flex: 1;
   }
 
   #searchContainer > #searchResults {
@@ -49,9 +45,6 @@
 <md-content class="md-accent">
   <div id="searchContainer" >
     <div id="searchResults">
-      <div id="searchBar">
-        <chemauto-complete type="person"></chemauto-complete>
-      </div>
     </div>
     <div id="dataVis" ng-controller="visController">
     </div>
