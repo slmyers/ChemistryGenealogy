@@ -30,7 +30,7 @@ angular.module('chemGeno')
                     position: submitFileObject.currentPositionTitle,
                     institution: submitFileObject.currentInstitutionName,
                     degree: submitFileObject.degreeInformation,
-                    postdoc:submitFileObject.postDocInformaiton
+                    postdoc:submitFileObject.postDocInformation
                     }
             }).success(function(resp) {
                 d.resolve(resp);

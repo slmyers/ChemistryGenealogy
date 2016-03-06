@@ -480,5 +480,3 @@ angular.module('chemGeno')
 
 
         }]);
-
-

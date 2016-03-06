@@ -5,19 +5,28 @@ class Person < ActiveRecord::Base
 
   # assuming that all parameters are being sent and any sections not filled by the user
   # are converted to nil before getting sent to the backend
+  # consider putting this in a different method or model?
   def Person.info_handling(name, position, institution_name, postdoc_array, degree_array)
-    Person.new_person(name, position, institution_name)
-    
-    postdoc_array.each do |postdoc|
-      Mentorship.new_mentorship(name, postdoc[:pdSupervisor], postdoc[:pdInstitution],
-        postdoc[:pdStartYear], postdoc[:pdEndYear])
+    person = Person.new_person(name, position, institution_name)
+
+    # checks that postdoc_array is not null before adding new mentorships
+    unless postdoc_array.nil?
+      postdoc_array.each do |postdoc|
+        Mentorship.new_mentorship(name, postdoc[:pdSupervisor], postdoc[:pdInstitution],
+          postdoc[:pdStartYear], postdoc[:pdEndYear])
+      end
     end
 
-    degree_array.each do |degree|
-      Degree.new_degree(degree[:year], degree[:type], degree[:institution])
-      Supervision.new_supervision(degree[:year], degree[:type], degree[:institution], name, degree[:supervisor])
+    # checks that degree_array is not nil before adding new degrees and
+    # supervisions
+    unless degree_array.nil?
+      degree_array.each do |degree|
+        Degree.new_degree(degree[:year], degree[:type], degree[:institution])
+        Supervision.new_supervision(degree[:year], degree[:type], degree[:institution], name, degree[:supervisor])
+      end
     end
 
+    return person
   end
 
   # creates a new person with the submitted information

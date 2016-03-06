@@ -35,10 +35,7 @@ class Api::AggregatedController < ApiController
   end
 
   def create
-    render json: {degree: params[:degree]}
-    render json: {postdoc: params[:postdoc]}
-    @person = Person.info_handling(params[:name], params[:position], params[:institution],
-      params[:postdoc], params[:degree])
+    @person = Person.info_handling(params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
     if @person != nil && @person.save
       render json: {person: @person}
     else
@@ -47,7 +44,7 @@ class Api::AggregatedController < ApiController
     # # module for submit information
     # # so it will first create a person then add relations to it
     # Rails.logger.info(params)
-    # # check if all params to create person 
+    # # check if all params to create person
     # if params.has_key?(:name) && params.has_key?(:position) && params.has_key?(:institution)
     #   # check if the person is not on db
     #   unless Person.exists?(name: params[:name])
