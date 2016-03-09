@@ -16,7 +16,8 @@ class Api::AggregatedController < ApiController
     Rails.logger.info(params)
     # so first need to find a person and assign the person as a variable
     if Person.exists?(name: params[:name]) # check if the person is in db
-      @personInfo = Person.find_person_detail(:name)
+      @personInfo = FindDetail.person(:name)
+      render json: @personInfo
       # need to show the personInfo to the frontend
       # do you pass the object as a render json?
     else
