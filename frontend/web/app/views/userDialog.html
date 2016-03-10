@@ -55,8 +55,9 @@
   <div ng-show="registration">
     <form name="registerForm" ng-submit="submitRegistration(registerUser)">
       <md-input-container class="md-block" flex-gt-xs>
-        <label>e-mail</label>
-        <input type="email" ng-model="registerUser.email" required>
+        <label>e-mail </label>
+        <input placeholder="approval message will be sent here upon account creation"
+          type="email" ng-model="registerUser.email" required>
       </md-input-container>
 
 

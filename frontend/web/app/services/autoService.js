@@ -13,6 +13,7 @@ angular.module('chemGeno')
       d.resolve(result);
     }).error(function(error) {
       console.log(error);
+      d.reject(error);
     });
     return d.promise;
   }

@@ -16,7 +16,9 @@
   input-name="autocompleteField"
   md-input-id="peopleSearchInput"
   ng-model-options="{debounce: 500}"
-  md-min-length="1">
+  md-require-match="true"
+  md-min-length="1"
+  ng-keypress="($event.charCode==13)?searchOnEnter(item):return">
 
   <md-item-template>
     {{item.name}}
