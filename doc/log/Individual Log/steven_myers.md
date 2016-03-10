@@ -94,3 +94,13 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * connected frontend submit service to backend aggregated route 
 * made UML for front and backend 
 * made documentation section of wiki 
+
+---
+
+###Sprint 4
+
+####March 7, 2016 - March 13, 2016
+
+* implemented frontend autocomplete 
+* implemented frontend search 
+

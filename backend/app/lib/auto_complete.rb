@@ -4,11 +4,11 @@ class AutoComplete
     @name = "%#{name}%".downcase
     @response = Person.where("name LIKE ?", @name).includes(:institution)
     @institutions = Set.new
-    @response.each do |p|
-      unless p.institution.blank? then @institutions.add(p.institution) end
-    end
+    #@response.each do |p|
+    #  unless p.institution.blank? then @institutions.add(p.institution) end
+    #end
 
-    return {'people' => @response, 'institutions' => @institutions}
+    return @response
   end
 
   def self.find_institutions(institution)

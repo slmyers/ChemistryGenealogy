@@ -5,29 +5,18 @@ describe AutoComplete do
     expect(@auto).not_to eql(nil)
   end
 
-  it "any empty string will return all people and institutions linked to them" do
+  it "any empty string will return all people" do
     @res = AutoComplete.find_names('')
-    @people = @res["people"]
+    @count = @res.length
     @people_count = Person.count
-    expect(@people_count == @people.length).to be(true)
-
-    @institutions = @res["institutions"]
-    expect(@institutions.length > 0).to be(true)
-    @people.each do |p|
-      if p.institution_id != nil
-        expect(@institutions.find(p.institution_id)).not_to eql(nil)
-      end
-    end
+    expect(@people_count == @count).to be(true)
   end
 
-  it "no will return 1 result + 1 institutions" do
+  it "no will return 1 result" do
     @res = AutoComplete.find_names('no')
-    @people = @res["people"]
-    expect(@people.length == 1).to be(true)
+    @count = @res.length
+    @people = @res
+    expect(@count  == 1).to be(true)
     expect(@people.first.name == 'no relations').to be(true)
-    @institutions = @res["institutions"]
-    expect(@institutions.length == 1).to be(true)
-    expect(@institutions.first.name == 'university of alberta').to be(true)
-    expect(@institutions.find(@people.first.institution_id)).not_to eql(nil)
   end
 end
