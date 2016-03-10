@@ -1,4 +1,5 @@
 class Api::AggregatedController < ApiController
+
   include ActionController::Serialization
   # one question, do I want to check if the user is logged in before action?
   # maybe something like this?
