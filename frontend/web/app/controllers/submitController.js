@@ -411,11 +411,70 @@ angular.module('chemGeno')
 
 
             /**
+             * Warnings for the various input fields. Initially set to false.
+             * But if the value is null then it is set to true and pops up a warning message.
+             * @type {boolean}
+             */
+            $scope.firstNameWarning = false;
+            $scope.lastNameWarning = false;
+            $scope.currPositionTitleWarning = false;
+            $scope.currInstNameWarning = false;
+
+            $scope.warningsState = function(){
+              console.log("firstnamewarning: " + $scope.firstNameWarning + " , lastnamewarning: " + $scope.lastNameWarning +
+              "currpositiontitlewarning: " + $scope.currPositionTitleWarning + "currinstnamewarning : " + $scope.currInstNameWarning);
+            };
+
+
+
+            /**
              * Function evoked when the final submission button is hit, creates a new model object for the entire
              * submission page.
              */
             $scope.finalSubmitButtonFunction = function(){
                 console.log("finalSubmitButtonFunction was called");
+
+                //If the first name field does not have a value, spit out an error and return.
+                if($scope.firstName == null){
+                    console.log("Error: First Name was not put into the firstname field");
+
+                    $scope.firstNameWarning = true;
+                    return;
+                }
+                else{
+                    $scope.firstNameWarning = false; //If the field is not null set warning to false.
+                }
+
+                //If the last name field does not have a value, spit out an error and return.
+                if($scope.lastName == null){
+                    console.log("Error: Last Name was not entered in the field.");
+
+                    $scope.lastNameWarning = true;
+                    return;
+                }
+                else{
+                    $scope.lastNameWarning = false; //If the field is not null set warning to false.
+                }
+
+                //If the curr position field does not have a value, spit out an error and return.
+                if($scope.currentPositionTitle == null){
+                    console.log("Error: Current Position Title was not entered into the field.");
+                    $scope.currPositionTitleWarning = true;
+                    return;
+                }
+                else{
+                    $scope.currPositionTitleWarning = false; //If the field is not null set warning to false.
+                }
+
+                //If the current inst field does not have a value, spit out an error and return.
+                if($scope.currentInstitutionName == null){
+                    console.log("Error: Current Institution Name was not entered into the field.");
+                    $scope.currInstNameWarning = true;
+                    return;
+                }
+                else{
+                    $scope.currInstNameWarning = false; //If the field is not null set warning to false.
+                }
 
                 //Create the new object for the submission page.
                 var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
