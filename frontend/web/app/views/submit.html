@@ -60,8 +60,8 @@
                     <input required name="firstname" ng-model="firstName" />
 
                     <!-- If there is an error flag, display the text following -->
-                    <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                        <!--<div ng-message="required">First name is required.</div>-->
+                    <div ng-messages="userForm.name.$error" ng-if="$scope.firstNameWarning">
+                        <div>First name is required.</div>
                         <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
                     </div>
                 </md-input-container>
@@ -486,6 +486,12 @@
                         <!-- The ultimate submission button -->
                         <div align="center">
                         <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all data on this page to the Administrator</div>
+
+                            <div ng-if="firstNameWarning">FIRSTNAME NOT FILLED IN WITH A VALUE</div>
+                            <div ng-if="lastNameWarning">LASTNAME NOT FILLED IN WITH A VALUE </div>
+                            <div ng-if="currPositionTitleWarning">CURRENT POSITION NOT FILLED IN!</div>
+                            <div ng-if="currInstNameWarning"> CURRENT INSTITUTIOTION NOT FILLED IN!</div>
+
 
                             <md-button style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
                                 <md-tooltip md-visible="finalSubmissionButton.showTooltip" md-direction="{{demo.tipDirection}}">

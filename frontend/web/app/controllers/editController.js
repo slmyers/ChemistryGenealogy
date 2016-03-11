@@ -316,7 +316,14 @@ angular.module('chemGeno')
                     this.pdInstitution = pdInstitution
             }
 
+            /**
+             * Warnings made for the postdoc information empty fields warning to the users.
+             */
 
+            $scope.pdStartYearWarning = false;
+            $scope.pdEndYearWarning = false;
+            $scope.pdSupervisorWarning = false;
+            $scope.pdInstitutionWarning = false;
 
 
 
@@ -332,6 +339,38 @@ angular.module('chemGeno')
              * @param pdInstitution Institution of the postdoc appointment.
              */
             $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
+
+                if(pdStartYear == null){
+                    console.log("error: pdstartyear empty");
+                    $scope.pdStartYearWarning = true;
+                    return;
+                }else{
+                    $scope.pdStartYearWarning = false;
+                }
+
+                if(pdEndYear == null){
+                    console.log("error: pdendyear empty");
+                    $scope.pdEndYearWarning = true;
+                    return;
+                }else{
+                    $scope.pdEndYearWarning = false;
+                }
+
+                if(pdSupervisor == null){
+                    console.log("error: pdsupervisor empty");
+                    $scope.pdSupervisorWarning = true;
+                    return;
+                }else{
+                    $scope.pdSupervisorWarning = false;
+                }
+
+                if(pdInstitution == null){
+                    console.log("error: pdinstitution empty");
+                    $scope.pdInstitutionWarning = true;
+                    return;
+                }else{
+                    $scope.pdInstitutionWarning = false;
+                }
                 var newPostDocInstance = new PostDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution);
                 $scope.postDocInformation.push(newPostDocInstance);
                 console.log("AddPostDocInstance Called on" + $scope.postDocInformation);

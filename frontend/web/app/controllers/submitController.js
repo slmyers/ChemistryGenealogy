@@ -193,6 +193,16 @@ angular.module('chemGeno')
             ];
 
             //$scope.imagePath = "/static/img/new-zealand-679068_1280.jpg"
+
+            /**
+             * Warnings made for the postdoc information empty fields warning to the users.
+             */
+
+            $scope.pdStartYearWarning = false;
+            $scope.pdEndYearWarning = false;
+            $scope.pdSupervisorWarning = false;
+            $scope.pdInstitutionWarning = false;
+
             /**
              * Function evoked when the submit button is hit on the postdoc card on the submit page.
              * Creates a new postDocInstance (object with postdoc data) with the data in the card's fields.
@@ -204,15 +214,51 @@ angular.module('chemGeno')
              * @param pdInstitution Institution of the postdoc appointment.
              */
             $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
+                //Series of statements checking if the postdoc fields are empty or not.
+                if(pdStartYear == null){
+                    console.log("error: pdstartyear empty");
+                    $scope.pdStartYearWarning = true;
+                    return;
+                }else{
+                    $scope.pdStartYearWarning = false;
+                }
+
+                if(pdEndYear == null){
+                    console.log("error: pdendyear empty");
+                    $scope.pdEndYearWarning = true;
+                    return;
+                }else{
+                    $scope.pdEndYearWarning = false;
+                }
+
+                if(pdSupervisor == null){
+                    console.log("error: pdsupervisor empty");
+                    $scope.pdSupervisorWarning = true;
+                    return;
+                }else{
+                    $scope.pdSupervisorWarning = false;
+                }
+
+                if(pdInstitution == null){
+                    console.log("error: pdinstitution empty");
+                    $scope.pdInstitutionWarning = true;
+                    return;
+                }else{
+                    $scope.pdInstitutionWarning = false;
+                }
+
+                //If the fields aren't empty then actually go through the process of creating the object
+                //and putting it into the grand total postdocinstance list!
+
                 var newPostDocInstance = new PostDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution);
                 $scope.postDocInformation.push(newPostDocInstance);
                 console.log("AddPostDocInstance Called on" + $scope.postDocInformation);
 
-                //"Clear" all of the fields.
+                //"Clear" all of the fields. BUGGED, WHY WON'T THIS WORK? :(
                 pdEndYear = null;
-                pdStartYear= "";
-                pdSupervisor = "";
-                pdInstitution = "";
+                pdStartYear= null;
+                pdSupervisor = null;
+                pdInstitution = null;
             };
 
             $scope.editPostDoc = function(){
@@ -317,6 +363,17 @@ angular.module('chemGeno')
 
 
             /**
+             * Warnings for degree information fields being empty! :(
+             *
+             */
+            $scope.diYearWarning = false;
+            $scope.diSupervisorWarning = false;
+            $scope.diInstitutionWarning = false;
+            $scope.diTypeWarning = false;
+
+
+
+            /**
              *
              * @param diYear Year of the degree being awarded.
              * @param diSupervisor Supervisor of the degree.
@@ -324,9 +381,48 @@ angular.module('chemGeno')
              * @param diType Type of this degree.
              */
             $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution, diType) {
+
+                if(diYear == null){
+                    console.log("degree year is not filled out!");
+                    $scope.diYearWarning = true;
+                    return;
+                }
+                else{
+                    $scope.diYearWarning = false;
+                }
+
+
+                if(diSupervisor == null){
+                    console.log("degree info supervisor is not filled out!");
+                    $scope.diSupervisorWarning = true;
+                    return;
+                }else{
+                    $scope.diSupervisorWarning = false;
+                }
+
+                if(diInstitution == null){
+                    console.log("degree info instituttion is not filled out!");
+                    $scope.diInstitutionWarning = true;
+                    return;
+                }else{
+                    $scope.diInstitutionWarning = false;
+                }
+                if(diType == null){
+                    console.log("degree info type is not filled out!");
+                    $scope.diTypeWarning = true;
+                    return;
+                }else{
+                    $scope.diTypeWarning = false;
+                }
+
                 var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType);
                 $scope.degreeInformation.push(newDegreeInfoInstance);
                 console.log("AddPostDocInstance Called on" + $scope.degreeInfoInformation);
+
+                diInstitution = null;
+                diYear = null;
+                diType = null;
+                diSupervisor = null;
 
 
                 //Refresh the view of the scope.
