@@ -15,7 +15,10 @@
     "angular-material": "~1.0.4",
     "angular-ui-router": "~0.2.18",
     "a0-angular-storage": "~0.0.13",
-    "d3": "~3.5.15"
+    "d3": "~3.5.15",
+    "dagre": "^0.7.3",
+    "graphlib": "^1.0.5",
+    "lodash": "^3.10.0"
   },
   "resolutions": {
     "angular": "1.5.0"
