@@ -1,0 +1,95 @@
+<!--
+ * HTML for the Admin Panel Page.
+ *
+ * Status: VIEW.
+ * Associated files: submitController.js
+ *
+ * Description: The submission page is going to be the core of where the users will be able to supply information to
+ * begin a new page for a given particular user. This page is going to be essentially a massive collection of
+ * information that we will be inserting into the system.
+ *
+ * Things that we're collecting include basic information like:
+ * -first name
+ * -last name
+ * -title
+ * -degree type
+ * -degree information: {date obtained, primary supervisor, institution}
+ * -postdoc postings {dates, supervisor, institution}
+ * -
+ *
+ *
+-->
+<div ng-controller="adminPanelController" layout="column" ng-cloak>
+    <!-- This bit will cause the layout to follow a general padding style-->
+    <md-content layout-padding>
+        <!-- This form is called "userForm" -->
+        <form name="userForm">
+
+            <div id="primarySubmitScreenContainer">
+                <md-card flex-xs flex-gt-xs="50">
+
+
+                    <!-- //The card that will display all of the information -->
+                    <div ng-repeat="item in mockChangesObject">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Card with image</span>
+                                <span class="md-subhead">Small</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                                <div class="md-media-sm card-media"></div>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button>Action 1</md-button>
+                            <md-button>Action 2</md-button>
+                        </md-card-actions>
+                    </md-card>
+
+                        </div>
+
+
+
+
+
+
+                    le admin panel
+
+
+
+
+
+                </md-card>
+
+
+            </div>
+        </form>
+    </md-content>
+</div>
+
+
+<style>
+    #primarySubmitScreenContainer {
+        -webkit-flex-direction: row;
+        display: -webkit-flex;
+
+        display: flex;
+        flex-direction: row;
+
+
+        justify-content: space-around;
+        align-items: stretch;
+
+        /*border-radius: 25px;*/
+        /*border: solid 1px #00BCD4;*/
+
+        /*box-shadow: 3px 3px 5px 6px #ccc;*/
+
+        /*background-color: #006699;*/
+
+
+        margin: 0% 10%;
+
+        min-height: 80vh;
+    }</style>

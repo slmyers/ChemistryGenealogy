@@ -65,6 +65,14 @@ angular.module('chemGeno')
              */
             //$scope.realObjectFromBackend = obtainUserInformationFromBackEnd
 
+
+            /**
+             * Function called at the very start of this page's creation.
+             * Responsible for calling to the backend through the services to obtain the edit page object.
+             */
+            $scope.buildEditPage = function(){
+                var promise = editService.obtainUserInformationFromBackEnd(1);
+            };
             /**
              * Mock Object. This is what I will be expecting to recieve from the backend throughthe function
              * "obtainUserInformationFromBackEnd".
@@ -84,6 +92,7 @@ angular.module('chemGeno')
 
                 }]
             };
+
 
 
 
@@ -625,7 +634,7 @@ angular.module('chemGeno')
             $scope.finalSubmitButtonFunction = function(){
 
                 //If the first name field does not have a value, spit out an error and return.
-                if($scope.firstName == null){
+                if($scope.firstName == null ||$scope.firstName =="" ){
                     console.log("Error: First Name was not put into the firstname field");
 
                     $scope.firstNameWarning = true;
