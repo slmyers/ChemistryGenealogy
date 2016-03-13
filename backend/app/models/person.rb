@@ -55,6 +55,11 @@ class Person < ActiveRecord::Base
     return person
   end
 
+  # takes input name to find the person then return json object of person
+  def serialize_person(name)
+    # hmm... for now just set up the def then leave it and test later if we need it
+  end
+
   def as_json(options={})
     super(:except => [:created_at, :updated_at])
   end

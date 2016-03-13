@@ -22,6 +22,11 @@ class Mentorship < ActiveRecord::Base
     return mentorship
   end
 
+  def Serialize_for_name(person_id)
+    # grab person_id then get person_name from there
+    # need to implement function
+  end
+
   def as_json(options={})
     super(:except => [:created_at, :updated_at])
   end
