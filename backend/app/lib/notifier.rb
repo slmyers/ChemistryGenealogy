@@ -1,8 +1,9 @@
 require 'set'
 class Notifier
 
-  # TODO: I feel like this function should use Search.relations_by_id
-  # investigate when refactoring.
+  #this method will bundle all unapproved people (new people) together in a
+  #hash
+  #TODO: investigate refactoring and/or folding into app/lib/search.rb
   def self.person_notifications
     # person, their mentors and their supervisors
     @unapproved_people = Person.where({:approved => false})
@@ -20,7 +21,8 @@ class Notifier
                               .includes(person: :institution)
 
     # this is becoming a monster method, but if I pass a ActiveRelation then, it's includes
-    # not carried over, so I'm just going to run them in this method.
+    # not carried over, so I'm just going to run them in this method. That is passing
+    # an active relation
     @res_array = Array.new
     @unapproved_people.each do |p|
       @excluded_mentorship_ids = Array.new
@@ -91,39 +93,64 @@ class Notifier
           'supervisions' => @supervisions,
           'supervised' => @supervised,
           'mentored' => @mentored,
-          'institutions' => @institutions,
+          'institutions' => @institutions
         }
       @res_array.push(@aggregated_person)
-      puts @aggregated_person.as_json
+      self.test_includes(p)
+    end
+    #return @res_array
+  end
+
+  def self.test_includes(person)
+    person.mentorships.each do |m|
+      puts m.mentor
     end
   end
 
-  # find unapproved mentorships where the person has already been
-  # approved.
-  def self.add_hanging_mentorships(excluded_ids)
-
-  end
-
-
-  def self.add_institutions(people)
+  # find unapproved mentorships except those withc excluded_ids
+  # the excluded ids are the mentorships that are associated with
+  # unapproved people.
+  def self.mentorships(excluded_ids)
+    @unapproved_mentorships = Mentorship.where({:approved => false})
+                              .where.not(:id => excluded_ids)
+                              .includes(:institution)
+                              .includes(person: :institution)
+    @mentorships = Array.new
     @institutions = Set.new
-    people.each do |p|
-      @institutions.add(p.institution)
+    @people = Array.new
+    @unapproved_mentorships.each do |m|
+      @mentorships.push(m)
+      @people.push(m.person)
+      @institutions.add(m.person.institution)
+      @institutions.add(m.institution)
     end
-    return @institutions
+
+    return {'mentorships' => @mentorships, 'people' => @people, 'institutions' => @institutions}
   end
 
 
-  def self.add_mentors(people)
+  def self.supervisions(excluded_ids)
+    @unapproved_supervisions = Supervision.where({:approved => false})
+                              .where.not(:id => excluded_ids)
+                              .includes(degree: :institution)
+                              .includes(person: :institution)
 
+    @supervisions = Array.new
+    @degrees = Array.new
+    @people = Array.new
+    @institutions = Set.new
+
+    @unapproved_supervisions.each do |s|
+      @supervisions.push(s)
+      @people.push(s.person)
+      @degrees.push(s.degree)
+      @institutions.add(s.person.institution)
+      @institutions.add(s.degree.institution)
+    end
+
+    return {'supervisions' => @supervisions,
+            'degrees' => @degrees,
+            'people' => @people,
+            'institutions' => @institutions}
   end
-
-  def self.add_mentored(people)
-
-  end
-
-  def self.add_mentors(people)
-
-  end
-
 end

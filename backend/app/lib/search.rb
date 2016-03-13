@@ -67,6 +67,4 @@ class Search
               'institutions' => @institutions
             }
   end
-
-
 end
