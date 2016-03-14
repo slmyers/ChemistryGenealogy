@@ -66,4 +66,14 @@ angular.module('chemGeno')
                     templateUrl: '/app/views/adminPanel.html'
                 })
 
+                .state('main.adminPanelDetailed',{
+                    url: '/adminPanelDetailed',
+                    templateUrl: '/app/views/adminPanelDetailed.html'
+                })
+
+                .state('main.view',{
+                    url: '/view',
+                    templateUrl: '/app/views/view.html'
+                })
+
         });

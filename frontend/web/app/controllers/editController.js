@@ -59,6 +59,10 @@ angular.module('chemGeno')
             $scope.degreeInfoSelectedIndex = 1; //Index that the tabs start at.
             $scope.degreeInfoID = 2; //Only set to 3 here for the sample data. Set back to 1 for release.
 
+
+            //The data object obtained from the backend.
+            $scope.data = null;
+
             /**
              * This function will be how I retrieve the proper object from the backend, through the editService
              * file.
@@ -72,6 +76,12 @@ angular.module('chemGeno')
              */
             $scope.buildEditPage = function(){
                 var promise = editService.obtainUserInformationFromBackEnd(1);
+                promise.then(function(resp){
+                  $scope.data = resp;
+                }, function(error){
+                    console.log("ERROR GETTTING OBJECT!!!!!!");
+                });
+
             };
             /**
              * Mock Object. This is what I will be expecting to recieve from the backend throughthe function
@@ -154,6 +164,47 @@ angular.module('chemGeno')
             $scope.editMasterButton = function(){
                 console.log("editMasterButton function called");
 
+                //If the first name field does not have a value, spit out an error and return.
+                if($scope.firstName == null || $scope.firstName == undefined || $scope.firstName == ""){
+                    console.log("Error: First Name was not put into the firstname field");
+
+                    $scope.firstNameWarning = true;
+                    return;
+                }
+                else{
+                    $scope.firstNameWarning = false; //If the field is not null set warning to false.
+                }
+
+                //If the last name field does not have a value, spit out an error and return.
+                if($scope.lastName == null || $scope.lastName == undefined || $scope.lastName == ""){
+                    console.log("Error: Last Name was not entered in the field.");
+
+                    $scope.lastNameWarning = true;
+                    return;
+                }
+                else{
+                    $scope.lastNameWarning = false; //If the field is not null set warning to false.
+                }
+
+                //If the curr position field does not have a value, spit out an error and return.
+                if($scope.currentPositionTitle == null || $scope.currentPositionTitle == undefined || $scope.currentPositionTitle == ""){
+                    console.log("Error: Current Position Title was not entered into the field.");
+                    $scope.currPositionTitleWarning = true;
+                    return;
+                }
+                else{
+                    $scope.currPositionTitleWarning = false; //If the field is not null set warning to false.
+                }
+
+                //If the current inst field does not have a value, spit out an error and return.
+                if($scope.currentInstitutionName == null || $scope.currentInstitutionName == undefined || $scope.currentInstitutionName == ""){
+                    console.log("Error: Current Institution Name was not entered into the field.");
+                    $scope.currInstNameWarning = true;
+                    return;
+                }
+                else{
+                    $scope.currInstNameWarning = false; //If the field is not null set warning to false.
+                }
 
                 //Create the new object for the submission page.
                 var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
@@ -349,7 +400,8 @@ angular.module('chemGeno')
              */
             $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
 
-                if(pdStartYear == null){
+                //Series of statements checking if the postdoc fields are empty or not.
+                if(pdStartYear == null || pdStartYear == undefined || pdStartYear == ""){
                     console.log("error: pdstartyear empty");
                     $scope.pdStartYearWarning = true;
                     return;
@@ -357,7 +409,7 @@ angular.module('chemGeno')
                     $scope.pdStartYearWarning = false;
                 }
 
-                if(pdEndYear == null){
+                if(pdEndYear == null || pdEndYear == undefined || pdEndYear == ""){
                     console.log("error: pdendyear empty");
                     $scope.pdEndYearWarning = true;
                     return;
@@ -365,7 +417,7 @@ angular.module('chemGeno')
                     $scope.pdEndYearWarning = false;
                 }
 
-                if(pdSupervisor == null){
+                if(pdSupervisor == null || pdSupervisor == undefined || pdSupervisor == ""){
                     console.log("error: pdsupervisor empty");
                     $scope.pdSupervisorWarning = true;
                     return;
@@ -373,13 +425,18 @@ angular.module('chemGeno')
                     $scope.pdSupervisorWarning = false;
                 }
 
-                if(pdInstitution == null){
+                if(pdInstitution == undefined || pdInstitution == null || pdInstitution == ""){
                     console.log("error: pdinstitution empty");
                     $scope.pdInstitutionWarning = true;
+                    alert("String");
+                    console.log(pdInstitution);
                     return;
                 }else{
                     $scope.pdInstitutionWarning = false;
+                    alert("alert value: " + pdInstitution);
+                    console.log(pdInstitution);
                 }
+
                 var newPostDocInstance = new PostDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution);
                 $scope.postDocInformation.push(newPostDocInstance);
                 console.log("AddPostDocInstance Called on" + $scope.postDocInformation);
@@ -503,8 +560,7 @@ angular.module('chemGeno')
             $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution, diType) {
 
 
-
-                if(diYear == null){
+                if(diYear == null || diYear == undefined || diYear == ""){
                     console.log("degree year is not filled out!");
                     $scope.diYearWarning = true;
                     return;
@@ -514,7 +570,7 @@ angular.module('chemGeno')
                 }
 
 
-                if(diSupervisor == null){
+                if(diSupervisor == null || diSupervisor == undefined || diSupervisor == ""){
                     console.log("degree info supervisor is not filled out!");
                     $scope.diSupervisorWarning = true;
                     return;
@@ -522,14 +578,14 @@ angular.module('chemGeno')
                     $scope.diSupervisorWarning = false;
                 }
 
-                if(diInstitution == null){
+                if(diInstitution == null || diInstitution == undefined || diInstitution == ""){
                     console.log("degree info instituttion is not filled out!");
                     $scope.diInstitutionWarning = true;
                     return;
                 }else{
                     $scope.diInstitutionWarning = false;
                 }
-                if(diType == null){
+                if(diType == null || diType == undefined || diType == ""){
                     console.log("degree info type is not filled out!");
                     $scope.diTypeWarning = true;
                     return;
@@ -633,8 +689,9 @@ angular.module('chemGeno')
              */
             $scope.finalSubmitButtonFunction = function(){
 
+
                 //If the first name field does not have a value, spit out an error and return.
-                if($scope.firstName == null ||$scope.firstName =="" ){
+                if($scope.firstName == null || $scope.firstName == undefined || $scope.firstName == ""){
                     console.log("Error: First Name was not put into the firstname field");
 
                     $scope.firstNameWarning = true;
@@ -645,7 +702,7 @@ angular.module('chemGeno')
                 }
 
                 //If the last name field does not have a value, spit out an error and return.
-                if($scope.lastName == null){
+                if($scope.lastName == null || $scope.lastName == undefined || $scope.lastName == ""){
                     console.log("Error: Last Name was not entered in the field.");
 
                     $scope.lastNameWarning = true;
@@ -656,7 +713,7 @@ angular.module('chemGeno')
                 }
 
                 //If the curr position field does not have a value, spit out an error and return.
-                if($scope.currentPositionTitle == null){
+                if($scope.currentPositionTitle == null || $scope.currentPositionTitle == undefined || $scope.currentPositionTitle == ""){
                     console.log("Error: Current Position Title was not entered into the field.");
                     $scope.currPositionTitleWarning = true;
                     return;
@@ -666,7 +723,7 @@ angular.module('chemGeno')
                 }
 
                 //If the current inst field does not have a value, spit out an error and return.
-                if($scope.currentInstitutionName == null){
+                if($scope.currentInstitutionName == null || $scope.currentInstitutionName == undefined || $scope.currentInstitutionName == ""){
                     console.log("Error: Current Institution Name was not entered into the field.");
                     $scope.currInstNameWarning = true;
                     return;
@@ -677,6 +734,7 @@ angular.module('chemGeno')
 
 
 
+                console.log($scope.firstName);
                 console.log("finalSubmitButtonFunction was called");
 
                 //Create the new object for the submission page.
