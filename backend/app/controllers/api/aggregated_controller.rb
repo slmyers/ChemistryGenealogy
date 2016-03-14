@@ -6,9 +6,9 @@ class Api::AggregatedController < ApiController
   # before_action(:confirm_logged_in, {:except => [:action1, :action2]})
   respond_to :json
   def index
-    #render json: {degree: params[:degree], person_name: params[:name]}
-    @versions = PaperTrail::Version.order('created_at DESC')
-    render json: {versions: @versions}
+    render json: {degree: params[:degree], person_name: params[:name]}
+    #@versions = PaperTrail::Version.order('created_at DESC')
+    #render json: {versions: @versions}
     #@person = Person.all
     #render json: {person: @person}
     #render json: {warning: 'not implemented'}, status: 200
@@ -96,8 +96,6 @@ class Api::AggregatedController < ApiController
     render json: {warning: 'not implemented'}, status: 200
   end
 
-  def history
-    @versions = PaperTrail::Version.order('created_at DESC')
-  end
+
 
 end
