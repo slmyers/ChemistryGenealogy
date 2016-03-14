@@ -7,8 +7,7 @@ class Api::AggregatedController < ApiController
   respond_to :json
   def index
     render json: {degree: params[:degree], person_name: params[:name]}
-    #@versions = PaperTrail::Version.order('created_at DESC')
-    #render json: {versions: @versions}
+
     #@person = Person.all
     #render json: {person: @person}
     #render json: {warning: 'not implemented'}, status: 200
