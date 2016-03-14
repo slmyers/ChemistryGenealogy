@@ -24,7 +24,7 @@ class Mentorship < ActiveRecord::Base
 
   def Serialize_for_name(person_id)
     # grab person_id then get person_name from there
-    # need to implement function
+    # changed find detail so shouldnt need this i thnk
   end
 
   def as_json(options={})
