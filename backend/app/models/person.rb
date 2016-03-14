@@ -3,6 +3,9 @@ class Person < ActiveRecord::Base
   has_many :mentorships
   has_many :supervisions
 
+  #track changes
+  has_paper_trail
+
   # assuming that all parameters are being sent and any sections not filled by the user
   # are converted to nil before getting sent to the backend
   # consider putting this in a different method or model?
@@ -147,6 +150,11 @@ class Person < ActiveRecord::Base
                                 approved: false)
                     .find_or_create_by(name: name)
     return person
+  end
+
+  # takes input name to find the person then return json object of person
+  def serialize_person(name)
+    # hmm... for now just set up the def then leave it and test later if we need it
   end
 
   def as_json(options={})

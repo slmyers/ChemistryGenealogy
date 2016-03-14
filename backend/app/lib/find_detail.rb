@@ -24,6 +24,7 @@ class FindDetail
       postdoc_array = Array.new
       postdoc_list = Mentorship.where(:person_id => person_id)
       postdoc_list.each do |postdoc_single|
+        # wouldn't this line just grab person id instead of person name?
         postdoc_array.push(postdoc_single.as_json)
       end
 
@@ -52,6 +53,7 @@ class FindDetail
       end
 
       return {person: person_object.as_json,
+              institution: institution_name,
               postdoc: postdoc_array,
               degree: degree_array,
               degree_supervision: supervision_array}

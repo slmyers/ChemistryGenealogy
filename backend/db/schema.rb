@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224070033) do
+ActiveRecord::Schema.define(version: 20160310183317) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   end
 
   add_index "admins", ["approved"], name: "index_admins_on_approved"
+
+  create_table "audit_trails", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "degrees", force: :cascade do |t|
     t.integer  "year",           null: false
@@ -95,5 +100,16 @@ ActiveRecord::Schema.define(version: 20160224070033) do
   end
 
   add_index "users", ["approved"], name: "index_users_on_approved"
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end

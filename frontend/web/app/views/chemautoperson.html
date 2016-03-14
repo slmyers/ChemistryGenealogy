@@ -1,0 +1,26 @@
+<style>
+  #peopleSearchInput:focus  {
+    background-color: white;
+    border-radius: 5px;
+  }
+</style>
+
+<md-autocomplete id="peopleSearch"
+  md-no-cache="true"
+  md-selected-item="selectedItem"
+  md-search-text="searchText"
+  md-items="item in queryNameSearch(searchText)"
+  md-selected-item-change="selectedItemChange(item)"
+  md-item-text="item.name"
+  md-floating-label="Search People"
+  input-name="autocompleteField"
+  md-input-id="peopleSearchInput"
+  ng-model-options="{debounce: 500}"
+  md-require-match="true"
+  md-min-length="1"
+  ng-keypress="($event.charCode==13)?searchOnEnter(item):return">
+
+  <md-item-template>
+    {{item.name}}
+  </md-item-template>
+</md-autocomplete>
