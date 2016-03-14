@@ -16,19 +16,15 @@ class Supervision < ActiveRecord::Base
                                   person_name,
                                   supervisor_name)
 
-    degree_id = Degree.find_degree_id(degree_year, degree_type, institution_name)
-    person_id = Person.find_person_id(person_name)
-    supervisor_id = Person.find_mentor_supervisor_id(supervisor_name, institution_name)
+    degree_id = FindId.degree(degree_year, degree_type, institution_name)
+    person_id = FindId.person(person_name)
+    supervisor_id = FindId.mentor_supervisor(supervisor_name, institution_name)
 
-    unless Supervision.exists?(:degree_id => degree_id,
-                                :person_id => person_id,
-                                :supervisor_id => supervisor_id)
-      return Supervision.new(degree_id: degree_id,
-                            person_id: person_id,
-                            supervisor_id: supervisor_id,
-                            approved: false
-                            )
-    end
+    supervison = Supervision.create_with(approved: false)
+                            .find_or_create_by(degree_id: degree_id,
+                                                person_id: person_id,
+                                                supervisor_id: supervisor_id)
+    return supervison
   end
 
   def as_json(options={})

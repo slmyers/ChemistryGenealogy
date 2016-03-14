@@ -641,5 +641,3 @@ angular.module('chemGeno')
 
 
         }]);
-
-
