@@ -29,11 +29,11 @@
 
   #searchContainer > #dataVis {
     margin: 1vh 1vh;
-    background-color: black;
+    background-color: ghostwhite;
     border: solid;
     flex: 1 1 70%;
     order: 2;
-    overflow: scroll;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -131,6 +131,9 @@
       </md-content>
     </div>
     <div id="dataVis" ng-controller="visController">
+      <svg width=650 height=680>
+        <g transform="translate(20,20)"/>
+      </svg>
     </div>
   </div>
 </md-content>

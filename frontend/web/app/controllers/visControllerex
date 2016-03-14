@@ -170,4 +170,10 @@ zoom
   .scale(initialScale)
   .event(svg);
 svg.attr('height', g.graph().height * initialScale + 40);
+
+other: // Center the graph
+var xCenterOffset = (svg.attr('width') - layout.graph().width * initialScale) / 2;
+svgGroup.attr('transform', 'translate(' + xCenterOffset + ', 20)');
+svg.attr('height', layout.graph().height * initialScale + 40);
+
 }]);

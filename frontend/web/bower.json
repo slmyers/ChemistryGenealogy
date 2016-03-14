@@ -16,9 +16,10 @@
     "angular-ui-router": "~0.2.18",
     "a0-angular-storage": "~0.0.13",
     "d3": "~3.5.15",
-    "dagre": "^0.7.3",
-    "graphlib": "^1.0.5",
-    "lodash": "^3.10.0"
+    "dagre": "~0.7.3",
+    "dagre-d3": "0.4.17",
+    "graphlib": "~1.0.5",
+    "lodash": "~3.10.0"
   },
   "resolutions": {
     "angular": "1.5.0"

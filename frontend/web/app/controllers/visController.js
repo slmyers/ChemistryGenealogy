@@ -18,20 +18,37 @@ function($scope) {
 
   $scope.estimateDimensions();
 
- // Create a new directed graph
-  var g = new dagreD3.graphlib.Graph().setGraph({});
+  var height = 900;
+
+  // Preparation of DagreD3 data structures
+  var g = new dagreD3.graphlib.Graph().setGraph({
+      nodesep: 30,
+      ranksep: 150,
+      rankdir: "TB",
+      marginx: 20,
+      marginy: 20
+    });
 
   //two nodes, two paths NOTE THE INCLUDED 'weight' element for edges
-var nodes = [ "Todd L Lowary", "Ole Hindsgaul" ];
+var nodes = [ 'ToddLLowary', 'OleHindsgaul' ];
 // Automatically label each of the nodes
-nodes.forEach(function(name) { g.setNode(name, { label: name }); });
+nodes.forEach(function(name) {
+  namecode = name.split(' ').join('')
+  g.setNode(namecode, { label: name });
+});
 
-var edges = [{u:"Ole Hindsgaul",v:"Todd L. Lowary",value:{label:"O to T"}}];
+var edges = [{u:'OleHindsgaul',v:'ToddLLowary',value:{label:'O to T'}}];
 edges.forEach(function(edge) {
   g.setEdge(edge.u, edge.v, edge.value); });
 
-  // Create the renderer
   var render = new dagreD3.render();
+  // Set graph height and init zoom
+  var svg = d3.select("svg");
+  var container = svg.select("g");
+
+  render(container, g);
+  svg.attr("height", height);
+
 
 // Set up an SVG group so that we can translate the final graph.
 var svg = d3.select('svg'),
@@ -44,13 +61,16 @@ var zoom = d3.behavior.zoom().on("zoom", function() {
     });
 svg.call(zoom);
 
-
+dagre.layout(g);
 // Run the renderer. This is what draws the final graph.
-render(svgGroup, g);
+
+
 
 // Center the graph
-var xCenterOffset = (svg.attr('width') - layout.graph().width * initialScale) / 2;
-svgGroup.attr('transform', 'translate(' + xCenterOffset + ', 20)');
-svg.attr('height', layout.graph().height * initialScale + 40);
-
+var initialScale = 0.75;
+zoom
+  .translate([(svg.attr("width") - g.graph().width * initialScale) / 2, 20])
+  .scale(initialScale)
+  .event(svg);
+svg.attr('height', g.graph().height * initialScale + 40);
 }]);
