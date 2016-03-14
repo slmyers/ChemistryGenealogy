@@ -2,8 +2,8 @@
 angular.module('chemGeno')
 
     //Stating that this is a controller for this project.
-    .controller('viewController', ['$scope', '$state', 'editService',
-        function($scope, $state, editService) {
+    .controller('viewController', ['$scope', '$state', 'viewService', '$location',
+        function($scope, $state, viewService, $location) {
 
 
             /**
@@ -56,6 +56,7 @@ angular.module('chemGeno')
 
 
             $scope.goBackToMain = function(){
+                    $location.path('search'); // path not hash
 
             };
 

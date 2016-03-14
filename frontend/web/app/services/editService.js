@@ -66,7 +66,7 @@ angular.module('chemGeno')
                             "Authorization": token
                         },
                     method: 'PUT',
-                    url: 'http://localhost:3000/aggregated',
+                    url: 'http://localhost:3000/api/aggregated',
                     data: {
                         name: modifications.name,
                         position: modifications.currentPositionTitle,
@@ -76,6 +76,7 @@ angular.module('chemGeno')
                     }
                 }).success(function(resp) {
                     d.resolve(resp);
+                    console.log(resp);
                 }).error(function(resp) {
                     console.log(resp);
                     d.reject(resp.error);

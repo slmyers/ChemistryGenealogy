@@ -223,6 +223,15 @@ angular.module('chemGeno')
                 };
 
 
+                var differenceObject2 = {
+                    name: "fromage",
+                    currentPositionTitle :"cheese knight!",
+                    currentInstitutionName: "Onion Knights too",
+                    degreeInformation: "nulled",
+                    postDocInformation: "nulled"
+                };
+
+
                 $scope.submitPageObject = newSubmitObject;
 
                 //The goal of this following section is to analyze the contents of the newly created object
