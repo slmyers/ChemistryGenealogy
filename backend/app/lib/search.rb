@@ -19,6 +19,7 @@ class Search
     @persons = Set.new
     @institutions = Set.new
 
+    #this code could be cleaner still reference notifier.rb
     @search_target = Person.where('id' => person_id)
                      .where('approved' => true)
                      .includes(:institution).first
@@ -66,6 +67,4 @@ class Search
               'institutions' => @institutions
             }
   end
-
-
 end
