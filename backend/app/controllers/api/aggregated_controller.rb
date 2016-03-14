@@ -36,7 +36,7 @@ class Api::AggregatedController < ApiController
   end
 
   def create
-    @person = Person.info_handling(params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
+    @person = Person.submit_handling(params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
     if @person != nil && @person.save
       render json: {person: @person}
     else
@@ -68,17 +68,22 @@ class Api::AggregatedController < ApiController
     # this module will get called for edit information
     # right now I assume the parametere being sent to backend are same as for sucmit information
     Rails.logger.info(params)
-    # first check if the person exists
-    if Person.exists?(name: params[:name])
-      # then call check module in model to check what the user wants to change
-
-      @personInfo = Person.find_person_detail
-      if @personInfo.position != params[:postion]
-      @person = Person.check_criteria(params[:name], params[:position], params[:institution])
-      end
-
+    @person = Person.update_handling(params[:id], params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
+    if @person != nil && @person.save
+      render json: {person: @person}
     else
-      render json: {error: "The information you are looking for does not exists"}
+      render json: {warning: "didnt work"}
+    # first check if the person exists
+    # if Person.exists?(name: params[:name])
+    #   # then call check module in model to check what the user wants to change
+    #
+    #   @personInfo = Person.find_person_detail
+    #   if @personInfo.position != params[:postion]
+    #   @person = Person.check_criteria(params[:name], params[:position], params[:institution])
+    #   end
+    #
+    # else
+    #   render json: {error: "The information you are looking for does not exists"}
     end
 
   	#render json: {warning: 'not implemented'}, status: 200
