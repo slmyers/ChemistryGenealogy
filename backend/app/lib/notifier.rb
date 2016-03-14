@@ -1,5 +1,41 @@
 class Notifier
 
+
+  # finds all unapproved mentorships
+  def self.mentorship_notifications
+    @unapproved_mentorships = Mentorship.where({:approved => false})
+                              .includes(:institution)
+                              .includes(person: :institution)
+                              .includes(mentor: :institution)
+    @res_array = Array.new
+    @unapproved_mentorships.each do |m|
+      @mentorship = {
+        'mentorship' => {
+          'data' => m,
+          'institution' => m.institution
+        },
+        'mentored' => {
+          'person' => m.person,
+          'institution' => m.person.institution
+        },
+        'mentor' => {
+          'person' => m.mentor,
+          'institution' => m.mentor.institution
+        }
+      }
+      @res_array.push(@mentorship)
+    end
+    return @res_array
+  end
+
+  def self.supervision_notifications
+    @unapproved_supervisions = Supervision.where({:approved => false})
+                               .includes(degree: :institution)
+                               .includes(person: :institution)
+                               .includes(supervisor: :institution)
+
+    
+  end
   #this method will bundle all unapproved people (new people) together in a
   #hash
   #TODO: investigate refactoring and/or folding into app/lib/search.rb
