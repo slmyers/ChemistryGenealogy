@@ -45,6 +45,20 @@ angular.module('chemGeno')
             };
 
 
+            /**
+             * Function called when we want to change the current page to the edit page for the current
+             * batch of information.
+             */
+            $scope.invokeEditPage = function(){
+                console.log("Edit button pressed!");
+
+            };
+
+
+            $scope.goBackToMain = function(){
+
+            };
+
             $scope.showDegreeInfo = function(){
                 $scope.degreeInfoVisibility = true;
             };
