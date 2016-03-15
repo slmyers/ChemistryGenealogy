@@ -6,15 +6,13 @@ class Notifier
 
     @res_array = Array.new
     @unapproved_users.each do |u|
-      if u.admin.blank?
-        @user = {
-          'id' => u.id,
-          'first_name' => u.first_name,
-          'last_name' => u.last_name,
-          'email' => u.email
-        }
-        @res_array.push(@user)
-      end
+      @user = {
+        'id' => u.id,
+        'first_name' => u.first_name,
+        'last_name' => u.last_name,
+        'email' => u.email
+      }
+      @res_array.push(@user)
     end
     return @res_array
   end
@@ -30,6 +28,7 @@ class Notifier
         @admin = {
           'id' => a.id,
           'user' => {
+            'id' => a.user.id,
             'first_name' => a.user.first_name,
             'last_name' => a.user.last_name,
             'email' => a.user.email
@@ -41,7 +40,8 @@ class Notifier
     return @res_array
   end
 
-  # return supervision_notifications
+  # return supervision_notifications for approved people
+  # this reflects a relationship between existing people
   def self.supervision_notifications
     @unapproved_supervisions = Supervision.where({:approved => false})
                                .includes(degree: :institution)
@@ -50,22 +50,24 @@ class Notifier
 
     @res_array = Array.new
     @unapproved_supervisions.each do |s|
-      @supervision = {
-        'supervision' => {
-          'data' => s,
-          'degree' => s.degree,
-          'institution' => s.degree.institution
-        },
-        'supervised' => {
-          'person' => s.person,
-          'institution' => s.person.institution
-        },
-        'supervisor' => {
-          'person' => s.supervisor,
-          'institution' => s.supervisor.institution
+      if s.person.approved and s.supervisor.approved
+        @supervision = {
+          'supervision' => {
+            'data' => s,
+            'degree' => s.degree,
+            'institution' => s.degree.institution
+          },
+          'supervised' => {
+            'person' => s.person,
+            'institution' => s.person.institution
+          },
+          'supervisor' => {
+            'person' => s.supervisor,
+            'institution' => s.supervisor.institution
+          }
         }
-      }
-      @res_array.push(@supervision)
+        @res_array.push(@supervision)
+      end
     end
     return @res_array
   end
@@ -78,21 +80,23 @@ class Notifier
                               .includes(mentor: :institution)
     @res_array = Array.new
     @unapproved_mentorships.each do |m|
-      @mentorship = {
-        'mentorship' => {
-          'data' => m,
-          'institution' => m.institution
-        },
-        'mentored' => {
-          'person' => m.person,
-          'institution' => m.person.institution
-        },
-        'mentor' => {
-          'person' => m.mentor,
-          'institution' => m.mentor.institution
+      if m.person.approved and m.mentor.approved
+        @mentorship = {
+          'mentorship' => {
+            'data' => m,
+            'institution' => m.institution
+          },
+          'mentored' => {
+            'person' => m.person,
+            'institution' => m.person.institution
+          },
+          'mentor' => {
+            'person' => m.mentor,
+            'institution' => m.mentor.institution
+          }
         }
-      }
-      @res_array.push(@mentorship)
+        @res_array.push(@mentorship)
+      end
     end
     return @res_array
   end
@@ -124,9 +128,6 @@ class Notifier
                               .includes(:institution)
                               .includes(person: :institution)
 
-    # this is becoming a monster method, but if I pass a ActiveRelation then, it's includes
-    # not carried over, so I'm just going to run them in this method. That is passing
-    # an active relation
     @res_array = Array.new
     @unapproved_people.each do |p|
       @target = {'person' => p, 'person_institution' => p.institution}
@@ -164,9 +165,7 @@ class Notifier
     return @res_array
   end
 
-  # find unapproved mentorships except those withc excluded_ids
-  # the excluded ids are the mentorships that are associated with
-  # unapproved people.
+  # helper method used to build mentorships for unnapproved person
   def self.mentors(unapproved_mentorships)
     @mentorships = Array.new
     unapproved_mentorships.each do |m|
@@ -183,7 +182,7 @@ class Notifier
     return @mentorships
   end
 
-
+  # helper method used to build supervisions for unapproved person 
   def self.supervisors(unapproved_supervisions)
     @supervisions = Array.new
 

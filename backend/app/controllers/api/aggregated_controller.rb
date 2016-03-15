@@ -30,7 +30,7 @@ class Api::AggregatedController < ApiController
       unless Person.exists?(name: params[:@name])
 
         # check if the degree exists
-        
+
         if params.has_key(:@degree)
 
           if params.has_key?(:year) && params.has_key?(:type) && params.has_key?(:institution)
@@ -55,7 +55,7 @@ class Api::AggregatedController < ApiController
             # if params there then create if not new
             name_id = Person.find_person_id(params[:name])
 
-            # need to assign 
+            # need to assign
             supervisor_id = Person.find_mentor_supervisor_id(params[:pdSupervisor], params[:pdInstitution])
             instit_id = Institution.find_institution_id(params[:pdInstitution])
             # check if the mentorship already exists
@@ -79,12 +79,12 @@ class Api::AggregatedController < ApiController
             render json: @institution.as_json, status: :created
             return
           end
-        end 
+        end
 
         @person = Person.new_person(params[:@name], params[:@position], params[:@institution])
         if @person != nil && @person.save
           render json: @person.as_json, status: :created
-          return 
+          return
         end
 
       else
