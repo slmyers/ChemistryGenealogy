@@ -176,4 +176,11 @@ var xCenterOffset = (svg.attr('width') - layout.graph().width * initialScale) / 
 svgGroup.attr('transform', 'translate(' + xCenterOffset + ', 20)');
 svg.attr('height', layout.graph().height * initialScale + 40);
 
+old: // Set up zoom support
+var zoom = d3.behavior.zoom().on("zoom", function() {
+      svgGroup.attr("transform", "translate(" + d3.event.translate + ")" +
+                                  "scale(" + d3.event.scale + ")");
+    });
+svg.call(zoom);
+
 }]);
