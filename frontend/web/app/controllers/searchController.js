@@ -10,7 +10,7 @@ angular.module('chemGeno')
    // probably should've just put institutions with people
    $scope.$on('search:response', function(event,data) {
      $scope.clearResults();
-
+     console.log(data);
 
       var targetInstitution =
           $scope.findInstitution(data.target.institution_id, data.institutions);

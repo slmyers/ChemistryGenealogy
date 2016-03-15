@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :search, except: [:new, :edit, :create, :show, :update, :destroy], :defaults => { :format => :json }
+  resources :notification, except: [:new, :edit, :create, :show, :update, :destroy], :defaults => {:format => :json}
   resources :auto_complete, except: [:new, :edit, :create, :show, :update, :destroy]
   resources :admins, except: [:new, :edit]
   namespace :api do

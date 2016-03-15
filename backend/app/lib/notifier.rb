@@ -1,5 +1,52 @@
 class Notifier
 
+  def self.user_notifications
+    @unapproved_users = User.where({:approved => false})
+                        .includes(:admin )
+
+    @res_array = Array.new
+    @unapproved_users.each do |u|
+      if u.admin == nil
+        @user = {
+          'id' => u.id,
+          'first_name' => u.first_name,
+          'last_name' => u.last_name,
+          'email' => u.email
+        }
+        @res_array.push(@user)
+      end
+    end
+    return @res_array
+  end
+
+  # return supervision_notifications
+  def self.supervision_notifications
+    @unapproved_supervisions = Supervision.where({:approved => false})
+                               .includes(degree: :institution)
+                               .includes(person: :institution)
+                               .includes(supervisor: :institution)
+
+    @res_array = Array.new
+    @unapproved_supervisions.each do |s|
+      @supervision = {
+        'supervision' => {
+          'data' => s,
+          'degree' => s.degree,
+          'institution' => s.degree.institution
+        },
+        'supervised' => {
+          'person' => s.person,
+          'institution' => s.person.institution
+        },
+        'supervisor' => {
+          'person' => s.supervisor,
+          'institution' => s.supervisor.institution
+        }
+      }
+      @res_array.push(@supervision)
+    end
+    return @res_array
+  end
 
   # finds all unapproved mentorships
   def self.mentorship_notifications
@@ -34,7 +81,7 @@ class Notifier
                                .includes(person: :institution)
                                .includes(supervisor: :institution)
 
-    
+
   end
   #this method will bundle all unapproved people (new people) together in a
   #hash
