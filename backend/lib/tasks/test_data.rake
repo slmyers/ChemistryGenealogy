@@ -23,6 +23,16 @@ namespace :app do
     {
       password: 'testPassword', email: 'testEmail@email.ca', password_digest: 'pword',
       first_name: 'first', last_name: 'last', approved: true
+    },
+    {
+      password: 'pswrd', email: 'email@email.ca', password_digest: 'pword',
+      first_name: 'ff', last_name: 'll', approved: false
+    }
+  ])
+
+  Admin.create!([
+    {
+      user_id: 1, approved: false
     }
   ])
 

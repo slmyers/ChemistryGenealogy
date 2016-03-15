@@ -6,7 +6,7 @@ class Notifier
 
     @res_array = Array.new
     @unapproved_users.each do |u|
-      if u.admin == nil
+      if u.admin.blank?
         @user = {
           'id' => u.id,
           'first_name' => u.first_name,
@@ -14,6 +14,28 @@ class Notifier
           'email' => u.email
         }
         @res_array.push(@user)
+      end
+    end
+    return @res_array
+  end
+
+  def self.admin_notifications
+    @unapproved_admins = Admin.where({:approved => false})
+                         .includes(:user)
+
+    @res_array = Array.new
+
+    @unapproved_admins.each do |a|
+      unless a.user.blank?
+        @admin = {
+          'id' => a.id,
+          'user' => {
+            'first_name' => a.user.first_name,
+            'last_name' => a.user.last_name,
+            'email' => a.user.email
+          }
+        }
+        @res_array.push(@admin)
       end
     end
     return @res_array
