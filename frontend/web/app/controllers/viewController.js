@@ -77,7 +77,7 @@ angular.module('chemGeno')
 
 
 
-            console.log($scope.data);
+            console.log("scope data: " + $scope.data);
 
 
 
