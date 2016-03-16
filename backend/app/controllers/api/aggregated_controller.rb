@@ -17,9 +17,10 @@ class Api::AggregatedController < ApiController
     # in the edit page
     Rails.logger.info(params)
     # so first need to find a person and assign the person as a variable
-    if Person.exists?(name: params[:name]) # check if the person is in db
-      @personInfo = FindDetail.person(:name)
-      render json: @personInfo
+    name = params[:name].downcase
+    if Person.exists?(name: name) # check if the person is in db
+      person = Person.find_by(name: name)
+      render(:json => person.serializer_for_person(person), :status => 200)
       # need to show the personInfo to the frontend
       # do you pass the object as a render json?
     else
@@ -97,5 +98,11 @@ class Api::AggregatedController < ApiController
 
   def notify_admin
     render json: {warning: 'not implemented'}, status: 200
+  end
+
+  def test
+    person = Person.find(2)
+    render(:json => person.serializer_for_person(person), :status => 200)
+    #render(:json => Person.all, :status =>200)
   end
 end

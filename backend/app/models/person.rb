@@ -8,7 +8,7 @@ class Person < ActiveRecord::Base
 
   # assuming that all parameters are being sent and any sections not filled by the user
   # are converted to nil before getting sent to the backend
-  # consider putting this in a different method or model?
+  # **definitely going to put this method somewhere else**
   def Person.submit_handling(name, position, institution_name, postdoc_array, degree_array)
     person = Person.new_person(name, position, institution_name)
 
@@ -32,12 +32,13 @@ class Person < ActiveRecord::Base
     return person
   end
 
+  # *****STILL WORKING ON THIS*****
   # updates a person's information when sent into edit
   # assumes that all information is entered and no fields are nil
   # whichever fields are passed in as nil to this method are unchanged from before
   # in other words, anything in the object that's not nil has to be changed
   # uses the person's id to know which ones to check and change if needed
-  # definitely going to put this somewhere else
+  # **definitely going to put this somewhere else**
   def Person.update_handling(id, name, position, institution_name, postdoc_array, degree_array)
 
     # updates if the person's name is not nil
@@ -153,8 +154,36 @@ class Person < ActiveRecord::Base
   end
 
   # takes input name to find the person then return json object of person
-  def serialize_person(name)
-    # hmm... for now just set up the def then leave it and test later if we need it
+  def serializer_for_person(person_object)
+    unless person_object.institution_id.nil?
+      institution_object = Institution.find(person_object.institution_id)
+      institution_name = institution_object.name
+    end
+
+    result = Api::PersonSerializer.new(self).serializable_hash
+    result[:currentInstitutionName] = institution_name
+    result[:currentPositionTitle] = person_object.position
+
+    person_id = person_object.id
+
+    postdoc_array = Array.new
+    postdoc_list = Mentorship.where(:person_id => person_id)
+    postdoc_list.each do |single|
+      postdoc = single.serializer_for_mentorship(single)
+      postdoc_array.push(postdoc)
+    end
+    result[:postDocInformation] = postdoc_array
+
+    supervision_array = Array.new
+    supervision_list = Supervision.where(:person_id => person_id)
+
+    supervision_list.each do |single|
+      supervision = single.serializer_for_supervision(single)
+      supervision_array.push(supervision)
+    end
+    result[:degreeInformation] = supervision_array
+
+    return result.to_json
   end
 
   def as_json(options={})
