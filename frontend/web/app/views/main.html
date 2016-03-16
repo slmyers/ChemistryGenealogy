@@ -34,18 +34,18 @@
         <!-- State that the controller being used is the userController(.js) controller -->
 
           <!-- Have a button that upon click will begin the login function with the event -->
-          <md-button class="md-fab md-accent" aria-label="login" ng-click="login($event)" ng-show="showLogin()">
+          <md-button id="theMainLoginButton" class="md-fab md-accent" aria-label="login" ng-click="login($event)" ng-show="showLogin()">
               <md-icon md-svg-src="/static/img/person.svg"></md-icon>
           </md-button>
           <!-- if showUser() !== null then show enclosed html -->
-          <md-menu ng-show="showUser()" layout="row" layout-align="center center">
+          <md-menu id="loginSuccessButton" ng-show="showUser()" layout="row" layout-align="center center">
           <!-- button that opens logout menu; getUsername() is button content -->
             <md-button md-no-ink class="md-accent" ng-click="$mdOpenMenu($event)">
               {{getUsername()}}
             </md-button>
           <!--Over a width of 2 of toolbar have a logout button -->
             <md-menu-content width="2">
-              <md-button ng-click="logout()">
+              <md-button id="theMainLogoutButton" ng-click="logout()">
                 <span md-menu-align-target>Logout</span>
               </md-button>
             </md-menu-content>
