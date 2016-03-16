@@ -1,3 +1,7 @@
+/**
+ * This is a test.
+ */
+
 angular.module('chemGeno')
 .controller('personAutoController', ['$scope', 'autoService', 'searchService', '$state',
 function($scope, autoService, searchService, $state) {
