@@ -48,7 +48,7 @@ class Mentorship < ActiveRecord::Base
     # end
     # return postdoc_array
     # grab person_id then get person_name from there
-    # need to implement function
+    # changed find detail so shouldnt need this i thnk
   end
 
   def as_json(options={})

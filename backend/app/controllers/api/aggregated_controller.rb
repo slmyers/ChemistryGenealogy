@@ -7,6 +7,7 @@ class Api::AggregatedController < ApiController
   respond_to :json
   def index
     render json: {degree: params[:degree], person_name: params[:name]}
+
     #@person = Person.all
     #render json: {person: @person}
     #render json: {warning: 'not implemented'}, status: 200
@@ -100,9 +101,11 @@ class Api::AggregatedController < ApiController
     render json: {warning: 'not implemented'}, status: 200
   end
 
+  # Used to test returning serialized person object to the frontend
   def test
     person = Person.find(2)
     render(:json => person.serializer_for_person(person), :status => 200)
     #render(:json => Person.all, :status =>200)
   end
+
 end

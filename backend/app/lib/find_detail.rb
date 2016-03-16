@@ -56,6 +56,8 @@ class FindDetail
               institution: institution_name,
               postdoc: postdoc_array,
               degree: degree_array,
+              # we need to send the title
+              # degree supervision should be packed with degree
               degree_supervision: supervision_array}
     end
   end
