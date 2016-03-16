@@ -3,38 +3,39 @@ class Person < ActiveRecord::Base
   has_many :mentorships
   has_many :supervisions
 
-  # finds a person's id given the name
-  # creates a new person with nil position and institution if it doesn't exist
-  # therefore, when creating a new person that has mentorships and supervisons,
-  # probably create the person first before creating the mentorships and
-  # supervisons
-  def Person.find_person_id(name)
-    name = name.downcase
-    unless Person.exists?(:name => name)
-      Person.new_person(name, nil, nil)
-    end
-    person_id = Person.find_by(name: name).id
-    return person_id
-  end
+  #track changes
+  has_paper_trail
 
-  # finds a mentor or supervisor's id given the name
-  # creates a new person with the given institution and nil position if it
-  # doesn't exist
-  # not sure if this should actually be put in mentorhsip or supervision instead
-  def Person.find_mentor_supervisor_id(mentor_supervisor_name, institution_name)
-    mentor_supervisor_name = mentor_supervisor_name.downcase
-    institution_name = institution_name.downcase
-    unless Person.exists?(:name => mentor_supervisor_name)
-      Person.new_person(mentor_supervisor_name, nil, institution_name)
+  # assuming that all parameters are being sent and any sections not filled by the user
+  # are converted to nil before getting sent to the backend
+  # consider putting this in a different method or model?
+  def Person.info_handling(name, position, institution_name, postdoc_array, degree_array)
+    person = Person.new_person(name, position, institution_name)
+
+    # checks that postdoc_array is not null before adding new mentorships
+    unless postdoc_array.nil?
+      postdoc_array.each do |postdoc|
+        Mentorship.new_mentorship(name, postdoc[:pdSupervisor], postdoc[:pdInstitution],
+          postdoc[:pdStartYear], postdoc[:pdEndYear])
+      end
     end
-    mentor_supervisor_id = Person.find_by(name: mentor_supervisor_name).id
-    return mentor_supervisor_id
+
+    # checks that degree_array is not nil before adding new degrees and
+    # supervisions
+    unless degree_array.nil?
+      degree_array.each do |degree|
+        Degree.new_degree(degree[:year], degree[:type], degree[:institution])
+        Supervision.new_supervision(degree[:year], degree[:type], degree[:institution], name, degree[:supervisor])
+      end
+    end
+
+    return person
   end
 
   # creates a new person with the submitted information
-  # lower cases the position if it's not nil
-  # adds a new institution if it doesn't exist and it is not nil
-  # (not sure if this is supposed to be in controller?)
+  # lower cases the position entered
+  # adds a new institution if it doesn't exist
+  # only checks to see if the name exists in the database
   # we have not decided how to handle people with same names
   def Person.new_person(name, position, institution_name)
     name = name.downcase
@@ -44,18 +45,23 @@ class Person < ActiveRecord::Base
     end
 
     unless institution_name.nil?
-      institution_id = Institution.find_institution_id(institution_name)
-    else
-      institution_id = institution_name
+      institution_id = FindId.institution(institution_name)
     end
 
-    return Person.new(name: name,
-                      position: position,
-                      institution_id: institution_id,
-                      approved: false)
+    person = Person.create_with(position: position,
+                                institution_id: institution_id,
+                                approved: false)
+                    .find_or_create_by(name: name)
+    return person
+  end
+
+  # takes input name to find the person then return json object of person
+  def serialize_person(name)
+    # hmm... for now just set up the def then leave it and test later if we need it
   end
 
   def as_json(options={})
-    super(:except => [:created_at, :updated_at, :approved])
+    super(:except => [:created_at, :updated_at])
   end
+
 end

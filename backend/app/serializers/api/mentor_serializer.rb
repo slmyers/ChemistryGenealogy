@@ -1,3 +1,3 @@
-class Api::MentorSerializer < ActiveModel::Serializer
-  attributes :id, :name, :approved
+class Api::MentorshipSerializer < ActiveModel::Serializer
+  attributes :id, :approved
 end

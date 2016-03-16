@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :mentorships
     resources :people
     resources :aggregated
+    resources :audit_trail
   end
   resources :user
 

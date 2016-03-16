@@ -67,4 +67,133 @@ class Search
               'institutions' => @institutions
             }
   end
+
+  def self.person(id)
+    unless Person.exists?(id)
+      return nil
+    end
+
+    @person = Person.includes(:institution)
+              .includes( {mentorships: [:institution, {mentor: [:institution]}] })
+              .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
+              .where(:id => id).first
+
+    @mentored = Mentorship.where(:mentor_id => id)
+                .includes(:institution)
+                .includes(person: :institution)
+
+    @supervised = Supervision.where(:supervisor_id => id)
+                  .includes(degree: :institution)
+                  .includes(person: :institution)
+
+    @mentorships_array = Array.new
+    @person.mentorships.each do |m|
+      @mentorship = {
+        'id' => m.id,
+        'start' => m.start,
+        'end' => m.end,
+        'institution' => {
+          'id' => m.institution.id,
+          'name' => m.institution.name
+        },
+        'mentor' => {
+          'id' => m.mentor.id,
+          'name' => m.mentor.name,
+          'position' => m.mentor.position,
+          'institution' => m.mentor.institution
+        }
+      }
+      @mentorships_array.push(@mentorship)
+    end
+
+    @supervision_array = Array.new
+    @person.supervisions.each do |s|
+      @supervision = {
+        'id' => s.id,
+        'degree' => {
+          'id' => s.degree.id,
+          'type' => s.degree.degree_type,
+          'institution' => {
+            'id' => s.degree.institution.id,
+            'name' => s.degree.institution.name
+          }
+        },
+        'supervisor' => {
+          'id' => s.supervisor.id,
+          'name' => s.supervisor.name,
+          'position' => s.supervisor.position,
+          'institution' => {
+            'id' => s.supervisor.institution.id,
+            'name' => s.supervisor.institution.name
+          }
+        }
+      }
+      @supervision_array.push(@supervision)
+    end
+
+    @mentored_array = Array.new
+    @mentored.each do |m|
+      @mentored_obj = {
+        'id' => m.id,
+        'start' => m.start,
+        'end' => m.end,
+        'institution' => {
+          'id' => m.institution.id,
+          'name' => m.institution.name
+        },
+        'person' => {
+          'id' => m.person.id,
+          'name' => m.person.name,
+          'position' => m.person.position,
+          'institution' => {
+            'id' => m.person.institution.id,
+            'name' => m.person.institution.name
+          }
+        }
+      }
+      @mentored_array.push(@mentored_obj)
+    end
+
+    @supervised_array = Array.new
+    @supervised.each do |s|
+      @supervised_obj = {
+        'id' => s.id,
+        'degree' => {
+          'id' => s.degree.id,
+          'type' => s.degree.degree_type,
+          'institution' => {
+            'id' => s.degree.institution.id,
+            'name' => s.degree.institution.name
+          }
+        },
+        'person' => {
+          'id' => s.person.id,
+          'name' => s.person.name,
+          'position' => s.person.position,
+          'institution' => {
+            'id' => s.person.institution.id,
+            'name' => s.person.institution.name
+          }
+        }
+      }
+      @supervised_array.push(@supervised_obj)
+    end
+
+    @data = {
+      'person' => {
+        'name' => @person.name,
+        'position' => @person.position,
+        'id' => @person.id,
+        'institution' => {
+          'id' => @person.institution.id,
+          'name' => @person.institution.name
+        }
+      },
+      'mentors' => @mentorships_array,
+      'mentored' => @mentored_array,
+      'supervisors' => @supervision_array,
+      'supervised' => @supervised_array
+    }
+    return @data.as_json
+  end
 end
