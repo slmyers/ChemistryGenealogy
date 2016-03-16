@@ -14,20 +14,13 @@ class Api::AggregatedController < ApiController
   end
 
   def show
-    # here we want to find a person then we want to show the criteria of that person info
-    # in the edit page
-    Rails.logger.info(params)
-    # so first need to find a person and assign the person as a variable
-    if Person.exists?(name: params[:name]) # check if the person is in db
-      @personInfo = FindDetail.person(:name)
-      render json: @personInfo
-      # need to show the personInfo to the frontend
-      # do you pass the object as a render json?
-    else
-      render json: {error: 'the person you are looking for is not in our database, create the person in the submit first'}
+    if params.has_key?(:id)
+      @person = Search.person(params[:id])
+      render :json => @person.to_json
+    elsif
+      render json: {warning: 'expected id param'}, status: 200
     end
 
-    #render json: {warning: 'not implemented'}, status: 200
   end
 
   def new

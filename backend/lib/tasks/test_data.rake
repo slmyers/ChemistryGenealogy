@@ -23,6 +23,23 @@ namespace :app do
     {
       password: 'testPassword', email: 'testEmail@email.ca', password_digest: 'pword',
       first_name: 'first', last_name: 'last', approved: true
+    },
+    {
+      password: 'pswrd', email: 'email@email.ca', password_digest: 'pword',
+      first_name: 'ff', last_name: 'll', approved: false
+    },
+    {
+      password: 'pxx', email: 'e@ec.ca',  password_digest: 'pword',
+      first_name: 'ffaa', last_name: 'llee', approved: false
+    }
+  ])
+
+  Admin.create!([
+    {
+      user_id: 1, approved: false
+    },
+    {
+      user_id: 3, approved: false
     }
   ])
 
@@ -32,9 +49,10 @@ namespace :app do
     {name: 'carlsberg laboratory', approved: true},
     {name: 'university of arkansas', approved: true},
     {name: 'johns hopkins university', approved: true},
-    {name: 'university of california, berkeley', approved: true},
+    {name: 'university of california, berkeley', approved: true}, #id = 5
     {name: 'nottingham university', approved: true},
-    {name: 'national research council of canada', approved: true}
+    {name: 'national research council of canada', approved: true},
+    {name: 'unapproved institution', approved: false} #id = 8
   ])
 
   Person.create!([
@@ -58,7 +76,12 @@ namespace :app do
     {name: '2 supervised', position: 'professor', institution_id: 6, approved: true},
     {name: '2 mentored', position: 'professor', institution_id: 6, approved: true},
     {name: 'mentored 1', position: 'professor', institution_id: 6, approved: true},
-    {name: 'mentored 2', position: 'professor', institution_id: 6, approved: true} #id = 20
+    {name: 'mentored 2', position: 'professor', institution_id: 6, approved: true}, #id = 20
+    {name: 'supervises unapproved', position: 'professor', institution_id:6, approved: true},
+    {name: 'mentors unapproved', position: 'professor', institution_id: 6, approved: true},
+    {name: 'unapproved', position: 'professor', institution_id: 8, approved: false},
+    {name: 'supervised by unapproved', position:'professor', institution_id: 5, approved: true},
+    {name: 'mentored by unapproved', position: 'professor', institution_id: 4, approved: true}
   ])
 
   Degree.create!([
@@ -68,7 +91,10 @@ namespace :app do
     {year: 1993, institution_id: 2, degree_type: 'phd', approved: true},
     {year: 1993, institution_id: 2, degree_type: 'phd', approved: true},
     {year: 1993, institution_id: 2, degree_type: 'phd', approved: true},
-    {year: 1993, institution_id: 2, degree_type: 'phd', approved: true}
+    {year: 1993, institution_id: 2, degree_type: 'phd', approved: true},
+    {year: 1996, institution_id: 8, degree_type: 'masters', approved: false}, #id=8
+    {year: 2000, institution_id: 8, degree_type: 'phd', approved: false},
+    {year: 2005, institution_id: 4, degree_type: 'phd', approved: false}
   ])
 
   Supervision.create!([
@@ -78,7 +104,10 @@ namespace :app do
     {approved: true, degree_id: 4, person_id: 14, supervisor_id: 13},
     {approved: true, degree_id: 5, person_id: 14, supervisor_id: 12},
     {approved: true, degree_id: 6, person_id: 15, supervisor_id: 17},
-    {approved: true, degree_id: 7, person_id: 16, supervisor_id: 17}
+    {approved: true, degree_id: 7, person_id: 16, supervisor_id: 17},
+    {approved: false, degree_id: 8, person_id: 23, supervisor_id: 21},
+    {approved: false, degree_id: 9, person_id: 23, supervisor_id: 1},
+    {approved: false, degree_id: 10, person_id: 24, supervisor_id: 23 }
   ])
 
   Mentorship.create!([
@@ -87,7 +116,9 @@ namespace :app do
     {person_id: 11, mentor_id: 9, start: 1996, end: 1996, institution_id: 2, approved: true},
     {person_id: 11, mentor_id: 10, start: 1996, end: 1996, institution_id: 2, approved: true},
     {person_id: 19, mentor_id: 18, start: 1996, end: 1996, institution_id: 2, approved: true},
-    {person_id: 20, mentor_id: 18, start: 1996, end: 1996, institution_id: 2, approved: true}
+    {person_id: 20, mentor_id: 18, start: 1996, end: 1996, institution_id: 2, approved: true},
+    {person_id: 23, mentor_id: 22, start: 1996, end: 1996, institution_id: 2, approved: false},
+    {person_id: 23, mentor_id: 2, start: 1999, end: 2000, institution_id: 3, approved: false}
   ])
   end
 end
