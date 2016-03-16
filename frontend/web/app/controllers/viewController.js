@@ -55,7 +55,7 @@ angular.module('chemGeno')
                 var promise = viewService.obtainInformationFromBackEnd( {id: $stateParams.id});
                 promise.then(function(resp){
                     $scope.data = resp.data;
-                    console.log('$scope.data');
+                    console.log('!!!!!!!!LOOK AT THE NEXT LINE COLE THIS IS $SCOPE.DATA !!!!!!!!!!!!');
                     console.log($scope.data);
                 }, function(error){
                     console.log("ERROR GETTTING OBJECT!!!!!!");
