@@ -43,6 +43,8 @@ class Api::SupervisionsController < ApiController
         # hmm then I can't add to mentor table, I gotta add to people table
         # seems like I could instead just call method from person model or people controller
     #render json: {warning: 'not implemented'}, status: 200
+    # i don't understand how many times you guys can not close your if statments -- steve
+    end
   end
 
   def update
