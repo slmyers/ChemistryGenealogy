@@ -59,26 +59,19 @@ angular.module('chemGeno')
                     console.log(resp);
                     console.log(resp);
                     $scope.data = resp.data;
+                    console.log('!!!!!!!!LOOK AT THE NEXT LINE COLE THIS IS $SCOPE.DATA !!!!!!!!!!!!');
+                    console.log($scope.data);
                 }, function(error){
                     console.log("ERROR GETTTING OBJECT!!!!!!");
                 });
 
                 $scope.mockObjectRecieved = $scope.data;
-
-                console.log($scope.data);
-                console.log($scope.data);
-                console.log($scope.data);
-                console.log($scope.data);
-
-
             };
-
             $scope.unlockObject();
 
 
 
             console.log("scope data: " + $scope.data);
-
 
 
 

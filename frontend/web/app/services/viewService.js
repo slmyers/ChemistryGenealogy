@@ -11,7 +11,6 @@ angular.module('chemGeno')
     .service('viewService', function($q, $http, $state, loginService) {
 
         var obtainInformationFromBackEnd = function(idObj) {
-            console.log(idObj.id.toString())
             var d = $q.defer();
             return $http({
                 header: 'Content-Type: application/json',
