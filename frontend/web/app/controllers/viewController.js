@@ -55,22 +55,15 @@ angular.module('chemGeno')
                 var promise = viewService.obtainInformationFromBackEnd( {id: $stateParams.id});
                 promise.then(function(resp){
                     $scope.data = resp.data;
+                    console.log('$scope.data');
+                    console.log($scope.data);
                 }, function(error){
                     console.log("ERROR GETTTING OBJECT!!!!!!");
                 });
 
                 $scope.mockObjectRecieved = $scope.data;
-
-                console.log($scope.data);
-                console.log($scope.data);
-                console.log($scope.data);
-                console.log($scope.data);
-
-
             };
-
             $scope.unlockObject();
-
 
 
 
