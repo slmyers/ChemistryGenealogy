@@ -27,6 +27,24 @@ class Supervision < ActiveRecord::Base
     return supervison
   end
 
+  # Returns serialized supervision with degree information
+  def serializer_for_supervision(supervision)
+    result = Api::SupervisionSerializer.new(self).serializable_hash
+
+    degree = Degree.find_by(id: degree_id)
+    result[:year] = degree.year
+    result[:supervisor] = Person.find_by(:id => supervision.supervisor_id).name
+    result[:institution] = Institution.find_by(id: degree.institution_id).name
+    result[:type] = degree.degree_type
+
+    result[:degree_id] = degree.id
+    result[:degree_approved] = degree.approved
+    result = result.except(:id, :approved)
+    result[:supervision_id] = supervision.id
+    result[:supervision_approved] = supervision.approved
+    return result
+  end
+
   def as_json(options={})
     super(:except => [:created_at, :updated_at])
   end

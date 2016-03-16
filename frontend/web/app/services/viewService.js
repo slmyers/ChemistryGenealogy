@@ -8,7 +8,7 @@
 
 
 angular.module('chemGeno')
-    .service('viewService', function($q, $http, $state, loginService) {
+.service('viewService', function($q, $http, $state, loginService) {
 
         var obtainInformationFromBackEnd = function(idObj) {
             var d = $q.defer();
