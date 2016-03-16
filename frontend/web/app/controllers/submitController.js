@@ -432,7 +432,7 @@ angular.module('chemGeno')
 
 
                 //Refresh the view of the scope.
-                $scope.$apply();
+                //$scope.$apply();
             };
 
             /**

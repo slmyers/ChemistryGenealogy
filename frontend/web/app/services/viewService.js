@@ -15,8 +15,8 @@ angular.module('chemGeno')
             return $http({
                 header: 'Content-Type: application/json',
                 method: 'GET',
-                url: 'http://localhost:3000/aggregated',
-                data: id //Sending this id as a json with the ID in it.
+                url: 'http://localhost:3000/api/aggregated/:id',
+                params: {id: $stateParams.id}
             }).success(function (resp) {
                 d.resolve(resp);
             }).error(function (resp) {

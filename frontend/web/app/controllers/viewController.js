@@ -2,8 +2,13 @@
 angular.module('chemGeno')
 
     //Stating that this is a controller for this project.
-    .controller('viewController', ['$scope', '$state', 'viewService', '$location',
-        function($scope, $state, viewService, $location) {
+    .controller('viewController', ['$scope', '$state', 'viewService', '$location', '$stateParams',
+        function($scope, $state, viewService, $location, $stateParams) {
+
+
+            //Called immediately.
+            alert("whatevr");
+
 
 
             /**
@@ -39,10 +44,38 @@ angular.module('chemGeno')
             $scope.degreeInformation = $scope.mockObjectRecieved.degreeInformation;
             $scope.postDocInformation = $scope.mockObjectRecieved.postDocInformation;
 
+
+
+
+            /**
+             * Technically done at the very start.
+             */
             $scope.unlockObject = function(){
+                console.log("unlockObject function called");
+                var promise = viewService.obtainInformationFromBackEnd( {id: $stateParams.id});
+                promise.then(function(resp){
+                    $scope.data = resp;
+                }, function(error){
+                    console.log("ERROR GETTTING OBJECT!!!!!!");
+                });
+
+                $scope.mockObjectRecieved = $scope.data;
+
+                console.log($scope.data);
+                console.log($scope.data);
+                console.log($scope.data);
+                console.log($scope.data);
 
 
             };
+
+            $scope.unlockObject();
+
+
+
+
+
+
 
 
             /**
@@ -51,6 +84,8 @@ angular.module('chemGeno')
              */
             $scope.invokeEditPage = function(){
                 console.log("Edit button pressed!");
+                alert($stateParams.id);
+                console.log($stateParams.id);
 
             };
 

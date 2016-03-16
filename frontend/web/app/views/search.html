@@ -58,12 +58,15 @@
             <md-divider ></md-divider>
           </div>
           <md-list-item class="md-3-line" ng-repeat="person in target">
-            <div class="md-list-item-text" layout="column">
+            <a ng-click="goToView(person)">
+              <div class="md-list-item-text" layout="column">
               <h3>{{person.name}}</h3>
               <h4>{{person.institution}}</h4>
               <p>{{person.position}}
+
               <md-divider ></md-divider>
             </div>
+            </a>
           </md-list-item>
 
           <div ng-if="mentors.length >0">

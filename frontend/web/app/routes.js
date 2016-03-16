@@ -72,8 +72,11 @@ angular.module('chemGeno')
                 })
 
                 .state('main.view',{
-                    url: '/view',
+                    url: '/view/:id',
                     templateUrl: '/app/views/view.html'
                 })
+
+
+
 
         });
