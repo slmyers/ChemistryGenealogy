@@ -104,3 +104,6 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * implemented frontend autocomplete 
 * implemented frontend search 
 
+####March 14, 2016 - March 21, 2016
+
+* implemented backend detail information
