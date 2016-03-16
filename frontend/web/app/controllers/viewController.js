@@ -54,7 +54,7 @@ angular.module('chemGeno')
                 console.log("unlockObject function called");
                 var promise = viewService.obtainInformationFromBackEnd( {id: $stateParams.id});
                 promise.then(function(resp){
-                    $scope.data = resp;
+                    $scope.data = resp.data;
                 }, function(error){
                     console.log("ERROR GETTTING OBJECT!!!!!!");
                 });
