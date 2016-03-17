@@ -5,6 +5,20 @@ angular.module('chemGeno')
         function($scope, auditTrailService, $state) {
 
 
+
+
+            $scope.unlockObject = function(){
+                var promise = auditTrailService.obtainInformationFromBackEnd();
+                promise.then(function(resp){
+                    $scope.data = resp.data;
+                }, function(error){
+                    console.log("unable to retrive information about person: ");
+                });
+            };
+            $scope.unlockObject();
+
+
+
             //Object I can expect from the backend.
             $scope.mockObject ={
                 "edits":
@@ -59,6 +73,13 @@ angular.module('chemGeno')
 
 
 
+
+            $scope.goBackToMain = function () {
+                if ($state.$current.name !== 'main.search') {
+                    $state.go('main.search');
+                }
+
+            };
 
 
         }]);
