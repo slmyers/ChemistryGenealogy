@@ -88,6 +88,7 @@ angular.module('chemGeno')
                 console.log($scope.superDocInformation);
 
                 $scope.superDegInformation = $scope.data.supervised;
+                console.log($scope.superDegInformation);
 
             };
 

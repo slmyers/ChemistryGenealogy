@@ -235,11 +235,11 @@
         </md-button>
 
         <!-- Clear Fields Button -->
-        <md-button style="cursor:pointer" ng-click="clearPostDocFields()">Clear Fields
-            <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
-                Click here to clear the fields of this current PostDoc Instance.
-            </md-tooltip>
-        </md-button>
+        <!--<md-button style="cursor:pointer" ng-click="clearPostDocFields()">Clear Fields-->
+            <!--<md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">-->
+                <!--Click here to clear the fields of this current PostDoc Instance.-->
+            <!--</md-tooltip>-->
+        <!--</md-button>-->
     </md-card-actions>
 </md-card>
 
@@ -285,11 +285,11 @@
             </md-button>
 
             <!-- Clear Fields Button -->
-            <md-button ng-click="clearPostDocFields()">Edit
-                <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
-                    Click here to edit the fields of this current PostDoc Instance.
-                </md-tooltip>
-            </md-button>
+            <!--<md-button ng-click="clearPostDocFields()">Edit-->
+                <!--<md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">-->
+                    <!--Click here to edit the fields of this current PostDoc Instance.-->
+                <!--</md-tooltip>-->
+            <!--</md-button>-->
         </md-card-actions>
 
 
@@ -404,11 +404,11 @@
             </md-button>
 
             <!-- Clear Fields Button -->
-            <md-button ng-click="clearDegreeInfoFields()">Clear Fields
-                <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
-                    Click here to clear the fields of this current Degree.
-                </md-tooltip>
-            </md-button>
+            <!--<md-button ng-click="clearDegreeInfoFields()">Clear Fields-->
+                <!--<md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">-->
+                    <!--Click here to clear the fields of this current Degree.-->
+                <!--</md-tooltip>-->
+            <!--</md-button>-->
         </md-card-actions>
     </md-card>
 
@@ -451,11 +451,11 @@ entered into the system -->
                 </md-button>
 
                 <!-- Clear Fields Button -->
-                <md-button ng-click="clearPostDocFields()">Edit
-                    <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
-                        Click here to edit the fields of this current PostDoc Instance.
-                    </md-tooltip>
-                </md-button>
+                <!--<md-button ng-click="clearPostDocFields()">Edit-->
+                    <!--<md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">-->
+                        <!--Click here to edit the fields of this current PostDoc Instance.-->
+                    <!--</md-tooltip>-->
+                <!--</md-button>-->
             </md-card-actions>
 
 
@@ -575,10 +575,10 @@ entered into the system -->
 
                 <div layout="column" align="center">
 
-                    <span>Supervised Person's Name: {{item.superdocNameOfPerson}}</span>
-                    <span>Start Year: {{item.superDocStartYear}}</span>
-                    <span>End Year: {{item.superDocEndYear}}</span>
-                    <span> Institution: {{item.superDocInstitution}}</span>
+                    <span>Supervised Person's Name: {{item.mentored.person.name}}</span>
+                    <span>Start Year: {{item.start}}</span>
+                    <span>End Year: {{item.end}}</span>
+                    <span> Institution: {{item.institution.name}}</span>
 
                 </div>
 
@@ -597,11 +597,11 @@ entered into the system -->
                     </md-button>
 
                     <!-- Clear Fields Button -->
-                    <md-button ng-click="clearPostDocFields()">Edit
-                        <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
-                            Click here to edit the fields of this current PostDoc Instance.
-                        </md-tooltip>
-                    </md-button>
+                    <!--<md-button ng-click="clearPostDocFields()">Edit-->
+                        <!--<md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">-->
+                            <!--Click here to edit the fields of this current PostDoc Instance.-->
+                        <!--</md-tooltip>-->
+                    <!--</md-button>-->
                 </md-card-actions>
 
 
@@ -708,7 +708,7 @@ entered into the system -->
 
                     <div layout="column" align="center">
 
-                        <span>Supervised Person's Name: {{item.superDegNameOfPerson}}</span>
+                        <span>Supervised Person's Name: {{item.person.data.name}}</span>
 
 
                     </div>
@@ -728,11 +728,11 @@ entered into the system -->
                         </md-button>
 
                         <!-- Clear Fields Button -->
-                        <md-button ng-click="clearPostDocFields()">Edit
-                            <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
-                                Click here to edit the fields of this current PostDoc Instance.
-                            </md-tooltip>
-                        </md-button>
+                        <!--<md-button ng-click="clearPostDocFields()">Edit-->
+                            <!--<md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">-->
+                                <!--Click here to edit the fields of this current PostDoc Instance.-->
+                            <!--</md-tooltip>-->
+                        <!--</md-button>-->
                     </md-card-actions>
 
 
