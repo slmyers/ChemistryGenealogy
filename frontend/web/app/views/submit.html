@@ -798,7 +798,7 @@
                             <div id="currInstNameWarning" ng-if="currInstNameWarning"> CURRENT INSTITUTIOTION NOT FILLED IN!</div>
 
 
-                            <md-button style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
+                            <md-button id="leUultimateSubmitButton" style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
                                 <md-tooltip md-visible="finalSubmissionButton.showTooltip" md-direction="{{demo.tipDirection}}">
                                     Pressing this button will submit ALL data on this page for Administrator approval.
                                 </md-tooltip>
@@ -810,7 +810,7 @@
 <md-button ng-click="checkOutTHISObject()"> click here to look at the object for this page</md-button>
 
 
-            <md-button ng-click="goBackToMain()"> click here to go back to the search page </md-button>
+            <md-button id="leReturnToSearchPageButton" ng-click="goBackToMain()"> click here to go back to the search page </md-button>
 
 
 
