@@ -48,7 +48,6 @@
                         <span>Details of modification:</span>
 
                         <!-- NAME CHANGE -->
-                        <p></p>
                         <span ng-if="item.changes.name.length >0 ">
                             Name Change: {{item.changes.name[0]}} ->  {{item.changes.name[1]}}
                         </span>
@@ -68,11 +67,45 @@
                             Name Change: {{item.changes.mentor_id[0]}} ->  {{item.changes.mentor_id[1]}}
                         </span>
 
+                        <!-- Object changes -->
+                        <span ng-if="item.changes.object_changes.length >0 ">
+                            Name Change: {{item.changes.object_changes[0]}} ->  {{item.changes.object_changes[1]}}
+                        </span>
+
+                        <!-- degree id changes -->
+                        <span ng-if="item.changes.degree_id.length >0 ">
+                            Name Change: {{item.changes.degree_id[0]}} ->  {{item.changes.degree_id[1]}}
+                        </span>
+
+                        <!-- Person id changes -->
+                        <span ng-if="item.changes.person_id.length >0 ">
+                            Name Change: {{item.changes.person_id[0]}} ->  {{item.changes.person_id[1]}}
+                        </span>
+
+                        <!-- start change -->
+                        <span ng-if="item.changes.start.length >0 ">
+                            Name Change: {{item.changes.start[0]}} ->  {{item.changes.start[1]}}
+                        </span>
+
+                        <!-- end change -->
+                        <span ng-if="item.changes.end.length >0 ">
+                            Name Change: {{item.changes.end[0]}} ->  {{item.changes.end[1]}}
+                        </span>
+
+                        <!-- institution id change -->
+                        <span ng-if="item.changes.institution_id.length >0 ">
+                            Name Change: {{item.changes.institution_id[0]}} ->  {{item.changes.institution_id[1]}}
+                        </span>
+
+                        <!-- Position change -->
+                        <span ng-if="item.changes.position.length >0 ">
+                            Name Change: {{item.changes.position[0]}} ->  {{item.changes.position[1]}}
+                        </span>
 
 
 
 
-                        <!--                        "person_id":[1,4] -->
+
 
 
 
