@@ -58,39 +58,92 @@ angular.module('chemGeno')
             $scope.unpackObject = function(){
 
                 console.log("Unpack object called upon: " + $scope.data);
-                console.log($scope.data);
+                //console.log($scope.data);
                 $scope.personId= $scope.data.person.data.id; //Unique identifier for the person.
-                console.log($scope.personId);
+                //console.log($scope.personId);
 
                 $scope.firstName = $scope.data.person.data.name.split(" ")[0];
-                console.log($scope.firstName);
+                //console.log($scope.firstName);
 
                 $scope.lastName = $scope.data.person.data.name.split(" ")[1];
-                console.log($scope.lastName);
+                //console.log($scope.lastName);
 
                 $scope.currentPositionTitle = $scope.data.person.data.position;
-                console.log($scope.currentPositionTitle);
+                //console.log($scope.currentPositionTitle);
 
                 $scope.currentInstitutionName = $scope.data.person.institution.name;
-                console.log($scope.currentInstitutionName);
+                //console.log($scope.currentInstitutionName);
 
                 $scope.currentInstitutionId = $scope.data.person.institution.id;
-                console.log($scope.currentInstitutionId);
+                //console.log($scope.currentInstitutionId);
 
 
                 $scope.postDocInformation = $scope.data.mentors;
-                console.log($scope.postDocInformation);
+                //console.log($scope.postDocInformation);
 
                 $scope.degreeInformation = $scope.data.supervisors;
-                console.log($scope.degreeInformation);
+                //console.log($scope.degreeInformation);
 
                 $scope.superDocInformation = $scope.data.mentored;
-                console.log($scope.superDocInformation);
+                //console.log($scope.superDocInformation);
 
                 $scope.superDegInformation = $scope.data.supervised;
                 console.log($scope.superDegInformation);
 
             };
+
+
+            /**
+             * Constructor...
+             */
+            function EditPageModelObject(){
+
+            }
+
+            /**
+             * The final function that prepares the editPageModelObject to be sent to the backend.
+             * Loads any differences found into the editPageModelObject! :)
+             */
+            $scope.finalEditFunction = function(){
+
+                var editPageModelObject = new EditPageModelObject;
+                //compare name located within the data object to the submitted name.
+                var name = $scope.firstName + " " + $scope.lastName;
+                if(name !== $scope.data.person.data.name){
+                    editPageModelObject.person.data.name = name;
+                }
+
+                //compare the title
+                if($scope.currentPositionTitle !== $scope.data.person.data.position){
+                    editPageModelObject.person.data.position = $scope.currentPositionTitle;
+                }
+
+                //compare the institution name
+                if($scope.currentInstitutionName !== $scope.data.person.institution.name){
+                    editPageModelObject.person.institution.name = $scope.currentInstitutionName;
+                }
+
+                //Crudely compare mentors
+                if($scope.postDocInformation !== $scope.data.mentors){
+                    editPageModelObject.mentors = $scope.postDocInformation;
+                }
+
+                if($scope.degreeInformation !== $scope.data.supervisors){
+                    editPageModelObject.supervisors = $scope.degreeInformation;
+                }
+
+                if($scope.superDocInformation !== $scope.data.mentored){
+                    editPageModelObject.mentored = $scope.superDocInformation;
+                }
+
+                if($scope.superDegInformation !== $scope.data.supervised){
+                    editPageModelObject.supervised = $scope.superDegInformation;
+                }
+
+
+                console.log(editPageModelObject);
+            };
+
 
 
 
@@ -178,27 +231,37 @@ angular.module('chemGeno')
             //$scope.superDegStartYear = null;
             //$scope.superDegEndYear = null;
             //$scope.superDegInstitution = null;
+
             $scope.superDegNameOfPerson = null;
+            $scope.superDegCurrPosition = null;
+            $scope.superDegCurrInst = null;
+            $scope.superDegDegType = null;
+            $scope.superDegYear = null;
+            $scope.superDegInst= null;
 
             /**
              * Construct a super DEGREE object.
              * @param superDegNameOfPerson
-             * @param superDegStartYear
-             * @param superDegEndYear
-             * @param superDegInstitution
+             * @param superDegCurrPosition
+             * @param superDegCurrInst
+             * @param superDegDegType
+             * @param superDegYear
+             * @param superDegInst
              * @constructor
              */
-            function SuperDegInstance(superDegNameOfPerson)
+            function SuperDegInstance(superDegNameOfPerson,superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst)
             {
-                this.superDegNameOfPerson = superDegNameOfPerson;
-                //this.superDegStartYear = superDegStartYear,
-                //this.superDegEndYear = superDegEndYear,
-                //this.superDegInstitution = superDegInstitution
+                this.superDegNameOfPerson = superDegNameOfPerson,
+                this.superDegCurrPosition = superDegCurrPosition,
+                    this.superDegCurrInst = superDegCurrInst,
+                    this.superDegDegType = superDegDegType,
+                    this.superDegYear = superDegYear,
+                    this.superDegInst = superDegInst
             }
 
 
-            $scope.addSuperDegInstance = function(superDegNameOfPerson){
-                var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson);
+            $scope.addSuperDegInstance = function(superDegNameOfPerson, superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst){
+                var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson, superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst);
                 $scope.superDegInformation.push(newSuperDegInstance);
                 console.log("addSuperDegInstance Called on" + $scope.superDegInformation);
 
@@ -844,6 +907,7 @@ angular.module('chemGeno')
 
 
 
+
             /** MODEL AND FINAL SUBMISSION
              * This is the model for this submission page.
              * First name, last name, title, degree type, current position title, current institution, postdoc info
@@ -882,6 +946,11 @@ angular.module('chemGeno')
             }
 
             $scope.submitPageObject= null;
+
+
+
+
+
 
 
 

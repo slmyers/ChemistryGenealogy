@@ -669,6 +669,58 @@ entered into the system -->
                             <input type="text" ng-model="superDegNameOfPerson">
                         </md-input-container>
 
+                        <md-input-container>
+                            <label for="content"> Current Position of Supervised Person Eg: Professor</label>
+                            <input type="text" ng-model="superDegCurrPosition">
+                        </md-input-container>
+
+
+                        <md-input-container>
+                            <label for="content"> Current Institution of Supervised Person Eg: Gilead</label>
+                            <input type="text" ng-model="superDegCurrInst">
+                        </md-input-container>
+
+                        <!-- Degree choice choices. Presented. -->
+                        <form name="myForm">
+
+                            <!-- The style is going to be against the md-block thing -->
+                            <md-input-container class="md-block">
+                                <label>Type of Degree</label> <!-- State what the field is -->
+                                <!-- Have the listing of all of the selectable options -->
+                                <md-select name="myModel" ng-model="superDegDegType" required>
+                                    <md-option value="Doctorate">Doctorate</md-option>
+                                    <md-option value="Masters">Masters</md-option>
+                                    <md-option value="BSc">BSc</md-option>
+                                    <md-option value="BA">BA</md-option>
+                                </md-select>
+                                <!-- Have the error messages be displayed to the user -->
+                                <!--<div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">-->
+                                <!--<div ng-message="required">Required</div>-->
+                                <!--</div>-->
+                            </md-input-container>
+                            <!-- Commenting these out because I don't feel that we actually need these for now
+                            <div layout="row">
+                                <md-button ng-click="clearValue()" ng-disabled="!myModel" style="margin-right: 20px;">Clear</md-button>
+                                <md-button ng-click="save()" ng-disabled="myForm.$invalid" class="md-primary" layout layout-align="center end">Save</md-button>
+                            </div> -->
+                        </form>
+
+
+                        <md-input-container>
+                            <label for="content"> Year Supervised Person Obtained Degree Eg: 1957</label>
+                            <input type="text" ng-model="superDegYear">
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label for="content"> Institution Supervised Person Obtained Degree Eg: University of Alberta</label>
+                            <input type="text" ng-model="superDegInst">
+                        </md-input-container>
+
+
+
+
+
+
                 </md-card-title>
 
                 <!-- Action buttons to either confirm the submission or cancel it -->
@@ -708,7 +760,16 @@ entered into the system -->
 
                     <div layout="column" align="center">
 
-                        <span>Supervised Person's Name: {{item.person.data.name}}</span>
+                        <span>Supervised Person's Information:</span>
+                        <span>Name: {{item.person.data.name}}</span>
+                        <span>Current Position: {{item.person.data.position}}</span>
+                        <span>Current Institution: {{item.person.institution.name}}</span>
+
+                        <p></p>
+                        <span>Supervised Person's Degree Information:</span>
+                        <span>Degree Type: {{item.degree.data.degree_type}}</span>
+                        <span>Degree Year: {{item.degree.data.year}}</span>
+                        <span>Institution: {{item.degree.institution.name}}</span>
 
 
                     </div>
@@ -770,7 +831,7 @@ entered into the system -->
 <div align="center">
     <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all edits on this page to the Administrator</div>
 
-    <md-button style="cursor:pointer" class="md-icon-button" ng-click="editMasterButton()" aria-label="Share">
+    <md-button style="cursor:pointer" class="md-icon-button" ng-click="finalEditFunction()" aria-label="Share">
         <md-tooltip md-visible="finalSubmissionButton.showTooltip" md-direction="{{demo.tipDirection}}">
             Pressing this button will submit ALL data on this page for Administrator approval.
         </md-tooltip>
