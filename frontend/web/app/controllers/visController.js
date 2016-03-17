@@ -1,6 +1,56 @@
 angular.module('chemGeno')
   .controller('visController', ['$scope', 'searchService',
     function($scope, searchService) {
+
+        // current window dimensions
+        $scope.windowWidth = window.innerWidth;
+        $scope.windowHeight = window.innerHeight;
+
+        $scope.estimatedVisW = 0;
+        $scope.estimatedVisH  = 0;
+
+        // estimates the dimensions of the vis flexbox
+        // not perfect but < 10% error
+        $scope.estimateDimensions = function() {
+        // #searchContainer.min-height: 80vh;
+        $scope.estimatedVisH = 0.8*$scope.windowHeight;
+        $scope.estimatedVisW = 0.7*$scope.windowWidth - 0.02*$scope.windowWidth - 50;
+      };
+
+      $scope.estimateDimensions();
+
+
+
+      // Preparation of DagreD3 data structures
+      var g = new dagreD3.graphlib.Graph().setGraph({
+          nodesep: 30,
+          ranksep: 150,
+          rankdir: "TB",
+          marginx: 20,
+          marginy: 20
+      });
+
+
+      var node = [ 'Please enter a search above' ];
+      // Automatically label each of the nodes
+      node.forEach(function(name) {
+        //namecode = name.split(' ').join('')
+        g.setNode(name, { label: name });
+      });
+
+      var edges = [];
+      edges.forEach(function(edge) {
+        g.setEdge(edge.u, edge.v, edge.value); });
+
+      var render = new dagreD3.render();
+
+      var svg = d3.select("svg");
+      var container = svg.select("g");
+
+      render(container, g);
+
+      // Run the renderer. This is what draws the final graph.
+
       $scope.target = [];
       $scope.mentors = [];
       $scope.mentored = [];
@@ -9,7 +59,10 @@ angular.module('chemGeno')
 
       // probably should've just put institutions with people
       $scope.$on('search:response', function(event,data) {
-        $scope.clearResults();
+         $scope.clearResults();
+         //Cleanup old graph
+         var svg = d3.select("svg > g");
+         svg.selectAll("*").remove();
 
 
          var targetInstitution =
@@ -81,7 +134,72 @@ angular.module('chemGeno')
          }
          $scope.supervisors = toPush;
 
+         var g = new dagreD3.graphlib.Graph().setGraph({
+             nodesep: 30,
+             ranksep: 150,
+             rankdir: "TB",
+             marginx: 20,
+             marginy: 20
+         });
+         /*var width = 500;
+         var height = 500;
+
+         var svg = d3.select("body")
+             .append("svg")
+             .attr("width", width)
+             .attr("height", height);
+
+         var inner = svg.select("g");
+         var render = new dagreD3.render();
+
+         g.graph().transition = function transition(selection) {
+             return selection.transition().duration(1000);
+         };*/
+
+
+         //two nodes, two paths NOTE THE INCLUDED 'weight' element for edges
+         var nodes = [_target];
+         var newnodes = nodes.concat($scope.mentors, $scope.mentored,
+           $scope.supervisors, $scope.supervised);
+
+
+         // Automatically label each of the nodes
+         newnodes.forEach(function(v) {
+           console.log(v.name);
+           //namecode = name.split(' ').join('')
+           g.setNode(v.name, { label: v.name });
+         });
+         var vlabel = {label:''};
+
+         $scope.mentors.forEach(function(node){
+           g.setEdge(node.name, _target.name, vlabel);
+         });
+
+         $scope.mentored.forEach(function(node){
+           g.setEdge(_target.name, node.name, vlabel);
+         });
+
+         $scope.supervisors.forEach(function(node){
+           g.setEdge(node.name, _target.name, vlabel);
+         });
+
+         $scope.supervised.forEach(function(node){
+           g.setEdge(_target.name, node.name, vlabel);
+         });
+
+         render(container, g);
+
+
       });
+
+    /*  update_graph = function(){
+        var render = new dagreD3.render();
+        var svg = d3.select("svg");
+        var container = svg.select("g");
+
+        render(container, g);
+        dagre.layout(g);
+      }*/
 
       $scope.findInstitution = function(id, institutions) {
         for(var i = 0; i < institutions.length; i++){
@@ -98,63 +216,6 @@ angular.module('chemGeno')
         $scope.supervisors = [];
         $scope.supervised = [];
       }
-
-      // current window dimensions
-      $scope.windowWidth = window.innerWidth;
-      $scope.windowHeight = window.innerHeight;
-
-      $scope.estimatedVisW = 0;
-      $scope.estimatedVisH  = 0;
-
-      // estimates the dimensions of the vis flexbox
-      // not perfect but < 10% error
-      $scope.estimateDimensions = function() {
-      // #searchContainer.min-height: 80vh;
-      $scope.estimatedVisH = 0.8*$scope.windowHeight;
-      $scope.estimatedVisW = 0.7*$scope.windowWidth - 0.02*$scope.windowWidth - 50;
-    };
-
-    $scope.estimateDimensions();
-
-
-
-    // Preparation of DagreD3 data structures
-    var g = new dagreD3.graphlib.Graph().setGraph({
-        nodesep: 30,
-        ranksep: 150,
-        rankdir: "TB",
-        marginx: 20,
-        marginy: 20
-    });
-
-    //two nodes, two paths NOTE THE INCLUDED 'weight' element for edges
-    var nodes = [ 'Todd L. Lowary', 'Ole Hindsgaul' ];
-    // Automatically label each of the nodes
-    nodes.forEach(function(name) {
-      //namecode = name.split(' ').join('')
-      g.setNode(name, { label: name });
-    });
-
-    var edges = [{u:'Ole Hindsgaul',v:'Todd L. Lowary',value:{label:''}}];
-    edges.forEach(function(edge) {
-      g.setEdge(edge.u, edge.v, edge.value); });
-
-    var render = new dagreD3.render();
-    // Set graph height and init zoom
-    var svg = d3.select("svg");
-    var container = svg.select("g");
-
-    render(container, g);
-    svg.attr("height", $scope.windowHeight);
-
-
-    // Set up an SVG group so that we can translate the final graph.
-    var svg = d3.select('svg'),
-        svgGroup = svg.append('g');
-
-
-    dagre.layout(g);
-    // Run the renderer. This is what draws the final graph.
 
 
 }]);

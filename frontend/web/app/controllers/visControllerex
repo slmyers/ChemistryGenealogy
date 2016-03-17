@@ -184,3 +184,14 @@ var zoom = d3.behavior.zoom().on("zoom", function() {
 svg.call(zoom);
 
 }]);
+
+var edges = [{u:'Ole Hindsgaul',v:'Todd L. Lowary',value:{label:''}}];
+edges.forEach(function(edge) {
+  g.setEdge(edge.u, edge.v, edge.value); });
+
+svg.attr("height", $scope.estimatedVisH);
+
+svg.attr("height", $scope.windowHeight);
+
+
+dagre.layout(g);
