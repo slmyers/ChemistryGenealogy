@@ -3,6 +3,9 @@ class Mentorship < ActiveRecord::Base
   belongs_to :mentor, :class_name => 'Person'
   belongs_to :institution, :class_name => 'Institution'
 
+  #track changes
+  has_paper_trail on: [:update, :create]#will remove create, only used to help implement
+
   # creates a new mentorship
   # creates a new person if the person does not exist or the mentor does not
   # exist

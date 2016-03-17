@@ -2,8 +2,7 @@ class Institution < ActiveRecord::Base
   has_many :people
   has_many :degrees
 
-  #track changes
-  has_paper_trail
+  
 
   # creates a new institution with the name given
   def Institution.new_institution(name)
