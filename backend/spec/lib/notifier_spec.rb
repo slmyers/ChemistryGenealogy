@@ -22,5 +22,8 @@ describe Notifier do
     expect(@users[1]["id"]).to eql(3)
   end
 
-  
+  it "can find all unapproved people" do
+    
+  end
+
 end

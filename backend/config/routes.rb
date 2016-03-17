@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :search, except: [:new, :edit, :create, :show, :update, :destroy], :defaults => { :format => :json }
-  resources :notification, except: [:new, :edit, :create, :show, :update, :destroy], :defaults => {:format => :json}
   resources :auto_complete, except: [:new, :edit, :create, :show, :update, :destroy]
   resources :admins, except: [:new, :edit]
   namespace :api do
+    resources :notification, except: [:new, :edit, :create, :show, :update, :destroy], :defaults => {:format => :json}
     resources :supervisions
     resources :degrees
     resources :institutions
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'test' => 'api/aggregated#test'
 
   post 'authenticate' => 'auth#authenticate'
+
+
 
   # 404 error goes to error controller
   match '*a', :to => 'errors#routing', via: [:get]

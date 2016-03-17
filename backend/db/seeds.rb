@@ -14,6 +14,7 @@ User.create!([
 
 # add Todd Lowary as an admin
 Admin.create!([
+  {user_id: 1, approved: true},
   {user_id: 2, approved: true}
 ])
 
