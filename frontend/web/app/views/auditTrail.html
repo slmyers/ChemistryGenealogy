@@ -44,20 +44,35 @@
 
 
 
-                        <!-- If I am given names... sure... let's write them out one at a time -->
+                        <!-- DETAILED INFORMATION. HAND WRITTEN EVERY SINGLE LAST POSSIBLE INCOMING THING. -->
                         <span>Details of modification:</span>
 
-
-                        
-
+                        <!-- NAME CHANGE -->
                         <p></p>
                         <span ng-if="item.changes.name.length >0 ">
                             Name Change: {{item.changes.name[0]}} ->  {{item.changes.name[1]}}
                         </span>
 
+                        <!-- Supervisor ID CHANGE -->
+                        <span ng-if="item.changes.supervisor_id.length >0 ">
+                            Supervisor ID Change: {{item.changes.supervisor_id[0]}} ->  {{item.changes.supervisor_id[1]}}
+                        </span>
+
+                        <!-- Person ID change -->
+                        <span ng-if="item.changes.person_id.length >0 ">
+                            Name Change: {{item.changes.person_id[0]}} ->  {{item.changes.person_id[1]}}
+                        </span>
+
+                        <!-- Mentor ID Change -->
+                        <span ng-if="item.changes.mentor_id.length >0 ">
+                            Name Change: {{item.changes.mentor_id[0]}} ->  {{item.changes.mentor_id[1]}}
+                        </span>
 
 
 
+
+
+                        <!--                        "person_id":[1,4] -->
 
 
 

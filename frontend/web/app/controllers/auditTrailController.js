@@ -38,7 +38,8 @@ angular.module('chemGeno')
                     {
                         "changes":
                         {
-                            "supervisor_id":[3,2]},
+                            "supervisor_id":[3,2]
+                        },
                         "date":"2016-03-17T11:58:22.087Z",
                         "type":"Supervision","person_id":1
                     },
