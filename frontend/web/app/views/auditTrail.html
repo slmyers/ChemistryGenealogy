@@ -1,0 +1,121 @@
+
+
+
+<!-- Web page for the audit trail -->
+
+<div ng-controller="auditTrailController" layout="column" ng-cloak>
+    <md-content layout-padding align="center">
+        <form name="userForm">
+        <div id="auditTrailHTMLScreenContainer">
+
+        <md-card flex-xs flex-gt-xs="50" layout-align-lg="center">
+            <md-input-container style="font-variant:small-caps;">
+                <md-card>
+                    <h1>Audit Trail Section</h1>
+                        Below contains all of the information for all edits in the system...
+                    </md-card>
+            </md-input-container>
+
+
+
+
+
+
+
+
+
+            Now the information from Audit Trail Object will be dumped here
+
+            <div ng-repeat="item in mockObject.edits" >
+                <md-card>
+
+                    <div layout="column" align="center">
+
+                        <!-- Item Type -->
+                        <span><h2>{{item.type}}</h2></span>
+
+                        <!-- Where is the edit from -->
+                        <span>Profile where changes were made: {{item.person_id}}</span>
+
+                        <span>Date of Modification: {{item.date}}</span>
+                        <p></p>
+
+
+
+
+
+                        <!-- If I am given names... sure... let's write them out one at a time -->
+                        <span>Details of modification:</span>
+
+
+                        
+
+                        <p></p>
+                        <span ng-if="item.changes.name.length >0 ">
+                            Name Change: {{item.changes.name[0]}} ->  {{item.changes.name[1]}}
+                        </span>
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+                </md-card>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </md-card>
+
+        </div>
+        </form>
+
+
+    </md-content>
+</div>
+
+
+
+
+<style>
+    #auditTrailHTMLScreenContainer {
+        -webkit-flex-direction: row;
+        display: -webkit-flex;
+
+        display: flex;
+        flex-direction: row;
+
+
+        justify-content: space-around;
+        align-items: stretch;
+
+        /*border-radius: 25px;*/
+        /*border: solid 1px #00BCD4;*/
+
+        /*box-shadow: 3px 3px 5px 6px #ccc;*/
+
+        /*background-color: #006699;*/
+
+
+        margin: 0% 0%;
+
+        min-height: 80vh;
+    }</style>
