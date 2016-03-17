@@ -4,7 +4,7 @@ class Person < ActiveRecord::Base
   has_many :supervisions
 
   #track changes
-  has_paper_trail on: [:update, :create]#will remove create, only used to help implement
+  has_paper_trail on: [:update], :ignore => [:created_at, :updated_at, :approved, :id]#ignores pointless attributes, only on update
 
   # assuming that all parameters are being sent and any sections not filled by the user
   # are converted to nil before getting sent to the backend

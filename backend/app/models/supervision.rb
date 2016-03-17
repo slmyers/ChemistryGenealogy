@@ -4,7 +4,7 @@ class Supervision < ActiveRecord::Base
   belongs_to :supervisor, :class_name => 'Person'
 
   #track changes
-  has_paper_trail on: [:update, :create]#will remove create, only used to help implement
+  has_paper_trail on: [:update], :ignore => [:created_at, :updated_at, :approved, :id]#ignores pointless attributes, only on update
 
   # creates a new supervisor
   # for this one, since it should only be called when adding a new supervisor
