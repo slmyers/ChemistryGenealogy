@@ -233,7 +233,7 @@
                 <md-card-actions layout="row" layout-align="right">
 
                     <!-- Submission button -->
-                    <md-button style="cursor:pointer" ng-click="addPostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)">Submit
+                    <md-button style="cursor:pointer" id="pdSubmitButton" ng-click="addPostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)">Submit
                         <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                             Click here to Submit this PostDoc Instance
                         </md-tooltip>
@@ -251,7 +251,7 @@
 
                         <!-- Here is where I will be showing to the user the psotdoc information they already
                              entered into the system -->
-                        <div ng-if="postDocVisibility" ng-repeat="item in postDocInformation" >
+                        <div ng-if="postDocVisibility" id="pdSubmittedItemArray" ng-repeat="item in postDocInformation" >
                             <md-card>
                                 <md-card-header>
                                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_check_circle_black_24px.svg"></md-icon>
@@ -283,7 +283,7 @@
 
 
                                     <!-- Submission button -->
-                                    <md-button style="cursor:pointer" ng-click="removePostDocInstance(item)">Remove
+                                    <md-button style="cursor:pointer" id="pdRemoveButton" ng-click="removePostDocInstance(item)">Remove
                                         <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                             Click here to Remove this PostDocInstance.
                                         </md-tooltip>
@@ -406,7 +406,7 @@
                                 <md-card-actions layout="row" layout-align="right">
 
                                     <!-- Submission button -->
-                                    <md-button ng-click="addDegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)">Submit
+                                    <md-button id="diSubmitButton" ng-click="addDegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)">Submit
                                         <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                             Click here to Submit this Degree.
                                         </md-tooltip>
@@ -423,7 +423,7 @@
 
                             <!-- Here is where I will be showing to the user the psotdoc information they already
        entered into the system -->
-                            <div ng-repeat="item in degreeInformation" ng-if="degreeInfoVisibility">
+                            <div id="diSubmittedItemArray" ng-repeat="item in degreeInformation" ng-if="degreeInfoVisibility">
                                 <md-card>
                                     <md-card-header>
                                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_check_circle_black_24px.svg"></md-icon>
@@ -453,7 +453,7 @@
                                     <md-card-actions layout="column" layout-align="right">
 
                                         <!-- Submission button -->
-                                        <md-button ng-click="removeDegreeInfoInstance(item)">Remove
+                                        <md-button id="diRemoveButton" ng-click="removeDegreeInfoInstance(item)">Remove
                                             <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                                 Click here to Remove this PostDocInstance.
                                             </md-tooltip>
@@ -561,7 +561,7 @@
                                             </md-button>
 
                                             <!-- Clear Fields Button -->
-                                            <md-button ng-click="clearDegreeInfoFields()">Clear Fields
+                                            <md-button id="superDocSubmitButton" ng-click="clearDegreeInfoFields()">Clear Fields
                                                 <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
                                                     Click here to clear the fields of this current Degree.
                                                 </md-tooltip>
@@ -571,7 +571,7 @@
 
                                     <!-- Here is where I will be showing to the user the psotdoc information they already
                entered into the system -->
-                                    <div ng-repeat="item in superDocInformation" ng-if="postdocSupervisionVisibility">
+                                    <div id="superDocSubmittedItemArray" ng-repeat="item in superDocInformation" ng-if="postdocSupervisionVisibility">
                                         <md-card>
                                             <md-card-header>
                                                 <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_check_circle_black_24px.svg"></md-icon>
@@ -602,7 +602,7 @@
                                             <md-card-actions layout="column" layout-align="right">
 
                                                 <!-- Submission button -->
-                                                <md-button ng-click="removeSuperDocInstance(item)">Remove
+                                                <md-button id="superDocRemoveButton" ng-click="removeSuperDocInstance(item)">Remove
                                                     <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                                         Click here to Remove this PostDocInstance.
                                                     </md-tooltip>
@@ -687,7 +687,7 @@
                                             <md-card-actions layout="row" layout-align="right">
 
                                                 <!-- Submission button -->
-                                                <md-button ng-click="addSuperDegInstance(superDegNameOfPerson)">Submit
+                                                <md-button id="superDegSubmitButton" ng-click="addSuperDegInstance(superDegNameOfPerson)">Submit
                                                     <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                                         Click here to Submit this Supervised Degree Person.
                                                     </md-tooltip>
@@ -733,7 +733,7 @@
                                                 <md-card-actions layout="column" layout-align="right">
 
                                                     <!-- Submission button -->
-                                                    <md-button ng-click="removeSuperDegInstance(item)">Remove
+                                                    <md-button id="superDegRemoveButton" ng-click="removeSuperDegInstance(item)">Remove
                                                         <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                                             Click here to Remove this PostDocInstance.
                                                         </md-tooltip>
@@ -792,10 +792,10 @@
                         <div align="center">
                         <div style="font-variant:small-caps; text-shadow:4px 4px 8px grey;">By clicking this button you will submit all data on this page to the Administrator</div>
 
-                            <div ng-if="firstNameWarning">FIRSTNAME NOT FILLED IN WITH A VALUE</div>
-                            <div ng-if="lastNameWarning">LASTNAME NOT FILLED IN WITH A VALUE </div>
-                            <div ng-if="currPositionTitleWarning">CURRENT POSITION NOT FILLED IN!</div>
-                            <div ng-if="currInstNameWarning"> CURRENT INSTITUTIOTION NOT FILLED IN!</div>
+                            <div id="firstNameWarning" ng-if="firstNameWarning">FIRSTNAME NOT FILLED IN WITH A VALUE</div>
+                            <div id="lastNameWarning" ng-if="lastNameWarning">LASTNAME NOT FILLED IN WITH A VALUE </div>
+                            <div id="currPosTitleWarning" ng-if="currPositionTitleWarning">CURRENT POSITION NOT FILLED IN!</div>
+                            <div id="currInstNameWarning" ng-if="currInstNameWarning"> CURRENT INSTITUTIOTION NOT FILLED IN!</div>
 
 
                             <md-button style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">
