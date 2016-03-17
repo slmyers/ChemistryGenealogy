@@ -32,7 +32,8 @@ angular.module('chemGeno')
         var mentor = {
           name: _mentor_.name,
           institution: inst,
-          position: _mentor_.position
+          position: _mentor_.position,
+          id: _mentor_.id
         };
         toPush.push(mentor)
       }
@@ -47,7 +48,8 @@ angular.module('chemGeno')
         var mentor = {
           name: _mentor_.name,
           institution: inst,
-          position: _mentor_.position
+          position: _mentor_.position,
+          id: _mentor_.id
         };
         toPush.push(mentor)
       }
@@ -62,7 +64,8 @@ angular.module('chemGeno')
         var mentor = {
           name: _supervisor_.name,
           institution: inst,
-          position: _supervisor_.position
+          position: _supervisor_.position,
+          id: _supervisor_.id
         };
         toPush.push(_supervisor_)
       }
@@ -77,7 +80,8 @@ angular.module('chemGeno')
         var mentor = {
           name: _supervisor_.name,
           institution: inst,
-          position: _supervisor_.position
+          position: _supervisor_.position,
+          id: _supervisor_.id
         };
         toPush.push(_supervisor_)
       }
