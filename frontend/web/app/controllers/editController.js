@@ -45,7 +45,7 @@ angular.module('chemGeno')
                 promise.then(function(resp){
                     $scope.data = resp.data;
 
-
+                    $scope.unpackObject();
                 }, function(error){
                     console.log("ERROR GETTTING OBJECT!!!!!!");
                 });
@@ -54,6 +54,42 @@ angular.module('chemGeno')
             };
             $scope.unlockObject();
 
+
+            $scope.unpackObject = function(){
+
+                console.log("Unpack object called upon: " + $scope.data);
+                console.log($scope.data);
+                $scope.personId= $scope.data.person.data.id; //Unique identifier for the person.
+                console.log($scope.personId);
+
+                $scope.firstName = $scope.data.person.data.name.split(" ")[0];
+                console.log($scope.firstName);
+
+                $scope.lastName = $scope.data.person.data.name.split(" ")[1];
+                console.log($scope.lastName);
+
+                $scope.currentPositionTitle = $scope.data.person.data.position;
+                console.log($scope.currentPositionTitle);
+
+                $scope.currentInstitutionName = $scope.data.person.institution.name;
+                console.log($scope.currentInstitutionName);
+
+                $scope.currentInstitutionId = $scope.data.person.institution.id;
+                console.log($scope.currentInstitutionId);
+
+
+                $scope.postDocInformation = $scope.data.mentors;
+                console.log($scope.postDocInformation);
+
+                $scope.degreeInformation = $scope.data.supervisors;
+                console.log($scope.degreeInformation);
+
+                $scope.superDocInformation = $scope.data.mentored;
+                console.log($scope.superDocInformation);
+
+                $scope.superDegInformation = $scope.data.supervised;
+
+            };
 
 
 
@@ -291,40 +327,19 @@ angular.module('chemGeno')
             /**Basic Info Section:
              * This section deals with trivial information collection on the submit page such as first and last names.
              */
-            $scope.firstName = $scope.mockObjectRecieved.name.split(" ")[0];
-            $scope.lastName = $scope.mockObjectRecieved.name.split(" ")[1];
-            $scope.currentPositionTitle = $scope.mockObjectRecieved.currentPositionTitle;
-            $scope.currentInstitutionName = $scope.mockObjectRecieved.currentInstitutionName;
-            $scope.degreeInformation = $scope.mockObjectRecieved.degreeInformation;
-            $scope.postDocInformation = $scope.mockObjectRecieved.postDocInformation;
-            $scope.superDegInformation = $scope.mockObjectRecieved.superDegInformation;
-            $scope.superDocInformation = $scope.mockObjectRecieved.superDocInformation;
+            //$scope.firstName = $scope.mockObjectRecieved.name.split(" ")[0];
+            //$scope.lastName = $scope.mockObjectRecieved.name.split(" ")[1];
+            //$scope.currentPositionTitle = $scope.mockObjectRecieved.currentPositionTitle;
+            //$scope.currentInstitutionName = $scope.mockObjectRecieved.currentInstitutionName;
+            //$scope.degreeInformation = $scope.mockObjectRecieved.degreeInformation;
+            //$scope.postDocInformation = $scope.mockObjectRecieved.postDocInformation;
+            //$scope.superDegInformation = $scope.mockObjectRecieved.superDegInformation;
+            //$scope.superDocInformation = $scope.mockObjectRecieved.superDocInformation;
 
 
 
-            $scope.unpackObject = function(){
-                $scope.personId= $scope.data.person.id; //Unique identifier for the person.
-
-                $scope.firstName = $scope.data.person.name.split(" ")[0];
-                $scope.lastName = $scope.data.person.name.split(" ")[1];
-
-                $scope.currentPositionTitle = $scope.data.person.position;
-
-                $scope.currentInstitutionName = $scope.data.person.institution.name;
-                $scope.currentInstitutionId = $scope.data.person.institution.id;
 
 
-
-            };
-
-
-
-            /**
-             * Now assuming I get the object from the backend...
-             */
-            $scope.burstObject = function(resp){
-
-            };
 
             /**
              * Simple function that I can invoke when I want to see what the contents of the basic inputs are.

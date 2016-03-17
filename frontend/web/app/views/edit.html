@@ -263,10 +263,10 @@
         <div layout="column" align="center">
 
 
-            <span>Starting Year: {{item.pdStartYear}}</span>
-            <span>Ending Year: {{item.pdEndYear}}</span>
-            <span>Supervisor: {{item.pdSupervisor}}</span>
-            <span>Institution: {{item.pdInstitution}}</span>
+            <span>Starting Year: {{item.start}}</span>
+            <span>Ending Year: {{item.end}}</span>
+            <span>Supervisor: {{item.mentor.data.name}}</span>
+            <span>Institution: {{item.institution.name}}</span>
         </div>
 
         <!-- Buttons for each of the viewable cards.
@@ -430,9 +430,9 @@ entered into the system -->
 
             <div layout="column" align="center">
 
-                <span>Year Awarded: {{item.year}}</span>
-                <span>Supervisor: {{item.supervisor}}</span>
-                <span>Institution: {{item.institution}}</span>
+                <span>Year Awarded: {{item.degree.data.year}}</span>
+                <span>Supervisor: {{item.supervisor.person.name}}</span>
+                <span>Institution: {{item.degree.institution.name}}</span>
 
             </div>
 
