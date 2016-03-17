@@ -24,4 +24,15 @@ angular.module('chemGeno')
     $scope.goBackToMain = function(){
       $location.path('search'); // path not hash
     };
+
+
+
+
+    $scope.goToEdit = function(){
+      console.log("goToView function called! :) ");
+      //alert(person.id);
+      console.log($stateParams.id);
+      $state.go('main.edit', {id: person.id});
+
+    };
 }]);
