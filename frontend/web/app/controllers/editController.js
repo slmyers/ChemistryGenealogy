@@ -97,6 +97,11 @@ angular.module('chemGeno')
              * Constructor...
              */
             function EditPageModelObject(){
+                person:{
+                    data:{
+                        name = null;
+                    }
+                }
 
             }
 
@@ -111,6 +116,7 @@ angular.module('chemGeno')
                 var name = $scope.firstName + " " + $scope.lastName;
                 if(name !== $scope.data.person.data.name){
                     editPageModelObject.person.data.name = name;
+                    console.log("name diff");
                 }
 
                 //compare the title
