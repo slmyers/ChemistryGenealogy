@@ -132,7 +132,7 @@
           <md-list-item class="md-3-line" ng-repeat="supervised in data.supervised">
             <div class="md-list-item-text" layout="column" style="width: 100%;">
               <br>
-              <h3> {{supervised.degree.data.degree_type}} at {{supervised.degree.data.institution.name}} on {{supervised.degree.data.year}}</h3>
+              <h3> {{supervised.degree.data.degree_type}} at {{supervised.degree.institution.name}} on {{supervised.degree.data.year}}</h3>
               <br>
               <h4><u> person: </u></h4>
               <p><a ui-sref="main.view({ id: supervised.person.data.id })">{{supervised.person.data.name.toUpperCase()}}</a></p>
