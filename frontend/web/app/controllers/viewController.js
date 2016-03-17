@@ -29,10 +29,7 @@ angular.module('chemGeno')
 
 
     $scope.goToEdit = function(){
-      console.log("goToView function called! :) ");
-      //alert(person.id);
-      console.log($stateParams.id);
-      $state.go('main.edit', {id: data.person.data.id});
-
+      var idVal = $scope.data.person.data.id;
+      $state.go('main.edit', {id: idVal});
     };
 }]);

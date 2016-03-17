@@ -20,7 +20,7 @@ angular.module('chemGeno')
     templateUrl: '/app/views/submit.html'
   })
   .state('main.edit',{
-    url: '/edit',
+    url: '/edit/:id',
     templateUrl: '/app/views/edit.html'
   })
   .state('main.admin', {
