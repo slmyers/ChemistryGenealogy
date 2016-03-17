@@ -477,7 +477,312 @@
 
 
 
+                <!-- Section dealing with the USERS SUPERVISED POSTDOCS -->
+                                <md-input-container style="font-variant:small-caps;">
+                                    <h1>Postdocs this Person SUPERVISED</h1>
+                                    Please enter information here about any postdocs they supervised in the past.
+                                </md-input-container>
+
+                                <div>
+                                    <md-card  ng-if="!postdocSupervisionVisibility">
+
+                                        <md-card-header>
+                                            <md-card-avatar style="cursor:pointer" ng-click="showSuperDocInfo()">
+                                                <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
+                                                <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                                                    Click here to expand the supervised postdocs information
+                                                </md-tooltip>
+                                            </md-card-avatar>
+                                            <md-card-header-text>
+                                                <span class="md-title">Supervised postdocs Information</span>
+                                                <span class="md-subhead">For each supervised postdoc please enter the requested data for each.</span>
+                                            </md-card-header-text>
+                                        </md-card-header>
+                                    </md-card>
+
+
+                                    <!-- Trying to make it so that we have a card system instead -->
+
+                                    <md-card  ng-if="postdocSupervisionVisibility">
+                                        <md-card-header>
+                                            <md-card-avatar style="cursor:pointer" ng-click="hideSuperDocInfo()">
+                                                <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
+                                                <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection324234}}">
+                                                    Collapse the Supervised Postdocs Seciton
+                                                </md-tooltip>
+                                            </md-card-avatar>
+                                            <md-card-header-text>
+                                                <span class="md-title">Supervised PostDocs Information</span>
+                                                <span class="md-subhead">For each Supervised PostDoc please enter the requested data for each.</span>
+                                            </md-card-header-text>
+                                        </md-card-header>
+                                        <img ng-src="{{imagePath}}" class="md-card-image" alt="Please Enter Information Directly Below">
+                                        <md-card-title>
+                                            <md-card-title-text>
+                                                <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
+                                                <!-- Input for the Start date -> End date -->
+
+
+
+                                                <md-input-container>
+                                                    <label for="content"> Name of Supervised Person Eg: "John Doe" (With a space between first and last name)</label>
+                                                    <input type="text" ng-model="superdocNameOfPerson">
+                                                </md-input-container>
+
+                                                <md-input-container>
+                                                    <label for="content">Start Year Eg: 1978</label>
+                                                    <input type="text" ng-model="superDocStartYear">
+                                                </md-input-container>
+
+                                                <!-- Input for the Start date -> End date -->
+                                                <md-input-container>
+                                                    <label for="content">End Year Eg: 2016</label>
+                                                    <input type="text" ng-model="superDocEndYear">
+                                                </md-input-container>
+
+                                                <!-- Input for the Start date -> End date -->
+                                                <md-input-container>
+                                                    <label for="content">Institution Eg: University Of Alberta</label>
+                                                    <input type="text" ng-model="superDocInstitution">
+                                                </md-input-container>
+                                                <!--</form>-->
+
+                                            </md-card-title-text>
+                                        </md-card-title>
+
+                                        <!-- Action buttons to either confirm the submission or cancel it -->
+                                        <md-card-actions layout="row" layout-align="right">
+
+                                            <!-- Submission button -->
+                                            <md-button ng-click="addSuperDocInstance(superdocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution)">Submit
+                                                <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                                                    Click here to Submit this Degree.
+                                                </md-tooltip>
+                                            </md-button>
+
+                                            <!-- Clear Fields Button -->
+                                            <md-button ng-click="clearDegreeInfoFields()">Clear Fields
+                                                <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                                                    Click here to clear the fields of this current Degree.
+                                                </md-tooltip>
+                                            </md-button>
+                                        </md-card-actions>
+                                    </md-card>
+
+                                    <!-- Here is where I will be showing to the user the psotdoc information they already
+               entered into the system -->
+                                    <div ng-repeat="item in superDocInformation" ng-if="postdocSupervisionVisibility">
+                                        <md-card>
+                                            <md-card-header>
+                                                <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_check_circle_black_24px.svg"></md-icon>
+                                                <md-tooltip md-visible="postDocShowing.showTooltip" md-direction="{{demo.tipDirection}}">
+                                                    This information has been accepted for submission.
+                                                </md-tooltip>
+                                                </md-card-avatar>
+                                                <md-card-header-text>
+                                                    <div layout = "column">Degree {{$index+1}}</div>
+
+                                                </md-card-header-text>
+                                            </md-card-header>
+
+                                            <div layout="column" align="center">
+
+                                                <span>Supervised Person's Name: {{item.superdocNameOfPerson}}</span>
+                                                <span>Start Year: {{item.superDocStartYear}}</span>
+                                                <span>End Year: {{item.superDocEndYear}}</span>
+                                                <span> Institution: {{item.superDocInstitution}}</span>
+
+                                            </div>
+
+                                            <!-- Buttons for each of the viewable cards.
+                                                 Contains:
+                                                 -Remove Button
+                                                 -Edit Button
+                                              -->
+                                            <md-card-actions layout="column" layout-align="right">
+
+                                                <!-- Submission button -->
+                                                <md-button ng-click="removeSuperDocInstance(item)">Remove
+                                                    <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                                                        Click here to Remove this PostDocInstance.
+                                                    </md-tooltip>
+                                                </md-button>
+
+                                                <!-- Clear Fields Button -->
+                                                <md-button ng-click="clearPostDocFields()">Edit
+                                                    <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                                                        Click here to edit the fields of this current PostDoc Instance.
+                                                    </md-tooltip>
+                                                </md-button>
+                                            </md-card-actions>
+
+
+
+                                        </md-card>
+
+                                    </div>
+
+
+
+
+
+            <!-- SUPER DEGREE INFORMATION -->
+
+
+
+                                    <md-input-container style="font-variant:small-caps;">
+                                        <h1>People who this person supervised their DEGREES</h1>
+                                        Please enter information here about any people's degrees they supervised in the past.
+                                    </md-input-container>
+
+                                    <div>
+                                        <md-card  ng-if="!superDegVisibility">
+
+                                            <md-card-header>
+                                                <md-card-avatar style="cursor:pointer" ng-click="showSuperDegInfo()">
+                                                    <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
+                                                    <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                                                        Click here to expand the people's degrees they supervised in the past information
+                                                    </md-tooltip>
+                                                </md-card-avatar>
+                                                <md-card-header-text>
+                                                    <span class="md-title">Supervised DEGREE Information</span>
+                                                    <span class="md-subhead">For each people whos degrees they supervised in the past please enter the requested data for each.</span>
+                                                </md-card-header-text>
+                                            </md-card-header>
+                                        </md-card>
+
+
+                                        <!-- Trying to make it so that we have a card system instead -->
+
+                                        <md-card  ng-if="superDegVisibility">
+                                            <md-card-header>
+                                                <md-card-avatar style="cursor:pointer" ng-click="hideSuperDegInfo()">
+                                                    <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
+                                                    <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection324234}}">
+                                                        Collapse the people's degrees they supervised in the past Seciton
+                                                    </md-tooltip>
+                                                </md-card-avatar>
+                                                <md-card-header-text>
+                                                    <span class="md-title">Supervised PostDocs Information</span>
+                                                    <span class="md-subhead">For each Supervised PostDoc please enter the requested data for each.</span>
+                                                </md-card-header-text>
+                                            </md-card-header>
+                                            <img ng-src="{{imagePath}}" class="md-card-image" alt="Please Enter Information Directly Below">
+                                            <md-card-title>
+                                                <md-card-title-text>
+                                                    <!--<form ng-submit="addDITab(degreeInfoYear, degreeInfoSupervisor,degreeInfoInstitution)" layout="column" class="md-padding" style="padding-top: 0;">-->
+                                                    <!-- Input for the Start date -> End date -->
+
+
+
+                                                    <md-input-container>
+                                                        <label for="content"> Name of Supervised Person Eg: "John Doe" (With a space between first and last name)</label>
+                                                        <input type="text" ng-model="superDegNameOfPerson">
+                                                    </md-input-container>
+
+                                            </md-card-title>
+
+                                            <!-- Action buttons to either confirm the submission or cancel it -->
+                                            <md-card-actions layout="row" layout-align="right">
+
+                                                <!-- Submission button -->
+                                                <md-button ng-click="addSuperDegInstance(superDegNameOfPerson)">Submit
+                                                    <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                                                        Click here to Submit this Supervised Degree Person.
+                                                    </md-tooltip>
+                                                </md-button>
+
+                                                <!-- Clear Fields Button -->
+                                                <md-button ng-click="clearDegreeInfoFields()">Clear Fields
+                                                    <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                                                        Click here to clear the fields of this current Degree.
+                                                    </md-tooltip>
+                                                </md-button>
+                                            </md-card-actions>
+                                        </md-card>
+
+                                        <!-- Here is where I will be showing to the user the psotdoc information they already
+                   entered into the system -->
+                                        <div ng-repeat="item in superDegInformation" ng-if="superDegVisibility">
+                                            <md-card>
+                                                <md-card-header>
+                                                    <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_check_circle_black_24px.svg"></md-icon>
+                                                    <md-tooltip md-visible="postDocShowing.showTooltip" md-direction="{{demo.tipDirection}}">
+                                                        This information has been accepted for submission.
+                                                    </md-tooltip>
+                                                    </md-card-avatar>
+                                                    <md-card-header-text>
+                                                        <div layout = "column">Degree {{$index+1}}</div>
+
+                                                    </md-card-header-text>
+                                                </md-card-header>
+
+                                                <div layout="column" align="center">
+
+                                                    <span>Supervised Person's Name: {{item.superDegNameOfPerson}}</span>
+
+
+                                                </div>
+
+                                                <!-- Buttons for each of the viewable cards.
+                                                     Contains:
+                                                     -Remove Button
+                                                     -Edit Button
+                                                  -->
+                                                <md-card-actions layout="column" layout-align="right">
+
+                                                    <!-- Submission button -->
+                                                    <md-button ng-click="removeSuperDegInstance(item)">Remove
+                                                        <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
+                                                            Click here to Remove this PostDocInstance.
+                                                        </md-tooltip>
+                                                    </md-button>
+
+                                                    <!-- Clear Fields Button -->
+                                                    <md-button ng-click="clearPostDocFields()">Edit
+                                                        <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
+                                                            Click here to edit the fields of this current PostDoc Instance.
+                                                        </md-tooltip>
+                                                    </md-button>
+                                                </md-card-actions>
+
+
+
+                                            </md-card>
+
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div layout="row" layout-padding layout-margin layout-fill style="min-height: 224px;">
                 <!--<div flex>I am using all three at once.</div>-->
             </div>
