@@ -49,7 +49,185 @@ angular.module('chemGeno')
 
                 ];
 
-            //Postdoc Variables.
+
+            /**
+             * This section is concerned with obtaining the object from the backend and then bursting it onto the
+             * entire edit page appropriately.
+             */
+
+            /**
+             * Technically done at the very start.
+             */
+            $scope.unlockObject = function(){
+                console.log("unlockObject function called");
+                var promise = viewService.obtainInformationFromBackEnd( {id: $stateParams.id});
+                promise.then(function(resp){
+                    console.log(resp);
+                    console.log(resp);
+                    console.log(resp);
+                    console.log(resp);
+                    $scope.data = resp.data;
+                    console.log('!!!!!!!!LOOK AT THE NEXT LINE COLE THIS IS $SCOPE.DATA !!!!!!!!!!!!');
+                    console.log($scope.data);
+
+                }, function(error){
+                    console.log("ERROR GETTTING OBJECT!!!!!!");
+                });
+
+                $scope.mockObjectRecieved = $scope.data;
+            };
+            $scope.unlockObject();
+
+
+
+
+
+            console.log("scope data: " + $scope.data);
+
+            /**
+             * SUEPRVISED POSTDOCS SECTION YES THIS IS A MESS HERE BUT IT MUST BE DONE FASTT!!!! AHHHHHHH!!!!!!!!!!!!!
+             * @type {*[]}
+             */
+
+            $scope.postdocSupervisionVisibility = false;
+            $scope.superDocStartYear = null;
+            $scope.superDocEndYear = null;
+            $scope.superDocInstitution = null;
+            $scope.superdocNameOfPerson = null;
+
+
+            /**
+             * Object for SuperDoc
+             * @param superDocNameOfPerson
+             * @param superDocStartYear
+             * @param superDocEndYear
+             * @param superDocInstitution
+             * @constructor
+             */
+            function SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution)
+            {
+                this.superDocNameOfPerson = superDocNameOfPerson,
+                    this.superDocStartYear = superDocStartYear,
+                    this.superDocEndYear = superDocEndYear,
+                    this.superDocInstitution = superDocInstitution
+            }
+
+
+            $scope.addSuperDocInstance = function(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution){
+                var newSuperDocInstance = new SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution);
+                $scope.superDocInformation.push(newSuperDocInstance);
+                console.log("addSuperDocInstance Called on" + $scope.superDocInformation);
+
+
+            };
+
+
+            /**
+             * Initialize superDoc array as an empty array. Will hold SuperDoc objects :)!
+             * @type {Array}
+             */
+            $scope.superDocInformation = [ ];
+
+
+            $scope.showSuperDocInfo = function(){
+                $scope.postdocSupervisionVisibility = true;
+            };
+
+            $scope.hideSuperDocInfo = function(){
+                $scope.postdocSupervisionVisibility = false;
+            };
+
+
+            $scope.removeSuperDocInstance = function(superDocInstance){
+                console.log("removeSuperDocInstance called with index" + superDocInstance);
+                console.log($scope.superDocInformation.length);
+
+                var index = $scope.superDocInformation.indexOf(superDocInstance);
+                console.log($scope.superDocInformation.length);
+                //Splice out the entry that is desired to be removed.
+                $scope.superDocInformation.splice(index,1);
+                console.log($scope.superDocInformation);
+            };
+
+            /**
+             * SUPERDEGREE SECTION
+             * @type {*[]}
+             */
+
+
+            /**
+             * Super degree variables.
+             * @type {boolean}
+             */
+            $scope.superDegVisibility = false;
+
+            //
+            //$scope.superDegStartYear = null;
+            //$scope.superDegEndYear = null;
+            //$scope.superDegInstitution = null;
+            $scope.superDegNameOfPerson = null;
+
+            /**
+             * Construct a super DEGREE object.
+             * @param superDegNameOfPerson
+             * @param superDegStartYear
+             * @param superDegEndYear
+             * @param superDegInstitution
+             * @constructor
+             */
+            function SuperDegInstance(superDegNameOfPerson)
+            {
+                this.superDegNameOfPerson = superDegNameOfPerson;
+                //this.superDegStartYear = superDegStartYear,
+                //this.superDegEndYear = superDegEndYear,
+                //this.superDegInstitution = superDegInstitution
+            }
+
+
+            $scope.addSuperDegInstance = function(superDegNameOfPerson){
+                var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson);
+                $scope.superDegInformation.push(newSuperDegInstance);
+                console.log("addSuperDegInstance Called on" + $scope.superDegInformation);
+
+
+            };
+
+
+            $scope.showSuperDegInfo = function(){
+                $scope.superDegVisibility = true;
+            };
+
+            $scope.hideSuperDegInfo = function(){
+                $scope.superDegVisibility = false;
+            };
+
+            /**
+             * Initialize as an empty array, for now. Will be populated with SUPER DEGREE objects.
+             * @type {Array}
+             */
+            $scope.superDegInformation = [ ] ;
+
+            $scope.removeSuperDegInstance = function(superDegInstance){
+                console.log("removeSuperDegInstance called with index" + superDegInstance);
+                console.log($scope.superDegInformation.length);
+
+                var index = $scope.superDegInformation.indexOf(superDegInstance);
+                console.log($scope.superDegInformation.length);
+                //Splice out the entry that is desired to be removed.
+                $scope.superDegInformation.splice(index,1);
+                console.log($scope.superDegInformation);
+            };
+
+
+            /**
+             * OTHER STUFFS
+             * @type {*[]}
+             */
+
+
+
+
+                //Postdoc Variables.
             $scope.postDocTabs = postDocTab; //Formally assigning the list above to the scope tab variable.
             $scope.selectedIndex = 2; //Index that the tabs start at.
             $scope.postDocID = 3; //Only set to 3 here for the sample data. Set back to 1 for release.
@@ -100,6 +278,17 @@ angular.module('chemGeno')
                 degreeInformation:[{
                     year: "2973", supervisor: "Cheese King", institution: "University of NeverEverLand", type:  "Doctorate"
 
+                }],
+
+                superDocInformation:[{
+                    superDocNameOfPerson: "Onion Knighty",
+                    superDocStartYear: "1991",
+                    superDocEndYear: "99999",
+                    superDocInstitution: "onion academy"
+                }],
+
+                superDegInformation:[{
+                    superDegNameOfPerson: "fromage mon dieu"
                 }]
             };
 
@@ -132,6 +321,34 @@ angular.module('chemGeno')
             $scope.currentInstitutionName = $scope.mockObjectRecieved.currentInstitutionName;
             $scope.degreeInformation = $scope.mockObjectRecieved.degreeInformation;
             $scope.postDocInformation = $scope.mockObjectRecieved.postDocInformation;
+            $scope.superDegInformation = $scope.mockObjectRecieved.superDegInformation;
+            $scope.superDocInformation = $scope.mockObjectRecieved.superDocInformation;
+
+
+
+            $scope.unpackObject = function(){
+                $scope.personId= $scope.data.person.id; //Unique identifier for the person.
+
+                $scope.firstName = $scope.data.person.name.split(" ")[0];
+                $scope.lastName = $scope.data.person.name.split(" ")[1];
+
+                $scope.currentPositionTitle = $scope.data.person.position;
+
+                $scope.currentInstitutionName = $scope.data.person.institution.name;
+                $scope.currentInstitutionId = $scope.data.person.institution.id;
+
+
+
+            };
+
+
+
+            /**
+             * Now assuming I get the object from the backend...
+             */
+            $scope.burstObject = function(resp){
+
+            };
 
             /**
              * Simple function that I can invoke when I want to see what the contents of the basic inputs are.
