@@ -2,8 +2,8 @@ angular.module('chemGeno')
 
 
     //Stating that this is a controller for this project.
-    .controller('editController', ['$scope', 'editService',
-        function($scope, editService) {
+    .controller('editController', ['$scope', 'editService', 'viewService', '$location', '$stateParams',
+        function($scope, editService,  viewService, $location, $stateParams) {
 
             //POSTDOC TABS:
             // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
