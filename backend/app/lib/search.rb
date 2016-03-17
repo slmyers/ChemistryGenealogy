@@ -87,107 +87,79 @@ class Search
                   .includes(person: :institution)
 
     @mentorships_array = Array.new
-    @person.mentorships.each do |m|
-      @mentorship = {
-        'id' => m.id,
-        'start' => m.start,
-        'end' => m.end,
-        'institution' => {
-          'id' => m.institution.id,
-          'name' => m.institution.name
-        },
-        'mentor' => {
-          'id' => m.mentor.id,
-          'name' => m.mentor.name,
-          'position' => m.mentor.position,
-          'institution' => m.mentor.institution
+    unless @person.mentorships.blank?
+      @person.mentorships.each do |m|
+        @mentorship = {
+          'id' => m.id,
+          'start' => m.start,
+          'end' => m.end,
+          'institution' => m.institution,
+          'mentor' => {
+            'data' => m.mentor,
+            'institution' => m.mentor.institution
+          }
         }
-      }
-      @mentorships_array.push(@mentorship)
+        @mentorships_array.push(@mentorship)
+      end
     end
 
     @supervision_array = Array.new
-    @person.supervisions.each do |s|
-      @supervision = {
-        'id' => s.id,
-        'degree' => {
-          'id' => s.degree.id,
-          'type' => s.degree.degree_type,
-          'institution' => {
-            'id' => s.degree.institution.id,
-            'name' => s.degree.institution.name
-          }
-        },
-        'supervisor' => {
-          'id' => s.supervisor.id,
-          'name' => s.supervisor.name,
-          'position' => s.supervisor.position,
-          'institution' => {
-            'id' => s.supervisor.institution.id,
-            'name' => s.supervisor.institution.name
+    unless @person.supervisions.blank?
+      @person.supervisions.each do |s|
+        @supervision = {
+          'id' => s.id,
+          'degree' => {
+            'data' => s.degree,
+            'institution' => s.degree.institution
+          },
+          'supervisor' => {
+            'person' => s.supervisor,
+            'institution' => s.supervisor.institution
           }
         }
-      }
-      @supervision_array.push(@supervision)
+        @supervision_array.push(@supervision)
+      end
     end
 
     @mentored_array = Array.new
-    @mentored.each do |m|
-      @mentored_obj = {
-        'id' => m.id,
-        'start' => m.start,
-        'end' => m.end,
-        'institution' => {
-          'id' => m.institution.id,
-          'name' => m.institution.name
-        },
-        'person' => {
-          'id' => m.person.id,
-          'name' => m.person.name,
-          'position' => m.person.position,
-          'institution' => {
-            'id' => m.person.institution.id,
-            'name' => m.person.institution.name
+    unless @mentored.blank?
+      @mentored.each do |m|
+        @mentored_obj = {
+          'id' => m.id,
+          'start' => m.start,
+          'end' => m.end,
+          'institution' => m.institution,
+          'mentored' => {
+            'person' => m.person,
+            'institution' => m.person.institution
+            }
           }
-        }
-      }
-      @mentored_array.push(@mentored_obj)
+        @mentored_array.push(@mentored_obj)
+      end
     end
 
     @supervised_array = Array.new
-    @supervised.each do |s|
-      @supervised_obj = {
-        'id' => s.id,
-        'degree' => {
-          'id' => s.degree.id,
-          'type' => s.degree.degree_type,
-          'institution' => {
-            'id' => s.degree.institution.id,
-            'name' => s.degree.institution.name
-          }
-        },
-        'person' => {
-          'id' => s.person.id,
-          'name' => s.person.name,
-          'position' => s.person.position,
-          'institution' => {
-            'id' => s.person.institution.id,
-            'name' => s.person.institution.name
+    unless @supervised.blank?
+      @supervised.each do |s|
+        @supervised_obj = {
+          'id' => s.id,
+          'degree' => {
+            'data' => s.degree,
+            'institution' => s.degree.institution
+          },
+          'person' => {
+            'data' => s.person,
+            'institution' => s.person.institution
           }
         }
-      }
-      @supervised_array.push(@supervised_obj)
+        @supervised_array.push(@supervised_obj)
+      end
     end
 
     @data = {
       'person' => {
-        'name' => @person.name,
-        'position' => @person.position,
-        'id' => @person.id,
-        'institution' => {
-          'id' => @person.institution.id,
-          'name' => @person.institution.name
-        }
+        'data' => @person,
+        'institution' => @person.institution
       },
       'mentors' => @mentorships_array,
       'mentored' => @mentored_array,

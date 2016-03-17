@@ -22,7 +22,31 @@ class Mentorship < ActiveRecord::Base
     return mentorship
   end
 
-  def Serialize_for_name(person_id)
+  def serializer_for_mentorship(mentorship)
+    # make an array of postdocs that are connected to the person in json
+    # need to check what happens when empty array
+
+    result = Api::MentorshipSerializer.new(self).serializable_hash
+    result[:pdStartYear] = mentorship.start
+    result[:pdEndYear] = mentorship.end
+    result[:pdSupervisor] = Person.find_by(id: mentorship.mentor_id).name
+    result[:pdInstitution] = Institution.find_by(id: mentorship.institution_id).name
+    result = result.except(:id, :approved)
+    result[:postdoc_id] = mentorship.id
+    result[:postdoc_approved] = mentorship.approved
+    return result
+
+    # person_id = FindId.person(name)
+    # postdoc_array = Array.new
+    # postdoc_list = Mentorship.where(:person_id => person_id)
+    # postdoc_list.each do |postdoc_single|
+    #   single = Api::MentorshipSerializer.new(postdoc_single).serializable_hash
+    #   single[:pdStartYear] = postdoc_single.start
+    #   single[:pdEndYear] = postdoc_single.end
+    #   # wouldn't this line just grab person id instead of person name?
+    #   postdoc_array.push(single)
+    # end
+    # return postdoc_array
     # grab person_id then get person_name from there
     # changed find detail so shouldnt need this i thnk
   end

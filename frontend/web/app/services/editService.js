@@ -7,7 +7,7 @@
  */
 
 angular.module('chemGeno')
-    .service('editService', function($q, $http, $state, loginService) {
+    .service('editService', function($q, $http) {
 
         /**
          * Pass some param like name or id, and that will obtain all information I need. May need to parse it all.
@@ -19,7 +19,7 @@ angular.module('chemGeno')
             return $http({
                 header: 'Content-Type: application/json',
                 method: 'GET',
-                url: 'http://localhost:3000/aggregated',
+                url: 'http://localhost:3000/api/aggregated/' + id,
                 data: id //Sending this id as a json with the ID in it.
             }).success(function (resp) {
                 d.resolve(resp);
