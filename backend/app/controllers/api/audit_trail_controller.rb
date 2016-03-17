@@ -5,19 +5,26 @@ class Api::AuditTrailController < ApiController
 
     def index
       @versions = PaperTrail::Version.order('created_at DESC')
-      render json: {versions: @versions}
+      @prettyVersions = @versions.select('id,item_type, item_id, object_changes')
+
+      #@versions = @versios.find(0)
+      render json: {versions:@prettyVersions}
+
     end
 
     def show
-
-        render json: {error: 'the person you are looking for is not in our database, create the person in the submit first'}
-
-
-      #render json: {warning: 'not implemented'}, status: 200
+      @versions = PaperTrail::Version.order('created_at DESC')
+      @prettyVersions = @versions
+      #@versions = @versios.find(0)
+      render json: {versions:@versions}
     end
 
-
-
+    def history
+      @versions = PaperTrail::Version.order('created_at DESC')
+      @prettyVersions = @versions
+      #@versions = @versios.find(0)
+      render json: {versions:@versions}
+    end
 
 
 end

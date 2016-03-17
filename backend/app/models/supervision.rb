@@ -3,6 +3,9 @@ class Supervision < ActiveRecord::Base
   belongs_to :person, :class_name => 'Person'
   belongs_to :supervisor, :class_name => 'Person'
 
+  #track changes
+  has_paper_trail on: [:update, :create]#will remove create, only used to help implement
+
   # creates a new supervisor
   # for this one, since it should only be called when adding a new supervisor
   # when we're in the middle of adding a new degree, maybe the parameters
