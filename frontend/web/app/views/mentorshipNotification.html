@@ -1,0 +1,298 @@
+<style>
+#personNotifContainer {
+  -webkit-flex-direction: row;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  border-radius: 25px;
+  border: solid 1px #d3d3d3;
+  margin: 2% 2%;
+  min-height: 80vh;
+  overflow: hidden;
+  position: relative;
+}
+</style>
+
+<!--
+     there are obviously components that need to be refactored and encapsulated
+     into directives
+-->
+
+<div id="personNotifContainer">
+  <div ng-controller="mentorshipNotificationController" ng-cloak>
+    <div layout="row">
+
+      <!-- mentor -->
+      <div id="mentor">
+        <md-toolbar md-scroll-shrink>
+          <div class="md-toolbar-tools">mentor</div>
+        </md-toolbar>
+        <div>
+          <h3> {{mentor.person.data.name.toUpperCase()}} </h3>
+          <p> {{mentor.person.data.position.toUpperCase()}} <br>
+            {{mentor.person.institution.name.toUpperCase()}}</p>
+        </div>
+        <div id="viewMentors">
+          <md-card>
+            <md-card-header>
+              <md-card-avatar ng-click="mentor_mentorVisibility = !mentor_mentorVisibility;">
+                <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
+                  <md-tooltip md-direction="{{demo.tipDirection}}">
+                    Click here to view who mentored {{mentor.person.name}}.
+                  </md-tooltip>
+              </md-card-avatar>
+              <md-card-header-text>
+                <span class="md-title">{{mentor.person.name}} had {{mentor.mentors.length}} mentors</span>
+              </md-card-header-text>
+            </md-card-header>
+            <md-card-content ng-if="mentor_mentorVisibility && mentor.mentors.length > 0">
+              <md-list-item class="md-3-line" ng-repeat="mentor in mentor.mentors">
+                <div class="md-list-item-text" layout="column" style="width: 100%;">
+                  <br>
+                  <h3> {{mentor.institution.name.toUpperCase()}} </h3>
+                  <h3>{{mentor.start}} - {{mentor.end}} </h3> <br>
+                  <h4><u> mentored by: </u></h4>
+                  <p>{{mentor.mentor.data.name.toUpperCase()}}</p>
+                  <p>{{mentor.mentor.institution.name}}</p>
+                  <p>{{mentor.mentor.data.position.toUpperCase()}}</p>
+                  <br>
+                </div>
+                <md-divider ></md-divider>
+              </md-list-item>
+            </md-card-content>
+          </md-card>
+        </div>
+        <div id="viewMentored">
+          <md-card>
+            <md-card-header>
+              <md-card-avatar ng-click="mentor_mentoredVisibility = !mentor_mentoredVisibility;">
+                <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
+                  <md-tooltip md-direction="{{demo.tipDirection}}">
+                    Click here to view who {{mentor.person.name}} mentored.
+                  </md-tooltip>
+              </md-card-avatar>
+              <md-card-header-text>
+                <span class="md-title">{{mentor.person.name}} mentored {{mentor.mentored.length}} people.</span>
+              </md-card-header-text>
+            </md-card-header>
+            <md-card-content ng-if="mentor_mentoredVisibility && mentor.mentored.length > 0">
+              <md-list-item class="md-3-line" ng-repeat="mentored in mentor.mentored">
+                <div class="md-list-item-text" layout="column" style="width: 100%;">
+                  <br>
+                  <h3> {{mentored.institution.name.toUpperCase()}} </h3>
+                  <h3>{{mentored.start}} - {{mentored.end}} </h3> <br>
+                  <h4><u> mentee: </u></h4>
+                  <p>{{mentored.mentored.person.name.toUpperCase()}}</p>
+                  <p>{{mentored.mentored.institution.name.toUpperCase()}}</p>
+                  <p>{{mentored.mentored.person.position.toUpperCase()}}</p>
+                  <br>
+                </div>
+                <md-divider ></md-divider>
+              </md-list-item>
+            </md-card-content>
+          </md-card>
+        </div>
+        <div id="viewSupervisors">
+          <md-card>
+            <md-card-header>
+              <md-card-avatar ng-click="mentor_supervisorVisibility = !mentor_supervisorVisibility;">
+                <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg">
+                </md-icon>
+                  <md-tooltip md-direction="{{demo.tipDirection}}">
+                    Click here to view who {{mentor.person.name}} was supervised by.
+                  </md-tooltip>
+              </md-card-avatar>
+              <md-card-header-text>
+                <span class="md-title">{{mentor.person.name}} had {{mentor.supervisors.length}} supervisors.</span>
+              </md-card-header-text>
+            </md-card-header>
+            <md-card-content ng-if="mentor_supervisorVisibility && mentor.supervisors.length > 0">
+              <md-list-item class="md-3-line" ng-repeat="supervisor in mentor.supervisors">
+                <div class="md-list-item-text" layout="column" style="width: 100%;">
+                  <br>
+                  <h3> {{supervisor.degree.data.degree_type}} at {{supervisor.degree.institution.name}} on {{supervisor.degree.data.year}}</h3>
+                  <br>
+                  <h4><u> supervisor: </u></h4>
+                  <p>{{supervisor.supervisor.person.name.toUpperCase()}}</p>
+                  <p>{{supervisor.supervisor.institution.name.toUpperCase()}}</p>
+                  <p>{{supervisor.supervisor.person.position.toUpperCase()}}</p>
+                  <br>
+                </div>
+                <md-divider ></md-divider>
+              </md-list-item>
+            </md-card-content>
+          </md-card>
+        </div>
+        <div id="viewSupervised">
+          <md-card>
+            <md-card-header>
+              <md-card-avatar ng-click="mentor_supervisedVisibility = !mentor_supervisedVisibility;">
+                <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg">
+                </md-icon>
+                  <md-tooltip md-direction="{{demo.tipDirection}}">
+                    Click here to view who {{mentor.person.name}} supervised.
+                  </md-tooltip>
+              </md-card-avatar>
+              <md-card-header-text>
+                <span class="md-title">{{mentor.person.name}} supervised {{mentor.supervised.length}} people.</span>
+              </md-card-header-text>
+            </md-card-header>
+            <md-card-content ng-if="mentor_supervisedVisibility && mentor.supervised.length > 0">
+              <md-list-item class="md-3-line" ng-repeat="supervised in mentor.supervised">
+                <div class="md-list-item-text" layout="column" style="width: 100%;">
+                  <br>
+                  <h3> {{supervised.degree.data.degree_type}} at {{supervised.degree.institution.name}} on {{supervised.degree.data.year}}</h3>
+                  <br>
+                  <h4><u> person: </u></h4>
+                  <p>{{supervised.person.data.name.toUpperCase()}}</p>
+                  <p>{{supervised.person.institution.name.toUpperCase()}}</p>
+                  <p>{{supervised.person.data.position.toUpperCase()}}</p>
+                  <br>
+                </div>
+                <md-divider ></md-divider>
+              </md-list-item>
+            </md-card-content>
+          </div>
+        </div>
+          <!-- mentee -->
+
+          <div id="mentee" flex>
+            <md-toolbar md-scroll-shrink>
+              <div class="md-toolbar-tools">mentee</div>
+            </md-toolbar>
+            <div>
+              <h3> {{mentee.person.data.name.toUpperCase()}} </h3>
+              <p> {{mentee.person.data.position.toUpperCase()}} <br>
+                {{mentee.person.institution.name.toUpperCase()}}</p>
+            </div>
+            <div id="viewMentors">
+              <md-card>
+                <md-card-header>
+                  <md-card-avatar ng-click="mentee_mentorVisibility = !mentee_mentorVisibility;">
+                    <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
+                      <md-tooltip md-direction="{{demo.tipDirection}}">
+                        Click here to view who mentored {{mentee.person.name}}.
+                      </md-tooltip>
+                  </md-card-avatar>
+                  <md-card-header-text>
+                    <span class="md-title">{{mentee.person.name}} had {{mentee.mentors.length}} mentors</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <md-card-content ng-if="mentee_mentorVisibility && mentee.mentors.length > 0">
+                  <md-list-item class="md-3-line" ng-repeat="mentor in mentee.mentors">
+                    <div class="md-list-item-text" layout="column" style="width: 100%;">
+                      <br>
+                      <h3> {{mentor.institution.name.toUpperCase()}} </h3>
+                      <h3>{{mentor.start}} - {{mentor.end}} </h3> <br>
+                      <h4><u> mentored by: </u></h4>
+                      <p>{{mentor.mentor.data.name.toUpperCase()}}</p>
+                      <p>{{mentor.mentor.institution.name}}</p>
+                      <p>{{mentor.mentor.data.position.toUpperCase()}}</p>
+                      <br>
+                    </div>
+                    <md-divider ></md-divider>
+                  </md-list-item>
+                </md-card-content>
+              </md-card>
+            </div>
+            <div id="viewMentored">
+              <md-card>
+                <md-card-header>
+                  <md-card-avatar ng-click="mentee_mentoredVisibility = !mentee_mentoredVisibility;">
+                    <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
+                      <md-tooltip md-direction="{{demo.tipDirection}}">
+                        Click here to view who {{mentee.person.name}} mentored.
+                      </md-tooltip>
+                  </md-card-avatar>
+                  <md-card-header-text>
+                    <span class="md-title">{{mentee.person.name}} mentored {{mentee.mentored.length}} people.</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <md-card-content ng-if="mentee_mentoredVisibility && mentee.mentored.length > 0">
+                  <md-list-item class="md-3-line" ng-repeat="mentored in mentee.mentored">
+                    <div class="md-list-item-text" layout="column" style="width: 100%;">
+                      <br>
+                      <h3> {{mentored.institution.name.toUpperCase()}} </h3>
+                      <h3>{{mentored.start}} - {{mentored.end}} </h3> <br>
+                      <h4><u> mentee: </u></h4>
+                      <p>{{mentored.mentored.person.name.toUpperCase()}}</p>
+                      <p>{{mentored.mentored.institution.name.toUpperCase()}}</p>
+                      <p>{{mentored.mentored.person.position.toUpperCase()}}</p>
+                      <br>
+                    </div>
+                    <md-divider ></md-divider>
+                  </md-list-item>
+                </md-card-content>
+              </md-card>
+            </div>
+            <div id="viewSupervisors">
+              <md-card>
+                <md-card-header>
+                  <md-card-avatar ng-click="mentee_supervisorVisibility = !mentee_supervisorVisibility;">
+                    <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg">
+                    </md-icon>
+                      <md-tooltip md-direction="{{demo.tipDirection}}">
+                        Click here to view who {{mentee.person.name}} was supervised by.
+                      </md-tooltip>
+                  </md-card-avatar>
+                  <md-card-header-text>
+                    <span class="md-title">{{mentee.person.name}} had {{mentee.supervisors.length}} supervisors.</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <md-card-content ng-if="mentee_supervisorVisibility && mentee.supervisors.length > 0">
+                  <md-list-item class="md-3-line" ng-repeat="supervisor in mentee.supervisors">
+                    <div class="md-list-item-text" layout="column" style="width: 100%;">
+                      <br>
+                      <h3> {{supervisor.degree.data.degree_type}} at {{supervisor.degree.institution.name}} on {{supervisor.degree.data.year}}</h3>
+                      <br>
+                      <h4><u> supervisor: </u></h4>
+                      <p>{{supervisor.supervisor.person.name.toUpperCase()}}</p>
+                      <p>{{supervisor.supervisor.institution.name.toUpperCase()}}</p>
+                      <p>{{supervisor.supervisor.person.position.toUpperCase()}}</p>
+                      <br>
+                    </div>
+                    <md-divider ></md-divider>
+                  </md-list-item>
+                </md-card-content>
+              </md-card>
+            </div>
+            <div id="viewSupervised">
+              <md-card>
+                <md-card-header>
+                  <md-card-avatar ng-click="mentee_supervisedVisibility = !mentee_supervisedVisibility;">
+                    <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg">
+                    </md-icon>
+                      <md-tooltip md-direction="{{demo.tipDirection}}">
+                        Click here to view who {{mentor.person.name}} supervised.
+                      </md-tooltip>
+                  </md-card-avatar>
+                  <md-card-header-text>
+                    <span class="md-title">{{mentee.person.name}} supervised {{mentee.supervised.length}} people.</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <md-card-content ng-if="mentee_supervisedVisibility && mentee.supervised.length > 0">
+                  <md-list-item class="md-3-line" ng-repeat="supervised in mentee.supervised">
+                    <div class="md-list-item-text" layout="column" style="width: 100%;">
+                      <br>
+                      <h3> {{supervised.degree.data.degree_type}} at {{supervised.degree.institution.name}} on {{supervised.degree.data.year}}</h3>
+                      <br>
+                      <h4><u> person: </u></h4>
+                      <p>{{supervised.person.data.name.toUpperCase()}}</p>
+                      <p>{{supervised.person.institution.name.toUpperCase()}}</p>
+                      <p>{{supervised.person.data.position.toUpperCase()}}</p>
+                      <br>
+                    </div>
+                    <md-divider ></md-divider>
+                  </md-list-item>
+                </md-card-content>
+              </div>
+            </div>
+          </div>
+          <section layout="row" layout-align="center center" layout-wrap>
+            <md-button ng-disabled="true" class="md-primary md-raised">Accept</md-button>
+            <md-button ng-disabled="true" class="md-warn md-raised">Reject</md-button>
+          </section>
+        </div>
+      </div>

@@ -31,4 +31,17 @@ angular.module('chemGeno')
     url: '/view/:id',
     templateUrl: '/app/views/view.html'
   })
+  .state('main.personNotification', {
+    url: '/personNotification',
+    templateUrl: 'app/views/personNotification.html',
+    params: {person: null},
+  })
+  .state('main.mentorshipNotification', {
+    url: '/mentorshipNotification/mentor/:mentorId/mentee/:menteeId',
+    templateUrl: 'app/views/mentorshipNotification.html'
+  })
+  .state('main.supervisionNotification', {
+    url: '/supervisionNotification/supervisor/:supervisorId/supervised/:supervisedId',
+    templateUrl: 'app/views/supervisionNotification.html'
+  })
 });
