@@ -62,54 +62,32 @@
     <iframe id="search_frame"></iframe>
 
     <div id="content"><div id='filecontents'>
-<p>Remember to “bundle install” to download the gem files.</p>
+<h3 id="label-database+loading+script">database loading script</h3>
 
-<p>February 10, 2016:</p>
-<ul><li>
-<p>Initialized the backend with rails-api</p>
-</li><li>
-<p>Followed most of #17 on <a
-href="https://github.com/mefeghhi/poll-api">github.com/mefeghhi/poll-api</a></p>
-</li><li>
-<p>Haven&#39;t been able to do #18 yet</p>
-</li><li>
-<p>Created a User model and controller</p>
-</li><li>
-<p>Created a temporary model and controller for Contact Us (when receiving
-information for a concern)</p>
-</li><li>
-<p>Honestly, haven&#39;t been able to do anything too solid for both</p>
-</li></ul>
+<p>There is a script <code>reloadDB.sh</code> that will load both the test
+database and the development database. It tears everything down though, so
+if you&#39;re using it frequently you&#39;ll want to remove a few lines.</p>
 
-<h2 id="label-example+test+for+authentication+route+--+when+it+works+it+should+return+some+token+provided+username-2Fpassword+combo">example test for authentication route – when it works it should return some token provided username/password combo</h2>
+<h3 id="label-test+database+location-2Finitialization">test database location/initialization</h3>
 
-<p><a
-href="http://stackoverflow.com/questions/6885990/rails-params-explained">stackoverflow.com/questions/6885990/rails-params-explained</a></p>
+<p><code>/backend/lib/tasks/test_data.rake</code> is where test data is loaded
+from. This is the data that is tested against in the tests. This data is
+automatically loaded with <code>./reloadDB.sh</code></p>
 
-<pre class="code ruby"><code class="ruby">curl -X POST -H &#39;Content-Length: 0&#39; \ 
-&#39;http://localhost:3000/authenticate/?username=testUser&amp;password=testPassword&#39;</code></pre>
+<h3 id="label-test+location">test location</h3>
 
-<p>response:</p>
+<p>tests are located in the <code>/backend/spec</code> folder. You can run
+these with <code>rake spec</code>.</p>
 
-<pre class="code ruby"><code class="ruby"><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>auth_token</span><span class='label_end'>&quot;:</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0NTc4MjQ0OTR9.AplIW545pEZCSXb3BtBu2j4svTriNuRPs6_imIkO_aQ</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user</span><span class='label_end'>&quot;:</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='label_end'>&quot;:</span><span class='int'>1</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>username</span><span class='label_end'>&quot;:</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>testUser</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rbrace'>}</span>
-</code></pre>
+<h3 id="label-futher+documentation">futher documentation</h3>
 
-<h2 id="label-sources">sources</h2>
-
-<p><a
-href="http://adamalbrecht.com/2015/07/20/authentication-using-json-web-tokens-using-rails-and-react">adamalbrecht.com/2015/07/20/authentication-using-json-web-tokens-using-rails-and-react</a>/</p>
-
-<p><a
-href="http://adamalbrecht.com/2014/12/04/add-json-web-token-authentication-to-your-angular-rails-app">adamalbrecht.com/2014/12/04/add-json-web-token-authentication-to-your-angular-rails-app</a>/</p>
-
-<h3 id="label-work+on+error+repsonses...+shouldn-27t+be+responding+with+HTML">work on error repsonses… shouldn&#39;t be responding with HTML</h3>
-
-<p><a
-href="https://wyeworks.com/blog/2016/1/12/improvements-to-error-responses-in-rails-5-api-mode">wyeworks.com/blog/2016/1/12/improvements-to-error-responses-in-rails-5-api-mode</a></p>
+<p>There is further documentation on the <a
+href="https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki#documentation">project
+wiki</a>.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Wed Mar 16 03:22:46 2016 by
+  Generated on Fri Mar 18 09:09:31 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.3.0).
 </div>

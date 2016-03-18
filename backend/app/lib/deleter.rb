@@ -1,3 +1,11 @@
+# @author Steven Myers
+# This class is used for rejecting user information (unapproved) entries that
+# the administrator has decided against accepting. The method names, arguements
+# and returns are self explanatory.
+# TODO: investigate whether or not information is left "dangling" and destroy
+# unrefrenced and unapproved table rows, ie, an unapproved mentorship occured at
+# an unapproved institution. After the unapproved mentorship is deleted, the
+# unapproved institution should also be removed.
 class Deleter
 
   def self.delete_user(user_id)
@@ -36,6 +44,8 @@ class Deleter
     return {"error" => 'unable to delete'}
   end
 
+  # TODO: I'm sure this is leaving "ghost rows" as described at the
+  # begining of this class
   def self.delete_person(person_id)
     @person = Search.person_info(person_id)
 

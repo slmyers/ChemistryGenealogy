@@ -142,6 +142,31 @@ doesn&#39;t exist.</p>
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_mentorship-class_method" title="update_mentorship (class method)">+ (Object) <strong>update_mentorship</strong>(id, person_name, mentorship_array_received) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Updates the mentorships connected to a person mentorship = “2008”, pdEndYear: “2012”, pdSupervisor: “jun liu”, pdInstitution: “johns
+hopkins university”, postdoc_id: 3.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
     <h2>
@@ -176,7 +201,7 @@ doesn&#39;t exist.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#Serialize_for_name-instance_method" title="#Serialize_for_name (instance method)">- (Object) <strong>Serialize_for_name</strong>(person_id) </a>
+      <a href="#serializer_for_mentorship-instance_method" title="#serializer_for_mentorship (instance method)">- (Object) <strong>serializer_for_mentorship</strong>(mentorship) </a>
     
 
     
@@ -233,9 +258,6 @@ doesn&#39;t exist</p>
       <pre class="lines">
 
 
-10
-11
-12
 13
 14
 15
@@ -246,10 +268,13 @@ doesn&#39;t exist</p>
 20
 21
 22
-23</pre>
+23
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/mentorship.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'app/models/mentorship.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_new_mentorship'>new_mentorship</span><span class='lparen'>(</span><span class='id identifier rubyid_person_name'>person_name</span><span class='comma'>,</span> <span class='id identifier rubyid_mentor_name'>mentor_name</span><span class='comma'>,</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='comma'>,</span> <span class='id identifier rubyid_start_date'>start_date</span><span class='comma'>,</span> <span class='id identifier rubyid_end_date'>end_date</span><span class='rparen'>)</span>
 
@@ -264,6 +289,196 @@ doesn&#39;t exist</p>
                                               <span class='label'>start:</span> <span class='id identifier rubyid_start_date'>start_date</span><span class='comma'>,</span>
                                               <span class='label'>end:</span> <span class='id identifier rubyid_end_date'>end_date</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_mentorship'>mentorship</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_mentorship-class_method">
+  
+    + (<tt>Object</tt>) <strong>update_mentorship</strong>(id, person_name, mentorship_array_received) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Updates the mentorships connected to a person mentorship = “2008”, pdEndYear: “2012”, pdSupervisor: “jun liu”, pdInstitution: “johns
+hopkins university”, postdoc_id: 3</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/mentorship.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_update_mentorship'>update_mentorship</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_person_name'>person_name</span><span class='comma'>,</span> <span class='id identifier rubyid_mentorship_array_received'>mentorship_array_received</span><span class='rparen'>)</span>
+
+  <span class='comment'># Make an array of mentorship ids that are connected to the person in the database
+</span>  <span class='id identifier rubyid_mentorship_array'>mentorship_array</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_mentorship_list'>mentorship_list</span> <span class='op'>=</span> <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:person_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mentorship_list'>mentorship_list</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mentorship_single'>mentorship_single</span><span class='op'>|</span>
+    <span class='id identifier rubyid_mentorship_array'>mentorship_array</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship_single'>mentorship_single</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Check that mentorship_array is not nil
+</span>  <span class='kw'>unless</span> <span class='id identifier rubyid_mentorship_array'>mentorship_array</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+    <span class='comment'># Check that mentorship_array_received is not nil
+</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_mentorship_array_received'>mentorship_array_received</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+      <span class='comment'># For each mentorship in the mentorship_array_received, see if it
+</span>      <span class='comment'># already exists in the database
+</span>      <span class='comment'># If it exists, update it. If not, create it.
+</span>      <span class='id identifier rubyid_mentorship_array_received'>mentorship_array_received</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='op'>|</span>
+
+        <span class='comment'># mentorship[:postdoc_id] should be set to nil if it is a new mentorship
+</span>        <span class='comment'># Maybe this instead: if mentorship_array.include? mentorship[:postdoc_id]
+</span>        <span class='kw'>unless</span> <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:postdoc_id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+          <span class='comment'># Person_id should still stay the same. Everything else is updated.
+</span>          <span class='comment'># *There&#39;s probably a nicer way of updating all info at once*
+</span>          <span class='id identifier rubyid_mentor_id'>mentor_id</span> <span class='op'>=</span> <span class='const'>FindId</span><span class='period'>.</span><span class='id identifier rubyid_person'>person</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdSupervisor</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_institution_id'>institution_id</span> <span class='op'>=</span> <span class='const'>FindId</span><span class='period'>.</span><span class='id identifier rubyid_institution'>institution</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdInstitution</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+          <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:postdoc_id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>mentor_id:</span> <span class='id identifier rubyid_mentor_id'>mentor_id</span><span class='rparen'>)</span>
+          <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:postdoc_id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>institution_id:</span> <span class='id identifier rubyid_institution_id'>institution_id</span><span class='rparen'>)</span>
+          <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:postdoc_id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>start:</span> <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdStartYear</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+          <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:postdoc_id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>end:</span> <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdEndYear</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+          <span class='comment'># Remove id from the mentorship_array
+</span>          <span class='id identifier rubyid_mentorship_array'>mentorship_array</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:postdoc_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+        <span class='comment'># If the mentorship is not in the array, it is a new mentorship that
+</span>        <span class='comment'># must be added (the mentorship[:postdoc_id] should be nil)
+</span>        <span class='kw'>else</span>
+          <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_new_mentorship'>new_mentorship</span><span class='lparen'>(</span><span class='id identifier rubyid_person_name'>person_name</span><span class='comma'>,</span>
+                                    <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdSupervisor</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                    <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdInstitution</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                    <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdStartYear</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                    <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdEndYear</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+
+      <span class='comment'># If there&#39;s anything left in the mentorship_array after, remove them
+</span>      <span class='kw'>unless</span> <span class='id identifier rubyid_mentorship_array'>mentorship_array</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_mentorship_array'>mentorship_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mentorship_id'>mentorship_id</span><span class='op'>|</span>
+          <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship_id'>mentorship_id</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+
+    <span class='comment'># If the mentorship_array_received is nil, remove all mentorships
+</span>    <span class='comment'># connected to the person
+</span>    <span class='kw'>else</span>
+      <span class='id identifier rubyid_mentorship_array'>mentorship_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mentorship_id'>mentorship_id</span><span class='op'>|</span>
+        <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship_id'>mentorship_id</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+  <span class='comment'># If mentorship_array is nil (or person has no mentorships),
+</span>  <span class='comment'># then if mentorship_array_received (or the mentorships received from edit page)
+</span>  <span class='comment'># is not nil, then add all of them to the table
+</span>  <span class='kw'>else</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_mentorship_array_received'>mentorship_array_received</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='id identifier rubyid_mentorship_array_received'>mentorship_array_received</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='op'>|</span>
+        <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_new_mentorship'>new_mentorship</span><span class='lparen'>(</span><span class='id identifier rubyid_person_name'>person_name</span><span class='comma'>,</span>
+                                  <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdSupervisor</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                  <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdInstitution</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                  <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdStartYear</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                  <span class='id identifier rubyid_mentorship'>mentorship</span><span class='lbracket'>[</span><span class='symbol'>:pdEndYear</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -291,12 +506,12 @@ doesn&#39;t exist</p>
       <pre class="lines">
 
 
-30
-31
-32</pre>
+124
+125
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/mentorship.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'app/models/mentorship.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_as_json'>as_json</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='symbol'>:except</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:created_at</span><span class='comma'>,</span> <span class='symbol'>:updated_at</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -307,9 +522,9 @@ doesn&#39;t exist</p>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="Serialize_for_name-instance_method">
+  <h3 class="signature " id="serializer_for_mentorship-instance_method">
   
-    - (<tt>Object</tt>) <strong>Serialize_for_name</strong>(person_id) 
+    - (<tt>Object</tt>) <strong>serializer_for_mentorship</strong>(mentorship) 
   
 
   
@@ -321,18 +536,40 @@ doesn&#39;t exist</p>
       <pre class="lines">
 
 
-25
-26
-27
-28</pre>
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/mentorship.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'app/models/mentorship.rb', line 108</span>
 
-<span class='kw'>def</span> <span class='const'>Serialize_for_name</span><span class='lparen'>(</span><span class='id identifier rubyid_person_id'>person_id</span><span class='rparen'>)</span>
-  <span class='comment'># grab person_id then get person_name from there
-</span>  <span class='comment'># changed find detail so shouldnt need this i thnk
-</span><span class='kw'>end</span></pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_serializer_for_mentorship'>serializer_for_mentorship</span><span class='lparen'>(</span><span class='id identifier rubyid_mentorship'>mentorship</span><span class='rparen'>)</span>
+  <span class='comment'># make an array of postdocs that are connected to the person in json
+</span>  <span class='comment'># need to check what happens when empty array
+</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>Api</span><span class='op'>::</span><span class='const'>MentorshipSerializer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_serializable_hash'>serializable_hash</span>
+  <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:pdStartYear</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_mentorship'>mentorship</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span>
+  <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:pdEndYear</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_mentorship'>mentorship</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span>
+  <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:pdSupervisor</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='id identifier rubyid_mentorship'>mentorship</span><span class='period'>.</span><span class='id identifier rubyid_mentor_id'>mentor_id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+  <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:pdInstitution</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Institution</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='id identifier rubyid_mentorship'>mentorship</span><span class='period'>.</span><span class='id identifier rubyid_institution_id'>institution_id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_except'>except</span><span class='lparen'>(</span><span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:approved</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:postdoc_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_mentorship'>mentorship</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+  <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:postdoc_approved</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_mentorship'>mentorship</span><span class='period'>.</span><span class='id identifier rubyid_approved'>approved</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -343,7 +580,7 @@ doesn&#39;t exist</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 03:22:46 2016 by
+  Generated on Fri Mar 18 09:09:32 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.3.0).
 </div>

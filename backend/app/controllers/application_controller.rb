@@ -7,6 +7,8 @@ end
 class AuthenticationTimeoutError < StandardError
 end
 
+# @author Steven Myers
+# contains errors related to authentication and token parsing methods
 class ApplicationController < ActionController::API
   self.responder = ApplicationResponder
   respond_to :html, :json

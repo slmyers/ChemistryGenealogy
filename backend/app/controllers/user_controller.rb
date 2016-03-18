@@ -1,3 +1,5 @@
+# @author Steven Myers
+# this controller is used when registering a user
 class UserController < ApplicationController
   respond_to :json
 
@@ -5,7 +7,8 @@ class UserController < ApplicationController
     render json: {warning: 'not implemented'}, status: 200
   end
 
-  # too much logic in here
+  # this is the registration endpoint
+  # maybe too much logic here
   def create
     Rails.logger.info(params)
     if params.has_key?(:password) && params.has_key?(:email) && params.has_key?(:first_name) && params.has_key?(:last_name)
@@ -13,7 +16,7 @@ class UserController < ApplicationController
         @user = User.new_user(params[:password], params[:email], params[:first_name], params[:last_name])
         if @user != nil && @user.save
           render json: @user.as_json, status: :created
-          return 
+          return
         end
       else
         render json: {error: 'user exists'}, status: :bad_request
