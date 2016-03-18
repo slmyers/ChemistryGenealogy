@@ -12,10 +12,6 @@ class Search
   # returns a hash that contains the relations to a person
   # and the person/institution records
   def self.relations_by_id(person_id)
-    if !person_id.is_a? Integer
-      return {}
-    end
-
     @persons = Set.new
     @institutions = Set.new
 
@@ -68,10 +64,31 @@ class Search
             }
   end
 
+  def self.person_info(id)
+    unless Person.exists?(id) then return nil end
+
+    @person = Person.includes(:institution)
+              .includes( {mentorships: [:institution, {mentor: [:institution]}] })
+              .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
+              .where(:id => id).first
+
+    @mentored = Mentorship.where(:mentor_id => id)
+                .includes(:institution)
+                .includes(person: :institution)
+
+    @supervised = Supervision.where(:supervisor_id => id)
+                  .includes(degree: :institution)
+                  .includes(person: :institution)
+
+    return {
+      'person' => @person,
+      'mentored' => @mentored,
+      'supervised' => @supervised
+    }
+  end
+
   def self.person(id)
-    unless Person.exists?(id)
-      return nil
-    end
+    unless Person.exists?(id) then return nil end
 
     @person = Person.includes(:institution)
               .includes( {mentorships: [:institution, {mentor: [:institution]}] })

@@ -37,11 +37,11 @@ angular.module('chemGeno')
     params: {person: null},
   })
   .state('main.mentorshipNotification', {
-    url: '/mentorshipNotification/mentor/:mentorId/mentee/:menteeId',
+    url: '/mentorshipNotification/mentor/:mentorId/mentee/:menteeId/mentorship/:mentorshipId',
     templateUrl: 'app/views/mentorshipNotification.html'
   })
   .state('main.supervisionNotification', {
-    url: '/supervisionNotification/supervisor/:supervisorId/supervised/:supervisedId',
+    url: '/supervisionNotification/supervisor/:supervisorId/supervised/:supervisedId/supervision/:supervisionId',
     templateUrl: 'app/views/supervisionNotification.html'
   })
 });

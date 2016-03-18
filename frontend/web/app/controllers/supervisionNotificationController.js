@@ -1,6 +1,6 @@
 angular.module('chemGeno')
-.controller('supervisionNotificationController', ['$scope', '$stateParams', 'viewService', '$q',
-function($scope, $stateParams, viewService, $q) {
+.controller('supervisionNotificationController', ['$scope', '$stateParams', 'viewService', '$q', 'verificationService', '$state',
+function($scope, $stateParams, viewService, $q, verificationService, $state) {
   $scope.loadData = function() {
     var promises = {
       supervisorPromise: viewService.getPerson($stateParams.supervisorId),
@@ -12,6 +12,17 @@ function($scope, $stateParams, viewService, $q) {
     });
   }
   $scope.loadData();
+
+  $scope.verifySupervision = function() {
+    var paramObj = {supervision: $stateParams.supervisionId};
+    var promise = verificationService.verifyInfo(paramObj);
+    promise.then(function(resp) {
+      console.log(resp);
+      $state.go('main.admin');
+    }, function(error){
+      alert(error);
+    });
+  };
   // ui booleans for mentor info
   $scope.supervisor_mentorVisibility = false;
   $scope.supervisor_mentoredVisibility = false;

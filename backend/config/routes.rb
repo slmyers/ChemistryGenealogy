@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :auto_complete, except: [:new, :edit, :create, :show, :update, :destroy]
   resources :admins, except: [:new, :edit]
   namespace :api do
+    resources :verification
     resources :notification, except: [:new, :edit, :create, :show, :update, :destroy], :defaults => {:format => :json}
     resources :supervisions
     resources :degrees

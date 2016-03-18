@@ -60,14 +60,14 @@ angular.module('chemGeno')
         var _supervisor_ = data.supervised[i];
         var inst = $scope.findInstitution(_supervisor_.institution_id,
           data.institutions);
-
+        console.log(inst)
         var mentor = {
           name: _supervisor_.name,
           institution: inst,
           position: _supervisor_.position,
           id: _supervisor_.id
         };
-        toPush.push(_supervisor_)
+        toPush.push(mentor)
       }
       $scope.supervised = toPush;
 
@@ -76,14 +76,14 @@ angular.module('chemGeno')
         var _supervisor_ = data.supervisors[i];
         var inst = $scope.findInstitution(_supervisor_.institution_id,
           data.institutions);
-
+        console.log(inst)
         var mentor = {
           name: _supervisor_.name,
           institution: inst,
           position: _supervisor_.position,
           id: _supervisor_.id
         };
-        toPush.push(_supervisor_)
+        toPush.push(mentor)
       }
       $scope.supervisors = toPush;
 

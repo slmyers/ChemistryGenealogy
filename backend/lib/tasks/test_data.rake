@@ -1,5 +1,4 @@
 # http://www.kbedell.com/2011/03/15/seed-data-versus-testing-data-and-custom-rake-tasks-for-ruby-on-rails/
-
 # rake db:drop db:create db:migrate db:seed app:load_demo_data RAILS_ENV=test
 namespace :app do
   desc <<-DESC

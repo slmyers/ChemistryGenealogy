@@ -1,6 +1,7 @@
 angular.module('chemGeno')
 .controller('mentorshipNotificationController', ['$scope', '$stateParams', 'viewService', '$q',
-function($scope, $stateParams, viewService, $q) {
+'verificationService', '$state',
+function($scope, $stateParams, viewService, $q, verificationService, $state) {
   $scope.loadData = function() {
     var promises = {
       mentorPromise: viewService.getPerson($stateParams.mentorId),
@@ -12,7 +13,18 @@ function($scope, $stateParams, viewService, $q) {
       console.log($scope.mentor);
       console.log($scope.mentee);
     });
-  }
+  };
+
+  $scope.approveMentorship = function() {
+    var paramObj = {mentorship: $stateParams.mentorshipId};
+    var promise = verificationService.verifyInfo(paramObj);
+    promise.then(function(resp) {
+      console.log(resp);
+      $state.go('main.admin');
+    }, function(error){
+      alert(error);
+    });
+  };
   $scope.loadData();
   // ui booleans for mentor info
   $scope.mentor_mentorVisibility = false;

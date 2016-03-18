@@ -29,11 +29,10 @@ class Notifier
   def self.admin_notifications
     @unapproved_admins = Admin.where({:approved => false})
                          .includes(:user)
-
     @res_array = Array.new
 
     @unapproved_admins.each do |a|
-      unless a.user.blank?
+      if a.approved == false
         @admin = {
           'id' => a.id,
           'user' => a.user

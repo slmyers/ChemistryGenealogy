@@ -40,7 +40,7 @@
         <md-list-item class="md-3-line" ng-repeat="mentorship in data.mentorship_notifications">
           <div class="md-list-item-text">
             <a
-            ui-sref="main.mentorshipNotification({mentorId: mentorship.mentor.person.id, menteeId: mentorship.mentored.person.id})">
+            ui-sref="main.mentorshipNotification({mentorId: mentorship.mentor.person.id, menteeId: mentorship.mentored.person.id, mentorshipId: mentorship.mentorship.data.id})">
               <h2><i>{{mentorship.mentor.person.name}}</i> mentored <i>{{mentorship.mentored.person.name}}</i></h2>
               <h3>{{mentorship.mentorship.institution.name}}</h3>
               <h3>{{mentorship.mentorship.data.start}} - {{mentorship.mentorship.data.end}}</h3>
@@ -57,7 +57,7 @@
         <md-list-item class="md-3-line" ng-repeat="supervision in data.supervision_notifications">
           <div class="md-list-item-text">
             <a
-            ui-sref="main.supervisionNotification({supervisorId: supervision.supervisor.person.id, supervisedId: supervision.supervised.person.id})">
+            ui-sref="main.supervisionNotification({supervisorId: supervision.supervisor.person.id, supervisedId: supervision.supervised.person.id, supervisionId: supervision.supervision.data.id})">
               <h2><i>{{supervision.supervisor.person.name}}</i> supervised <i>{{supervision.supervised.person.name}}</i></h2>
               <h3>at {{supervision.supervision.institution.name}}</h3>
               <h3>{{supervision.supervision.degree.degree_type}} on {{supervision.supervision.degree.year}}</h3>
@@ -77,7 +77,7 @@
             <h3>{{user.email}}</h3>
           </div>
             <section layout="row" layout-align="center center" layout-wrap>
-              <md-button ng-disabled="true" class="md-primary md-raised">Accept</md-button>
+              <md-button ng-click="approveUser($index)" class="md-primary md-raised">Accept</md-button>
               <md-button ng-disabled="true" class="md-warn md-raised">Reject</md-button>
             </section>
           </md-list-item>
@@ -94,7 +94,7 @@
             <h3>{{admin.user.email}}</h3>
           </div>
             <section layout="row" layout-align="center center" layout-wrap>
-              <md-button ng-disabled="true" class="md-primary md-raised">Accept</md-button>
+              <md-button ng-click="approveAdmin($index)" class="md-primary md-raised">Accept</md-button>
               <md-button ng-disabled="true" class="md-warn md-raised">Reject</md-button>
             </section>
           </md-list-item>

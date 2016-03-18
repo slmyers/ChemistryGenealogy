@@ -71,7 +71,7 @@ Mentorship.create!([
 # delete this next data when in production
 # this is to test notifications while in development enviroment
 Person.create!([
-  {name: 'Steven Myers', position: 'professor', institution_id: 1, approved: false},
+  {name: 'steven myers', position: 'professor', institution_id: 1, approved: false},
   {name: 'steve supervised', position: 'prof', institution_id: 1, approved: true},
   {name: "steve's mentor", position: 'professor', institution_id: 1, approved: true},
   {name: "steve's mentored", position: 'professor', institution_id: 1, approved: true},
