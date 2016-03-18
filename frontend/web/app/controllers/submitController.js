@@ -313,6 +313,7 @@ angular.module('chemGeno')
              * @param diYear The year that the degree was obtained.
              * @param diSupervisor The supervisor who oversaw the degree.
              * @param diInstitution The institution that awarded the degree.
+             * @method addDI
              */
             $scope.addDI = function (diYear, diSupervisor, diInstitution) {
                 //view = view || title + " Content View";
@@ -324,6 +325,7 @@ angular.module('chemGeno')
              * This function when evoked will remove the selected tab from the screen.
              *
              * @param tab The tab to be removed.
+             * @method removeDITab
              */
             $scope.removeDITab = function (tab) {
                 $scope.degreeInfoID--; //Decrement global degreeInfoID with removal.
@@ -339,6 +341,7 @@ angular.module('chemGeno')
 
             /**
              * When invoked will show the postdoc info by setting the flag to true.
+             * @method showPostDocInfo
              */
             $scope.showPostDocInfo = function(){
                 $scope.postDocVisibility = true;
@@ -347,6 +350,7 @@ angular.module('chemGeno')
 
             /**
              * When invoked will hide the postdoc info by setting the flag to false.
+             * @method hidePostDocInfo
              */
             $scope.hidePostDocInfo = function(){
                 $scope.postDocVisibility = false;
@@ -363,6 +367,14 @@ angular.module('chemGeno')
             $scope.pdSupervisor = null;
             $scope.pdInstitution = null;
 
+            /**
+             * Constructs a new PostDoc object
+             * @param pdStartYear start year
+             * @param pdEndYear ending year
+             * @param pdSupervisor supervisor
+             * @param pdInstitution institution
+             * @constructor PostDocInstance
+             */
             function PostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)
                 {
                     this.pdStartYear = pdStartYear,
@@ -403,6 +415,7 @@ angular.module('chemGeno')
              * @param pdEndYear Ending year of the postdoc appointment.
              * @param pdSupervisor Supervisor of the postdoc appointment.
              * @param pdInstitution Institution of the postdoc appointment.
+             * @method addPostDocInstance
              */
             $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
                 //Series of statements checking if the postdoc fields are empty or not.
@@ -458,6 +471,12 @@ angular.module('chemGeno')
 
             };
 
+
+            /**
+             * Method when invoked says that the edit post doc function has been called.
+             *
+             * @method editPostDoc
+             */
             $scope.editPostDoc = function(){
               console.log("editPostDoc function called");
 
@@ -479,6 +498,7 @@ angular.module('chemGeno')
              * Function that when invoked will remove the selected postdoc instance from the submit page and
              * the particular individual's object model.
              * @param postDocInstanceIndex of the postDocInformation array that should be removed.
+             * @method removePostDocInstance
              */
             $scope.removePostDocInstance = function(postDocInstance){
                 console.log("removePostDocInstance called with index" + postDocInstance);
@@ -514,6 +534,7 @@ angular.module('chemGeno')
 
             /**
              * Shows the degree info information when invoked.
+             * @method showDegreeInfo
              */
             $scope.showDegreeInfo = function(){
                 $scope.degreeInfoVisibility = true;
@@ -521,6 +542,7 @@ angular.module('chemGeno')
 
             /**
              * Hides the degree info information when invoked.
+             * @method hideDegreeInfo
              */
             $scope.hideDegreeInfo = function(){
                 $scope.degreeInfoVisibility = false;
@@ -530,6 +552,7 @@ angular.module('chemGeno')
 
             /**
              * Information regarding the postdoc appointments furnished on the submit page.
+             *
              *
              */
             $scope.diYear = null;
@@ -547,7 +570,7 @@ angular.module('chemGeno')
              * @param diInstitution Institution degree was awarded from.
              * @param diType Type of this degree.
              *
-             * @constructor
+             * @constructor DegreeInfoInstance
              */
             function DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)
             {
@@ -571,11 +594,14 @@ angular.module('chemGeno')
 
 
             /**
+             * Creates a new degreeinfo object from the supplied parameters and then puts the object into the large
+             * array of the total degree info objects array. :)
              *
              * @param diYear Year of the degree being awarded.
              * @param diSupervisor Supervisor of the degree.
              * @param diInstitution Institution degree was awarded from.
              * @param diType Type of this degree.
+             * @method addDegreeInfoInstance
              */
             $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution, diType) {
 
@@ -630,6 +656,7 @@ angular.module('chemGeno')
              * Removes the object passed in from the individual's degree information.
              *
              * @param degreeInfoInstance The degree that is desired to be removed.
+             * @method removeDegreeInfoInstance
              */
             $scope.removeDegreeInfoInstance = function(degreeInfoInstance){
                 console.log("removePostDocInstance called with index" + degreeInfoInstance);
@@ -657,6 +684,12 @@ angular.module('chemGeno')
             $scope.currentInstitutionName = null;
             $scope.Name = null;
 
+            /**
+             * Method that when called will spill onto the console all of the current state of the various model
+             * pieces.
+             *
+             * @method testBasicInputs
+             */
             $scope.testBasicInputs = function(){
                 console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
                     + " " + $scope.currentPositionTitle + " " + $scope.currentInstitutionName);
@@ -685,7 +718,9 @@ angular.module('chemGeno')
              * @param currentPositionTitle
              * @param currentInstitutionName
              * @param postDocInformation
+             * @constructor SubmissionPageModelObject
              */
+
             function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
                         currentInstitutionName, postDocInformation, degreeInformation,
                         superDegInformation, superDocInformation)
@@ -718,6 +753,11 @@ angular.module('chemGeno')
             $scope.currPositionTitleWarning = false;
             $scope.currInstNameWarning = false;
 
+            /**
+             * Method that when invoked will supply a warning state to the console detailing the current state.
+             * @method warningsState
+             *
+             */
             $scope.warningsState = function(){
               console.log("firstnamewarning: " + $scope.firstNameWarning + " , lastnamewarning: " + $scope.lastNameWarning +
               "currpositiontitlewarning: " + $scope.currPositionTitleWarning + "currinstnamewarning : " + $scope.currInstNameWarning);
@@ -728,6 +768,8 @@ angular.module('chemGeno')
             /**
              * Function evoked when the final submission button is hit, creates a new model object for the entire
              * submission page.
+             *
+             * @method finalSubmitButtonFunction
              */
             $scope.finalSubmitButtonFunction = function(){
                 console.log("finalSubmitButtonFunction was called");
@@ -813,6 +855,7 @@ angular.module('chemGeno')
 
             /**
              * Meant to return back to the main.search page, not working though.
+             * @method goBackToMain
              */
             $scope.goBackToMain = function () {
                 if ($state.$current.name !== 'main.search') {
@@ -824,6 +867,7 @@ angular.module('chemGeno')
             /**
              * Function that once it is called will dump all of the information of the object for this submission
              * page!
+             * @method checkOutTHISObject
              */
             $scope.checkOutTHISObject = function(){
                 console.log("Here are the results of the object of this page");

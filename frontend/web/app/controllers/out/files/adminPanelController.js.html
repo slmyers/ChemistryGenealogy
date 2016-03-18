@@ -70,7 +70,13 @@
                 
                 The user controller is located here, that handles the affairs dealing with the users of the application
                 working with the application.</a></li>
-                                <li><a href="../classes/personAutoController.html">personAutoController</a></li>
+                                <li><a href="../classes/personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file..html">personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file.</a></li>
                                 <li><a href="../classes/personNotificationController
                 
                 Notifications for persons are dealt with here..html">personNotificationController
@@ -140,9 +146,9 @@
                 slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.</a></li>
                                 <li><a href="../classes/viewController
                 
-                This controller does all that can be done with the view page....html">viewController
+                This controller does all that can be done with the view page..html">viewController
                 
-                This controller does all that can be done with the view page...</a></li>
+                This controller does all that can be done with the view page.</a></li>
                                 <li><a href="../classes/visController
                 
                 Notifications for mentorships are dealt with here..html">visController
@@ -213,7 +219,13 @@
 angular.module(&#x27;chemGeno&#x27;)
 .controller(&#x27;adminPanelController&#x27;, [&#x27;$scope&#x27;, &#x27;adminPanelService&#x27;, &#x27;verificationService&#x27;,
 function($scope, adminPanelService, verificationService) {
-  $scope.loadData = function() {
+
+    /**
+     * This function loads the data from the services for this admin panel page.
+     *
+     * @method loadData
+     */
+    $scope.loadData = function() {
     var promise = adminPanelService.loadNotifications();
     promise.then(function(resp){
       $scope.data = resp.data;
@@ -222,8 +234,16 @@ function($scope, adminPanelService, verificationService) {
       alert(&#x27;error loading notifications&#x27;);
     })
   };
+
+    //Invokes the function that loads the data into the admin panel.
   $scope.loadData();
 
+    /**
+     * This function is invoked upon an index in order to approve a new user registration.
+     *
+     * @method approveUser
+     * @param index
+     */
   $scope.approveUser = function(index) {
     var paramObj = {user: $scope.data.user_notifications[index].id};
     var promise = verificationService.verifyInfo(paramObj);
@@ -235,6 +255,14 @@ function($scope, adminPanelService, verificationService) {
     });
   };
 
+
+    /**
+     * This method is called with an index of the user in question, called when the admin wants to raise
+     * a user&#x27;s status to admin status.
+     *
+     * @method approveAdmin
+     * @param index The index of a user object
+     */
   $scope.approveAdmin = function(index) {
     var paramObj = {admin: $scope.data.admin_notifications[index].id};
     var promise = verificationService.verifyInfo(paramObj);
@@ -246,6 +274,12 @@ function($scope, adminPanelService, verificationService) {
     });
   };
 
+    /**
+     * This method is involved in rejecting a user that was proposed to be an administrator.
+     *
+     * @method rejectAdmin
+     * @param index The index of a user object
+     */
   $scope.rejectAdmin = function(index) {
     var paramObj = {admin: $scope.data.admin_notifications[index].id};
     var promise = verificationService.deleteInfo(paramObj);
@@ -257,6 +291,13 @@ function($scope, adminPanelService, verificationService) {
     });
   };
 
+    /**
+     * This method is involved when the administrator decides to not allow a new registered user to be approved to be
+     * a full user.
+     *
+     * @method rejectUser
+     * @param index The index of a user object.
+     */
   $scope.rejectUser = function(index) {
     var paramObj = {user: $scope.data.user_notifications[index].id};
     var promise = verificationService.deleteInfo(paramObj);

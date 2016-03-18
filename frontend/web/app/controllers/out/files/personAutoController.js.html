@@ -70,7 +70,13 @@
                 
                 The user controller is located here, that handles the affairs dealing with the users of the application
                 working with the application.</a></li>
-                                <li><a href="../classes/personAutoController.html">personAutoController</a></li>
+                                <li><a href="../classes/personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file..html">personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file.</a></li>
                                 <li><a href="../classes/personNotificationController
                 
                 Notifications for persons are dealt with here..html">personNotificationController
@@ -140,9 +146,9 @@
                 slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.</a></li>
                                 <li><a href="../classes/viewController
                 
-                This controller does all that can be done with the view page....html">viewController
+                This controller does all that can be done with the view page..html">viewController
                 
-                This controller does all that can be done with the view page...</a></li>
+                This controller does all that can be done with the view page.</a></li>
                                 <li><a href="../classes/visController
                 
                 Notifications for mentorships are dealt with here..html">visController
@@ -206,6 +212,9 @@
 /**
  * @module personAutoController
  * @class personAutoController
+ *
+ * Deals with the automatic updating and searching for the people supplied into the query string provided
+ * through the search bar at the top of the main html file.
  */
 angular.module(&#x27;chemGeno&#x27;)
 .controller(&#x27;personAutoController&#x27;, [&#x27;$scope&#x27;, &#x27;autoService&#x27;, &#x27;searchService&#x27;, &#x27;$state&#x27;,
@@ -214,14 +223,20 @@ function($scope, autoService, searchService, $state) {
   $scope.searchText = &#x27;&#x27;;
 
   /**
+   * Given an item, it will then execute a search upon the item passed into this method.
    *  @function myFunction stuff and more stuff
    *  @memberof personAutoController
    *  @instance
+   *  @method selectedItemChange
    */
   $scope.selectedItemChange = function selectedItemChange(item) {
     searchService.executeSearch(item.id);
   };
 
+  /**
+   * This method when invoked will search upon entry.
+   * @method searchOnEnter
+   */
   $scope.searchOnEnter = function searchOnEnter() {
     console.log(&#x27;searchOnEnter: &#x27; + $scope.searchText);
     /* this loads the data into searchService as searchResult */
@@ -229,6 +244,12 @@ function($scope, autoService, searchService, $state) {
     searchService.executeSearch($scope.searchText);
   }
 
+  /**
+   * Given a name, this method will then query the application with the name and find any results :)
+   *
+   * @param name The name of a person to be queried by the application.
+   * @method queryNameSearch
+   * */
   $scope.queryNameSearch = function(name) {
     return autoService.autoPerson(name);
   }

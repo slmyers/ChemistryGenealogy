@@ -70,7 +70,13 @@
                 
                 The user controller is located here, that handles the affairs dealing with the users of the application
                 working with the application.</a></li>
-                                <li><a href="../classes/personAutoController.html">personAutoController</a></li>
+                                <li><a href="../classes/personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file..html">personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file.</a></li>
                                 <li><a href="../classes/personNotificationController
                 
                 Notifications for persons are dealt with here..html">personNotificationController
@@ -140,9 +146,9 @@
                 slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.</a></li>
                                 <li><a href="../classes/viewController
                 
-                This controller does all that can be done with the view page....html">viewController
+                This controller does all that can be done with the view page..html">viewController
                 
-                This controller does all that can be done with the view page...</a></li>
+                This controller does all that can be done with the view page.</a></li>
                                 <li><a href="../classes/visController
                 
                 Notifications for mentorships are dealt with here..html">visController
@@ -214,6 +220,11 @@ angular.module(&#x27;chemGeno&#x27;)
 .controller(&#x27;mentorshipNotificationController&#x27;, [&#x27;$scope&#x27;, &#x27;$stateParams&#x27;, &#x27;viewService&#x27;, &#x27;$q&#x27;,
 &#x27;verificationService&#x27;, &#x27;$state&#x27;,
 function($scope, $stateParams, viewService, $q, verificationService, $state) {
+  /**
+   * This method when invoked ill load the data from the services from the backend.
+   *
+   * @method loadData
+   */
   $scope.loadData = function() {
     var promises = {
       mentorPromise: viewService.getPerson($stateParams.mentorId),
@@ -227,6 +238,10 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
     });
   };
 
+  /**
+   * This method when invoked will approve the mentorship notification
+   * @method approveMentorship
+   */
   $scope.approveMentorship = function() {
     var paramObj = {mentorship: $stateParams.mentorshipId};
     var promise = verificationService.verifyInfo(paramObj);
@@ -238,6 +253,11 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
     });
   };
 
+  /**
+   * This method when invoked will reject the mentorship notification
+   *
+   * @method rejectMentorship
+   */
   $scope.rejectMentorship = function() {
     var paramObj = {mentorship: $stateParams.mentorshipId};
     var promise = verificationService.deleteInfo(paramObj);
@@ -249,6 +269,7 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
     });
   };
 
+  //Invoke the load data method at the very start of when this page is loaded.
   $scope.loadData();
   // ui booleans for mentor info
   $scope.mentor_mentorVisibility = false;

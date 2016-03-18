@@ -70,7 +70,13 @@
                 
                 The user controller is located here, that handles the affairs dealing with the users of the application
                 working with the application.</a></li>
-                                <li><a href="../classes/personAutoController.html">personAutoController</a></li>
+                                <li><a href="../classes/personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file..html">personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file.</a></li>
                                 <li><a href="../classes/personNotificationController
                 
                 Notifications for persons are dealt with here..html">personNotificationController
@@ -140,9 +146,9 @@
                 slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.</a></li>
                                 <li><a href="../classes/viewController
                 
-                This controller does all that can be done with the view page....html">viewController
+                This controller does all that can be done with the view page..html">viewController
                 
-                This controller does all that can be done with the view page...</a></li>
+                This controller does all that can be done with the view page.</a></li>
                                 <li><a href="../classes/visController
                 
                 Notifications for mentorships are dealt with here..html">visController
@@ -220,6 +226,10 @@ angular.module(&#x27;chemGeno&#x27;)
    $scope.supervised = [];
 
    // probably should&#x27;ve just put institutions with people
+      /**
+       * This method is invoked in the type of angular $on functionality
+       * @method
+       */
    $scope.$on(&#x27;search:response&#x27;, function(event,data) {
      $scope.clearResults();
      console.log(data);
@@ -233,6 +243,8 @@ angular.module(&#x27;chemGeno&#x27;)
         position: data.target.position,
         id: data.target.id
       };
+
+
       $scope.target.push(_target);
       // TODO: refactor method into sub methods
       var toPush = [];
@@ -301,6 +313,14 @@ angular.module(&#x27;chemGeno&#x27;)
 
    });
 
+      /**
+       * This method is involved in finding an instiutiton data, given an id and institutions list.
+       *
+       * @param id A particular ID.
+       * @param institutions An array of institututions objects.
+       * @returns {*}
+       * @method findInstitution
+       */
    $scope.findInstitution = function(id, institutions) {
      for(var i = 0; i &lt; institutions.length; i++){
        if (institutions[i].id === id) {
@@ -313,6 +333,12 @@ angular.module(&#x27;chemGeno&#x27;)
        */
 
 
+      /**
+       * This method is invoked to return to the view page of the web application.
+       *
+       * @method goToView
+       * @param person A person Object :)
+       */
       $scope.goToView = function(person){
           console.log(&quot;goToView function called! :) &quot;);
           //alert(person.id);
@@ -322,6 +348,10 @@ angular.module(&#x27;chemGeno&#x27;)
       };
 
 
+      /**
+       * This function is used to clear all of the results returned.
+       * @method clearResults
+       */
    $scope.clearResults = function() {
      $scope.target = [];
      $scope.mentors = [];

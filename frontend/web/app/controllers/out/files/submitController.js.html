@@ -70,7 +70,13 @@
                 
                 The user controller is located here, that handles the affairs dealing with the users of the application
                 working with the application.</a></li>
-                                <li><a href="../classes/personAutoController.html">personAutoController</a></li>
+                                <li><a href="../classes/personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file..html">personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file.</a></li>
                                 <li><a href="../classes/personNotificationController
                 
                 Notifications for persons are dealt with here..html">personNotificationController
@@ -140,9 +146,9 @@
                 slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.</a></li>
                                 <li><a href="../classes/viewController
                 
-                This controller does all that can be done with the view page....html">viewController
+                This controller does all that can be done with the view page..html">viewController
                 
-                This controller does all that can be done with the view page...</a></li>
+                This controller does all that can be done with the view page.</a></li>
                                 <li><a href="../classes/visController
                 
                 Notifications for mentorships are dealt with here..html">visController
@@ -277,7 +283,7 @@ angular.module(&#x27;chemGeno&#x27;)
              * @param superDocStartYear
              * @param superDocEndYear
              * @param superDocInstitution
-             * @constructor
+             * @constructor SuperDocInstance
              */
             function SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution)
             {
@@ -288,6 +294,16 @@ angular.module(&#x27;chemGeno&#x27;)
             }
 
 
+            /**
+             * This function is invoked when we want to create a new superdoc object with the parameters supplied
+             * to this method, and then it will also put this newly created object into the array of all of the
+             * superdoc objects.
+             *
+             * @param superDocNameOfPerson Person name
+             * @param superDocStartYear Start year
+             * @param superDocEndYear End year
+             * @param superDocInstitution Institution of the supervised postdoc
+             */
             $scope.addSuperDocInstance = function(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution){
                 var newSuperDocInstance = new SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution);
                 $scope.superDocInformation.push(newSuperDocInstance);
@@ -304,15 +320,30 @@ angular.module(&#x27;chemGeno&#x27;)
             $scope.superDocInformation = [ ];
 
 
+            /**
+             * Show the superdoc information
+             * @method showSuperDocInfo
+             */
             $scope.showSuperDocInfo = function(){
                 $scope.postdocSupervisionVisibility = true;
             };
 
+            /**
+             * Hide the superdoc information
+             *
+             * @method hideSuperDocInfo
+             */
             $scope.hideSuperDocInfo = function(){
                 $scope.postdocSupervisionVisibility = false;
             };
 
 
+            /**
+             * Remove a passed in superdoc object from the superdoc array of superdoc objects.
+             *
+             * @param superDocInstance A superdoc object
+             * @method removeSuperDocInstance
+             */
             $scope.removeSuperDocInstance = function(superDocInstance){
                 console.log(&quot;removeSuperDocInstance called with index&quot; + superDocInstance);
                 console.log($scope.superDocInformation.length);
@@ -348,7 +379,7 @@ angular.module(&#x27;chemGeno&#x27;)
              * @param superDegStartYear
              * @param superDegEndYear
              * @param superDegInstitution
-             * @constructor
+             * @constructor SuperDegInstance
              */
             function SuperDegInstance(superDegNameOfPerson)
             {
@@ -359,6 +390,10 @@ angular.module(&#x27;chemGeno&#x27;)
             }
 
 
+            /**
+             * Adds a new instance of a superdegree to the arraylist of super degree objects.
+             * @param superDegNameOfPerson A name of a superdeg person
+             */
             $scope.addSuperDegInstance = function(superDegNameOfPerson){
                 var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson);
                 $scope.superDegInformation.push(newSuperDegInstance);
@@ -368,10 +403,18 @@ angular.module(&#x27;chemGeno&#x27;)
             };
 
 
+            /**
+             * Shows the superdeg infroamtion
+             * @method showSuperDegInfo
+             */
             $scope.showSuperDegInfo = function(){
                 $scope.superDegVisibility = true;
             };
 
+            /**
+             * Hides the superdeg information
+             * @method hideSuperDegInfo
+             */
             $scope.hideSuperDegInfo = function(){
                 $scope.superDegVisibility = false;
             };
@@ -382,6 +425,13 @@ angular.module(&#x27;chemGeno&#x27;)
              */
             $scope.superDegInformation = [ ] ;
 
+
+            /**
+             * Removes the passed in superdegree object from the list of all superdegree objects.
+             *
+             * @param superDegInstance
+             * @method removeSuperDegInstance
+             */
             $scope.removeSuperDegInstance = function(superDegInstance){
                 console.log(&quot;removeSuperDegInstance called with index&quot; + superDegInstance);
                 console.log($scope.superDegInformation.length);
@@ -430,6 +480,7 @@ angular.module(&#x27;chemGeno&#x27;)
              * @param pdYearEnd The date of the end of the postdoc appointment.
              * @param pdSupervisor The supervisor of the postdoc appointment.
              * @param pdInstitution The institution of the postdoc appointment.
+             * @method addPDInfo
              */
             $scope.addPDInfo = function (pdYearStart, pdYearEnd, pdSupervisor, pdInstitution) {
                 //view = view || title + &quot; Content View&quot;;
@@ -440,6 +491,7 @@ angular.module(&#x27;chemGeno&#x27;)
             /** POSTDOC FUNCTION
              * This function when evoked will remove the selected tab from the screen.
              * @param tab The tab to be removed.
+             * @method removePDTab
              */
             $scope.removePDTab = function (tab) {
                 $scope.postDocID--; //Decrement global postDocID with removal.
@@ -472,6 +524,7 @@ angular.module(&#x27;chemGeno&#x27;)
              * @param diYear The year that the degree was obtained.
              * @param diSupervisor The supervisor who oversaw the degree.
              * @param diInstitution The institution that awarded the degree.
+             * @method addDI
              */
             $scope.addDI = function (diYear, diSupervisor, diInstitution) {
                 //view = view || title + &quot; Content View&quot;;
@@ -483,6 +536,7 @@ angular.module(&#x27;chemGeno&#x27;)
              * This function when evoked will remove the selected tab from the screen.
              *
              * @param tab The tab to be removed.
+             * @method removeDITab
              */
             $scope.removeDITab = function (tab) {
                 $scope.degreeInfoID--; //Decrement global degreeInfoID with removal.
@@ -498,6 +552,7 @@ angular.module(&#x27;chemGeno&#x27;)
 
             /**
              * When invoked will show the postdoc info by setting the flag to true.
+             * @method showPostDocInfo
              */
             $scope.showPostDocInfo = function(){
                 $scope.postDocVisibility = true;
@@ -506,6 +561,7 @@ angular.module(&#x27;chemGeno&#x27;)
 
             /**
              * When invoked will hide the postdoc info by setting the flag to false.
+             * @method hidePostDocInfo
              */
             $scope.hidePostDocInfo = function(){
                 $scope.postDocVisibility = false;
@@ -522,6 +578,14 @@ angular.module(&#x27;chemGeno&#x27;)
             $scope.pdSupervisor = null;
             $scope.pdInstitution = null;
 
+            /**
+             * Constructs a new PostDoc object
+             * @param pdStartYear start year
+             * @param pdEndYear ending year
+             * @param pdSupervisor supervisor
+             * @param pdInstitution institution
+             * @constructor PostDocInstance
+             */
             function PostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)
                 {
                     this.pdStartYear = pdStartYear,
@@ -562,6 +626,7 @@ angular.module(&#x27;chemGeno&#x27;)
              * @param pdEndYear Ending year of the postdoc appointment.
              * @param pdSupervisor Supervisor of the postdoc appointment.
              * @param pdInstitution Institution of the postdoc appointment.
+             * @method addPostDocInstance
              */
             $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
                 //Series of statements checking if the postdoc fields are empty or not.
@@ -617,6 +682,12 @@ angular.module(&#x27;chemGeno&#x27;)
 
             };
 
+
+            /**
+             * Method when invoked says that the edit post doc function has been called.
+             *
+             * @method editPostDoc
+             */
             $scope.editPostDoc = function(){
               console.log(&quot;editPostDoc function called&quot;);
 
@@ -638,6 +709,7 @@ angular.module(&#x27;chemGeno&#x27;)
              * Function that when invoked will remove the selected postdoc instance from the submit page and
              * the particular individual&#x27;s object model.
              * @param postDocInstanceIndex of the postDocInformation array that should be removed.
+             * @method removePostDocInstance
              */
             $scope.removePostDocInstance = function(postDocInstance){
                 console.log(&quot;removePostDocInstance called with index&quot; + postDocInstance);
@@ -673,6 +745,7 @@ angular.module(&#x27;chemGeno&#x27;)
 
             /**
              * Shows the degree info information when invoked.
+             * @method showDegreeInfo
              */
             $scope.showDegreeInfo = function(){
                 $scope.degreeInfoVisibility = true;
@@ -680,6 +753,7 @@ angular.module(&#x27;chemGeno&#x27;)
 
             /**
              * Hides the degree info information when invoked.
+             * @method hideDegreeInfo
              */
             $scope.hideDegreeInfo = function(){
                 $scope.degreeInfoVisibility = false;
@@ -689,6 +763,7 @@ angular.module(&#x27;chemGeno&#x27;)
 
             /**
              * Information regarding the postdoc appointments furnished on the submit page.
+             *
              *
              */
             $scope.diYear = null;
@@ -706,7 +781,7 @@ angular.module(&#x27;chemGeno&#x27;)
              * @param diInstitution Institution degree was awarded from.
              * @param diType Type of this degree.
              *
-             * @constructor
+             * @constructor DegreeInfoInstance
              */
             function DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)
             {
@@ -730,11 +805,14 @@ angular.module(&#x27;chemGeno&#x27;)
 
 
             /**
+             * Creates a new degreeinfo object from the supplied parameters and then puts the object into the large
+             * array of the total degree info objects array. :)
              *
              * @param diYear Year of the degree being awarded.
              * @param diSupervisor Supervisor of the degree.
              * @param diInstitution Institution degree was awarded from.
              * @param diType Type of this degree.
+             * @method addDegreeInfoInstance
              */
             $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution, diType) {
 
@@ -789,6 +867,7 @@ angular.module(&#x27;chemGeno&#x27;)
              * Removes the object passed in from the individual&#x27;s degree information.
              *
              * @param degreeInfoInstance The degree that is desired to be removed.
+             * @method removeDegreeInfoInstance
              */
             $scope.removeDegreeInfoInstance = function(degreeInfoInstance){
                 console.log(&quot;removePostDocInstance called with index&quot; + degreeInfoInstance);
@@ -816,6 +895,12 @@ angular.module(&#x27;chemGeno&#x27;)
             $scope.currentInstitutionName = null;
             $scope.Name = null;
 
+            /**
+             * Method that when called will spill onto the console all of the current state of the various model
+             * pieces.
+             *
+             * @method testBasicInputs
+             */
             $scope.testBasicInputs = function(){
                 console.log($scope.firstName + &quot; &quot; + $scope.lastName + &quot; &quot; + $scope.title
                     + &quot; &quot; + $scope.currentPositionTitle + &quot; &quot; + $scope.currentInstitutionName);
@@ -844,7 +929,9 @@ angular.module(&#x27;chemGeno&#x27;)
              * @param currentPositionTitle
              * @param currentInstitutionName
              * @param postDocInformation
+             * @constructor SubmissionPageModelObject
              */
+
             function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
                         currentInstitutionName, postDocInformation, degreeInformation,
                         superDegInformation, superDocInformation)
@@ -877,6 +964,11 @@ angular.module(&#x27;chemGeno&#x27;)
             $scope.currPositionTitleWarning = false;
             $scope.currInstNameWarning = false;
 
+            /**
+             * Method that when invoked will supply a warning state to the console detailing the current state.
+             * @method warningsState
+             *
+             */
             $scope.warningsState = function(){
               console.log(&quot;firstnamewarning: &quot; + $scope.firstNameWarning + &quot; , lastnamewarning: &quot; + $scope.lastNameWarning +
               &quot;currpositiontitlewarning: &quot; + $scope.currPositionTitleWarning + &quot;currinstnamewarning : &quot; + $scope.currInstNameWarning);
@@ -887,6 +979,8 @@ angular.module(&#x27;chemGeno&#x27;)
             /**
              * Function evoked when the final submission button is hit, creates a new model object for the entire
              * submission page.
+             *
+             * @method finalSubmitButtonFunction
              */
             $scope.finalSubmitButtonFunction = function(){
                 console.log(&quot;finalSubmitButtonFunction was called&quot;);
@@ -972,6 +1066,7 @@ angular.module(&#x27;chemGeno&#x27;)
 
             /**
              * Meant to return back to the main.search page, not working though.
+             * @method goBackToMain
              */
             $scope.goBackToMain = function () {
                 if ($state.$current.name !== &#x27;main.search&#x27;) {
@@ -983,6 +1078,7 @@ angular.module(&#x27;chemGeno&#x27;)
             /**
              * Function that once it is called will dump all of the information of the object for this submission
              * page!
+             * @method checkOutTHISObject
              */
             $scope.checkOutTHISObject = function(){
                 console.log(&quot;Here are the results of the object of this page&quot;);
