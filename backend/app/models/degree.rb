@@ -2,6 +2,8 @@ class Degree < ActiveRecord::Base
   belongs_to :institution, :class_name => 'Institution'
   has_many :supervisions
 
+  #track changes
+  has_paper_trail
 
   # creates a new degree
   # also checks if there is already an existing degree before adding

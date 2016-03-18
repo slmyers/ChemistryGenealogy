@@ -1,3 +1,4 @@
+# *** NOT USING THIS METHOD ***
 class FindDetail
 
   # finds and returns the details of a person
