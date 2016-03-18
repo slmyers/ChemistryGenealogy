@@ -1089,7 +1089,7 @@ angular.module('chemGeno')
                 $scope.submitPageObject = newSubmitObject;
 
                 //Send data over.
-                editService.sendEditedData($scope.submitPageObject);
+                editService.sendEditedData($scope.submitPageObject, {id: $stateParams.id});
 
 
                 //Debugging and checking out what is going on here.

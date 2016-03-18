@@ -55,9 +55,10 @@ angular.module('chemGeno')
              * the backend to be parsed and the modifications made in the server.
              *
              * @param modifications A specialized object of the modifications
+             * @param idObj is the id of the current peep.
              * @returns {*} A promise of the event occurance.
              */
-            var sendEditedData = function(modifications){
+            var sendEditedData = function(modifications, idObj){
                 var d = $q.defer();
                 var token = loginService.getAuthToken(); //Obtain the authentication token from the login service.
                 return $http({
@@ -66,7 +67,7 @@ angular.module('chemGeno')
                             "Authorization": token
                         },
                     method: 'PUT',
-                    url: 'http://localhost:3000/api/aggregated',
+                    url: 'http://localhost:3000/api/aggregated/' + idObj.id.toString(),
                     data: {
                         name: modifications.name,
                         position: modifications.currentPositionTitle,
