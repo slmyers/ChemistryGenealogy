@@ -35,4 +35,11 @@ angular.module('chemGeno')
     url: '/view/:id',
     templateUrl: '/app/views/view.html'
   })
+
+      .state('main.auditTrail',{
+        url: '/auditTrail',
+        templateUrl: '/app/views/auditTrail.html'
+
+      })
+
 });
