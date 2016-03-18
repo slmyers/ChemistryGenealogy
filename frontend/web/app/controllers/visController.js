@@ -67,7 +67,7 @@ angular.module('chemGeno')
       // Center the graph
       var initialScale = 1.25;
       zoom
-        .translate([450, 20])
+        .translate([425, 20])
         .scale(initialScale)
         .event(svg);
 
@@ -136,7 +136,7 @@ angular.module('chemGeno')
              institution: inst,
              position: _supervisor_.position
            };
-           toPush.push(_supervisor_)
+           toPush.push(mentor)
          }
          $scope.supervised = toPush;
 
@@ -151,7 +151,7 @@ angular.module('chemGeno')
              institution: inst,
              position: _supervisor_.position
            };
-           toPush.push(_supervisor_)
+           toPush.push(mentor)
          }
          $scope.supervisors = toPush;
 
