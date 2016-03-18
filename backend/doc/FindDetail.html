@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: FindDetail
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!FindDetail.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (F)</a> &raquo;
+    
+    
+    <span class="title">FindDetail</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: FindDetail
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">FindDetail</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/lib/find_detail.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>*** NOT USING THIS METHOD ***</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#person-class_method" title="person (class method)">+ (Object) <strong>person</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>finds and returns the details of a person returns nil if the person does
+not exist in the database returns an array in the format of [person,
+[postdocs], [degrees]] if the person does not have any postdocs or degrees,
+this returns nil.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="person-class_method">
+  
+    + (<tt>Object</tt>) <strong>person</strong>(name) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>finds and returns the details of a person returns nil if the person does
+not exist in the database returns an array in the format of [person,
+[postdocs], [degrees]] if the person does not have any postdocs or degrees,
+this returns nil</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/lib/find_detail.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_person'>person</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+
+    <span class='comment'># find the person in the database and extracts details from it
+</span>    <span class='comment'># currently not using position and institution_id for anything
+</span>    <span class='comment'># will remove those lines if we really don&#39;t need to extract them
+</span>    <span class='id identifier rubyid_person_id'>person_id</span> <span class='op'>=</span> <span class='const'>FindId</span><span class='period'>.</span><span class='id identifier rubyid_person'>person</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_person_object'>person_object</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_person_id'>person_id</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='id identifier rubyid_person_object'>person_object</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_person_object'>person_object</span><span class='period'>.</span><span class='id identifier rubyid_institution_id'>institution_id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='id identifier rubyid_institution_object'>institution_object</span> <span class='op'>=</span> <span class='const'>Institution</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_person_object'>person_object</span><span class='period'>.</span><span class='id identifier rubyid_institution_id'>institution_id</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_institution_name'>institution_name</span> <span class='op'>=</span> <span class='id identifier rubyid_institution_object'>institution_object</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># make an array of postdocs that are connected to the person in json
+</span>    <span class='comment'># need to check what happens when empty array
+</span>    <span class='id identifier rubyid_postdoc_array'>postdoc_array</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_postdoc_list'>postdoc_list</span> <span class='op'>=</span> <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:person_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_person_id'>person_id</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_postdoc_list'>postdoc_list</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_postdoc_single'>postdoc_single</span><span class='op'>|</span>
+      <span class='comment'># wouldn&#39;t this line just grab person id instead of person name?
+</span>      <span class='id identifier rubyid_postdoc_array'>postdoc_array</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_postdoc_single'>postdoc_single</span><span class='period'>.</span><span class='id identifier rubyid_as_json'>as_json</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># make arrays of degrees and supervisions that are connected to the person
+</span>    <span class='id identifier rubyid_degree_id_array'>degree_id_array</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_degree_array'>degree_array</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_supervision_array'>supervision_array</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+    <span class='comment'># this returns an array of supervisions with the same person_id
+</span>    <span class='id identifier rubyid_supervision_find'>supervision_find</span> <span class='op'>=</span> <span class='const'>Supervision</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:person_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_person_id'>person_id</span><span class='rparen'>)</span>
+
+    <span class='comment'># extracts an array of degree_ids that connect to the person_id
+</span>    <span class='comment'># adds each supervision to supervision_array in json format
+</span>    <span class='id identifier rubyid_supervision_find'>supervision_find</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_supervision_single'>supervision_single</span><span class='op'>|</span>
+      <span class='kw'>unless</span> <span class='id identifier rubyid_degree_id_array'>degree_id_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_supervision_single'>supervision_single</span><span class='period'>.</span><span class='id identifier rubyid_degree_id'>degree_id</span>
+        <span class='id identifier rubyid_degree_id_array'>degree_id_array</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_supervision_single'>supervision_single</span><span class='period'>.</span><span class='id identifier rubyid_degree_id'>degree_id</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_supervision_array'>supervision_array</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_supervision_single'>supervision_single</span><span class='period'>.</span><span class='id identifier rubyid_as_json'>as_json</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># extracts an array of degrees from all ids found in the degree_id_array
+</span>    <span class='comment'># in json format
+</span>    <span class='id identifier rubyid_degree_id_array'>degree_id_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_degree_single_id'>degree_single_id</span><span class='op'>|</span>
+      <span class='id identifier rubyid_degree'>degree</span> <span class='op'>=</span> <span class='const'>Degree</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_degree_single_id'>degree_single_id</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_degree_array'>degree_array</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_degree'>degree</span><span class='period'>.</span><span class='id identifier rubyid_as_json'>as_json</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>return</span> <span class='lbrace'>{</span><span class='label'>person:</span> <span class='id identifier rubyid_person_object'>person_object</span><span class='period'>.</span><span class='id identifier rubyid_as_json'>as_json</span><span class='comma'>,</span>
+            <span class='label'>institution:</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='comma'>,</span>
+            <span class='label'>postdoc:</span> <span class='id identifier rubyid_postdoc_array'>postdoc_array</span><span class='comma'>,</span>
+            <span class='label'>degree:</span> <span class='id identifier rubyid_degree_array'>degree_array</span><span class='comma'>,</span>
+            <span class='comment'># we need to send the title
+</span>            <span class='comment'># degree supervision should be packed with degree
+</span>            <span class='label'>degree_supervision:</span> <span class='id identifier rubyid_supervision_array'>supervision_array</span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Mar 18 12:09:03 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.3).
+</div>
+
+  </body>
+</html>

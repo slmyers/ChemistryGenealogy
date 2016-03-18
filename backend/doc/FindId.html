@@ -1,0 +1,657 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: FindId
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!FindId.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (F)</a> &raquo;
+    
+    
+    <span class="title">FindId</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: FindId
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">FindId</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/lib/find_id.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>This class handles finding or creating ids for different models.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#degree-class_method" title="degree (class method)">+ (Number) <strong>degree</strong>(year, degree_type, institution_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds a degree&#39;s id from the Degree table.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#institution-class_method" title="institution (class method)">+ (Number) <strong>institution</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds an institution&#39;s id in the Institutions table.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mentor_supervisor-class_method" title="mentor_supervisor (class method)">+ (Number) <strong>mentor_supervisor</strong>(mentor_supervisor_name, institution_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds a mentor or supervisor&#39;s id in the People table.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#person-class_method" title="person (class method)">+ (Number) <strong>person</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds a person&#39;s id in the People table.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="degree-class_method">
+  
+    + (<tt>Number</tt>) <strong>degree</strong>(year, degree_type, institution_name) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Finds a degree&#39;s id from the Degree table. Creates a new degree if it
+doesn&#39;t exist.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>year</span>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>year the degree was awarded</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>degree_type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>type of the degree</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>institution_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the institution the degree was awarded</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>id of the degree</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 55</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_degree'>degree</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_degree_type'>degree_type</span><span class='comma'>,</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_degree_type'>degree_type</span> <span class='op'>=</span> <span class='id identifier rubyid_degree_type'>degree_type</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+  <span class='id identifier rubyid_institution_id'>institution_id</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_institution'>institution</span><span class='lparen'>(</span><span class='id identifier rubyid_institution_name'>institution_name</span><span class='rparen'>)</span>
+
+  <span class='const'>Degree</span><span class='period'>.</span><span class='id identifier rubyid_create_with'>create_with</span><span class='lparen'>(</span><span class='label'>approved:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+        <span class='period'>.</span><span class='id identifier rubyid_find_or_create_by'>find_or_create_by</span><span class='lparen'>(</span><span class='label'>year:</span> <span class='id identifier rubyid_year'>year</span><span class='comma'>,</span>
+                            <span class='label'>degree_type:</span> <span class='id identifier rubyid_degree_type'>degree_type</span><span class='comma'>,</span>
+                            <span class='label'>institution_id:</span> <span class='id identifier rubyid_institution_id'>institution_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_degree_id'>degree_id</span> <span class='op'>=</span> <span class='const'>Degree</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='symbol'>:year</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_year'>year</span><span class='comma'>,</span>
+                              <span class='symbol'>:degree_type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_degree_type'>degree_type</span><span class='comma'>,</span>
+                              <span class='symbol'>:institution_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_institution_id'>institution_id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_degree_id'>degree_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="institution-class_method">
+  
+    + (<tt>Number</tt>) <strong>institution</strong>(name) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Finds an institution&#39;s id in the Institutions table. Creates a new
+institution if it doesn&#39;t exist.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the institution</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>id of the institution</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_institution'>institution</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+
+  <span class='const'>Institution</span><span class='period'>.</span><span class='id identifier rubyid_create_with'>create_with</span><span class='lparen'>(</span><span class='label'>approved:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_find_or_create_by'>find_or_create_by</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_institution_id'>institution_id</span> <span class='op'>=</span> <span class='const'>Institution</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_institution_id'>institution_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="mentor_supervisor-class_method">
+  
+    + (<tt>Number</tt>) <strong>mentor_supervisor</strong>(mentor_supervisor_name, institution_name) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This only checks for the name. It won&#39;t create a new person if only the
+institution is different</p>
+</div>
+  </div>
+
+
+<p>Finds a mentor or supervisor&#39;s id in the People table. Creates a new
+person with the given institution and nil position if it doesn&#39;t exist.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>mentor_supervisor_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the mentor or supervisor</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>id of the mentor or supervisor</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mentor_supervisor'>mentor_supervisor</span><span class='lparen'>(</span><span class='id identifier rubyid_mentor_supervisor_name'>mentor_supervisor_name</span><span class='comma'>,</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mentor_supervisor_name'>mentor_supervisor_name</span> <span class='op'>=</span> <span class='id identifier rubyid_mentor_supervisor_name'>mentor_supervisor_name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+  <span class='id identifier rubyid_institution_name'>institution_name</span> <span class='op'>=</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+  <span class='id identifier rubyid_institution_id'>institution_id</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_institution'>institution</span><span class='lparen'>(</span><span class='id identifier rubyid_institution_name'>institution_name</span><span class='rparen'>)</span>
+
+  <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_create_with'>create_with</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>institution_id:</span> <span class='id identifier rubyid_institution_id'>institution_id</span><span class='comma'>,</span> <span class='label'>approved:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+        <span class='period'>.</span><span class='id identifier rubyid_find_or_create_by'>find_or_create_by</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_mentor_supervisor_name'>mentor_supervisor_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mentor_supervisor_id'>mentor_supervisor_id</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_mentor_supervisor_name'>mentor_supervisor_name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_mentor_supervisor_id'>mentor_supervisor_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="person-class_method">
+  
+    + (<tt>Number</tt>) <strong>person</strong>(name) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Finds a person&#39;s id in the People table. Creates a new person with nil
+position and institution if it doesn&#39;t exist.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the person searched for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>id of the person</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11
+12
+13
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 9</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_person'>person</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+
+  <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_create_with'>create_with</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>institution_id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>approved:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+        <span class='period'>.</span><span class='id identifier rubyid_find_or_create_by'>find_or_create_by</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_person_id'>person_id</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_person_id'>person_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Mar 18 12:09:01 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.3).
+</div>
+
+  </body>
+</html>
