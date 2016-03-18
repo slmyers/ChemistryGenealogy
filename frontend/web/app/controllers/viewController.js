@@ -16,6 +16,8 @@ angular.module('chemGeno')
       });
     };
     $scope.unlockObject();
+    
+    // idk what this code is or who put it here
     $scope.invokeEditPage = function(){
       console.log("Edit button pressed!");
       alert($stateParams.id);

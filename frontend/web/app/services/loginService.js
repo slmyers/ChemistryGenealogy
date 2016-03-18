@@ -64,10 +64,18 @@ angular.module('chemGeno')
         }
       };
 
+      var isAdmin = function() {
+        if (userLoggedIn()) {
+          return store.get(userNamespace).admin;
+        }
+        return false;
+      }
+
     /**
      * exposes the various functions.
      */
       return  {
+        isAdmin: isAdmin,
         userLoggedIn: userLoggedIn,
         login: login,
         getUser: getUser,

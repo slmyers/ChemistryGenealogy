@@ -14,7 +14,7 @@ function($scope, autoService, searchService, $state) {
    *  @instance
    */
   $scope.selectedItemChange = function selectedItemChange(item) {
-    searchService.executeSearch(item.name);
+    searchService.executeSearch(item.id);
   };
 
   $scope.searchOnEnter = function searchOnEnter() {
