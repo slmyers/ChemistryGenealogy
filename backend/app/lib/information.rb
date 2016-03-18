@@ -1,11 +1,19 @@
+# This class handles information from submit and edit sent to the backend.
 class Information
 
-  # assuming that all parameters are being sent and any sections not filled by the user
-  # are converted to nil before getting sent to the backend
+  # Handles the information for submitting a new person's details.
+  # @note It assumes that all parameters are filled out by the user.
+  #
+  # @param name [String] name of the person
+  # @param position [String] current position of the person
+  # @param institution_name [String] current institution of the person
+  # @param postdoc_array [Array<Hash{String => String, Number}>] array of the person's postdoc information
+  # @param degree_array [Array<Hash{String => String, Number}>] array of the person's degree information
+  # @return [Hash{String} => String, Number] created person in the database
   def Information.submit_handling(name, position, institution_name, postdoc_array, degree_array)
     person = Person.new_person(name, position, institution_name)
 
-    # checks that postdoc_array is not null before adding new mentorships
+    # Checks that the postdoc_array is not null before adding new mentorships
     unless postdoc_array.nil?
       postdoc_array.each do |postdoc|
         Mentorship.new_mentorship(name, postdoc[:pdSupervisor], postdoc[:pdInstitution],
@@ -13,8 +21,7 @@ class Information
       end
     end
 
-    # checks that degree_array is not nil before adding new degrees and
-    # supervisions
+    # Checks that degree_array is not nil before adding new degrees and supervisions
     unless degree_array.nil?
       degree_array.each do |degree|
         Degree.new_degree(degree[:year], degree[:type], degree[:institution])
@@ -25,8 +32,16 @@ class Information
     return person
   end
 
-  # updates a person's information when sent into edit
-  # assumes that (same as submit) all information is entered and no fields are nil
+  # Handles the information for editing a person's details.
+  # @note It assumes that all parameters are filled out by the user.
+  #
+  # @param id [Number] id of the person
+  # @param name [String] name of the person
+  # @param position [String] current position of the person
+  # @param institution_name [String] current institution of the person
+  # @param postdoc_array [Array<Hash{String => String, Number}>] array of the person's postdoc information
+  # @param degree_array [Array<Hash{String => String, Number}>] array of the person's degree information
+  # @return [Hash{String => String}] updated person
   def Information.update_handling(id, name, position, institution_name, postdoc_array, degree_array)
 
     # Gets the person's information from the People table
@@ -58,8 +73,11 @@ class Information
     end
 
     # Update postdocs and degrees respectively
-    Mentorship.update_mentorship(id, person_object.name, postdoc_array)
-    Supervision.update_supervision(id, person_object.name, degree_array)
-  end
+    Mentorship.update_mentorship(id, name, postdoc_array)
+    Supervision.update_supervision(id, name, degree_array)
 
+    # Updates person_object (not sure if we need this)
+    person_object = Person.find(id)
+    return person_object
+  end
 end

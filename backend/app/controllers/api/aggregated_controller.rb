@@ -1,17 +1,17 @@
+# Main controller for handling submit and edit information
 class Api::AggregatedController < ApiController
 
   include ActionController::Serialization
-  # one question, do I want to check if the user is logged in before action?
-  # maybe something like this?
-  # before_action(:confirm_logged_in, {:except => [:action1, :action2]})
   respond_to :json
+
+  # Handles showing the degree and person name parameters with GET
+  # (Need to double-check this)
   def index
     render json: {degree: params[:degree], person_name: params[:name]}
-    #@person = Person.all
-    #render json: {person: @person}
-    #render json: {warning: 'not implemented'}, status: 200
   end
 
+  # Retrives a person's information with GET to the frontend
+  # @note currently uses the search module to get the information
   def show
     if params.has_key?(:id)
       @person = Search.person(params[:id])
@@ -30,8 +30,10 @@ class Api::AggregatedController < ApiController
     render json: {warning: 'not implemented'}, status: 200
   end
 
+  # Handles submitting information about a person with POST
   def create
-    @person = Person.submit_handling(params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
+    Rails.logger.info(params)
+    @person = Information.submit_handling(params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
     if @person != nil && @person.save
       render json: {person: @person}
     else
@@ -39,11 +41,12 @@ class Api::AggregatedController < ApiController
     end
   end
 
+  # Handles updating a person's information with PUT
+  # Haven't tried this yet!!!
   def update
-    # this module will get called for edit information
-    # right now I assume the parametere being sent to backend are same as for sucmit information
     Rails.logger.info(params)
-    @person = Person.update_handling(params[:id], params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
+    Rails.logger.debug params.inspect
+    @person = Information.update_handling(params[:id], params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
     if @person != nil && @person.save
       render json: {person: @person}
     else
@@ -59,10 +62,9 @@ class Api::AggregatedController < ApiController
     render json: {warning: 'not implemented'}, status: 200
   end
 
-  # Used to test returning serialized person object to the frontend
-  def test
-    person = Person.find(2)
-    render(:json => person.serializer_for_person(person), :status => 200)
+  private
+  def update_params
+    params.permit(:id, :name, :position, :institution, postdoc: [], degree: [])
   end
 
 end

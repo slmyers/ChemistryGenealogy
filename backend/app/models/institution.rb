@@ -1,10 +1,12 @@
+# Model for handling institutions
 class Institution < ActiveRecord::Base
   has_many :people
   has_many :degrees
 
-  
-
-  # creates a new institution with the name given
+  # Creates a new institution
+  #
+  # @param name [String] name of the institution
+  # @return [Hash{String => String, Number}] created institution
   def Institution.new_institution(name)
     name = name.downcase
 
@@ -13,6 +15,7 @@ class Institution < ActiveRecord::Base
     return institution
   end
 
+  # Handles rendering an institution in a JSON format.
   def as_json(options={})
     super(:except => [:created_at, :updated_at, :approved])
   end

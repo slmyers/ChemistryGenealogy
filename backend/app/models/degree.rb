@@ -1,12 +1,17 @@
+# Model for handling degrees
 class Degree < ActiveRecord::Base
   belongs_to :institution, :class_name => 'Institution'
   has_many :supervisions
 
-  #track changes
+  # Tracks changes
   has_paper_trail
 
-  # creates a new degree
-  # also checks if there is already an existing degree before adding
+  # Creates a new degree
+  #
+  # @param year [Number] year the degree was awarded
+  # @param degree_type [String] type of the degree
+  # @param institution_name [String] name of the institution the degree was awarded
+  # @return [Hash{String => String, Number}] newly created degree
   def Degree.new_degree(year, degree_type, institution_name)
     degree_type = degree_type.downcase
     institution_id = FindId.institution(institution_name)
@@ -18,6 +23,7 @@ class Degree < ActiveRecord::Base
     return degree
   end
 
+  # Handles rendering a degree in a JSON format.
   def as_json(options={})
     super(:except => [:created_at, :updated_at])
   end

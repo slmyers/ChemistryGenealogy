@@ -1,10 +1,11 @@
+# This class handles finding or creating ids for different models.
 class FindId
 
-  # finds a person's id given the name
-  # creates a new person with nil position and institution if it doesn't exist
-  # therefore, when creating a new person that has mentorships and supervisons,
-  # probably create the person first before creating the mentorships and
-  # supervisons
+  # Finds a person's id in the People table.
+  # Creates a new person with nil position and institution if it doesn't exist.
+  #
+  # @param name [String] name of the person searched for
+  # @return [Number] id of the person
   def self.person(name)
     name = name.downcase
 
@@ -14,11 +15,12 @@ class FindId
     return person_id
   end
 
-  # finds a mentor or supervisor's id given the name
-  # creates a new person with the given institution and nil position if it
-  # doesn't exist
-  # only checks for the name; it won't create a new person if the institution
-  # is different
+  # Finds a mentor or supervisor's id in the People table.
+  # Creates a new person with the given institution and nil position if it doesn't exist.
+  #
+  # @note This only checks for the name. It won't create a new person if only the institution is different
+  # @param mentor_supervisor_name [String] name of the mentor or supervisor
+  # @return [Number] id of the mentor or supervisor
   def self.mentor_supervisor(mentor_supervisor_name, institution_name)
     mentor_supervisor_name = mentor_supervisor_name.downcase
     institution_name = institution_name.downcase
@@ -30,8 +32,11 @@ class FindId
     return mentor_supervisor_id
   end
 
-  # finds the institution id given the name
-  # creates a new institution if it doesn't exist and returns that id
+  # Finds an institution's id in the Institutions table.
+  # Creates a new institution if it doesn't exist.
+  #
+  # @param name [String] name of the institution
+  # @return [Number] id of the institution
   def self.institution(name)
     name = name.downcase
 
@@ -40,8 +45,13 @@ class FindId
     return institution_id
   end
 
-  # finds the degree_id based on the year, degree_type, and institution_name
-  # creates a new degree if not found and then returns the id
+  # Finds a degree's id from the Degree table.
+  # Creates a new degree if it doesn't exist.
+  #
+  # @param year [Number] year the degree was awarded
+  # @param degree_type [String] type of the degree
+  # @param institution_name [String] name of the institution the degree was awarded
+  # @return [Number] id of the degree
   def self.degree(year, degree_type, institution_name)
     degree_type = degree_type.downcase
     institution_id = self.institution(institution_name)
@@ -55,5 +65,4 @@ class FindId
                                 :institution_id => institution_id).id
     return degree_id
   end
-
 end

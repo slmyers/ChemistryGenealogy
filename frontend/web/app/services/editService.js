@@ -60,6 +60,7 @@ angular.module('chemGeno')
              */
             var sendEditedData = function(modifications, idObj){
                 var d = $q.defer();
+                console.log("modification"+modifications);
                 var token = loginService.getAuthToken(); //Obtain the authentication token from the login service.
                 return $http({
                         headers: {
