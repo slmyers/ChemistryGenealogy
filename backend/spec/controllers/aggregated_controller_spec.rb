@@ -5,5 +5,4 @@ RSpec.configure do |config|
 end
 
 describe Api::AggregatedController, type: :controller do
-
 end

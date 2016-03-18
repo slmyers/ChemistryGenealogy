@@ -34,16 +34,16 @@
       </md-input-container>
 
       <div layout="row" layout-align="center center">
-        <md-button class="md-raised md-primary" type="submit" value="Submit">
+        <md-button id="loginLoginButton" class="md-raised md-primary" type="submit" value="Submit">
           login
         </md-button>
-        <md-button class="md-raised md-primary" ng-click="cancelLogin()">
+        <md-button id="loginCancelButton" class="md-raised md-primary" ng-click="cancelLogin()">
           cancel
         </md-button>
       </div>
       <br>
       <div layout="column">
-        <md-button class="md-raised md-primary" ng-click="toRegistrationView()" >
+        <md-button id="loginRegisterButton" class="md-raised md-primary" ng-click="toRegistrationView()" >
           register
         </md-button>
       </div>
@@ -78,11 +78,11 @@
       </md-input-container>
 
       <div layout="row" layout-align="center center">
-        <md-button class="md-raised md-primary" type="submit" value="Submit">
+        <md-button id="loginRegistrationRegisterButton" class="md-raised md-primary" type="submit" value="Submit">
           Register
         </md-button>
 
-        <md-button class="md-raised md-primary" ng-click="cancelRegistration()">
+        <md-button id="loginRegistrationCancelButton" class="md-raised md-primary" ng-click="cancelRegistration()">
           cancel
         </md-button>
       </div>

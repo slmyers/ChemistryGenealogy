@@ -1,41 +1,20 @@
+# Model for handling people
 class Person < ActiveRecord::Base
   belongs_to :institution, :class_name => 'Institution'
   has_many :mentorships
   has_many :supervisions
 
-  # finds a person's id given the name
-  # creates a new person with nil position and institution if it doesn't exist
-  # therefore, when creating a new person that has mentorships and supervisons,
-  # probably create the person first before creating the mentorships and
-  # supervisons
-  def Person.find_person_id(name)
-    name = name.downcase
-    unless Person.exists?(:name => name)
-      Person.new_person(name, nil, nil)
-    end
-    person_id = Person.find_by(name: name).id
-    return person_id
-  end
 
-  # finds a mentor or supervisor's id given the name
-  # creates a new person with the given institution and nil position if it
-  # doesn't exist
-  # not sure if this should actually be put in mentorhsip or supervision instead
-  def Person.find_mentor_supervisor_id(mentor_supervisor_name, institution_name)
-    mentor_supervisor_name = mentor_supervisor_name.downcase
-    institution_name = institution_name.downcase
-    unless Person.exists?(:name => mentor_supervisor_name)
-      Person.new_person(mentor_supervisor_name, nil, institution_name)
-    end
-    mentor_supervisor_id = Person.find_by(name: mentor_supervisor_name).id
-    return mentor_supervisor_id
-  end
+  # Tracks changes
+  has_paper_trail on: [:update], :ignore => [:created_at, :updated_at, :approved, :id]#ignores pointless attributes, only on update
 
-  # creates a new person with the submitted information
-  # lower cases the position if it's not nil
-  # adds a new institution if it doesn't exist and it is not nil
-  # (not sure if this is supposed to be in controller?)
-  # we have not decided how to handle people with same names
+  # Creates a new person.
+  # @note We have not decided how to handle people with same names
+  #
+  # @param name [String] name of the person
+  # @param position [String] current position of the person
+  # @param institution_name [String] current institution of the person
+  # @return [Hash{String => String}] created person
   def Person.new_person(name, position, institution_name)
     name = name.downcase
 
@@ -44,18 +23,55 @@ class Person < ActiveRecord::Base
     end
 
     unless institution_name.nil?
-      institution_id = Institution.find_institution_id(institution_name)
-    else
-      institution_id = institution_name
+      institution_id = FindId.institution(institution_name)
     end
 
-    return Person.new(name: name,
-                      position: position,
-                      institution_id: institution_id,
-                      approved: false)
+    person = Person.create_with(position: position,
+                                institution_id: institution_id,
+                                approved: false)
+                    .find_or_create_by(name: name)
+    return person
   end
 
-  def as_json(options={})
-    super(:except => [:created_at, :updated_at, :approved])
+  # Makes a serializable hash for a person to be sent to the frontend in a JSON format.
+  #
+  # @param person_object [Hash{String => String}] a person's basic information
+  # @return [Hash{String => String, Array<Hash{String => String, Number}>}] a person's information in JSON format
+  def serializer_for_person(person_object)
+    unless person_object.institution_id.nil?
+      institution_object = Institution.find(person_object.institution_id)
+      institution_name = institution_object.name
+    end
+
+    result = Api::PersonSerializer.new(self).serializable_hash
+    result[:currentInstitutionName] = institution_name
+    result[:currentPositionTitle] = person_object.position
+
+    person_id = person_object.id
+
+    postdoc_array = Array.new
+    postdoc_list = Mentorship.where(:person_id => person_id)
+    postdoc_list.each do |single|
+      postdoc = single.serializer_for_mentorship(single)
+      postdoc_array.push(postdoc)
+    end
+    result[:postDocInformation] = postdoc_array
+
+    supervision_array = Array.new
+    supervision_list = Supervision.where(:person_id => person_id)
+
+    supervision_list.each do |single|
+      supervision = single.serializer_for_supervision(single)
+      supervision_array.push(supervision)
+    end
+    result[:degreeInformation] = supervision_array
+
+    return result.to_json
   end
+
+  # Handles rendering a person in a JSON format.
+  def as_json(options={})
+    super(:except => [:created_at, :updated_at])
+  end
+
 end

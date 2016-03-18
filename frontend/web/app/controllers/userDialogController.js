@@ -1,5 +1,8 @@
 /**
- * Controller for the User Dialogue
+ * @module userDialogController
+ * @class userDialogController
+ *
+ *  Controller for the User Dialogue
  *
  * Status: CONTROLLER
  * Associated files: userDialog.html,
@@ -31,6 +34,13 @@ angular.module('chemGeno')
       $scope.successRegistration = false;
 
 
+      /**
+       * This method when invoked will submit the login credentials ( a single object passed into this method) to the
+       * backend to check if they are valid or not when invoekd.
+       *
+       * @param loginUser an object of username and password credentials.
+       * @method submitLogin
+         */
       $scope.submitLogin = function(loginUser) {
         var promise = loginService.login(loginUser);
         promise.then(function(res) {
@@ -47,6 +57,14 @@ angular.module('chemGeno')
       };
 
 
+      /**
+       * This method will be invoked when we have a user that wants to register for the webapplication :)
+       * This takes in a registered user object (a username and password combo object) and then will send this
+       * object to the backend through the services and then either confirms or rejects the login.
+       *
+       * @param registerUser A username and password combo for a novel user.
+       * @method submitRegistration
+         */
       $scope.submitRegistration = function(registerUser) {
         var promise = registerService.register(registerUser);
         promise.then(function(res) {
@@ -61,6 +79,10 @@ angular.module('chemGeno')
         })
       };
 
+      /**
+       * This method when invoked will confirm the registration of the user.
+       * @method registrationConfirmation
+       */
       $scope.registrationConfirmation = function() {
         $mdDialog.cancel();
         $mdToast.show(
@@ -71,17 +93,29 @@ angular.module('chemGeno')
         );
       };
 
+      /**
+       * Cancel the login of a user
+       * @method cancelLogin
+       */
       $scope.cancelLogin = function() {
         $mdDialog.cancel();
         $scope.loginUser = angular.copy($scope.master); //revert the login user to the value of the master variable.
       };
 
 
+      /**
+       * Cancel the registration of the user.
+       * @method cancelRegistration
+       */
       $scope.cancelRegistration = function() {
         $mdDialog.cancel();
         $scope.registerUser = angular.copy($scope.master); //revert register user to value of the master variable.
       };
 
+      /**
+       * Method that will go to the registration view
+       * @method toRegistrationView
+       */
       // changes UI state to transition to the registration view
       $scope.toRegistrationView = function() {
         $scope.login = false;

@@ -20,7 +20,7 @@
   md-min-length="1"
   ng-keypress="($event.charCode==13)?searchOnEnter(item):return">
 
-  <md-item-template>
+  <md-item-template id="searchResultsArray">
     {{item.name}}
   </md-item-template>
 </md-autocomplete>

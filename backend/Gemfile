@@ -16,6 +16,9 @@ gem 'bcrypt'
 
 gem 'jwt'
 
+# for maintaining audits
+gem 'paper_trail', '~> 4.0.2'
+
 # for windows
 gem 'tzinfo-data', platforms: [:x64_mingw,:mingw, :mswin]
 

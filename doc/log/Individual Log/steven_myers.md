@@ -104,3 +104,12 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * implemented frontend autocomplete 
 * implemented frontend search 
 
+####March 14, 2016 - March 21, 2016
+
+* implemented backend + frontend detail information (full story/use case)
+* closed [issue 34](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/issues/34)
+* implemented backend + frontend for admin notifications (full story/use case)
+* implemented backend + frontend for information verification (full story/use case) 
+* auto generated documentation 
+* wrote various tests
+* updated UI

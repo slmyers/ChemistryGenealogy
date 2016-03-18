@@ -7,6 +7,8 @@ end
 class AuthenticationTimeoutError < StandardError
 end
 
+# @author Steven Myers
+# contains errors related to authentication and token parsing methods
 class ApplicationController < ActionController::API
   self.responder = ApplicationResponder
   respond_to :html, :json
@@ -51,6 +53,15 @@ class ApplicationController < ActionController::API
     @http_auth_token ||= if request.headers['Authorization'].present?
                            request.headers['Authorization'].split(' ').last
                          end
+  end
+
+  # used to check if current_user is an admin
+  def is_admin?
+    @admin = Admin.find_by(:user_id => @current_user.id, :approved => true)
+    unless @admin.blank?
+      return true
+    end
+    raise NotAuthenticatedError
   end
 
   # Helper Methods for responding to errors

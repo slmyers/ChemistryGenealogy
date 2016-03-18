@@ -39,9 +39,9 @@ module ChemistryGenealogy
     # Ref: https://github.com/mefeghhi/poll-api
     config.middleware.insert_before 0, "Rack::Cors" do
         allow do
-            origins '*' 
-            resource '*', :headers => :any, :methods => [:get, :post, :options] 
-        end 
+            origins '*'
+            resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :patch, :delete] 
+        end
     end
 
   end

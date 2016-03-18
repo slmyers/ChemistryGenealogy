@@ -1,28 +1,16 @@
 /**
- * Controller for the Submission page.
+ * @module editController
+ * @class editController
  *
- * Status: CONTROLLER
- * Associated files: submit.html
- *
- * The submission page is going to be the core of where the users will be able to supply information to begin a new
- * page for a given particular user. This page is going to be essentially a massive collection of information that
- * we will be inserting into the system.
- *
- * Things that we're collecting include basic information like:
- * -first name
- * -last name
- * -degree type
- * -postdoc postings
- * -etc
- *
+ * Responsible for every functionality given by the administrator panel for the frontend.
  */
-
 
 angular.module('chemGeno')
 
+
     //Stating that this is a controller for this project.
-    .controller('editController', ['$scope', 'editService',
-        function($scope, editService) {
+    .controller('editController', ['$scope', 'editService', 'viewService', '$location', '$stateParams',
+        function($scope, editService,  viewService, $location, $stateParams) {
 
             //POSTDOC TABS:
             // Basic tabs "list" like structure that will hold together all of the data in an appropriate format.
@@ -49,7 +37,350 @@ angular.module('chemGeno')
 
                 ];
 
-            //Postdoc Variables.
+
+            /**
+             * This section is concerned with obtaining the object from the backend and then bursting it onto the
+             * entire edit page appropriately.
+             */
+
+            /**
+             * Function invoked when the page is first loaded, obtains the object from the backend
+             * and then associates it with the $scope.data object which will be accessed throughout the
+             * controller of the page :)
+             *
+             * @method unlockObject
+             */
+            $scope.unlockObject = function(){
+                console.log("unlockObject function called");
+                var promise = viewService.obtainInformationFromBackEnd( {id: $stateParams.id});
+                promise.then(function(resp){
+                    $scope.data = resp.data;
+
+                    $scope.unpackObject();
+                }, function(error){
+                    console.log("ERROR GETTTING OBJECT!!!!!!");
+                });
+
+                $scope.mockObjectRecieved = $scope.data;
+            };
+
+            //Called at the very start of when the webpage is initially loaded.
+            $scope.unlockObject();
+
+
+            /**
+             * Unpacks the object for this edit page to use.
+             *
+             * @method unpackObject
+             */
+            $scope.unpackObject = function(){
+
+                console.log("Unpack object called upon: " + $scope.data);
+                //console.log($scope.data);
+                $scope.personId= $scope.data.person.data.id; //Unique identifier for the person.
+                //console.log($scope.personId);
+
+                $scope.firstName = $scope.data.person.data.name.split(" ")[0];
+                //console.log($scope.firstName);
+
+                $scope.lastName = $scope.data.person.data.name.split(" ")[1];
+                //console.log($scope.lastName);
+
+                $scope.currentPositionTitle = $scope.data.person.data.position;
+                //console.log($scope.currentPositionTitle);
+
+                $scope.currentInstitutionName = $scope.data.person.institution.name;
+                //console.log($scope.currentInstitutionName);
+
+                $scope.currentInstitutionId = $scope.data.person.institution.id;
+                //console.log($scope.currentInstitutionId);
+
+
+                $scope.postDocInformation = $scope.data.mentors;
+                //console.log($scope.postDocInformation);
+
+                $scope.degreeInformation = $scope.data.supervisors;
+                //console.log($scope.degreeInformation);
+
+                $scope.superDocInformation = $scope.data.mentored;
+                //console.log($scope.superDocInformation);
+
+                $scope.superDegInformation = $scope.data.supervised;
+                console.log($scope.superDegInformation);
+
+            };
+
+
+            /**
+             * Constructor... for the model object of this edit page.
+             *
+             * @constructor EditPageModelObject
+             */
+            function EditPageModelObject(){
+                person:{
+                    data:{
+                        name = null;
+                    }
+                }
+
+            }
+
+            /**
+             * The final function that prepares the editPageModelObject to be sent to the backend.
+             * Loads any differences found into the editPageModelObject! :)
+             *
+             * @method finalEditFunction
+             */
+            $scope.finalEditFunction = function(){
+
+                var editPageModelObject = new EditPageModelObject;
+                //compare name located within the data object to the submitted name.
+                var name = $scope.firstName + " " + $scope.lastName;
+                if(name !== $scope.data.person.data.name){
+                    editPageModelObject.person.data.name = name;
+                    console.log("name diff");
+                }
+
+                //compare the title
+                if($scope.currentPositionTitle !== $scope.data.person.data.position){
+                    editPageModelObject.person.data.position = $scope.currentPositionTitle;
+                }
+
+                //compare the institution name
+                if($scope.currentInstitutionName !== $scope.data.person.institution.name){
+                    editPageModelObject.person.institution.name = $scope.currentInstitutionName;
+                }
+
+                //Crudely compare mentors
+                if($scope.postDocInformation !== $scope.data.mentors){
+                    editPageModelObject.mentors = $scope.postDocInformation;
+                }
+
+                if($scope.degreeInformation !== $scope.data.supervisors){
+                    editPageModelObject.supervisors = $scope.degreeInformation;
+                }
+
+                if($scope.superDocInformation !== $scope.data.mentored){
+                    editPageModelObject.mentored = $scope.superDocInformation;
+                }
+
+                if($scope.superDegInformation !== $scope.data.supervised){
+                    editPageModelObject.supervised = $scope.superDegInformation;
+                }
+
+
+                console.log(editPageModelObject);
+            };
+
+
+
+
+
+            console.log("scope data: " + $scope.data);
+
+            /**
+             * SUEPRVISED POSTDOCS SECTION YES THIS IS A MESS HERE BUT IT MUST BE DONE FASTT!!!! AHHHHHHH!!!!!!!!!!!!!
+             * @type {*[]}
+             */
+
+            $scope.postdocSupervisionVisibility = false;
+            $scope.superDocStartYear = null;
+            $scope.superDocEndYear = null;
+            $scope.superDocInstitution = null;
+            $scope.superdocNameOfPerson = null;
+
+
+            /**
+             * Object for SuperDoc
+             * @param superDocNameOfPerson
+             * @param superDocStartYear
+             * @param superDocEndYear
+             * @param superDocInstitution
+             * @constructor SuperDocInstance
+             */
+            function SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution)
+            {
+                this.superDocNameOfPerson = superDocNameOfPerson,
+                    this.superDocStartYear = superDocStartYear,
+                    this.superDocEndYear = superDocEndYear,
+                    this.superDocInstitution = superDocInstitution
+            }
+
+
+            /**
+             * This method adds into the superdoc information array a passed in superdoc object.
+             *
+             * @param superDocNameOfPerson name of person
+             * @param superDocStartYear start year
+             * @param superDocEndYear end year
+             * @param superDocInstitution institution
+             * @method addSuperDocInstance
+             */
+            $scope.addSuperDocInstance = function(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution){
+                var newSuperDocInstance = new SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution);
+                $scope.superDocInformation.push(newSuperDocInstance);
+                console.log("addSuperDocInstance Called on" + $scope.superDocInformation);
+
+
+            };
+
+
+            /**
+             * Initialize superDoc array as an empty array. Will hold SuperDoc objects :)!
+             * @type {Array}
+             */
+            $scope.superDocInformation = [ ];
+
+
+            /**
+             * This method when invoked will show the superdoc information
+             * @method showSuperDocInfo
+             */
+            $scope.showSuperDocInfo = function(){
+                $scope.postdocSupervisionVisibility = true;
+            };
+
+            /**
+             * This method when invoked will hide the superdoc information.
+             * @method hideSuperDocInfo
+             */
+            $scope.hideSuperDocInfo = function(){
+                $scope.postdocSupervisionVisibility = false;
+            };
+
+
+            /**
+             * This method when invoked will remove a passed in superdoc object from the superdoc array.
+             *
+             * @param superDocInstance A superdoc object.
+             * @method removeSuperDocInstance
+             */
+            $scope.removeSuperDocInstance = function(superDocInstance){
+                console.log("removeSuperDocInstance called with index" + superDocInstance);
+                console.log($scope.superDocInformation.length);
+
+                var index = $scope.superDocInformation.indexOf(superDocInstance);
+                console.log($scope.superDocInformation.length);
+                //Splice out the entry that is desired to be removed.
+                $scope.superDocInformation.splice(index,1);
+                console.log($scope.superDocInformation);
+            };
+
+            /**
+             * SUPERDEGREE SECTION
+             * @type {*[]}
+             */
+
+
+            /**
+             * Super degree variables.
+             * @type {boolean}
+             */
+            $scope.superDegVisibility = false;
+
+            //
+            //$scope.superDegStartYear = null;
+            //$scope.superDegEndYear = null;
+            //$scope.superDegInstitution = null;
+
+            $scope.superDegNameOfPerson = null;
+            $scope.superDegCurrPosition = null;
+            $scope.superDegCurrInst = null;
+            $scope.superDegDegType = null;
+            $scope.superDegYear = null;
+            $scope.superDegInst= null;
+
+            /**
+             * Construct a super DEGREE object.
+             * @param superDegNameOfPerson name of person
+             * @param superDegCurrPosition current position
+             * @param superDegCurrInst current institution
+             * @param superDegDegType degree type
+             * @param superDegYear degree year earned
+             * @param superDegInst degree institution
+             * @constructor SuperDegInstance
+             */
+            function SuperDegInstance(superDegNameOfPerson,superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst)
+            {
+                this.superDegNameOfPerson = superDegNameOfPerson,
+                this.superDegCurrPosition = superDegCurrPosition,
+                    this.superDegCurrInst = superDegCurrInst,
+                    this.superDegDegType = superDegDegType,
+                    this.superDegYear = superDegYear,
+                    this.superDegInst = superDegInst
+            }
+
+
+            /**
+             * This function when invoked will compile all of the passed in params into a single superDeg object
+             * and will append this superDeg object into the array of superdeg objects.
+             *
+             * @param superDegNameOfPerson name
+             * @param superDegCurrPosition positio n
+             * @param superDegCurrInst institution
+             * @param superDegDegType degree type
+             * @param superDegYear year earned
+             * @param superDegInst institution earned from
+             * @method addSuperDegInstance
+             */
+            $scope.addSuperDegInstance = function(superDegNameOfPerson, superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst){
+                var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson, superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst);
+                $scope.superDegInformation.push(newSuperDegInstance);
+                console.log("addSuperDegInstance Called on" + $scope.superDegInformation);
+
+
+            };
+
+
+            /**
+             * Shows the superdeg information
+             * @method showSuperDegInfo
+             */
+            $scope.showSuperDegInfo = function(){
+                $scope.superDegVisibility = true;
+            };
+
+            /**
+             * Hides the superdeg information.
+             * @method hideSuperDegInfo
+             */
+            $scope.hideSuperDegInfo = function(){
+                $scope.superDegVisibility = false;
+            };
+
+            /**
+             * Initialize as an empty array, for now. Will be populated with SUPER DEGREE objects.
+             * @type {Array}
+             */
+            $scope.superDegInformation = [ ] ;
+
+            /**
+             * Removes the instance of the superdeg object from the superdeg array
+             *
+             * @param superDegInstance superdegree object
+             * @method removeSuperDegInstance
+             */
+            $scope.removeSuperDegInstance = function(superDegInstance){
+                console.log("removeSuperDegInstance called with index" + superDegInstance);
+                console.log($scope.superDegInformation.length);
+
+                var index = $scope.superDegInformation.indexOf(superDegInstance);
+                console.log($scope.superDegInformation.length);
+                //Splice out the entry that is desired to be removed.
+                $scope.superDegInformation.splice(index,1);
+                console.log($scope.superDegInformation);
+            };
+
+
+            /**
+             * OTHER STUFFS
+             * @type {*[]}
+             */
+
+
+
+
+                //Postdoc Variables.
             $scope.postDocTabs = postDocTab; //Formally assigning the list above to the scope tab variable.
             $scope.selectedIndex = 2; //Index that the tabs start at.
             $scope.postDocID = 3; //Only set to 3 here for the sample data. Set back to 1 for release.
@@ -59,12 +390,32 @@ angular.module('chemGeno')
             $scope.degreeInfoSelectedIndex = 1; //Index that the tabs start at.
             $scope.degreeInfoID = 2; //Only set to 3 here for the sample data. Set back to 1 for release.
 
+
+            //The data object obtained from the backend.
+            $scope.data = null;
+
             /**
              * This function will be how I retrieve the proper object from the backend, through the editService
              * file.
              */
             //$scope.realObjectFromBackend = obtainUserInformationFromBackEnd
 
+
+            /**
+             * Function called at the very start of this page's creation.
+             * Responsible for calling to the backend through the services to obtain the edit page object.
+             *
+             * @method buildEditPage
+             */
+            $scope.buildEditPage = function(){
+                var promise = editService.obtainUserInformationFromBackEnd(1);
+                promise.then(function(resp){
+                  $scope.data = resp;
+                }, function(error){
+                    console.log("ERROR GETTTING OBJECT!!!!!!");
+                });
+
+            };
             /**
              * Mock Object. This is what I will be expecting to recieve from the backend throughthe function
              * "obtainUserInformationFromBackEnd".
@@ -82,12 +433,32 @@ angular.module('chemGeno')
                 degreeInformation:[{
                     year: "2973", supervisor: "Cheese King", institution: "University of NeverEverLand", type:  "Doctorate"
 
+                }],
+
+                superDocInformation:[{
+                    superDocNameOfPerson: "Onion Knighty",
+                    superDocStartYear: "1991",
+                    superDocEndYear: "99999",
+                    superDocInstitution: "onion academy"
+                }],
+
+                superDegInformation:[{
+                    superDegNameOfPerson: "fromage mon dieu"
                 }]
             };
 
 
-
-
+            /**
+             *  The major model object that is handed to the backend to process all of the edits made in the frontend
+             *
+             * @param firstName first name
+             * @param lastName last name
+             * @param currentPositionTitle curr pos title
+             * @param currentInstitutionName curr inst name
+             * @param postDocInformation an array of postdoc objects
+             * @param degreeInformation an array of degree info objects
+             * @constructor SubmissionPageModelObject
+             */
             function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
                                                currentInstitutionName, postDocInformation, degreeInformation)
             {
@@ -107,15 +478,24 @@ angular.module('chemGeno')
             /**Basic Info Section:
              * This section deals with trivial information collection on the submit page such as first and last names.
              */
-            $scope.firstName = $scope.mockObjectRecieved.name.split(" ")[0];
-            $scope.lastName = $scope.mockObjectRecieved.name.split(" ")[1];
-            $scope.currentPositionTitle = $scope.mockObjectRecieved.currentPositionTitle;
-            $scope.currentInstitutionName = $scope.mockObjectRecieved.currentInstitutionName;
-            $scope.degreeInformation = $scope.mockObjectRecieved.degreeInformation;
-            $scope.postDocInformation = $scope.mockObjectRecieved.postDocInformation;
+            //$scope.firstName = $scope.mockObjectRecieved.name.split(" ")[0];
+            //$scope.lastName = $scope.mockObjectRecieved.name.split(" ")[1];
+            //$scope.currentPositionTitle = $scope.mockObjectRecieved.currentPositionTitle;
+            //$scope.currentInstitutionName = $scope.mockObjectRecieved.currentInstitutionName;
+            //$scope.degreeInformation = $scope.mockObjectRecieved.degreeInformation;
+            //$scope.postDocInformation = $scope.mockObjectRecieved.postDocInformation;
+            //$scope.superDegInformation = $scope.mockObjectRecieved.superDegInformation;
+            //$scope.superDocInformation = $scope.mockObjectRecieved.superDocInformation;
+
+
+
+
+
 
             /**
              * Simple function that I can invoke when I want to see what the contents of the basic inputs are.
+             *
+             * @method testBasicInputs
              */
             $scope.testBasicInputs = function(){
                 console.log($scope.firstName + " " + $scope.lastName + " " + $scope.title
@@ -141,10 +521,53 @@ angular.module('chemGeno')
              * determined by the backend relatively easily. If it is "nulled" then just move on, no changes.
              *
              * This function makes use ot the editServices file to achieve this goal.
+             *
+             * @method editMasterButton
              */
             $scope.editMasterButton = function(){
                 console.log("editMasterButton function called");
 
+                //If the first name field does not have a value, spit out an error and return.
+                if($scope.firstName == null || $scope.firstName == undefined || $scope.firstName == ""){
+                    console.log("Error: First Name was not put into the firstname field");
+
+                    $scope.firstNameWarning = true;
+                    return;
+                }
+                else{
+                    $scope.firstNameWarning = false; //If the field is not null set warning to false.
+                }
+
+                //If the last name field does not have a value, spit out an error and return.
+                if($scope.lastName == null || $scope.lastName == undefined || $scope.lastName == ""){
+                    console.log("Error: Last Name was not entered in the field.");
+
+                    $scope.lastNameWarning = true;
+                    return;
+                }
+                else{
+                    $scope.lastNameWarning = false; //If the field is not null set warning to false.
+                }
+
+                //If the curr position field does not have a value, spit out an error and return.
+                if($scope.currentPositionTitle == null || $scope.currentPositionTitle == undefined || $scope.currentPositionTitle == ""){
+                    console.log("Error: Current Position Title was not entered into the field.");
+                    $scope.currPositionTitleWarning = true;
+                    return;
+                }
+                else{
+                    $scope.currPositionTitleWarning = false; //If the field is not null set warning to false.
+                }
+
+                //If the current inst field does not have a value, spit out an error and return.
+                if($scope.currentInstitutionName == null || $scope.currentInstitutionName == undefined || $scope.currentInstitutionName == ""){
+                    console.log("Error: Current Institution Name was not entered into the field.");
+                    $scope.currInstNameWarning = true;
+                    return;
+                }
+                else{
+                    $scope.currInstNameWarning = false; //If the field is not null set warning to false.
+                }
 
                 //Create the new object for the submission page.
                 var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
@@ -160,6 +583,15 @@ angular.module('chemGeno')
                     degreeInformation: "nulled",
                     postDocInformation: "nulled"
 
+                };
+
+
+                var differenceObject2 = {
+                    name: "fromage",
+                    currentPositionTitle :"cheese knight!",
+                    currentInstitutionName: "Onion Knights too",
+                    degreeInformation: "nulled",
+                    postDocInformation: "nulled"
                 };
 
 
@@ -216,6 +648,7 @@ angular.module('chemGeno')
              * @param pdYearEnd The date of the end of the postdoc appointment.
              * @param pdSupervisor The supervisor of the postdoc appointment.
              * @param pdInstitution The institution of the postdoc appointment.
+             * @method addPDInfo
              */
             $scope.addPDInfo = function (pdYearStart, pdYearEnd, pdSupervisor, pdInstitution) {
                 //view = view || title + " Content View";
@@ -226,6 +659,7 @@ angular.module('chemGeno')
             /** POSTDOC FUNCTION
              * This function when evoked will remove the selected tab from the screen.
              * @param tab The tab to be removed.
+             * @method removePDTab
              */
             $scope.removePDTab = function (tab) {
                 $scope.postDocID--; //Decrement global postDocID with removal.
@@ -258,6 +692,7 @@ angular.module('chemGeno')
              * @param diYear The year that the degree was obtained.
              * @param diSupervisor The supervisor who oversaw the degree.
              * @param diInstitution The institution that awarded the degree.
+             * @method addDI
              */
             $scope.addDI = function (diYear, diSupervisor, diInstitution) {
                 //view = view || title + " Content View";
@@ -269,6 +704,7 @@ angular.module('chemGeno')
              * This function when evoked will remove the selected tab from the screen.
              *
              * @param tab The tab to be removed.
+             * @method removeDITab
              */
             $scope.removeDITab = function (tab) {
                 $scope.degreeInfoID--; //Decrement global degreeInfoID with removal.
@@ -284,6 +720,7 @@ angular.module('chemGeno')
 
             /**
              * When invoked will show the postdoc info by setting the flag to true.
+             * @method showPostDocInfo
              */
             $scope.showPostDocInfo = function(){
                 $scope.postDocVisibility = true;
@@ -292,6 +729,7 @@ angular.module('chemGeno')
 
             /**
              * When invoked will hide the postdoc info by setting the flag to false.
+             * @method hidePostDocInfo
              */
             $scope.hidePostDocInfo = function(){
                 $scope.postDocVisibility = false;
@@ -308,12 +746,24 @@ angular.module('chemGeno')
             $scope.pdSupervisor = null;
             $scope.pdInstitution = null;
 
-            function PostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)
+            /**
+             * Object that represents a single postdoc instance when furnished with values.
+             * @param pdStartYear start year
+             * @param pdEndYear end year
+             * @param pdSupervisor supervisor
+             * @param pdInstitution institution
+             * @param pdId assoicated ID with this postdoc object
+             * @param pdApproved is this approved or not by the backend?
+             * @constructor PostDocInstance
+             */
+            function PostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution, pdId, pdApproved)
             {
                 this.pdStartYear = pdStartYear,
                     this.pdEndYear = pdEndYear,
                     this.pdSupervisor = pdSupervisor,
-                    this.pdInstitution = pdInstitution
+                    this.pdInstitution = pdInstitution,
+                this.postdoc_approved = pdApproved,
+                this.postdoc_id = pdId
             }
 
             /**
@@ -337,10 +787,12 @@ angular.module('chemGeno')
              * @param pdEndYear Ending year of the postdoc appointment.
              * @param pdSupervisor Supervisor of the postdoc appointment.
              * @param pdInstitution Institution of the postdoc appointment.
+             * @method addPostDocInstance
              */
-            $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
+            $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution, pdId, pdApproved) {
 
-                if(pdStartYear == null){
+                //Series of statements checking if the postdoc fields are empty or not.
+                if(pdStartYear == null || pdStartYear == undefined || pdStartYear == ""){
                     console.log("error: pdstartyear empty");
                     $scope.pdStartYearWarning = true;
                     return;
@@ -348,7 +800,7 @@ angular.module('chemGeno')
                     $scope.pdStartYearWarning = false;
                 }
 
-                if(pdEndYear == null){
+                if(pdEndYear == null || pdEndYear == undefined || pdEndYear == ""){
                     console.log("error: pdendyear empty");
                     $scope.pdEndYearWarning = true;
                     return;
@@ -356,7 +808,7 @@ angular.module('chemGeno')
                     $scope.pdEndYearWarning = false;
                 }
 
-                if(pdSupervisor == null){
+                if(pdSupervisor == null || pdSupervisor == undefined || pdSupervisor == ""){
                     console.log("error: pdsupervisor empty");
                     $scope.pdSupervisorWarning = true;
                     return;
@@ -364,14 +816,19 @@ angular.module('chemGeno')
                     $scope.pdSupervisorWarning = false;
                 }
 
-                if(pdInstitution == null){
+                if(pdInstitution == undefined || pdInstitution == null || pdInstitution == ""){
                     console.log("error: pdinstitution empty");
                     $scope.pdInstitutionWarning = true;
+                    alert("String");
+                    console.log(pdInstitution);
                     return;
                 }else{
                     $scope.pdInstitutionWarning = false;
+                    alert("alert value: " + pdInstitution);
+                    console.log(pdInstitution);
                 }
-                var newPostDocInstance = new PostDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution);
+
+                var newPostDocInstance = new PostDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution, pdId, pdApproved);
                 $scope.postDocInformation.push(newPostDocInstance);
                 console.log("AddPostDocInstance Called on" + $scope.postDocInformation);
 
@@ -382,6 +839,12 @@ angular.module('chemGeno')
                 pdInstitution = "";
             };
 
+
+            /**
+             * When invoked will declare that the post doc has been edited
+             *
+             * @method editPostDoc
+             */
             $scope.editPostDoc = function(){
                 console.log("editPostDoc function called");
 
@@ -403,6 +866,7 @@ angular.module('chemGeno')
              * Function that when invoked will remove the selected postdoc instance from the submit page and
              * the particular individual's object model.
              * @param postDocInstanceIndex of the postDocInformation array that should be removed.
+             * @method removePostDocInstance
              */
             $scope.removePostDocInstance = function(postDocInstance){
                 console.log("removePostDocInstance called with index" + postDocInstance);
@@ -430,6 +894,7 @@ angular.module('chemGeno')
 
             /**
              * Shows the degree info information when invoked.
+             * @method showDegreeInfo
              */
             $scope.showDegreeInfo = function(){
                 $scope.degreeInfoVisibility = true;
@@ -437,6 +902,7 @@ angular.module('chemGeno')
 
             /**
              * Hides the degree info information when invoked.
+             * @method hideDegreeInfo
              */
             $scope.hideDegreeInfo = function(){
                 $scope.degreeInfoVisibility = false;
@@ -462,15 +928,21 @@ angular.module('chemGeno')
              * @param diSupervisor Supervisor of the degree.
              * @param diInstitution Institution degree was awarded from.
              * @param diType Type of this degree.
+             * @param diId id of degree.
+             * @param supervisionId id of supervisor.
              *
-             * @constructor
+             * @constructor DegreeInfoInstance
              */
-            function DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)
+            function DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType, diId, supervisionId)
             {
                 this.year = diYear;
                 this.supervisor = diSupervisor;
                 this.institution = diInstitution;
                 this.type = diType;
+                this.degree_id = diId;
+                this.degree_approved = false;
+                this.supervision_id = supervisionId;
+                this.supervision_approved = false;
 
             }
 
@@ -485,17 +957,21 @@ angular.module('chemGeno')
             $scope.diTypeWarning = false;
 
             /**
+             * This method when invoked will create a new degree information object with the parameters supplied and
+             * then will append it to the array of all total degree information objects :)
              *
              * @param diYear Year of the degree being awarded.
              * @param diSupervisor Supervisor of the degree.
              * @param diInstitution Institution degree was awarded from.
              * @param diType Type of this degree.
+             * @param diId id of degree.
+             * @param supervisionId id of supervisor.
+             * @method addDegreeInfoInstance
              */
-            $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution, diType) {
+            $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution, diType, diId, supervisionId) {
 
 
-
-                if(diYear == null){
+                if(diYear == null || diYear == undefined || diYear == ""){
                     console.log("degree year is not filled out!");
                     $scope.diYearWarning = true;
                     return;
@@ -505,7 +981,7 @@ angular.module('chemGeno')
                 }
 
 
-                if(diSupervisor == null){
+                if(diSupervisor == null || diSupervisor == undefined || diSupervisor == ""){
                     console.log("degree info supervisor is not filled out!");
                     $scope.diSupervisorWarning = true;
                     return;
@@ -513,21 +989,21 @@ angular.module('chemGeno')
                     $scope.diSupervisorWarning = false;
                 }
 
-                if(diInstitution == null){
+                if(diInstitution == null || diInstitution == undefined || diInstitution == ""){
                     console.log("degree info instituttion is not filled out!");
                     $scope.diInstitutionWarning = true;
                     return;
                 }else{
                     $scope.diInstitutionWarning = false;
                 }
-                if(diType == null){
+                if(diType == null || diType == undefined || diType == ""){
                     console.log("degree info type is not filled out!");
                     $scope.diTypeWarning = true;
                     return;
                 }else{
                     $scope.diTypeWarning = false;
                 }
-                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType);
+                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType, idId, supervisionId);
                 $scope.degreeInformation.push(newDegreeInfoInstance);
                 console.log("AddPostDocInstance Called on" + $scope.degreeInfoInformation);
 
@@ -540,6 +1016,7 @@ angular.module('chemGeno')
              * Removes the object passed in from the individual's degree information.
              *
              * @param degreeInfoInstance The degree that is desired to be removed.
+             * @method removeDegreeInfoInstance
              */
             $scope.removeDegreeInfoInstance = function(degreeInfoInstance){
                 console.log("removePostDocInstance called with index" + degreeInfoInstance);
@@ -555,6 +1032,7 @@ angular.module('chemGeno')
 
 
             //Order by date descending. <- for the output to the user.
+
 
 
 
@@ -579,7 +1057,9 @@ angular.module('chemGeno')
              * @param currentPositionTitle
              * @param currentInstitutionName
              * @param postDocInformation
+             * @constructor SubmissionPageModelObject
              */
+
             function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
                                                currentInstitutionName, postDocInformation, degreeInformation)
             {
@@ -588,10 +1068,17 @@ angular.module('chemGeno')
                 //this.lastName = lastName;
 
                 //Concatenating the first and last name together with a space between for now...
+                this.id = $scope.data.person.data.id;
+
                 var concatednatedNames = firstName + " " + lastName;
                 this.name = concatednatedNames ;
+
+                this.approved =  false;
+
                 this.currentPositionTitle = currentPositionTitle;
                 this.currentInstitutionName = currentInstitutionName;
+
+
 
                 //Now the arrays.
                 this.postDocInformation = postDocInformation;
@@ -599,6 +1086,45 @@ angular.module('chemGeno')
             }
 
             $scope.submitPageObject= null;
+
+
+
+            //console.log("Unpack object called upon: " + $scope.data);
+            ////console.log($scope.data);
+            //$scope.personId= $scope.data.person.data.id; //Unique identifier for the person.
+            ////console.log($scope.personId);
+            //
+            //$scope.firstName = $scope.data.person.data.name.split(" ")[0];
+            ////console.log($scope.firstName);
+            //
+            //$scope.lastName = $scope.data.person.data.name.split(" ")[1];
+            ////console.log($scope.lastName);
+            //
+            //$scope.currentPositionTitle = $scope.data.person.data.position;
+            ////console.log($scope.currentPositionTitle);
+            //
+            //$scope.currentInstitutionName = $scope.data.person.institution.name;
+            ////console.log($scope.currentInstitutionName);
+            //
+            //$scope.currentInstitutionId = $scope.data.person.institution.id;
+            ////console.log($scope.currentInstitutionId);
+            //
+            //
+            //$scope.postDocInformation = $scope.data.mentors;
+            ////console.log($scope.postDocInformation);
+            //
+            //$scope.degreeInformation = $scope.data.supervisors;
+            ////console.log($scope.degreeInformation);
+            //
+            //$scope.superDocInformation = $scope.data.mentored;
+            ////console.log($scope.superDocInformation);
+            //
+            //$scope.superDegInformation = $scope.data.supervised;
+            //console.log($scope.superDegInformation);
+            //
+            //
+
+
 
 
 
@@ -612,6 +1138,11 @@ angular.module('chemGeno')
             $scope.currPositionTitleWarning = false;
             $scope.currInstNameWarning = false;
 
+            /**
+             * This function will print to the console all of the current states of the edit page.
+             *
+             * @method warningsState
+             */
             $scope.warningsState = function(){
                 console.log("firstnamewarning: " + $scope.firstNameWarning + " , lastnamewarning: " + $scope.lastNameWarning +
                     "currpositiontitlewarning: " + $scope.currPositionTitleWarning + "currinstnamewarning : " + $scope.currInstNameWarning);
@@ -621,11 +1152,14 @@ angular.module('chemGeno')
             /**
              * Function evoked when the final submission button is hit, creates a new model object for the entire
              * submission page.
+             *
+             * @method finalSubmitButtonFunction
              */
             $scope.finalSubmitButtonFunction = function(){
 
+
                 //If the first name field does not have a value, spit out an error and return.
-                if($scope.firstName == null){
+                if($scope.firstName == null || $scope.firstName == undefined || $scope.firstName == ""){
                     console.log("Error: First Name was not put into the firstname field");
 
                     $scope.firstNameWarning = true;
@@ -636,7 +1170,7 @@ angular.module('chemGeno')
                 }
 
                 //If the last name field does not have a value, spit out an error and return.
-                if($scope.lastName == null){
+                if($scope.lastName == null || $scope.lastName == undefined || $scope.lastName == ""){
                     console.log("Error: Last Name was not entered in the field.");
 
                     $scope.lastNameWarning = true;
@@ -647,7 +1181,7 @@ angular.module('chemGeno')
                 }
 
                 //If the curr position field does not have a value, spit out an error and return.
-                if($scope.currentPositionTitle == null){
+                if($scope.currentPositionTitle == null || $scope.currentPositionTitle == undefined || $scope.currentPositionTitle == ""){
                     console.log("Error: Current Position Title was not entered into the field.");
                     $scope.currPositionTitleWarning = true;
                     return;
@@ -657,7 +1191,7 @@ angular.module('chemGeno')
                 }
 
                 //If the current inst field does not have a value, spit out an error and return.
-                if($scope.currentInstitutionName == null){
+                if($scope.currentInstitutionName == null || $scope.currentInstitutionName == undefined || $scope.currentInstitutionName == ""){
                     console.log("Error: Current Institution Name was not entered into the field.");
                     $scope.currInstNameWarning = true;
                     return;
@@ -668,6 +1202,7 @@ angular.module('chemGeno')
 
 
 
+                console.log($scope.firstName);
                 console.log("finalSubmitButtonFunction was called");
 
                 //Create the new object for the submission page.
@@ -676,6 +1211,9 @@ angular.module('chemGeno')
                     $scope.degreeInformation);
 
                 $scope.submitPageObject = newSubmitObject;
+
+                //Send data over.
+                editService.sendEditedData($scope.submitPageObject, {id: $stateParams.id});
 
 
                 //Debugging and checking out what is going on here.
@@ -697,12 +1235,16 @@ angular.module('chemGeno')
 
                 }
 
+                console.log($scope.submitPageObject);
+
 
             };
 
             /**
              * Function that once it is called will dump all of the information of the object for this submission
              * page!
+             *
+             * @method checkOutTHISObject
              */
             $scope.checkOutTHISObject = function(){
                 console.log("Here are the results of the object of this page");
@@ -716,5 +1258,3 @@ angular.module('chemGeno')
 
 
         }]);
-
-

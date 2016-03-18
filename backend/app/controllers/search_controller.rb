@@ -1,3 +1,5 @@
+# @author Steven Myers
+# this is the search endpoint calls the Search class to handle reqest
 class SearchController < ApplicationController
   def index
     if params.has_key?(:name) && params.has_key?(:id)
