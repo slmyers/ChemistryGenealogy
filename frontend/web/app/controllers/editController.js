@@ -655,12 +655,14 @@ angular.module('chemGeno')
             $scope.pdSupervisor = null;
             $scope.pdInstitution = null;
 
-            function PostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)
+            function PostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution, pdId, pdApproved)
             {
                 this.pdStartYear = pdStartYear,
                     this.pdEndYear = pdEndYear,
                     this.pdSupervisor = pdSupervisor,
-                    this.pdInstitution = pdInstitution
+                    this.pdInstitution = pdInstitution,
+                this.postdoc_approved = pdApproved,
+                this.postdoc_id = pdId
             }
 
             /**
@@ -685,7 +687,7 @@ angular.module('chemGeno')
              * @param pdSupervisor Supervisor of the postdoc appointment.
              * @param pdInstitution Institution of the postdoc appointment.
              */
-            $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution) {
+            $scope.addPostDocInstance = function (pdStartYear, pdEndYear, pdSupervisor, pdInstitution, pdId, pdApproved) {
 
                 //Series of statements checking if the postdoc fields are empty or not.
                 if(pdStartYear == null || pdStartYear == undefined || pdStartYear == ""){
@@ -724,7 +726,7 @@ angular.module('chemGeno')
                     console.log(pdInstitution);
                 }
 
-                var newPostDocInstance = new PostDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution);
+                var newPostDocInstance = new PostDocInstance(pdStartYear,pdEndYear,pdSupervisor,pdInstitution, pdId, pdApproved);
                 $scope.postDocInformation.push(newPostDocInstance);
                 console.log("AddPostDocInstance Called on" + $scope.postDocInformation);
 
@@ -815,15 +817,21 @@ angular.module('chemGeno')
              * @param diSupervisor Supervisor of the degree.
              * @param diInstitution Institution degree was awarded from.
              * @param diType Type of this degree.
+             * @param diId id of degree.
+             * @param supervisionId id of supervisor.
              *
              * @constructor
              */
-            function DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)
+            function DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType, diId, supervisionId)
             {
                 this.year = diYear;
                 this.supervisor = diSupervisor;
                 this.institution = diInstitution;
                 this.type = diType;
+                this.degree_id = diId;
+                this.degree_approved = false;
+                this.supervision_id = supervisionId;
+                this.supervision_approved = false;
 
             }
 
@@ -843,8 +851,10 @@ angular.module('chemGeno')
              * @param diSupervisor Supervisor of the degree.
              * @param diInstitution Institution degree was awarded from.
              * @param diType Type of this degree.
+             * @param diId id of degree.
+             * @param supervisionId id of supervisor.
              */
-            $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution, diType) {
+            $scope.addDegreeInfoInstance = function (diYear, diSupervisor, diInstitution, diType, diId, supervisionId) {
 
 
                 if(diYear == null || diYear == undefined || diYear == ""){
@@ -879,7 +889,7 @@ angular.module('chemGeno')
                 }else{
                     $scope.diTypeWarning = false;
                 }
-                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType);
+                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType, idId, supervisionId);
                 $scope.degreeInformation.push(newDegreeInfoInstance);
                 console.log("AddPostDocInstance Called on" + $scope.degreeInfoInformation);
 
@@ -941,10 +951,17 @@ angular.module('chemGeno')
                 //this.lastName = lastName;
 
                 //Concatenating the first and last name together with a space between for now...
+                this.id = $scope.data.person.data.id;
+
                 var concatednatedNames = firstName + " " + lastName;
                 this.name = concatednatedNames ;
+
+                this.approved =  false;
+
                 this.currentPositionTitle = currentPositionTitle;
                 this.currentInstitutionName = currentInstitutionName;
+
+
 
                 //Now the arrays.
                 this.postDocInformation = postDocInformation;
@@ -955,6 +972,40 @@ angular.module('chemGeno')
 
 
 
+            //console.log("Unpack object called upon: " + $scope.data);
+            ////console.log($scope.data);
+            //$scope.personId= $scope.data.person.data.id; //Unique identifier for the person.
+            ////console.log($scope.personId);
+            //
+            //$scope.firstName = $scope.data.person.data.name.split(" ")[0];
+            ////console.log($scope.firstName);
+            //
+            //$scope.lastName = $scope.data.person.data.name.split(" ")[1];
+            ////console.log($scope.lastName);
+            //
+            //$scope.currentPositionTitle = $scope.data.person.data.position;
+            ////console.log($scope.currentPositionTitle);
+            //
+            //$scope.currentInstitutionName = $scope.data.person.institution.name;
+            ////console.log($scope.currentInstitutionName);
+            //
+            //$scope.currentInstitutionId = $scope.data.person.institution.id;
+            ////console.log($scope.currentInstitutionId);
+            //
+            //
+            //$scope.postDocInformation = $scope.data.mentors;
+            ////console.log($scope.postDocInformation);
+            //
+            //$scope.degreeInformation = $scope.data.supervisors;
+            ////console.log($scope.degreeInformation);
+            //
+            //$scope.superDocInformation = $scope.data.mentored;
+            ////console.log($scope.superDocInformation);
+            //
+            //$scope.superDegInformation = $scope.data.supervised;
+            //console.log($scope.superDegInformation);
+            //
+            //
 
 
 
@@ -1037,6 +1088,9 @@ angular.module('chemGeno')
 
                 $scope.submitPageObject = newSubmitObject;
 
+                //Send data over.
+                editService.sendEditedData($scope.submitPageObject);
+
 
                 //Debugging and checking out what is going on here.
                 console.log(   "name: " + $scope.name);
@@ -1056,6 +1110,8 @@ angular.module('chemGeno')
                     console.log($scope.degreeInformation[i]);
 
                 }
+
+                console.log($scope.submitPageObject);
 
 
             };

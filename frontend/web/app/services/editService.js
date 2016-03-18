@@ -20,7 +20,7 @@ angular.module('chemGeno')
                 header: 'Content-Type: application/json',
                 method: 'GET',
                 url: 'http://localhost:3000/api/aggregated/' + id,
-                data: id //Sending this id as a json with the ID in it.
+                data: id //Sending this i+d as a json with the ID in it.
             }).success(function (resp) {
                 d.resolve(resp);
             }).error(function (resp) {
