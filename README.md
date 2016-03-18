@@ -10,5 +10,5 @@ Relevant documentation can be found in the [wiki](https://github.com/401Chemistr
 These can be found [online](http://401chemistrygenealogy.github.io/) or in the [docs folder](https://github.com/401ChemistryGenealogy/ChemistryGenealogy/tree/master/backend/doc)
 
 
-####Backend docs are here:
+####FRONTend docs are here:
 https://github.com/401ChemistryGenealogy/ChemistryGenealogy/tree/master/frontend/web/app/controllers/out
