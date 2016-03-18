@@ -1,4 +1,8 @@
+# @author Steven Myers
+# This class has authentication methods that will generate a JWT for the
+# client to hold 
 class AuthController < ApplicationController
+
   def authenticate
     user = User.find_by_credentials(params[:email], params[:password])
     if user

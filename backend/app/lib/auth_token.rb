@@ -1,3 +1,5 @@
+# @author Steven Myers
+# this class generates the JWT using this gem https://github.com/jwt/ruby-jwt/
 class AuthToken
   # Encode a hash in a json web token
   # token stays valid for a month

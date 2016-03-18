@@ -1,5 +1,9 @@
+# @author Steven Myers
+# this class is used to verify unapproved information, basically all the
+# methods just turn approved = true for respective entries
 class Verifier
 
+  # yeah it does what you think
   def self.verify_user(user_id)
     @user = User.find_by_id(user_id)
 
@@ -68,6 +72,11 @@ class Verifier
     end
   end
 
+  # goes through every single thing related to a person and approves it
+  # if a user approves a person, they also approve everything related to that
+  # person. So, if you see something funny on an unapproved person's details,
+  # then you shouldn't improve.
+  # TODO: this method is very slow. Investigate optimizations. 
   def self.verify_person(person_id)
     @person = Search.person_info(person_id)
 

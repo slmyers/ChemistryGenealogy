@@ -99,7 +99,35 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>this class generates the JWT using this gem <a
+href="https://github.com/jwt/ruby-jwt">github.com/jwt/ruby-jwt</a>/</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Steven Myers</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
 
 
 
@@ -199,14 +227,14 @@ expired or invalid. See the docs for the JWT gem.</p>
       <pre class="lines">
 
 
-15
-16
 17
 18
-19</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/auth_token.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'app/lib/auth_token.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_decode'>decode</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_leeway'>leeway</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># https://github.com/jwt/ruby-jwt/blob/master/lib/jwt.rb#L97
@@ -244,17 +272,17 @@ expired or invalid. See the docs for the JWT gem.</p>
       <pre class="lines">
 
 
-4
-5
 6
 7
 8
 9
 10
-11</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/auth_token.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/lib/auth_token.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='id identifier rubyid_payload'>payload</span><span class='comma'>,</span> <span class='id identifier rubyid_ttl_in_minutes'>ttl_in_minutes</span> <span class='op'>=</span> <span class='int'>60</span> <span class='op'>*</span> <span class='int'>24</span> <span class='op'>*</span> <span class='int'>30</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_payload'>payload</span><span class='lbracket'>[</span><span class='symbol'>:exp</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_ttl_in_minutes'>ttl_in_minutes</span><span class='period'>.</span><span class='id identifier rubyid_minutes'>minutes</span><span class='period'>.</span><span class='id identifier rubyid_from_now'>from_now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -274,7 +302,7 @@ expired or invalid. See the docs for the JWT gem.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 03:22:46 2016 by
+  Generated on Fri Mar 18 09:09:32 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.3.0).
 </div>

@@ -277,6 +277,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#test-instance_method" title="#test (instance method)">- (Object) <strong>test</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Used to test returning serialized person object to the frontend.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong> </a>
     
 
@@ -322,66 +346,26 @@
       <pre class="lines">
 
 
+33
 34
 35
 36
 37
 38
 39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61</pre>
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
-  <span class='ivar'>@person</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_info_handling'>info_handling</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:position</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:institution</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:postdoc</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:degree</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@person</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_submit_handling'>submit_handling</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:position</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:institution</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:postdoc</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:degree</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@person</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@person</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
     <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>person:</span> <span class='ivar'>@person</span><span class='rbrace'>}</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>warning:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>didnt work</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
   <span class='kw'>end</span>
-  <span class='comment'># # module for submit information
-</span>  <span class='comment'># # so it will first create a person then add relations to it
-</span>  <span class='comment'># Rails.logger.info(params)
-</span>  <span class='comment'># # check if all params to create person
-</span>  <span class='comment'># if params.has_key?(:name) &amp;&amp; params.has_key?(:position) &amp;&amp; params.has_key?(:institution)
-</span>  <span class='comment'>#   # check if the person is not on db
-</span>  <span class='comment'>#   unless Person.exists?(name: params[:name])
-</span>  <span class='comment'>#     # person doesn&#39;t exist so create a new person
-</span>  <span class='comment'>#     @person = Person.new_person(params[:name], params[:position], params[:institution])
-</span>  <span class='comment'>#     # if return value from Person.new from the model is not nil and save works
-</span>  <span class='comment'>#     if @person != nil &amp;&amp; @person.save
-</span>  <span class='comment'>#       render json: @person.as_json, status: :created
-</span>  <span class='comment'>#       return
-</span>  <span class='comment'>#     end
-</span>  <span class='comment'>#   else # else if person exists in db
-</span>  <span class='comment'>#     render json: {error: &#39;the person you have input already exists, please go to edit to edit the person&#39;}
-</span>  <span class='comment'>#   end
-</span>  <span class='comment'># end
-</span>  <span class='comment'># # is the param check fails, then return an error message
-</span>  <span class='comment'>#render json: {error: &quot;please check the all the required parameters&quot;}, status: :bad_request
-</span><span class='kw'>end</span></pre>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -402,12 +386,12 @@
       <pre class="lines">
 
 
-83
-84
-85</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
 	<span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>warning:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>not implemented</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='int'>200</span>
@@ -432,12 +416,12 @@
       <pre class="lines">
 
 
+29
 30
-31
-32</pre>
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>warning:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>not implemented</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='int'>200</span>
@@ -467,15 +451,13 @@
 10
 11
 12
-13
-14</pre>
+13</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>degree:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:degree</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>person_name:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
-
   <span class='comment'>#@person = Person.all
 </span>  <span class='comment'>#render json: {person: @person}
 </span>  <span class='comment'>#render json: {warning: &#39;not implemented&#39;}, status: 200
@@ -500,12 +482,12 @@
       <pre class="lines">
 
 
+25
 26
-27
-28</pre>
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>warning:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>not implemented</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='int'>200</span>
@@ -530,12 +512,12 @@
       <pre class="lines">
 
 
-87
-88
-89</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_notify_admin'>notify_admin</span>
   <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>warning:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>not implemented</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='int'>200</span>
@@ -560,6 +542,7 @@
       <pre class="lines">
 
 
+15
 16
 17
 18
@@ -567,11 +550,10 @@
 20
 21
 22
-23
-24</pre>
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:id</span><span class='rparen'>)</span>
@@ -581,6 +563,49 @@
     <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>warning:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>expected id param</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='int'>200</span>
   <span class='kw'>end</span>
 
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="test-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Used to test returning serialized person object to the frontend</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_test'>test</span>
+  <span class='id identifier rubyid_person'>person</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_render'>render</span><span class='lparen'>(</span><span class='symbol'>:json</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_person'>person</span><span class='period'>.</span><span class='id identifier rubyid_serializer_for_person'>serializer_for_person</span><span class='lparen'>(</span><span class='id identifier rubyid_person'>person</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:status</span> <span class='op'>=&gt;</span> <span class='int'>200</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -602,48 +627,32 @@
       <pre class="lines">
 
 
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81</pre>
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/aggregated_controller.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
   <span class='comment'># this module will get called for edit information
 </span>  <span class='comment'># right now I assume the parametere being sent to backend are same as for sucmit information
 </span>  <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
-  <span class='comment'># first check if the person exists
-</span>  <span class='kw'>if</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='comment'># then call check module in model to check what the user wants to change
-</span>
-    <span class='ivar'>@personInfo</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_find_person_detail'>find_person_detail</span>
-    <span class='kw'>if</span> <span class='ivar'>@personInfo</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span> <span class='op'>!=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:postion</span><span class='rbracket'>]</span>
-    <span class='ivar'>@person</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_check_criteria'>check_criteria</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:position</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:institution</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-
+  <span class='ivar'>@person</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_update_handling'>update_handling</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:position</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:institution</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:postdoc</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:degree</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@person</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@person</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>person:</span> <span class='ivar'>@person</span><span class='rbrace'>}</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>error:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The information you are looking for does not exists</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>warning:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>didnt work</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
   <span class='kw'>end</span>
-
-	<span class='comment'>#render json: {warning: &#39;not implemented&#39;}, status: 200
-</span><span class='kw'>end</span></pre>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -654,7 +663,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 03:22:47 2016 by
+  Generated on Fri Mar 18 09:09:33 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.3.0).
 </div>

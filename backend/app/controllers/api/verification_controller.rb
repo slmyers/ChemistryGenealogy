@@ -1,3 +1,7 @@
+# @author Steven Myers
+# This controller needs administrator token to access.
+# it is repsonsible for calling Notifier or Deleter to appropriately
+# deal with the information verification story. 
 class Api::VerificationController < ApplicationController
   before_action :authenticate_request!, :is_admin?
   respond_to :json
@@ -50,6 +54,7 @@ class Api::VerificationController < ApplicationController
     end
   end
 
+  # this is the endpoint for rejecting new entries into the database
   def destroy
     if params.has_key?(:user)
       @res = Deleter.delete_user(params[:user])

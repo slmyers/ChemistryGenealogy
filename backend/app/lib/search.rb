@@ -1,6 +1,14 @@
 require 'set'
+# @author Steven Myers
+# This class is used to find all relations with respect to a person.
+# That is to find the: postdocs mentored by the person, the postdoc mentors for
+# the person, the degrees supervised by the person and the supervisors for the
+# persons degrees. There is also the case where it finds ALL available information
+# about a person and also the people related to the person's information.
 class Search
 
+  # if called will find the id associated with the name and then call
+  # self.relations_by_id
   def self.relations_by_name(name)
     if Person.exists?(name: name)
       @person_id = Person.find_by(name: name).id
@@ -10,7 +18,10 @@ class Search
   end
 
   # returns a hash that contains the relations to a person
-  # and the person/institution records
+  # and the person/institution records.
+  # it is used in conjunction with autocomplete on the frontend, and it is likely
+  # that this class can be optimized
+  # TODO: investigate optimizations
   def self.relations_by_id(person_id)
     @persons = Set.new
     @institutions = Set.new
@@ -64,6 +75,10 @@ class Search
             }
   end
 
+  # this function was extracted from self.person(id) and is called by
+  # Notifier and Deleter. It is used to retrieve the relationships w.r.t
+  # @param id
+  # @return hash contating the relationships
   def self.person_info(id)
     unless Person.exists?(id) then return nil end
 
@@ -87,6 +102,10 @@ class Search
     }
   end
 
+  # this class is different from relations_by_id, because it not only gathers
+  # the relations, but also the information required to "fill" out these relations.
+  # used to detail or "view" a person on the frontend.
+  # TODO: take out the begining of the function and call self.person_info instead.
   def self.person(id)
     unless Person.exists?(id) then return nil end
 

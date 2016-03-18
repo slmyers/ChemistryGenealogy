@@ -103,7 +103,35 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>This class has authentication methods that will generate a JWT for the
+client to hold</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Steven Myers</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
 
 
 
@@ -176,17 +204,17 @@
       <pre class="lines">
 
 
-2
-3
-4
-5
 6
 7
 8
-9</pre>
+9
+10
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/auth_controller.rb', line 2</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/auth_controller.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_authenticate'>authenticate</span>
   <span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_credentials'>find_by_credentials</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:password</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -206,7 +234,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 03:22:46 2016 by
+  Generated on Fri Mar 18 09:09:32 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.3.0).
 </div>
