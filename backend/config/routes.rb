@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   end
   resources :user
 
-  get 'test' => 'api/aggregated#test'
-
   post 'authenticate' => 'auth#authenticate'
 
   # 404 error goes to error controller
