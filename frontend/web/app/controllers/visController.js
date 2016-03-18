@@ -33,8 +33,7 @@ angular.module('chemGeno')
 
       var node = [ 'Please enter a search above' ];
       // Automatically label each of the nodes
-      node.forEach(function(name) {
-        //namecode = name.split(' ').join('')
+      node.forEach(function(name){
         g.setNode(name, { label: name });
       });
 
@@ -42,14 +41,28 @@ angular.module('chemGeno')
       edges.forEach(function(edge) {
         g.setEdge(edge.u, edge.v, edge.value); });
 
-      var render = new dagreD3.render();
-
       var svg = d3.select("svg");
       var container = svg.select("g");
+      // Set up zoom support
+      var zoom = d3.behavior.zoom().on("zoom", function() {
+      container.attr("transform", "translate(" + d3.event.translate + ")" +
+                                  "scale(" + d3.event.scale + ")");
+      });
+      // to enable zoom uncomment the line below
+      //svg.call(zoom);
+
+      var render = new dagreD3.render();
+
 
       render(container, g);
+      dagre.layout(g);
+      // Center the graph
+      var initialScale = 1.25;
+      zoom
+        .translate([450, 20])
+        .scale(initialScale)
+        .event(svg);
 
-      // Run the renderer. This is what draws the final graph.
 
       $scope.target = [];
       $scope.mentors = [];
@@ -134,72 +147,89 @@ angular.module('chemGeno')
          }
          $scope.supervisors = toPush;
 
-         var g = new dagreD3.graphlib.Graph().setGraph({
-             nodesep: 30,
+         var g = new dagre.graphlib.Graph().setGraph({
+
+             nodesep: 75,
              ranksep: 150,
              rankdir: "TB",
              marginx: 20,
              marginy: 20
          });
-         /*var width = 500;
-         var height = 500;
-
-         var svg = d3.select("body")
-             .append("svg")
-             .attr("width", width)
-             .attr("height", height);
-
-         var inner = svg.select("g");
-         var render = new dagreD3.render();
-
-         g.graph().transition = function transition(selection) {
-             return selection.transition().duration(1000);
-         };*/
-
-
-         //two nodes, two paths NOTE THE INCLUDED 'weight' element for edges
-         var nodes = [_target];
-         var newnodes = nodes.concat($scope.mentors, $scope.mentored,
-           $scope.supervisors, $scope.supervised);
 
 
          // Automatically label each of the nodes
-         newnodes.forEach(function(v) {
+         //pastel blue
+         $scope.supervisors.forEach(function(v) {
            console.log(v.name);
-           //namecode = name.split(' ').join('')
-           g.setNode(v.name, { label: v.name });
+           g.setNode(v.name, { label: v.name, style: "fill: #AEC6CF"});
          });
-         var vlabel = {label:''};
+         //pastel purple
+         $scope.mentors.forEach(function(v) {
+           console.log(v.name);
+           g.setNode(v.name, { label: v.name, style: "fill: #B19CD9"});
+         });
 
+         $scope.target.forEach(function(v) {
+           console.log(v.name);
+           g.setNode(v.name, { label: v.name, style: "fill: #f77"});
+         });
+
+         $scope.mentored.forEach(function(v) {
+           console.log(v.name);
+           g.setNode(v.name, { label: v.name, style: "fill: #B19CD9"});
+         });
+         $scope.supervised.forEach(function(v) {
+           console.log(v.name);
+           g.setNode(v.name, { label: v.name, style: "fill: #AEC6CF"});
+         });
+
+         // Automatically create edges
          $scope.mentors.forEach(function(node){
-           g.setEdge(node.name, _target.name, vlabel);
-         });
-
-         $scope.mentored.forEach(function(node){
-           g.setEdge(_target.name, node.name, vlabel);
+           g.setEdge(node.name, _target.name, { });
          });
 
          $scope.supervisors.forEach(function(node){
-           g.setEdge(node.name, _target.name, vlabel);
+           g.setEdge(node.name, _target.name, { });
          });
 
          $scope.supervised.forEach(function(node){
-           g.setEdge(_target.name, node.name, vlabel);
+           g.setEdge(_target.name, node.name, { });
          });
 
+         $scope.mentored.forEach(function(node){
+           g.setEdge(_target.name, node.name, { });
+         });
+
+         g.nodes().forEach(function(v) {
+              console.log("Node " + v + ": " + JSON.stringify(g.node(v)));
+         });
+         g.edges().forEach(function(e) {
+             console.log("Edge " + e.v + " -> " + e.w + ": " + JSON.stringify(g.edge(e)));
+         });
+         // Set some general styles
+         g.nodes().forEach(function(v) {
+           var node = g.node(v);
+           node.rx = node.ry = 5;
+         });
+
+         dagre.layout(g);
          render(container, g);
 
+         var upper = $scope.mentors.concat($scope.supervisors);
+         var lower = $scope.mentored.concat($scope.supervised);
+         var lengths = [];
+         lengths.push(upper.length);
+         lengths.push(lower.length);
 
+         var maxnode = Math.max.apply(Math, lengths);
+         // Center the graph
+         var initialScale = 1.15;
+         zoom
+           .translate([1100/(maxnode + 1), 20])
+           .scale(initialScale)
+           .event(svg);
       });
 
-    /*  update_graph = function(){
-        var render = new dagreD3.render();
-        var svg = d3.select("svg");
-        var container = svg.select("g");
-
-        render(container, g);
-        dagre.layout(g);
-      }*/
 
       $scope.findInstitution = function(id, institutions) {
         for(var i = 0; i < institutions.length; i++){

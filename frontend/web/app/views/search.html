@@ -45,37 +45,32 @@
   }
 </style>
 <style id="css">
-text {
-  font-weight: 300;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
-  font-size: 14px;
-}
-.node rect {
+  body {
+  font: 300 14px 'Helvetica Neue', Helvetica;
+  }
+
+  .node rect {
   stroke: #333;
   fill: #fff;
-}
-.edgePath path {
-  stroke: #333;
-  fill: none;
-}
-.legend {
-    padding: 6px 8px;
-    font: 14px/16px Arial, Helvetica, sans-serif;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    background: rgba(255,255,255, 0.9);
-    line-height: 18px;
-    border-radius: 5px;
-    color: #555;
-}
+  }
 
-.legend i {
-    color: #777;
-    width: 18px;
-    height: 18px;
-    float: left;
-    margin-right: 8px;
-    opacity: 0.7;
-}
+  .edgePath path {
+  stroke: #333;
+  fill: #333;
+  stroke-width: 1.5px;
+  }
+  svg {
+    border: 1px solid #999;
+    overflow: hidden;
+  }
+  .legend {float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px 5px 5px 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0,0,0,.2);
+  }
 </style>
 
 
@@ -163,9 +158,25 @@ text {
 
       </md-content>
     </div>
+
     <div id="dataVis" ng-controller="visController">
-      <svg width=820 height=590>
-        <g transform="translate(350,20)"/>
+      <table style="padding: 5px;">
+      <tbody>
+      <tr>
+      <td>
+      <div style="background-color: #f77;">target</div>
+      </td>
+      <td>
+      <div style="background-color: #AEC6CF;">supervisor/supervised</div>
+      </td>
+      <td>
+      <div style="background-color: #B19CD9;">mentor/mentored</div>
+      </td
+      </tr>
+      </tbody>
+      </table>
+      <svg width=1160  height=620>
+        <g transform="translate(300,20)"/>
       </svg>
     </div>
   </div>
