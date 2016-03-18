@@ -19,7 +19,15 @@
       </span>
       <span flex="20"></span>
       <div ng-controller="userController" layout="row" layout-align="center end">
-      <!-- Over the next 7% of the toolbar have the submit section button -->
+      <span flex="7">
+        <div ng-show="isAdmin()">
+          <a ui-sref="main.admin">
+            <md-button class="md-fab md-accent">
+              <md-icon md-svg-src="/static/img/ic_security_black_24px.svg"></md-icon>
+            </md-button>
+          </a>
+        </div>
+      </span>
       <span flex="7">
       <div ng-show="showUser()">
         <a ui-sref="main.submit">
@@ -29,21 +37,14 @@
         </a>
       </div>
       </span>
-      <!-- Over the next 7% of the toolbar size show the rest -->
       <span flex="7">
-        <!-- State that the controller being used is the userController(.js) controller -->
-
-          <!-- Have a button that upon click will begin the login function with the event -->
           <md-button id="theMainLoginButton" class="md-fab md-accent" aria-label="login" ng-click="login($event)" ng-show="showLogin()">
               <md-icon md-svg-src="/static/img/person.svg"></md-icon>
           </md-button>
-          <!-- if showUser() !== null then show enclosed html -->
           <md-menu id="loginSuccessButton" ng-show="showUser()" layout="row" layout-align="center center">
-          <!-- button that opens logout menu; getUsername() is button content -->
             <md-button md-no-ink class="md-accent" ng-click="$mdOpenMenu($event)">
               {{getUsername()}}
             </md-button>
-          <!--Over a width of 2 of toolbar have a logout button -->
             <md-menu-content width="2">
               <md-button id="theMainLogoutButton" ng-click="logout()">
                 <span md-menu-align-target>Logout</span>

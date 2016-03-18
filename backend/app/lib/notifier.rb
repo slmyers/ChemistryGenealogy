@@ -1,22 +1,31 @@
+# @author Steven Myers
+# This class is used to find unapproved information in the database and bundle
+# it in a manner that the frontend can parse effectively.
 class Notifier
 
+  # helper class to gather all notifications
+  def self.all_notifications
+    return {
+      'user_notifications' => self.user_notifications,
+      'admin_notifications' => self.admin_notifications,
+      'mentorship_notifications' => self.mentorship_notifications,
+      'supervision_notifications' => self.supervision_notifications,
+      'person_notifications' => self.person_notifications
+    }
+  end
+
+  # finds all unapproved users
   def self.user_notifications
     @unapproved_users = User.where({:approved => false})
-                        .includes(:admin )
 
     @res_array = Array.new
     @unapproved_users.each do |u|
-      @user = {
-        'id' => u.id,
-        'first_name' => u.first_name,
-        'last_name' => u.last_name,
-        'email' => u.email
-      }
-      @res_array.push(@user)
+      @res_array.push(u)
     end
     return @res_array
   end
 
+  # finds all unapproved admins, pushes admin + user info
   def self.admin_notifications
     @unapproved_admins = Admin.where({:approved => false})
                          .includes(:user)
@@ -27,12 +36,7 @@ class Notifier
       unless a.user.blank?
         @admin = {
           'id' => a.id,
-          'user' => {
-            'id' => a.user.id,
-            'first_name' => a.user.first_name,
-            'last_name' => a.user.last_name,
-            'email' => a.user.email
-          }
+          'user' => a.user
         }
         @res_array.push(@admin)
       end
@@ -72,7 +76,8 @@ class Notifier
     return @res_array
   end
 
-  # finds all unapproved mentorships
+  # finds all unapproved mentorships between approved people
+  # reflects mentorships between existing people
   def self.mentorship_notifications
     @unapproved_mentorships = Mentorship.where({:approved => false})
                               .includes(:institution)
@@ -101,17 +106,8 @@ class Notifier
     return @res_array
   end
 
-  def self.supervision_notifications
-    @unapproved_supervisions = Supervision.where({:approved => false})
-                               .includes(degree: :institution)
-                               .includes(person: :institution)
-                               .includes(supervisor: :institution)
-
-
-  end
-  #this method will bundle all unapproved people (new people) together in a
-  #hash
-  #TODO: investigate refactoring and/or folding into app/lib/search.rb
+  #this method will bundle all relationships + information w.r.t. an unapproved
+  #person. This reflects a person that was just added to the database.
   def self.person_notifications
     # person, their mentors and their supervisors
     @unapproved_people = Person.where({:approved => false})
@@ -182,7 +178,7 @@ class Notifier
     return @mentorships
   end
 
-  # helper method used to build supervisions for unapproved person 
+  # helper method used to build supervisions for unapproved person
   def self.supervisors(unapproved_supervisions)
     @supervisions = Array.new
 

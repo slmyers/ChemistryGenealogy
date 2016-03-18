@@ -94,6 +94,7 @@ namespace :app do
     {year: 1993, institution_id: 2, degree_type: 'phd', approved: true},
     {year: 1996, institution_id: 8, degree_type: 'masters', approved: false}, #id=8
     {year: 2000, institution_id: 8, degree_type: 'phd', approved: false},
+    {year: 2005, institution_id: 4, degree_type: 'phd', approved: false},
     {year: 2005, institution_id: 4, degree_type: 'phd', approved: false}
   ])
 
@@ -107,7 +108,8 @@ namespace :app do
     {approved: true, degree_id: 7, person_id: 16, supervisor_id: 17},
     {approved: false, degree_id: 8, person_id: 23, supervisor_id: 21},
     {approved: false, degree_id: 9, person_id: 23, supervisor_id: 1},
-    {approved: false, degree_id: 10, person_id: 24, supervisor_id: 23 }
+    {approved: false, degree_id: 10, person_id: 24, supervisor_id: 23}, #id = 10
+    {approved: false, degree_id: 11, person_id: 25, supervisor_id: 24}
   ])
 
   Mentorship.create!([
@@ -118,7 +120,8 @@ namespace :app do
     {person_id: 19, mentor_id: 18, start: 1996, end: 1996, institution_id: 2, approved: true},
     {person_id: 20, mentor_id: 18, start: 1996, end: 1996, institution_id: 2, approved: true},
     {person_id: 23, mentor_id: 22, start: 1996, end: 1996, institution_id: 2, approved: false},
-    {person_id: 23, mentor_id: 2, start: 1999, end: 2000, institution_id: 3, approved: false}
+    {person_id: 23, mentor_id: 2, start: 1999, end: 2000, institution_id: 3, approved: false},
+    {person_id: 24, mentor_id: 25, start: 2000, end: 2001, institution_id: 3, approved: false}
   ])
   end
 end

@@ -23,13 +23,9 @@ angular.module('chemGeno')
     url: '/edit/:id',
     templateUrl: '/app/views/edit.html'
   })
-  .state('main.admin', {
+  .state('main.admin',{
     url: '/admin',
-    templateUrl: '/app/views/adminPanel.html'
-  })
-  .state('main.adminPanelDetailed',{
-    url: '/adminPanelDetailed',
-    templateUrl: '/app/views/adminPanelDetailed.html'
+    templateUrl: '/app/views/admin.html'
   })
   .state('main.view',{
     url: '/view/:id',

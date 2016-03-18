@@ -12,9 +12,19 @@ class AuthController < ApplicationController
 
   def authentication_payload(user)
     return nil unless user && user.id
-    {
-      auth_token: AuthToken.encode({ user_id: user.id }),
-      user: { id: user.id, email: user.email } # return whatever user info you need
-    }
+    admin = Admin.find_by(:user_id => user.id, :approved => true)
+    if admin.blank?
+      return {
+                auth_token: AuthToken.encode({ user_id: user.id }),
+                user: { id: user.id, email: user.email },
+                admin: false
+              }
+    else
+      return {
+                auth_token: AuthToken.encode({ user_id: user.id }),
+                user: { id: user.id, email: user.email },
+                admin: true
+              }
+    end
   end
 end

@@ -1,0 +1,23 @@
+<style>
+#adminContainer {
+  -webkit-flex-direction: row;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  /*background-color: dodgerblue;*/
+  margin: 2% 2%;
+  min-height: 80vh;
+  overflow: hidden;
+  position: relative;
+}
+</style>
+<div id="adminContainer">
+  <div ng-controller="adminPanelController" layout="column" ng-cloak>
+    <!-- This bit will cause the layout to follow a general padding style-->
+    <md-content layout-padding>
+      admin
+    </md-content>
+  </div>
+</div>

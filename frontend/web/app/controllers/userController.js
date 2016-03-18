@@ -39,4 +39,9 @@ angular.module('chemGeno')
     $scope.logout = function() {
       loginService.logout();
     };
+
+    $scope.isAdmin = function() {
+      console.log(loginService.isAdmin())
+      return loginService.isAdmin();
+    }
 }]);
