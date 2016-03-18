@@ -45,6 +45,7 @@ class Api::AggregatedController < ApiController
   # Haven't tried this yet!!!
   def update
     Rails.logger.info(params)
+    Rails.logger.debug params.inspect
     @person = Information.update_handling(params[:id], params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
     if @person != nil && @person.save
       render json: {person: @person}
@@ -59,6 +60,11 @@ class Api::AggregatedController < ApiController
 
   def notify_admin
     render json: {warning: 'not implemented'}, status: 200
+  end
+
+  private
+  def update_params
+    params.permit(:id, :name, :position, :institution, postdoc: [], degree: [])
   end
 
 end
