@@ -25,4 +25,15 @@ function($scope, $stateParams, verificationService, $state) {
       alert(error);
     });
   };
+
+  $scope.rejectPerson = function() {
+    var paramObj = {person: $scope.person.id};
+    var promise = verificationService.deleteInfo(paramObj);
+    promise.then(function(resp) {
+      console.log(resp);
+      $state.go('main.admin');
+    }, function(error){
+      alert(error);
+    });
+  };
 }]);

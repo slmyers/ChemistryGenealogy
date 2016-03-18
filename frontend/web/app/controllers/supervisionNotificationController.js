@@ -23,6 +23,17 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
       alert(error);
     });
   };
+
+  $scope.rejectSupervision = function() {
+    var paramObj = {supervision: $stateParams.supervisionId};
+    var promise = verificationService.deleteInfo(paramObj);
+    promise.then(function(resp) {
+      console.log(resp);
+      $state.go('main.admin');
+    }, function(error){
+      alert(error);
+    });
+  };
   // ui booleans for mentor info
   $scope.supervisor_mentorVisibility = false;
   $scope.supervisor_mentoredVisibility = false;

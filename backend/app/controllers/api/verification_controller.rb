@@ -51,6 +51,28 @@ class Api::VerificationController < ApplicationController
   end
 
   def destroy
-    render json: {warning: 'not implemented'}, status: 200
+    if params.has_key?(:user)
+      @res = Deleter.delete_user(params[:user])
+      render :json => @res.to_json
+      return
+    elsif params.has_key?(:admin)
+      @res = Deleter.delete_admin(params[:admin])
+      render :json => @res.to_json
+      return
+    elsif params.has_key?(:mentorship)
+      @res = Deleter.delete_mentorship(params[:mentorship])
+      render :json => @res.to_json
+      return
+    elsif params.has_key?(:supervision)
+      @res = Deleter.delete_supervision(params[:supervision])
+      render :json => @res.to_json
+      return
+    elsif params.has_key?(:person)
+      @res = Deleter.delete_person(params[:person])
+      render :json => @res.to_json
+      return
+    else
+      render json: { errors: ['missing parameter'] }, status: :bad_request
+    end
   end
 end

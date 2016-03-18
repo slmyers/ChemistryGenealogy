@@ -22,7 +22,28 @@ angular.module('chemGeno')
     return d.promise
   };
 
+  var deleteInfo = function(paramObj) {
+    var d = $q.defer();
+    var token = loginService.getAuthToken();
+    return $http({
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token
+      },
+      method: 'DELETE',
+      url: 'http://localhost:3000/api/verification/1337',
+      data: paramObj,
+    }).success(function(resp){
+      d.resolve(resp);
+    }).error(function(error){
+      d.reject(error);
+    })
+    return d.promise
+  };
+
+
   return {
-    verifyInfo: verifyInfo
+    verifyInfo: verifyInfo,
+    deleteInfo: deleteInfo
   }
 });

@@ -25,6 +25,18 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
       alert(error);
     });
   };
+
+  $scope.rejectMentorship = function() {
+    var paramObj = {mentorship: $stateParams.mentorshipId};
+    var promise = verificationService.deleteInfo(paramObj);
+    promise.then(function(resp) {
+      console.log(resp);
+      $state.go('main.admin');
+    }, function(error){
+      alert(error);
+    });
+  };
+
   $scope.loadData();
   // ui booleans for mentor info
   $scope.mentor_mentorVisibility = false;

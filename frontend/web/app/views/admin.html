@@ -78,7 +78,7 @@
           </div>
             <section layout="row" layout-align="center center" layout-wrap>
               <md-button ng-click="approveUser($index)" class="md-primary md-raised">Accept</md-button>
-              <md-button ng-disabled="true" class="md-warn md-raised">Reject</md-button>
+              <md-button ng-click="rejectUser($index)" class="md-warn md-raised">Reject</md-button>
             </section>
           </md-list-item>
       </section>
@@ -95,7 +95,7 @@
           </div>
             <section layout="row" layout-align="center center" layout-wrap>
               <md-button ng-click="approveAdmin($index)" class="md-primary md-raised">Accept</md-button>
-              <md-button ng-disabled="true" class="md-warn md-raised">Reject</md-button>
+              <md-button ng-click="rejectAdmin($index)" class="md-warn md-raised">Reject</md-button>
             </section>
           </md-list-item>
       </section>

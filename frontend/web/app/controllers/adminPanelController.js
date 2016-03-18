@@ -32,7 +32,28 @@ function($scope, adminPanelService, verificationService) {
     }, function (error) {
       alert(error);
     });
-  }
+  };
 
+  $scope.rejectAdmin = function(index) {
+    var paramObj = {admin: $scope.data.admin_notifications[index].id};
+    var promise = verificationService.deleteInfo(paramObj);
+    promise.then(function(resp) {
+      console.log(resp);
+      $scope.data.admin_notifications.splice(index, 1);
+    }, function (error) {
+      alert(error);
+    });
+  };
+
+  $scope.rejectUser = function(index) {
+    var paramObj = {user: $scope.data.user_notifications[index].id};
+    var promise = verificationService.deleteInfo(paramObj);
+    promise.then(function(resp) {
+      console.log(resp);
+      $scope.data.user_notifications.splice(index, 1);
+    }, function (error) {
+      alert(error);
+    });
+  };
 
 }]);
