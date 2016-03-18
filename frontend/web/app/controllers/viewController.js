@@ -1,3 +1,10 @@
+/**
+ * @module viewController
+ * @class viewController
+ *
+ * This controller does all that can be done with the view page...
+ */
+
 
 angular.module('chemGeno')
 .controller('viewController', ['$scope', '$state', 'viewService', '$location', '$stateParams',

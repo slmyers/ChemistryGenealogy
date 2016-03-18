@@ -1,5 +1,9 @@
 /**
+ * @module submitController
+ * @class submitController
+ *
  * Controller for the Submission page.
+ *
  *
  * Status: CONTROLLER
  * Associated files: submit.html

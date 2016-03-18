@@ -1,3 +1,10 @@
+/**
+ * @module GruntFile
+ * @class GruntFile
+ *
+ * Was attempting to do gruntdocs...
+ */
+
 module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-ngdocs');

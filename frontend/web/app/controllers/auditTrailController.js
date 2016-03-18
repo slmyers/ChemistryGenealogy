@@ -1,4 +1,9 @@
-
+/**
+ * @module auditTrailController
+ * @class auditTrailController
+ *
+ * Responsible for every functionality given by the administrator panel for the frontend.
+ */
 
 angular.module('chemGeno')
     .controller('auditTrailController', ['$scope', 'auditTrailService', '$state',

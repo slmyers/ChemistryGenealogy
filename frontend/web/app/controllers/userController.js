@@ -1,3 +1,11 @@
+/**
+ * @module userController
+ * @class muserController
+ *
+ * The user controller is located here, that handles the affairs dealing with the users of the application
+ * working with the application.
+ */
+
 angular.module('chemGeno')
 .controller('userController', ['$scope','$mdMedia', '$mdDialog', 'loginService',
   function($scope, $mdMedia, $mdDialog, loginService) {

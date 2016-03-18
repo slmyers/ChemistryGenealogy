@@ -1,10 +1,58 @@
 {
     "project": {},
     "files": {
+        "GruntFile.js": {
+            "name": "GruntFile.js",
+            "modules": {
+                "GruntFile": 1
+            },
+            "classes": {
+                "GruntFile\n\nWas attempting to do gruntdocs...": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "adminPanelController.js": {
+            "name": "adminPanelController.js",
+            "modules": {
+                "adminPanelController": 1
+            },
+            "classes": {
+                "adminPanelController\n\nResponsible for every functionality given by the administrator panel for the frontend.": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "auditTrailController.js": {
+            "name": "auditTrailController.js",
+            "modules": {
+                "auditTrailController": 1
+            },
+            "classes": {
+                "auditTrailController\n\nResponsible for every functionality given by the administrator panel for the frontend.": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "editController.js": {
             "name": "editController.js",
-            "modules": {},
-            "classes": {},
+            "modules": {
+                "editController": 1
+            },
+            "classes": {
+                "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "mentorshipNotificationController.js": {
+            "name": "mentorshipNotificationController.js",
+            "modules": {
+                "mentorshipNotificationController": 1
+            },
+            "classes": {
+                "mentorshipNotificationController\n\nNotifications for mentorships are dealt with here.": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -19,29 +67,161 @@
             "fors": {},
             "namespaces": {}
         },
+        "personNotificationController.js": {
+            "name": "personNotificationController.js",
+            "modules": {
+                "personNotificationController": 1
+            },
+            "classes": {
+                "personNotificationController\n\nNotifications for persons are dealt with here.": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "searchController.js": {
             "name": "searchController.js",
-            "modules": {},
-            "classes": {},
+            "modules": {
+                "searchController": 1
+            },
+            "classes": {
+                "searchController\n\nEntire Search Functionality located here.": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "submitController.js": {
             "name": "submitController.js",
-            "modules": {},
-            "classes": {},
+            "modules": {
+                "submitController": 1
+            },
+            "classes": {
+                "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "supervisionNotificationController.js": {
+            "name": "supervisionNotificationController.js",
+            "modules": {
+                "supervisionNotificationController": 1
+            },
+            "classes": {
+                "supervisionNotificationController\n\nNotifications for supervision are dealt with here.": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "userController.js": {
+            "name": "userController.js",
+            "modules": {
+                "userController": 1
+            },
+            "classes": {
+                "muserController\n\nThe user controller is located here, that handles the affairs dealing with the users of the application\nworking with the application.": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "userDialogController.js": {
             "name": "userDialogController.js",
-            "modules": {},
-            "classes": {},
+            "modules": {
+                "userDialogController": 1
+            },
+            "classes": {
+                "userDialogController\n\n Controller for the User Dialogue\n\nStatus: CONTROLLER\nAssociated files: userDialog.html,\n\nThe user dialog controller is associated with registration and submission of login information. So it is\nslightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "viewController.js": {
+            "name": "viewController.js",
+            "modules": {
+                "viewController": 1
+            },
+            "classes": {
+                "viewController\n\nThis controller does all that can be done with the view page...": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "visController.js": {
+            "name": "visController.js",
+            "modules": {
+                "visController": 1
+            },
+            "classes": {
+                "visController\n\nNotifications for mentorships are dealt with here.": 1
+            },
             "fors": {},
             "namespaces": {}
         }
     },
     "modules": {
+        "GruntFile": {
+            "name": "GruntFile",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "GruntFile\n\nWas attempting to do gruntdocs...": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "GruntFile.js",
+            "line": 1
+        },
+        "adminPanelController": {
+            "name": "adminPanelController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "adminPanelController\n\nResponsible for every functionality given by the administrator panel for the frontend.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "adminPanelController.js",
+            "line": 1
+        },
+        "auditTrailController": {
+            "name": "auditTrailController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "auditTrailController\n\nResponsible for every functionality given by the administrator panel for the frontend.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "auditTrailController.js",
+            "line": 1
+        },
+        "editController": {
+            "name": "editController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "editController.js",
+            "line": 1
+        },
+        "mentorshipNotificationController": {
+            "name": "mentorshipNotificationController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "mentorshipNotificationController\n\nNotifications for mentorships are dealt with here.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "mentorshipNotificationController.js",
+            "line": 1
+        },
         "personAutoController": {
             "name": "personAutoController",
             "submodules": {},
@@ -54,9 +234,178 @@
             "tag": "module",
             "file": "personAutoController.js",
             "line": 1
+        },
+        "personNotificationController": {
+            "name": "personNotificationController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "personNotificationController\n\nNotifications for persons are dealt with here.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "personNotificationController.js",
+            "line": 1
+        },
+        "searchController": {
+            "name": "searchController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "searchController\n\nEntire Search Functionality located here.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "searchController.js",
+            "line": 1
+        },
+        "submitController": {
+            "name": "submitController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "submitController.js",
+            "line": 1
+        },
+        "supervisionNotificationController": {
+            "name": "supervisionNotificationController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "supervisionNotificationController\n\nNotifications for supervision are dealt with here.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "supervisionNotificationController.js",
+            "line": 1
+        },
+        "userController": {
+            "name": "userController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "muserController\n\nThe user controller is located here, that handles the affairs dealing with the users of the application\nworking with the application.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "userController.js",
+            "line": 1
+        },
+        "userDialogController": {
+            "name": "userDialogController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "userDialogController\n\n Controller for the User Dialogue\n\nStatus: CONTROLLER\nAssociated files: userDialog.html,\n\nThe user dialog controller is associated with registration and submission of login information. So it is\nslightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "userDialogController.js",
+            "line": 1
+        },
+        "viewController": {
+            "name": "viewController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "viewController\n\nThis controller does all that can be done with the view page...": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "viewController.js",
+            "line": 1
+        },
+        "visController": {
+            "name": "visController",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "visController\n\nNotifications for mentorships are dealt with here.": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "visController.js",
+            "line": 1
         }
     },
     "classes": {
+        "GruntFile\n\nWas attempting to do gruntdocs...": {
+            "name": "GruntFile\n\nWas attempting to do gruntdocs...",
+            "shortname": "GruntFile\n\nWas attempting to do gruntdocs...",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "GruntFile",
+            "namespace": "",
+            "file": "GruntFile.js",
+            "line": 1
+        },
+        "adminPanelController\n\nResponsible for every functionality given by the administrator panel for the frontend.": {
+            "name": "adminPanelController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "shortname": "adminPanelController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "adminPanelController",
+            "namespace": "",
+            "file": "adminPanelController.js",
+            "line": 1
+        },
+        "auditTrailController\n\nResponsible for every functionality given by the administrator panel for the frontend.": {
+            "name": "auditTrailController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "shortname": "auditTrailController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "auditTrailController",
+            "namespace": "",
+            "file": "auditTrailController.js",
+            "line": 1
+        },
+        "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.": {
+            "name": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "shortname": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "editController",
+            "namespace": "",
+            "file": "editController.js",
+            "line": 1
+        },
+        "mentorshipNotificationController\n\nNotifications for mentorships are dealt with here.": {
+            "name": "mentorshipNotificationController\n\nNotifications for mentorships are dealt with here.",
+            "shortname": "mentorshipNotificationController\n\nNotifications for mentorships are dealt with here.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mentorshipNotificationController",
+            "namespace": "",
+            "file": "mentorshipNotificationController.js",
+            "line": 1
+        },
         "personAutoController": {
             "name": "personAutoController",
             "shortname": "personAutoController",
@@ -69,44 +418,153 @@
             "namespace": "",
             "file": "personAutoController.js",
             "line": 1
+        },
+        "personNotificationController\n\nNotifications for persons are dealt with here.": {
+            "name": "personNotificationController\n\nNotifications for persons are dealt with here.",
+            "shortname": "personNotificationController\n\nNotifications for persons are dealt with here.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "personNotificationController",
+            "namespace": "",
+            "file": "personNotificationController.js",
+            "line": 1
+        },
+        "searchController\n\nEntire Search Functionality located here.": {
+            "name": "searchController\n\nEntire Search Functionality located here.",
+            "shortname": "searchController\n\nEntire Search Functionality located here.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "searchController",
+            "namespace": "",
+            "file": "searchController.js",
+            "line": 1
+        },
+        "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc": {
+            "name": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "shortname": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "submitController",
+            "namespace": "",
+            "file": "submitController.js",
+            "line": 1
+        },
+        "supervisionNotificationController\n\nNotifications for supervision are dealt with here.": {
+            "name": "supervisionNotificationController\n\nNotifications for supervision are dealt with here.",
+            "shortname": "supervisionNotificationController\n\nNotifications for supervision are dealt with here.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "supervisionNotificationController",
+            "namespace": "",
+            "file": "supervisionNotificationController.js",
+            "line": 1
+        },
+        "muserController\n\nThe user controller is located here, that handles the affairs dealing with the users of the application\nworking with the application.": {
+            "name": "muserController\n\nThe user controller is located here, that handles the affairs dealing with the users of the application\nworking with the application.",
+            "shortname": "muserController\n\nThe user controller is located here, that handles the affairs dealing with the users of the application\nworking with the application.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "userController",
+            "namespace": "",
+            "file": "userController.js",
+            "line": 1
+        },
+        "userDialogController\n\n Controller for the User Dialogue\n\nStatus: CONTROLLER\nAssociated files: userDialog.html,\n\nThe user dialog controller is associated with registration and submission of login information. So it is\nslightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.": {
+            "name": "userDialogController\n\n Controller for the User Dialogue\n\nStatus: CONTROLLER\nAssociated files: userDialog.html,\n\nThe user dialog controller is associated with registration and submission of login information. So it is\nslightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.",
+            "shortname": "userDialogController\n\n Controller for the User Dialogue\n\nStatus: CONTROLLER\nAssociated files: userDialog.html,\n\nThe user dialog controller is associated with registration and submission of login information. So it is\nslightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "userDialogController",
+            "namespace": "",
+            "file": "userDialogController.js",
+            "line": 1
+        },
+        "viewController\n\nThis controller does all that can be done with the view page...": {
+            "name": "viewController\n\nThis controller does all that can be done with the view page...",
+            "shortname": "viewController\n\nThis controller does all that can be done with the view page...",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "viewController",
+            "namespace": "",
+            "file": "viewController.js",
+            "line": 1
+        },
+        "visController\n\nNotifications for mentorships are dealt with here.": {
+            "name": "visController\n\nNotifications for mentorships are dealt with here.",
+            "shortname": "visController\n\nNotifications for mentorships are dealt with here.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "visController",
+            "namespace": "",
+            "file": "visController.js",
+            "line": 1
         }
     },
     "elements": {},
     "classitems": [
         {
             "file": "editController.js",
-            "line": 34,
+            "line": 41,
             "description": "This section is concerned with obtaining the object from the backend and then bursting it onto the\nentire edit page appropriately.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 39,
+            "line": 46,
             "description": "Technically done at the very start.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 96,
+            "line": 103,
             "description": "Constructor...",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 108,
+            "line": 115,
             "description": "The final function that prepares the editPageModelObject to be sent to the backend.\nLoads any differences found into the editPageModelObject! :)",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 159,
+            "line": 166,
             "description": "SUEPRVISED POSTDOCS SECTION YES THIS IS A MESS HERE BUT IT MUST BE DONE FASTT!!!! AHHHHHHH!!!!!!!!!!!!!",
             "type": "{*[]}",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 171,
+            "line": 178,
             "description": "Object for SuperDoc",
             "params": [
                 {
@@ -127,32 +585,36 @@
                 }
             ],
             "is_constructor": 1,
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 197,
+            "line": 204,
             "description": "Initialize superDoc array as an empty array. Will hold SuperDoc objects :)!",
             "type": "{Array}",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 224,
+            "line": 231,
             "description": "SUPERDEGREE SECTION",
             "type": "{*[]}",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 230,
+            "line": 237,
             "description": "Super degree variables.",
             "type": "{boolean}",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 248,
+            "line": 255,
             "description": "Construct a super DEGREE object.",
             "params": [
                 {
@@ -181,66 +643,76 @@
                 }
             ],
             "is_constructor": 1,
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 286,
+            "line": 293,
             "description": "Initialize as an empty array, for now. Will be populated with SUPER DEGREE objects.",
             "type": "{Array}",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 304,
+            "line": 311,
             "description": "OTHER STUFFS",
             "type": "{*[]}",
-            "class": "personAutoController"
-        },
-        {
-            "file": "editController.js",
-            "line": 326,
-            "description": "This function will be how I retrieve the proper object from the backend, through the editService\nfile.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
             "line": 333,
+            "description": "This function will be how I retrieve the proper object from the backend, through the editService\nfile.",
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
+        },
+        {
+            "file": "editController.js",
+            "line": 340,
             "description": "Function called at the very start of this page's creation.\nResponsible for calling to the backend through the services to obtain the edit page object.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 346,
+            "line": 353,
             "description": "Mock Object. This is what I will be expecting to recieve from the backend throughthe function\n\"obtainUserInformationFromBackEnd\".",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 395,
-            "class": "personAutoController"
+            "line": 402,
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 397,
+            "line": 404,
             "description": "This section deals with trivial information collection on the submit page such as first and last names.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 414,
+            "line": 421,
             "description": "Simple function that I can invoke when I want to see what the contents of the basic inputs are.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 423,
+            "line": 430,
             "description": "This function is evoked when the user decides to commit their edits to the page and send it off to\nthe backend of the server.\n\nPRIMARY GOAL: Create a brand new object (extremely similar to the submit page) of all of the inputs\nfrom the user on this page.\n\n\nSECONDARY GOAL: This second goal is to take the data that we already had given to us from\nthe backend and then to individually element-by-element in the objects check if there was any\ndifference in the edited object (made when this button is hit) and if there is then it is packed\ninto a new object that is a differences object which is sent to the backend.\n\nThe differences object will contain \"nulled\" (As a very weird string that likely will be unique in most\ncases?) if there were no changes in the data. This allows the specific items of concern to be\ndetermined by the backend relatively easily. If it is \"nulled\" then just move on, no changes.\n\nThis function makes use ot the editServices file to achieve this goal.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 559,
+            "line": 566,
             "description": "This function will add a new tab to the set of tabs that we currently have.",
             "params": [
                 {
@@ -260,11 +732,12 @@
                     "description": "The institution of the postdoc appointment."
                 }
             ],
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 573,
+            "line": 580,
             "description": "This function when evoked will remove the selected tab from the screen.",
             "params": [
                 {
@@ -272,17 +745,19 @@
                     "description": "The tab to be removed."
                 }
             ],
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 590,
+            "line": 597,
             "description": "This function when invoked will take the current and then the old tab and then it will combine\nthe data together in such a way that we have the previous now equal to the selected, and then\nindex into the \"tabs\" list with the current value.\n\n            $scope.$watch('degreeInfoSelectedIndex', function(current2, old2){\n               previous = selected;\n               selected = degreeInfoTab[current2];\n               if ( old2 + 1 && (old2 != current2)) $log.debug('Goodbye ' + previous.title + '!');\n               if ( current2 + 1 )                $log.debug('Hello ' + selected.title + '!');",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 602,
+            "line": 609,
             "description": "This function will add a new tab to the set of tabs that we currently have.",
             "params": [
                 {
@@ -298,11 +773,12 @@
                     "description": "The institution that awarded the degree."
                 }
             ],
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 615,
+            "line": 622,
             "description": "This function when evoked will remove the selected tab from the screen.",
             "params": [
                 {
@@ -310,35 +786,40 @@
                     "description": "The tab to be removed."
                 }
             ],
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 632,
+            "line": 639,
             "description": "When invoked will show the postdoc info by setting the flag to true.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 640,
+            "line": 647,
             "description": "When invoked will hide the postdoc info by setting the flag to false.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 648,
+            "line": 655,
             "description": "Information regarding the postdoc appointments furnished on the submit page.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 668,
+            "line": 675,
             "description": "Warnings made for the postdoc information empty fields warning to the users.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 680,
+            "line": 687,
             "description": "Function evoked when the submit button is hit on the postdoc card on the submit page.\nCreates a new postDocInstance (object with postdoc data) with the data in the card's fields.\nAfterwards refreshes the view of the scope.",
             "params": [
                 {
@@ -358,17 +839,19 @@
                     "description": "Institution of the postdoc appointment."
                 }
             ],
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 747,
+            "line": 754,
             "description": "$scope.clearPostDocFields = function(){\n   pdStartYear = \"\";\n   pdEndYear = \"\";\n   pdSupervisor = \"\";\n   pdInstitution = \"\";\n   console.log(\"clearPostDocFields called! :)\");",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 757,
+            "line": 764,
             "description": "Function that when invoked will remove the selected postdoc instance from the submit page and\nthe particular individual's object model.",
             "params": [
                 {
@@ -376,35 +859,40 @@
                     "description": "of the postDocInformation array that should be removed."
                 }
             ],
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 776,
+            "line": 783,
             "description": "This section deals with the cards associated with the degrees a user may have.",
-            "class": "personAutoController"
-        },
-        {
-            "file": "editController.js",
-            "line": 786,
-            "description": "Shows the degree info information when invoked.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
             "line": 793,
+            "description": "Shows the degree info information when invoked.",
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
+        },
+        {
+            "file": "editController.js",
+            "line": 800,
             "description": "Hides the degree info information when invoked.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 802,
+            "line": 809,
             "description": "Information regarding the postdoc appointments furnished on the submit page.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 812,
+            "line": 819,
             "description": "Constructor for the DegreeInfoInstance Object.\nThis is the object that holds together the information of a single degree for a particular individual.",
             "params": [
                 {
@@ -433,17 +921,19 @@
                 }
             ],
             "is_constructor": 1,
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 839,
+            "line": 846,
             "description": "Warnings for degree information fields being empty! :(",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 848,
+            "line": 855,
             "params": [
                 {
                     "name": "diYear",
@@ -470,11 +960,12 @@
                     "description": "id of supervisor."
                 }
             ],
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 901,
+            "line": 908,
             "description": "Removes the object passed in from the individual's degree information.",
             "params": [
                 {
@@ -482,18 +973,20 @@
                     "description": "The degree that is desired to be removed."
                 }
             ],
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 927,
+            "line": 934,
             "description": "This is the model for this submission page.\nFirst name, last name, title, degree type, current position title, current institution, postdoc info",
             "type": "{{usersFirstName: null, usersLastName: null, usersTitle: null, usersDegreeType: null, usersCurrentPositionTitle: null, usersCurrentInstitutionName: null, usersPostDocInfo: *[]}}",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 935,
+            "line": 942,
             "description": "This is the constructor for bundling all of the submission page information into one object.\nCalled by hitting the final submission button, which evokes a function that plops this together.\n\nParams are self explanitory I'd hope?",
             "params": [
                 {
@@ -517,26 +1010,30 @@
                     "description": ""
                 }
             ],
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 1014,
+            "line": 1021,
             "description": "Warnings for the various input fields. Initially set to false.\nBut if the value is null then it is set to true and pops up a warning message.",
             "type": "{boolean}",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 1030,
+            "line": 1037,
             "description": "Function evoked when the final submission button is hit, creates a new model object for the entire\nsubmission page.",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "editController.js",
-            "line": 1119,
+            "line": 1126,
             "description": "Function that once it is called will dump all of the information of the object for this submission\npage!",
-            "class": "personAutoController"
+            "class": "editController\n\nResponsible for every functionality given by the administrator panel for the frontend.",
+            "module": "editController"
         },
         {
             "file": "personAutoController.js",
@@ -550,29 +1047,22 @@
         },
         {
             "file": "searchController.js",
-            "line": 99,
+            "line": 106,
             "description": "My work",
-            "class": "",
-            "module": "personAutoController"
+            "class": "searchController\n\nEntire Search Functionality located here.",
+            "module": "searchController"
         },
         {
             "file": "submitController.js",
-            "line": 1,
-            "description": "Controller for the Submission page.\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
-            "class": "",
-            "module": "personAutoController"
-        },
-        {
-            "file": "submitController.js",
-            "line": 53,
+            "line": 57,
             "description": "SUEPRVISED POSTDOCS SECTION YES THIS IS A MESS HERE BUT IT MUST BE DONE FASTT!!!! AHHHHHHH!!!!!!!!!!!!!",
             "type": "{*[]}",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 65,
+            "line": 69,
             "description": "Object for SuperDoc",
             "params": [
                 {
@@ -593,36 +1083,36 @@
                 }
             ],
             "is_constructor": 1,
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 91,
+            "line": 95,
             "description": "Initialize superDoc array as an empty array. Will hold SuperDoc objects :)!",
             "type": "{Array}",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 118,
+            "line": 122,
             "description": "SUPERDEGREE SECTION",
             "type": "{*[]}",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 124,
+            "line": 128,
             "description": "Super degree variables.",
             "type": "{boolean}",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 136,
+            "line": 140,
             "description": "Construct a super DEGREE object.",
             "params": [
                 {
@@ -643,35 +1133,35 @@
                 }
             ],
             "is_constructor": 1,
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 170,
+            "line": 174,
             "description": "Initialize as an empty array, for now. Will be populated with SUPER DEGREE objects.",
             "type": "{Array}",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 188,
+            "line": 192,
             "description": "OTHER STUFFS",
             "type": "{*[]}",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 204,
+            "line": 208,
             "description": "This function when invoked will take the current and then the old tab and then it will combine\nthe data together in such a way that we have the previous now equal to the selected, and then\nindex into the \"tabs\" list with the current value.\n\n           $scope.$watch('selectedIndex', function(current, old){\n               previousPD = selectedPD;\n               selectedPD = postDocTab[current];\n               if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previousPD.title + '!');\n               if ( current + 1 )                $log.debug('Hello ' + selectedPD.title + '!');\n           });",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 217,
+            "line": 221,
             "description": "This function will add a new tab to the set of tabs that we currently have.",
             "params": [
                 {
@@ -691,12 +1181,12 @@
                     "description": "The institution of the postdoc appointment."
                 }
             ],
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 231,
+            "line": 235,
             "description": "This function when evoked will remove the selected tab from the screen.",
             "params": [
                 {
@@ -704,19 +1194,19 @@
                     "description": "The tab to be removed."
                 }
             ],
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 248,
+            "line": 252,
             "description": "This function when invoked will take the current and then the old tab and then it will combine\nthe data together in such a way that we have the previous now equal to the selected, and then\nindex into the \"tabs\" list with the current value.\n\n           $scope.$watch('degreeInfoSelectedIndex', function(current2, old2){\n               previous = selected;\n               selected = degreeInfoTab[current2];\n               if ( old2 + 1 && (old2 != current2)) $log.debug('Goodbye ' + previous.title + '!');\n               if ( current2 + 1 )                $log.debug('Hello ' + selected.title + '!');",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 260,
+            "line": 264,
             "description": "This function will add a new tab to the set of tabs that we currently have.",
             "params": [
                 {
@@ -732,12 +1222,12 @@
                     "description": "The institution that awarded the degree."
                 }
             ],
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 273,
+            "line": 277,
             "description": "This function when evoked will remove the selected tab from the screen.",
             "params": [
                 {
@@ -745,40 +1235,40 @@
                     "description": "The tab to be removed."
                 }
             ],
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 290,
+            "line": 294,
             "description": "When invoked will show the postdoc info by setting the flag to true.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 298,
+            "line": 302,
             "description": "When invoked will hide the postdoc info by setting the flag to false.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 306,
+            "line": 310,
             "description": "Information regarding the postdoc appointments furnished on the submit page.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 338,
+            "line": 342,
             "description": "Warnings made for the postdoc information empty fields warning to the users.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 347,
+            "line": 351,
             "description": "Function evoked when the submit button is hit on the postdoc card on the submit page.\nCreates a new postDocInstance (object with postdoc data) with the data in the card's fields.\nAfterwards refreshes the view of the scope.",
             "params": [
                 {
@@ -798,19 +1288,19 @@
                     "description": "Institution of the postdoc appointment."
                 }
             ],
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 418,
+            "line": 422,
             "description": "$scope.clearPostDocFields = function(){\n    pdStartYear = \"\";\n    pdEndYear = \"\";\n    pdSupervisor = \"\";\n    pdInstitution = \"\";\n    console.log(\"clearPostDocFields called! :)\");",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 428,
+            "line": 432,
             "description": "Function that when invoked will remove the selected postdoc instance from the submit page and\nthe particular individual's object model.",
             "params": [
                 {
@@ -818,40 +1308,40 @@
                     "description": "of the postDocInformation array that should be removed."
                 }
             ],
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 447,
+            "line": 451,
             "description": "This section deals with the cards associated with the degrees a user may have.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 465,
+            "line": 469,
             "description": "Shows the degree info information when invoked.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 472,
+            "line": 476,
             "description": "Hides the degree info information when invoked.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 481,
+            "line": 485,
             "description": "Information regarding the postdoc appointments furnished on the submit page.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 491,
+            "line": 495,
             "description": "Constructor for the DegreeInfoInstance Object.\nThis is the object that holds together the information of a single degree for a particular individual.",
             "params": [
                 {
@@ -872,19 +1362,19 @@
                 }
             ],
             "is_constructor": 1,
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 512,
+            "line": 516,
             "description": "Warnings for degree information fields being empty! :(",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 523,
+            "line": 527,
             "params": [
                 {
                     "name": "diYear",
@@ -903,12 +1393,12 @@
                     "description": "Type of this degree."
                 }
             ],
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 579,
+            "line": 583,
             "description": "Removes the object passed in from the individual's degree information.",
             "params": [
                 {
@@ -916,27 +1406,27 @@
                     "description": "The degree that is desired to be removed."
                 }
             ],
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 599,
+            "line": 603,
             "description": "This section deals with trivial information collection on the submit page such as first and last names.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 618,
+            "line": 622,
             "description": "This is the model for this submission page.\nFirst name, last name, title, degree type, current position title, current institution, postdoc info",
             "type": "{{usersFirstName: null, usersLastName: null, usersTitle: null, usersDegreeType: null, usersCurrentPositionTitle: null, usersCurrentInstitutionName: null, usersPostDocInfo: *[]}}",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 626,
+            "line": 630,
             "description": "This is the constructor for bundling all of the submission page information into one object.\nCalled by hitting the final submission button, which evokes a function that plops this together.\n\nParams are self explanitory I'd hope?",
             "params": [
                 {
@@ -968,44 +1458,37 @@
                     "description": ""
                 }
             ],
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 661,
+            "line": 665,
             "description": "Warnings for the various input fields. Initially set to false.\nBut if the value is null then it is set to true and pops up a warning message.",
             "type": "{boolean}",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 678,
+            "line": 682,
             "description": "Function evoked when the final submission button is hit, creates a new model object for the entire\nsubmission page.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 764,
+            "line": 768,
             "description": "Meant to return back to the main.search page, not working though.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         },
         {
             "file": "submitController.js",
-            "line": 774,
+            "line": 778,
             "description": "Function that once it is called will dump all of the information of the object for this submission\npage!",
-            "class": "",
-            "module": "personAutoController"
-        },
-        {
-            "file": "userDialogController.js",
-            "line": 1,
-            "description": "Controller for the User Dialogue\n\nStatus: CONTROLLER\nAssociated files: userDialog.html,\n\nThe user dialog controller is associated with registration and submission of login information. So it is\nslightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.",
-            "class": "",
-            "module": "personAutoController"
+            "class": "submitController\n\nController for the Submission page.\n\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
+            "module": "submitController"
         }
     ],
     "warnings": [
@@ -1023,335 +1506,327 @@
         },
         {
             "message": "Missing item type\nThis section is concerned with obtaining the object from the backend and then bursting it onto the\nentire edit page appropriately.",
-            "line": " editController.js:34"
+            "line": " editController.js:41"
         },
         {
             "message": "Missing item type\nTechnically done at the very start.",
-            "line": " editController.js:39"
+            "line": " editController.js:46"
         },
         {
             "message": "Missing item type\nConstructor...",
-            "line": " editController.js:96"
+            "line": " editController.js:103"
         },
         {
             "message": "Missing item type\nThe final function that prepares the editPageModelObject to be sent to the backend.\nLoads any differences found into the editPageModelObject! :)",
-            "line": " editController.js:108"
+            "line": " editController.js:115"
         },
         {
             "message": "Missing item type\nSUEPRVISED POSTDOCS SECTION YES THIS IS A MESS HERE BUT IT MUST BE DONE FASTT!!!! AHHHHHHH!!!!!!!!!!!!!",
-            "line": " editController.js:159"
+            "line": " editController.js:166"
         },
         {
             "message": "Missing item type\nObject for SuperDoc",
-            "line": " editController.js:171"
+            "line": " editController.js:178"
         },
         {
             "message": "Missing item type\nInitialize superDoc array as an empty array. Will hold SuperDoc objects :)!",
-            "line": " editController.js:197"
+            "line": " editController.js:204"
         },
         {
             "message": "Missing item type\nSUPERDEGREE SECTION",
-            "line": " editController.js:224"
+            "line": " editController.js:231"
         },
         {
             "message": "Missing item type\nSuper degree variables.",
-            "line": " editController.js:230"
+            "line": " editController.js:237"
         },
         {
             "message": "Missing item type\nConstruct a super DEGREE object.",
-            "line": " editController.js:248"
+            "line": " editController.js:255"
         },
         {
             "message": "Missing item type\nInitialize as an empty array, for now. Will be populated with SUPER DEGREE objects.",
-            "line": " editController.js:286"
+            "line": " editController.js:293"
         },
         {
             "message": "Missing item type\nOTHER STUFFS",
-            "line": " editController.js:304"
+            "line": " editController.js:311"
         },
         {
             "message": "Missing item type\nThis function will be how I retrieve the proper object from the backend, through the editService\nfile.",
-            "line": " editController.js:326"
-        },
-        {
-            "message": "Missing item type\nFunction called at the very start of this page's creation.\nResponsible for calling to the backend through the services to obtain the edit page object.",
             "line": " editController.js:333"
         },
         {
+            "message": "Missing item type\nFunction called at the very start of this page's creation.\nResponsible for calling to the backend through the services to obtain the edit page object.",
+            "line": " editController.js:340"
+        },
+        {
             "message": "Missing item type\nMock Object. This is what I will be expecting to recieve from the backend throughthe function\n\"obtainUserInformationFromBackEnd\".",
-            "line": " editController.js:346"
+            "line": " editController.js:353"
         },
         {
             "message": "Missing item type",
-            "line": " editController.js:395"
+            "line": " editController.js:402"
         },
         {
             "message": "Missing item type\nThis section deals with trivial information collection on the submit page such as first and last names.",
-            "line": " editController.js:397"
+            "line": " editController.js:404"
         },
         {
             "message": "Missing item type\nSimple function that I can invoke when I want to see what the contents of the basic inputs are.",
-            "line": " editController.js:414"
+            "line": " editController.js:421"
         },
         {
             "message": "Missing item type\nThis function is evoked when the user decides to commit their edits to the page and send it off to\nthe backend of the server.\n\nPRIMARY GOAL: Create a brand new object (extremely similar to the submit page) of all of the inputs\nfrom the user on this page.\n\n\nSECONDARY GOAL: This second goal is to take the data that we already had given to us from\nthe backend and then to individually element-by-element in the objects check if there was any\ndifference in the edited object (made when this button is hit) and if there is then it is packed\ninto a new object that is a differences object which is sent to the backend.\n\nThe differences object will contain \"nulled\" (As a very weird string that likely will be unique in most\ncases?) if there were no changes in the data. This allows the specific items of concern to be\ndetermined by the backend relatively easily. If it is \"nulled\" then just move on, no changes.\n\nThis function makes use ot the editServices file to achieve this goal.",
-            "line": " editController.js:423"
+            "line": " editController.js:430"
         },
         {
             "message": "Missing item type\nThis function will add a new tab to the set of tabs that we currently have.",
-            "line": " editController.js:559"
+            "line": " editController.js:566"
         },
         {
             "message": "Missing item type\nThis function when evoked will remove the selected tab from the screen.",
-            "line": " editController.js:573"
+            "line": " editController.js:580"
         },
         {
             "message": "Missing item type\nThis function when invoked will take the current and then the old tab and then it will combine\nthe data together in such a way that we have the previous now equal to the selected, and then\nindex into the \"tabs\" list with the current value.\n\n            $scope.$watch('degreeInfoSelectedIndex', function(current2, old2){\n               previous = selected;\n               selected = degreeInfoTab[current2];\n               if ( old2 + 1 && (old2 != current2)) $log.debug('Goodbye ' + previous.title + '!');\n               if ( current2 + 1 )                $log.debug('Hello ' + selected.title + '!');",
-            "line": " editController.js:590"
+            "line": " editController.js:597"
         },
         {
             "message": "Missing item type\nThis function will add a new tab to the set of tabs that we currently have.",
-            "line": " editController.js:602"
+            "line": " editController.js:609"
         },
         {
             "message": "Missing item type\nThis function when evoked will remove the selected tab from the screen.",
-            "line": " editController.js:615"
+            "line": " editController.js:622"
         },
         {
             "message": "Missing item type\nWhen invoked will show the postdoc info by setting the flag to true.",
-            "line": " editController.js:632"
+            "line": " editController.js:639"
         },
         {
             "message": "Missing item type\nWhen invoked will hide the postdoc info by setting the flag to false.",
-            "line": " editController.js:640"
+            "line": " editController.js:647"
         },
         {
             "message": "Missing item type\nInformation regarding the postdoc appointments furnished on the submit page.",
-            "line": " editController.js:648"
+            "line": " editController.js:655"
         },
         {
             "message": "Missing item type\nWarnings made for the postdoc information empty fields warning to the users.",
-            "line": " editController.js:668"
+            "line": " editController.js:675"
         },
         {
             "message": "Missing item type\nFunction evoked when the submit button is hit on the postdoc card on the submit page.\nCreates a new postDocInstance (object with postdoc data) with the data in the card's fields.\nAfterwards refreshes the view of the scope.",
-            "line": " editController.js:680"
+            "line": " editController.js:687"
         },
         {
             "message": "Missing item type\n$scope.clearPostDocFields = function(){\n   pdStartYear = \"\";\n   pdEndYear = \"\";\n   pdSupervisor = \"\";\n   pdInstitution = \"\";\n   console.log(\"clearPostDocFields called! :)\");",
-            "line": " editController.js:747"
+            "line": " editController.js:754"
         },
         {
             "message": "Missing item type\nFunction that when invoked will remove the selected postdoc instance from the submit page and\nthe particular individual's object model.",
-            "line": " editController.js:757"
+            "line": " editController.js:764"
         },
         {
             "message": "Missing item type\nThis section deals with the cards associated with the degrees a user may have.",
-            "line": " editController.js:776"
+            "line": " editController.js:783"
         },
         {
             "message": "Missing item type\nShows the degree info information when invoked.",
-            "line": " editController.js:786"
-        },
-        {
-            "message": "Missing item type\nHides the degree info information when invoked.",
             "line": " editController.js:793"
         },
         {
+            "message": "Missing item type\nHides the degree info information when invoked.",
+            "line": " editController.js:800"
+        },
+        {
             "message": "Missing item type\nInformation regarding the postdoc appointments furnished on the submit page.",
-            "line": " editController.js:802"
+            "line": " editController.js:809"
         },
         {
             "message": "Missing item type\nConstructor for the DegreeInfoInstance Object.\nThis is the object that holds together the information of a single degree for a particular individual.",
-            "line": " editController.js:812"
+            "line": " editController.js:819"
         },
         {
             "message": "Missing item type\nWarnings for degree information fields being empty! :(",
-            "line": " editController.js:839"
+            "line": " editController.js:846"
         },
         {
             "message": "Missing item type",
-            "line": " editController.js:848"
+            "line": " editController.js:855"
         },
         {
             "message": "Missing item type\nRemoves the object passed in from the individual's degree information.",
-            "line": " editController.js:901"
+            "line": " editController.js:908"
         },
         {
             "message": "Missing item type\nThis is the model for this submission page.\nFirst name, last name, title, degree type, current position title, current institution, postdoc info",
-            "line": " editController.js:927"
+            "line": " editController.js:934"
         },
         {
             "message": "Missing item type\nThis is the constructor for bundling all of the submission page information into one object.\nCalled by hitting the final submission button, which evokes a function that plops this together.\n\nParams are self explanitory I'd hope?",
-            "line": " editController.js:935"
+            "line": " editController.js:942"
         },
         {
             "message": "Missing item type\nWarnings for the various input fields. Initially set to false.\nBut if the value is null then it is set to true and pops up a warning message.",
-            "line": " editController.js:1014"
+            "line": " editController.js:1021"
         },
         {
             "message": "Missing item type\nFunction evoked when the final submission button is hit, creates a new model object for the entire\nsubmission page.",
-            "line": " editController.js:1030"
+            "line": " editController.js:1037"
         },
         {
             "message": "Missing item type\nFunction that once it is called will dump all of the information of the object for this submission\npage!",
-            "line": " editController.js:1119"
+            "line": " editController.js:1126"
         },
         {
             "message": "Missing item type\nMy work",
-            "line": " searchController.js:99"
-        },
-        {
-            "message": "Missing item type\nController for the Submission page.\n\nStatus: CONTROLLER\nAssociated files: submit.html\n\nThe submission page is going to be the core of where the users will be able to supply information to begin a new\npage for a given particular user. This page is going to be essentially a massive collection of information that\nwe will be inserting into the system.\n\nThings that we're collecting include basic information like:\n-first name\n-last name\n-degree type\n-postdoc postings\n-etc",
-            "line": " submitController.js:1"
+            "line": " searchController.js:106"
         },
         {
             "message": "Missing item type\nSUEPRVISED POSTDOCS SECTION YES THIS IS A MESS HERE BUT IT MUST BE DONE FASTT!!!! AHHHHHHH!!!!!!!!!!!!!",
-            "line": " submitController.js:53"
+            "line": " submitController.js:57"
         },
         {
             "message": "Missing item type\nObject for SuperDoc",
-            "line": " submitController.js:65"
+            "line": " submitController.js:69"
         },
         {
             "message": "Missing item type\nInitialize superDoc array as an empty array. Will hold SuperDoc objects :)!",
-            "line": " submitController.js:91"
+            "line": " submitController.js:95"
         },
         {
             "message": "Missing item type\nSUPERDEGREE SECTION",
-            "line": " submitController.js:118"
+            "line": " submitController.js:122"
         },
         {
             "message": "Missing item type\nSuper degree variables.",
-            "line": " submitController.js:124"
+            "line": " submitController.js:128"
         },
         {
             "message": "Missing item type\nConstruct a super DEGREE object.",
-            "line": " submitController.js:136"
+            "line": " submitController.js:140"
         },
         {
             "message": "Missing item type\nInitialize as an empty array, for now. Will be populated with SUPER DEGREE objects.",
-            "line": " submitController.js:170"
+            "line": " submitController.js:174"
         },
         {
             "message": "Missing item type\nOTHER STUFFS",
-            "line": " submitController.js:188"
+            "line": " submitController.js:192"
         },
         {
             "message": "Missing item type\nThis function when invoked will take the current and then the old tab and then it will combine\nthe data together in such a way that we have the previous now equal to the selected, and then\nindex into the \"tabs\" list with the current value.\n\n           $scope.$watch('selectedIndex', function(current, old){\n               previousPD = selectedPD;\n               selectedPD = postDocTab[current];\n               if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previousPD.title + '!');\n               if ( current + 1 )                $log.debug('Hello ' + selectedPD.title + '!');\n           });",
-            "line": " submitController.js:204"
+            "line": " submitController.js:208"
         },
         {
             "message": "Missing item type\nThis function will add a new tab to the set of tabs that we currently have.",
-            "line": " submitController.js:217"
+            "line": " submitController.js:221"
         },
         {
             "message": "Missing item type\nThis function when evoked will remove the selected tab from the screen.",
-            "line": " submitController.js:231"
+            "line": " submitController.js:235"
         },
         {
             "message": "Missing item type\nThis function when invoked will take the current and then the old tab and then it will combine\nthe data together in such a way that we have the previous now equal to the selected, and then\nindex into the \"tabs\" list with the current value.\n\n           $scope.$watch('degreeInfoSelectedIndex', function(current2, old2){\n               previous = selected;\n               selected = degreeInfoTab[current2];\n               if ( old2 + 1 && (old2 != current2)) $log.debug('Goodbye ' + previous.title + '!');\n               if ( current2 + 1 )                $log.debug('Hello ' + selected.title + '!');",
-            "line": " submitController.js:248"
+            "line": " submitController.js:252"
         },
         {
             "message": "Missing item type\nThis function will add a new tab to the set of tabs that we currently have.",
-            "line": " submitController.js:260"
+            "line": " submitController.js:264"
         },
         {
             "message": "Missing item type\nThis function when evoked will remove the selected tab from the screen.",
-            "line": " submitController.js:273"
+            "line": " submitController.js:277"
         },
         {
             "message": "Missing item type\nWhen invoked will show the postdoc info by setting the flag to true.",
-            "line": " submitController.js:290"
+            "line": " submitController.js:294"
         },
         {
             "message": "Missing item type\nWhen invoked will hide the postdoc info by setting the flag to false.",
-            "line": " submitController.js:298"
+            "line": " submitController.js:302"
         },
         {
             "message": "Missing item type\nInformation regarding the postdoc appointments furnished on the submit page.",
-            "line": " submitController.js:306"
+            "line": " submitController.js:310"
         },
         {
             "message": "Missing item type\nWarnings made for the postdoc information empty fields warning to the users.",
-            "line": " submitController.js:338"
+            "line": " submitController.js:342"
         },
         {
             "message": "Missing item type\nFunction evoked when the submit button is hit on the postdoc card on the submit page.\nCreates a new postDocInstance (object with postdoc data) with the data in the card's fields.\nAfterwards refreshes the view of the scope.",
-            "line": " submitController.js:347"
+            "line": " submitController.js:351"
         },
         {
             "message": "Missing item type\n$scope.clearPostDocFields = function(){\n    pdStartYear = \"\";\n    pdEndYear = \"\";\n    pdSupervisor = \"\";\n    pdInstitution = \"\";\n    console.log(\"clearPostDocFields called! :)\");",
-            "line": " submitController.js:418"
+            "line": " submitController.js:422"
         },
         {
             "message": "Missing item type\nFunction that when invoked will remove the selected postdoc instance from the submit page and\nthe particular individual's object model.",
-            "line": " submitController.js:428"
+            "line": " submitController.js:432"
         },
         {
             "message": "Missing item type\nThis section deals with the cards associated with the degrees a user may have.",
-            "line": " submitController.js:447"
+            "line": " submitController.js:451"
         },
         {
             "message": "Missing item type\nShows the degree info information when invoked.",
-            "line": " submitController.js:465"
+            "line": " submitController.js:469"
         },
         {
             "message": "Missing item type\nHides the degree info information when invoked.",
-            "line": " submitController.js:472"
+            "line": " submitController.js:476"
         },
         {
             "message": "Missing item type\nInformation regarding the postdoc appointments furnished on the submit page.",
-            "line": " submitController.js:481"
+            "line": " submitController.js:485"
         },
         {
             "message": "Missing item type\nConstructor for the DegreeInfoInstance Object.\nThis is the object that holds together the information of a single degree for a particular individual.",
-            "line": " submitController.js:491"
+            "line": " submitController.js:495"
         },
         {
             "message": "Missing item type\nWarnings for degree information fields being empty! :(",
-            "line": " submitController.js:512"
+            "line": " submitController.js:516"
         },
         {
             "message": "Missing item type",
-            "line": " submitController.js:523"
+            "line": " submitController.js:527"
         },
         {
             "message": "Missing item type\nRemoves the object passed in from the individual's degree information.",
-            "line": " submitController.js:579"
+            "line": " submitController.js:583"
         },
         {
             "message": "Missing item type\nThis section deals with trivial information collection on the submit page such as first and last names.",
-            "line": " submitController.js:599"
+            "line": " submitController.js:603"
         },
         {
             "message": "Missing item type\nThis is the model for this submission page.\nFirst name, last name, title, degree type, current position title, current institution, postdoc info",
-            "line": " submitController.js:618"
+            "line": " submitController.js:622"
         },
         {
             "message": "Missing item type\nThis is the constructor for bundling all of the submission page information into one object.\nCalled by hitting the final submission button, which evokes a function that plops this together.\n\nParams are self explanitory I'd hope?",
-            "line": " submitController.js:626"
+            "line": " submitController.js:630"
         },
         {
             "message": "Missing item type\nWarnings for the various input fields. Initially set to false.\nBut if the value is null then it is set to true and pops up a warning message.",
-            "line": " submitController.js:661"
+            "line": " submitController.js:665"
         },
         {
             "message": "Missing item type\nFunction evoked when the final submission button is hit, creates a new model object for the entire\nsubmission page.",
-            "line": " submitController.js:678"
+            "line": " submitController.js:682"
         },
         {
             "message": "Missing item type\nMeant to return back to the main.search page, not working though.",
-            "line": " submitController.js:764"
+            "line": " submitController.js:768"
         },
         {
             "message": "Missing item type\nFunction that once it is called will dump all of the information of the object for this submission\npage!",
-            "line": " submitController.js:774"
-        },
-        {
-            "message": "Missing item type\nController for the User Dialogue\n\nStatus: CONTROLLER\nAssociated files: userDialog.html,\n\nThe user dialog controller is associated with registration and submission of login information. So it is\nslightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.",
-            "line": " userDialogController.js:1"
+            "line": " submitController.js:778"
         }
     ]
 }

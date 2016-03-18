@@ -1,3 +1,10 @@
+/**
+ * @module visController
+ * @class visController
+ *
+ * Notifications for mentorships are dealt with here.
+ */
+
 angular.module('chemGeno')
 .controller('visController', ['$scope',
 function($scope) {

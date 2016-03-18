@@ -1,3 +1,10 @@
+/**
+ * @module searchController
+ * @class searchController
+ *
+ * Entire Search Functionality located here.
+ */
+
 angular.module('chemGeno')
 .controller('searchController', ['$scope', 'searchService', '$state',
   function($scope, searchService, $state) {

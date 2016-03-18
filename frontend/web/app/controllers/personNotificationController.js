@@ -1,3 +1,10 @@
+/**
+ * @module personNotificationController
+ * @class personNotificationController
+ *
+ * Notifications for persons are dealt with here.
+ */
+
 angular.module('chemGeno')
 .controller('personNotificationController', ['$scope', '$stateParams', 'verificationService', '$state',
 function($scope, $stateParams, verificationService, $state) {

@@ -1,3 +1,10 @@
+/**
+ * @module mentorshipNotificationController
+ * @class mentorshipNotificationController
+ *
+ * Notifications for mentorships are dealt with here.
+ */
+
 angular.module('chemGeno')
 .controller('mentorshipNotificationController', ['$scope', '$stateParams', 'viewService', '$q',
 'verificationService', '$state',

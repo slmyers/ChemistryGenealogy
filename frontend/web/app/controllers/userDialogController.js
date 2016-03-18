@@ -1,5 +1,8 @@
 /**
- * Controller for the User Dialogue
+ * @module userDialogController
+ * @class userDialogController
+ *
+ *  Controller for the User Dialogue
  *
  * Status: CONTROLLER
  * Associated files: userDialog.html,

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>userDialogController.js</title>
+    <title>GruntFile.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -199,106 +199,43 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: userDialogController.js</h1>
+<h1 class="file-heading">File: GruntFile.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
- * @module userDialogController
- * @class userDialogController
+ * @module GruntFile
+ * @class GruntFile
  *
- *  Controller for the User Dialogue
- *
- * Status: CONTROLLER
- * Associated files: userDialog.html,
- *
- * The user dialog controller is associated with registration and submission of login information. So it is
- * slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.
- *
- *
+ * Was attempting to do gruntdocs...
  */
-angular.module(&#x27;chemGeno&#x27;)
-//Stating that this is a controller as well as the fact that this takes in certain information.
-.controller(&#x27;userDialogController&#x27;, [&#x27;$scope&#x27;, &#x27;$mdDialog&#x27;, &#x27;loginService&#x27;, &#x27;registerService&#x27;, &#x27;$mdToast&#x27;,
-    function($scope, $mdDialog, loginService, registerService, $mdToast) {
-      $scope.master = {};
-      //Registered user is initialize to be empty.
-      $scope.registerUser = {};
-      //Login for the users is initialized to empty.
-      $scope.loginUser = {};
-      //True upon recieving an error for login request
-      $scope.invalidLogin = false;
-      //True if user clicks the registration button
-      $scope.registration = false;
-      // start this as true so that we get to the login screen
-      $scope.login = true;
-      //True upon recieving an error for a registration request
-      $scope.invalidRegistration = false;
-      //True upon sucessfuling posting a new user -- sets html logic to display
-      //a message about registration process
-      $scope.successRegistration = false;
 
+module.exports = function (grunt) {
 
-      $scope.submitLogin = function(loginUser) {
-        var promise = loginService.login(loginUser);
-        promise.then(function(res) {
-          console.log(res.data);
-          console.log(&#x27;sucessful login: &#x27; + res.data.user.email);
-          console.log(&#x27;auth token: &#x27; + loginService.getAuthToken())
-          $scope.invalidLogin = false;
-          $mdDialog.cancel();
-        }, function(error){
-          console.log(error);
-          $scope.invalidLogin = true;
-          $scope.loginUser = angular.copy($scope.master);
-        });
-      };
+    grunt.loadNpmTasks(&#x27;grunt-ngdocs&#x27;);
+    grunt.loadNpmTasks(&#x27;grunt-contrib-connect&#x27;);
+    grunt.loadNpmTasks(&#x27;grunt-contrib-clean&#x27;);
 
+    grunt.initConfig({
+        ngdocs: {
+            options: {
+                scripts: [&#x27;adminPanelController.js&#x27;],
+                html5Mode: false
+            },
+            all: [&#x27;src/*.js&#x27;]
+        },
+        connect: {
+            options: {
+                keepalive: true
+            },
+            server: {}
+        },
+        clean: [&#x27;docs&#x27;]
+    });
 
-      $scope.submitRegistration = function(registerUser) {
-        var promise = registerService.register(registerUser);
-        promise.then(function(res) {
-          console.log(&#x27;success registration&#x27;);
-          console.log(res);
-          $scope.registrationConfirmation();
-        }, function(error){
-          console.log(&#x27;error in registration&#x27;);
-          console.log(error);
-          $scope.invalidRegistration = true;
-          $scope.registerUser = angular.copy($scope.master);
-        })
-      };
+    grunt.registerTask(&#x27;default&#x27;, [&#x27;clean&#x27;, &#x27;ngdocs&#x27;, &#x27;connect&#x27;]);
 
-      $scope.registrationConfirmation = function() {
-        $mdDialog.cancel();
-        $mdToast.show(
-          $mdToast.simple()
-          .textContent(&quot;We&#x27;ll contact you at &quot; + $scope.registerUser.email + &quot; upon account approval!&quot;)
-          .position(&#x27;top right&#x27;)
-          .hideDelay(3000)
-        );
-      };
-
-      $scope.cancelLogin = function() {
-        $mdDialog.cancel();
-        $scope.loginUser = angular.copy($scope.master); //revert the login user to the value of the master variable.
-      };
-
-
-      $scope.cancelRegistration = function() {
-        $mdDialog.cancel();
-        $scope.registerUser = angular.copy($scope.master); //revert register user to value of the master variable.
-      };
-
-      // changes UI state to transition to the registration view
-      $scope.toRegistrationView = function() {
-        $scope.login = false;
-        $scope.invalidLogin = false; //No invalid login.
-        $scope.invalidRegistration = false; //No invalid registration.
-        $scope.registration = true; //Registration is confirmed, set to true.
-      }
-}]);
-
+};
     </pre>
 </div>
                     </div>

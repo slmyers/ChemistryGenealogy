@@ -1,3 +1,10 @@
+/**
+ * @module supervisionNotificationController
+ * @class supervisionNotificationController
+ *
+ * Notifications for supervision are dealt with here.
+ */
+
 angular.module('chemGeno')
 .controller('supervisionNotificationController', ['$scope', '$stateParams', 'viewService', '$q', 'verificationService', '$state',
 function($scope, $stateParams, viewService, $q, verificationService, $state) {

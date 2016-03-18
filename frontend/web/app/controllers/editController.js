@@ -1,3 +1,10 @@
+/**
+ * @module editController
+ * @class editController
+ *
+ * Responsible for every functionality given by the administrator panel for the frontend.
+ */
+
 angular.module('chemGeno')
 
 

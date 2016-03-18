@@ -1,3 +1,10 @@
+/**
+ * @module adminPanelController
+ * @class adminPanelController
+ *
+ * Responsible for every functionality given by the administrator panel for the frontend.
+ */
+
 angular.module('chemGeno')
 .controller('adminPanelController', ['$scope', 'adminPanelService', 'verificationService',
 function($scope, adminPanelService, verificationService) {
