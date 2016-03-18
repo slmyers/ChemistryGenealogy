@@ -11,7 +11,7 @@ class Degree < ActiveRecord::Base
   # @param year [Number] year the degree was awarded
   # @param degree_type [String] type of the degree
   # @param institution_name [String] name of the institution the degree was awarded
-  # @return degree [Hash{String => String, Number}] newly created degree
+  # @return [Hash{String => String, Number}] newly created degree
   def Degree.new_degree(year, degree_type, institution_name)
     degree_type = degree_type.downcase
     institution_id = FindId.institution(institution_name)

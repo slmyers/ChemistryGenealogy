@@ -137,7 +137,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>index to be removed…</p>
+</div></span>
   
 </li>
 
@@ -184,23 +186,114 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>index to be removed… only there to view the functionality</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-6
 7
 8
-9</pre>
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/audit_trail_controller.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/audit_trail_controller.rb', line 7</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
-  <span class='ivar'>@versions</span> <span class='op'>=</span> <span class='const'>PaperTrail</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>versions:</span> <span class='ivar'>@versions</span><span class='rbrace'>}</span>
+  <span class='comment'>#get all edits from PaperTrail
+</span>  <span class='ivar'>@edits</span> <span class='op'>=</span> <span class='const'>PaperTrail</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='comment'>#make array to properly send all edits to front end
+</span>  <span class='ivar'>@prettyEdits</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+  <span class='comment'>#loop though all edits
+</span>  <span class='ivar'>@edits</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='comment'>#hash for each individual edit
+</span>    <span class='ivar'>@edit</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='comment'>#use PaperTrailserializer on the changelog string
+</span>    <span class='ivar'>@changes</span> <span class='op'>=</span> <span class='const'>PaperTrail</span><span class='period'>.</span><span class='id identifier rubyid_serializer'>serializer</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_object_changes'>object_changes</span><span class='rparen'>)</span>
+
+    <span class='comment'>#if the person model was changed
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_item_type'>item_type</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Person</span><span class='tstring_end'>&quot;</span></span>
+
+      <span class='comment'>#get appropriate attributes from the version object or serialized object
+</span>      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:changes</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@changes</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:date</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_item_type'>item_type</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:person_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_item_id'>item_id</span>
+
+
+
+    <span class='comment'>#if the supervisor or mentor model was changed
+</span>    <span class='kw'>else</span>
+      <span class='comment'>#get the original object (in order to obtain the person_id)
+</span>      <span class='ivar'>@originalObject</span> <span class='op'>=</span> <span class='const'>PaperTrail</span><span class='period'>.</span><span class='id identifier rubyid_serializer'>serializer</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+
+      <span class='comment'>#get appropriate attributes from the version object or serialized object
+</span>      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:changes</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@changes</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:date</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_item_type'>item_type</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:person_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@originalObject</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>person_id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+  <span class='comment'>#finally append the edit to the full array
+</span>  <span class='ivar'>@prettyEdits</span><span class='op'>&lt;&lt;</span><span class='ivar'>@edit</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'>#render it for the frontend
+</span>  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>edits:</span><span class='ivar'>@prettyEdits</span><span class='rbrace'>}</span>
+
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -222,24 +315,98 @@
       <pre class="lines">
 
 
-11
-12
-13
-14
-15
-16
-17</pre>
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/api/audit_trail_controller.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/api/audit_trail_controller.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
+  <span class='comment'>#get all edits from PaperTrail
+</span>  <span class='ivar'>@edits</span> <span class='op'>=</span> <span class='const'>PaperTrail</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>created_at DESC</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='comment'>#make array to properly send all edits to front end
+</span>  <span class='ivar'>@prettyEdits</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
-    <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>error:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>the person you are looking for is not in our database, create the person in the submit first</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
+  <span class='comment'>#loop though all edits
+</span>  <span class='ivar'>@edits</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='comment'>#hash for each individual edit
+</span>    <span class='ivar'>@edit</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='comment'>#use PaperTrailserializer on the changelog string
+</span>    <span class='ivar'>@changes</span> <span class='op'>=</span> <span class='const'>PaperTrail</span><span class='period'>.</span><span class='id identifier rubyid_serializer'>serializer</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_object_changes'>object_changes</span><span class='rparen'>)</span>
+
+    <span class='comment'>#if the person model was changed
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_item_type'>item_type</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Person</span><span class='tstring_end'>&quot;</span></span>
+
+      <span class='comment'>#get appropriate attributes from the version object or serialized object
+</span>      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:changes</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@changes</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:date</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_item_type'>item_type</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:person_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_item_id'>item_id</span>
 
 
-  <span class='comment'>#render json: {warning: &#39;not implemented&#39;}, status: 200
-</span><span class='kw'>end</span></pre>
+
+    <span class='comment'>#if the supervisor or mentor model was changed
+</span>    <span class='kw'>else</span>
+      <span class='comment'>#get the original object (in order to obtain the person_id)
+</span>      <span class='ivar'>@originalObject</span> <span class='op'>=</span> <span class='const'>PaperTrail</span><span class='period'>.</span><span class='id identifier rubyid_serializer'>serializer</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+
+      <span class='comment'>#get appropriate attributes from the version object
+</span>      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:changes</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@changes</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:date</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_created_at'>created_at</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_item_type'>item_type</span>
+      <span class='ivar'>@edit</span><span class='lbracket'>[</span><span class='symbol'>:person_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@originalObject</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>person_id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+  <span class='comment'>#finally append the edit to the full array
+</span>  <span class='ivar'>@prettyEdits</span><span class='op'>&lt;&lt;</span><span class='ivar'>@edit</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'>#render it for the frontend
+</span>  <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='lbrace'>{</span><span class='label'>edits:</span><span class='ivar'>@prettyEdits</span><span class='rbrace'>}</span>
+
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -250,9 +417,9 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 03:22:47 2016 by
+  Generated on Fri Mar 18 06:56:01 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.3.0).
+  0.8.7.6 (ruby-2.2.3).
 </div>
 
   </body>

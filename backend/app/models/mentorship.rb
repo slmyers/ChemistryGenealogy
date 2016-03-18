@@ -15,7 +15,7 @@ class Mentorship < ActiveRecord::Base
   # @param institution_name [String] name of the institution
   # @param start_date [Number] year that the postdoc started
   # @param end_date [Number] year that the postdoc ended
-  # @return mentorship [Hash{String => String, Number}] created mentorship
+  # @return [Hash{String => String, Number}] created mentorship
   def Mentorship.new_mentorship(person_name, mentor_name, institution_name, start_date, end_date)
 
     person_id = FindId.person(person_name)
@@ -160,7 +160,7 @@ class Mentorship < ActiveRecord::Base
   # @note Could probably take id off if the frontend isn't using it
   #
   # @param mentorship [Hash{String => String, Number}] a person's postdoc
-  # @return result [Hash{String => String, Number}] serialized postdoc
+  # @return [Hash{String => String, Number}] serialized postdoc
   def serializer_for_mentorship(mentorship)
 
     result = Api::MentorshipSerializer.new(self).serializable_hash

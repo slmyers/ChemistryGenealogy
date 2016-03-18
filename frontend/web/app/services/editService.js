@@ -68,7 +68,7 @@ angular.module('chemGeno')
                         },
                     method: 'PUT',
                     url: 'http://localhost:3000/api/aggregated/' + idObj.id.toString(),
-                    data: {
+                    params: {
                         name: modifications.name,
                         position: modifications.currentPositionTitle,
                         institution: modifications.currentInstitutionName,

@@ -13,8 +13,8 @@ class Person < ActiveRecord::Base
   #
   # @param name [String] name of the person
   # @param position [String] current position of the person
-  # @param institution [String] current institution of the person
-  # @return person [Hash{String => String}] created person
+  # @param institution_name [String] current institution of the person
+  # @return [Hash{String => String}] created person
   def Person.new_person(name, position, institution_name)
     name = name.downcase
 
@@ -36,7 +36,7 @@ class Person < ActiveRecord::Base
   # Makes a serializable hash for a person to be sent to the frontend in a JSON format.
   #
   # @param person_object [Hash{String => String}] a person's basic information
-  # @return result.to_json [Hash{String => String, Array<Hash{String => String, Number}>}] a person's information in JSON format
+  # @return [Hash{String => String, Array<Hash{String => String, Number}>}] a person's information in JSON format
   def serializer_for_person(person_object)
     unless person_object.institution_id.nil?
       institution_object = Institution.find(person_object.institution_id)

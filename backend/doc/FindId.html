@@ -99,7 +99,18 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>This class handles finding or creating ids for different models.</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -117,7 +128,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#degree-class_method" title="degree (class method)">+ (Object) <strong>degree</strong>(year, degree_type, institution_name) </a>
+      <a href="#degree-class_method" title="degree (class method)">+ (Number) <strong>degree</strong>(year, degree_type, institution_name) </a>
     
 
     
@@ -132,8 +143,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>finds the degree_id based on the year, degree_type, and institution_name
-creates a new degree if not found and then returns the id.</p>
+<p>Finds a degree&#39;s id from the Degree table.</p>
 </div></span>
   
 </li>
@@ -142,7 +152,7 @@ creates a new degree if not found and then returns the id.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#institution-class_method" title="institution (class method)">+ (Object) <strong>institution</strong>(name) </a>
+      <a href="#institution-class_method" title="institution (class method)">+ (Number) <strong>institution</strong>(name) </a>
     
 
     
@@ -157,8 +167,7 @@ creates a new degree if not found and then returns the id.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>finds the institution id given the name creates a new institution if it
-doesn&#39;t exist and returns that id.</p>
+<p>Finds an institution&#39;s id in the Institutions table.</p>
 </div></span>
   
 </li>
@@ -167,7 +176,7 @@ doesn&#39;t exist and returns that id.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#mentor_supervisor-class_method" title="mentor_supervisor (class method)">+ (Object) <strong>mentor_supervisor</strong>(mentor_supervisor_name, institution_name) </a>
+      <a href="#mentor_supervisor-class_method" title="mentor_supervisor (class method)">+ (Number) <strong>mentor_supervisor</strong>(mentor_supervisor_name, institution_name) </a>
     
 
     
@@ -182,10 +191,7 @@ doesn&#39;t exist and returns that id.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>finds a mentor or supervisor&#39;s id given the name creates a new person
-with the given institution and nil position if it doesn&#39;t exist only
-checks for the name; it won&#39;t create a new person if the institution is
-different.</p>
+<p>Finds a mentor or supervisor&#39;s id in the People table.</p>
 </div></span>
   
 </li>
@@ -194,7 +200,7 @@ different.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#person-class_method" title="person (class method)">+ (Object) <strong>person</strong>(name) </a>
+      <a href="#person-class_method" title="person (class method)">+ (Number) <strong>person</strong>(name) </a>
     
 
     
@@ -209,10 +215,7 @@ different.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>finds a person&#39;s id given the name creates a new person with nil
-position and institution if it doesn&#39;t exist therefore, when creating a
-new person that has mentorships and supervisons, probably create the person
-first before creating the mentorships and supervisons.</p>
+<p>Finds a person&#39;s id in the People table.</p>
 </div></span>
   
 </li>
@@ -230,7 +233,7 @@ first before creating the mentorships and supervisons.</p>
       <div class="method_details first">
   <h3 class="signature first" id="degree-class_method">
   
-    + (<tt>Object</tt>) <strong>degree</strong>(year, degree_type, institution_name) 
+    + (<tt>Number</tt>) <strong>degree</strong>(year, degree_type, institution_name) 
   
 
   
@@ -239,14 +242,84 @@ first before creating the mentorships and supervisons.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>finds the degree_id based on the year, degree_type, and institution_name
-creates a new degree if not found and then returns the id</p>
+<p>Finds a degree&#39;s id from the Degree table. Creates a new degree if it
+doesn&#39;t exist.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>year</span>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>year the degree was awarded</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>degree_type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>type of the degree</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>institution_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the institution the degree was awarded</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>id of the degree</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -254,22 +327,22 @@ creates a new degree if not found and then returns the id</p>
       <pre class="lines">
 
 
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
 55
 56
-57</pre>
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_degree'>degree</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_degree_type'>degree_type</span><span class='comma'>,</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_degree_type'>degree_type</span> <span class='op'>=</span> <span class='id identifier rubyid_degree_type'>degree_type</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
@@ -292,7 +365,7 @@ creates a new degree if not found and then returns the id</p>
       <div class="method_details ">
   <h3 class="signature " id="institution-class_method">
   
-    + (<tt>Object</tt>) <strong>institution</strong>(name) 
+    + (<tt>Number</tt>) <strong>institution</strong>(name) 
   
 
   
@@ -301,14 +374,52 @@ creates a new degree if not found and then returns the id</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>finds the institution id given the name creates a new institution if it
-doesn&#39;t exist and returns that id</p>
+<p>Finds an institution&#39;s id in the Institutions table. Creates a new
+institution if it doesn&#39;t exist.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the institution</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>id of the institution</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -316,16 +427,16 @@ doesn&#39;t exist and returns that id</p>
       <pre class="lines">
 
 
-35
-36
-37
-38
-39
 40
-41</pre>
+41
+42
+43
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_institution'>institution</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
@@ -342,7 +453,7 @@ doesn&#39;t exist and returns that id</p>
       <div class="method_details ">
   <h3 class="signature " id="mentor_supervisor-class_method">
   
-    + (<tt>Object</tt>) <strong>mentor_supervisor</strong>(mentor_supervisor_name, institution_name) 
+    + (<tt>Number</tt>) <strong>mentor_supervisor</strong>(mentor_supervisor_name, institution_name) 
   
 
   
@@ -351,16 +462,61 @@ doesn&#39;t exist and returns that id</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>finds a mentor or supervisor&#39;s id given the name creates a new person
-with the given institution and nil position if it doesn&#39;t exist only
-checks for the name; it won&#39;t create a new person if the institution is
-different</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This only checks for the name. It won&#39;t create a new person if only the
+institution is different</p>
+</div>
+  </div>
+
+
+<p>Finds a mentor or supervisor&#39;s id in the People table. Creates a new
+person with the given institution and nil position if it doesn&#39;t exist.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>mentor_supervisor_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the mentor or supervisor</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>id of the mentor or supervisor</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -368,8 +524,6 @@ different</p>
       <pre class="lines">
 
 
-22
-23
 24
 25
 26
@@ -377,10 +531,12 @@ different</p>
 28
 29
 30
-31</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mentor_supervisor'>mentor_supervisor</span><span class='lparen'>(</span><span class='id identifier rubyid_mentor_supervisor_name'>mentor_supervisor_name</span><span class='comma'>,</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_mentor_supervisor_name'>mentor_supervisor_name</span> <span class='op'>=</span> <span class='id identifier rubyid_mentor_supervisor_name'>mentor_supervisor_name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
@@ -400,7 +556,7 @@ different</p>
       <div class="method_details ">
   <h3 class="signature " id="person-class_method">
   
-    + (<tt>Object</tt>) <strong>person</strong>(name) 
+    + (<tt>Number</tt>) <strong>person</strong>(name) 
   
 
   
@@ -409,16 +565,52 @@ different</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>finds a person&#39;s id given the name creates a new person with nil
-position and institution if it doesn&#39;t exist therefore, when creating a
-new person that has mentorships and supervisons, probably create the person
-first before creating the mentorships and supervisons</p>
+<p>Finds a person&#39;s id in the People table. Creates a new person with nil
+position and institution if it doesn&#39;t exist.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>name of the person searched for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>id of the person</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -426,17 +618,17 @@ first before creating the mentorships and supervisons</p>
       <pre class="lines">
 
 
-8
 9
 10
 11
 12
 13
 14
-15</pre>
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'app/lib/find_id.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_person'>person</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
@@ -456,9 +648,9 @@ first before creating the mentorships and supervisons</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 03:22:46 2016 by
+  Generated on Fri Mar 18 06:55:57 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.3.0).
+  0.8.7.6 (ruby-2.2.3).
 </div>
 
   </body>

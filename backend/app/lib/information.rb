@@ -9,7 +9,7 @@ class Information
   # @param institution_name [String] current institution of the person
   # @param postdoc_array [Array<Hash{String => String, Number}>] array of the person's postdoc information
   # @param degree_array [Array<Hash{String => String, Number}>] array of the person's degree information
-  # @return person [Hash{String} => String, Number] created person in the database
+  # @return [Hash{String} => String, Number] created person in the database
   def Information.submit_handling(name, position, institution_name, postdoc_array, degree_array)
     person = Person.new_person(name, position, institution_name)
 
@@ -35,15 +35,16 @@ class Information
   # Handles the information for editing a person's details.
   # @note It assumes that all parameters are filled out by the user.
   #
+  # @param id [Number] id of the person
   # @param name [String] name of the person
   # @param position [String] current position of the person
   # @param institution_name [String] current institution of the person
   # @param postdoc_array [Array<Hash{String => String, Number}>] array of the person's postdoc information
   # @param degree_array [Array<Hash{String => String, Number}>] array of the person's degree information
-  def Information.update_handling(name, position, institution_name, postdoc_array, degree_array)
+  # @return [Hash{String => String}] updated person
+  def Information.update_handling(id, name, position, institution_name, postdoc_array, degree_array)
 
     # Gets the person's information from the People table
-    id = FindId.person(name)
     person_object = Person.find(id)
 
     # Updates if the person's name is not nil
@@ -74,5 +75,9 @@ class Information
     # Update postdocs and degrees respectively
     Mentorship.update_mentorship(id, name, postdoc_array)
     Supervision.update_supervision(id, name, degree_array)
+
+    # Updates person_object (not sure if we need this)
+    person_object = Person.find(id)
+    return person_object
   end
 end

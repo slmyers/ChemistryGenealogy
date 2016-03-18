@@ -6,7 +6,7 @@ class Institution < ActiveRecord::Base
   # Creates a new institution
   #
   # @param name [String] name of the institution
-  # @return institution [Hash{String => String, Number}] created institution
+  # @return [Hash{String => String, Number}] created institution
   def Institution.new_institution(name)
     name = name.downcase
 

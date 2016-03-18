@@ -14,7 +14,7 @@ class Supervision < ActiveRecord::Base
   # @param institution_name [String] institution the degree was awarded
   # @param person_name [String] name of the person
   # @param supervisor_name [String] name of the supervisor
-  # @return supervision [Hash{String => String, Number}] created supervision
+  # @return [Hash{String => String, Number}] created supervision
   def Supervision.new_supervision(degree_year,
                                   degree_type,
                                   institution_name,
@@ -161,7 +161,7 @@ class Supervision < ActiveRecord::Base
   # @note Could probably take ids off if the frontend isn't using it
   #
   # @param supervision [Hash{String => String, Number}] a person's supervision
-  # @return result [Hash{String => String, Number}] serialized supervision
+  # @return [Hash{String => String, Number}] serialized supervision
   def serializer_for_supervision(supervision)
     result = Api::SupervisionSerializer.new(self).serializable_hash
 

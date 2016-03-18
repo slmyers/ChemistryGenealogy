@@ -5,7 +5,7 @@ class FindId
   # Creates a new person with nil position and institution if it doesn't exist.
   #
   # @param name [String] name of the person searched for
-  # @return person_id [Number] id of the person
+  # @return [Number] id of the person
   def self.person(name)
     name = name.downcase
 
@@ -20,7 +20,7 @@ class FindId
   #
   # @note This only checks for the name. It won't create a new person if only the institution is different
   # @param mentor_supervisor_name [String] name of the mentor or supervisor
-  # @return mentor_supervisor_id [Number] id of the mentor or supervisor
+  # @return [Number] id of the mentor or supervisor
   def self.mentor_supervisor(mentor_supervisor_name, institution_name)
     mentor_supervisor_name = mentor_supervisor_name.downcase
     institution_name = institution_name.downcase
@@ -36,7 +36,7 @@ class FindId
   # Creates a new institution if it doesn't exist.
   #
   # @param name [String] name of the institution
-  # @return institution_id [Number] id of the institution
+  # @return [Number] id of the institution
   def self.institution(name)
     name = name.downcase
 
@@ -51,7 +51,7 @@ class FindId
   # @param year [Number] year the degree was awarded
   # @param degree_type [String] type of the degree
   # @param institution_name [String] name of the institution the degree was awarded
-  # @return degree_id [Number] id of the degree
+  # @return [Number] id of the degree
   def self.degree(year, degree_type, institution_name)
     degree_type = degree_type.downcase
     institution_id = self.institution(institution_name)
