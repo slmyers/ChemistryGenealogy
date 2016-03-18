@@ -7,7 +7,7 @@
  */
 
 angular.module('chemGeno')
-    .service('editService', function($q, $http) {
+    .service('editService', function($q, $http, $state, loginService) {
 
         /**
          * Pass some param like name or id, and that will obtain all information I need. May need to parse it all.
