@@ -1,15 +1,17 @@
+# Model for handling supervisions
 class Supervision < ActiveRecord::Base
   belongs_to :degree, :class_name => 'Degree'
   belongs_to :person, :class_name => 'Person'
   belongs_to :supervisor, :class_name => 'Person'
 
-  # creates a new supervisor
-  # for this one, since it should only be called when adding a new supervisor
-  # when we're in the middle of adding a new degree, maybe the parameters
-  # should be found beforehand?
-  # probably after a new degree is created so that the degree_id can be found?
-  # right now, it's taking all the requirements for the degree_id so that
-  # it can be found within new_supervision
+  # Creates a new supervision.
+  #
+  # @param degree_year [Number] year the degree was awarded
+  # @param degree_type [String] type of degree awarded
+  # @param institution_name [String] institution the degree was awarded
+  # @param person_name [String] name of the person
+  # @param supervisor_name [String] name of the supervisor
+  # @return supervision [Hash{String => String, Number}] created supervision
   def Supervision.new_supervision(degree_year,
                                   degree_type,
                                   institution_name,
@@ -28,6 +30,11 @@ class Supervision < ActiveRecord::Base
   end
 
   # Updates the supervisions and degrees that the person has
+  # @note Currently uses a quick-fix. Will hopefully actually update later.
+  #
+  # @param id [Number] id of the person
+  # @param name [String] name of the person
+  # @param supervision_array_received [Array<Hash{String => String, Number}>] array of supervisions that the person has
   def Supervision.update_supervision(id, name, supervision_array_received)
 
     # Creates an array of supervision ids that are connected to the person in
@@ -44,51 +51,22 @@ class Supervision < ActiveRecord::Base
       # Check that the supervision_array_received is not nil
       unless supervision_array_received.nil?
 
-        # For each supervision in the supervision_array_received, check if it
-        # exists in the supervision_array.
-        # If so, then update. If not, create a new supervision and degree
+        # For each supervision, see if it already exists in the database
+        # If not, create a new one
         supervision_array_received.each do |supervision|
 
-          # If the supervision is new, then the supervision[:supervision_id]
-          # should be nil
-          # Maybe this as well: if supervision_array.include? supervision[:supervision_id]
-          unless supervision[:supervision_id].nil?
+          # This function will find or create a supervision given the required
+          # attributes. It will also create a new degree if needed.
+          supervision_object = Supervision.new_supervision(supervision[:year],
+                                                            supervision[:type],
+                                                            supervision[:institution],
+                                                            name,
+                                                            supervision[:supervisor],)
+          supervision_id = supervision_object.id
 
-            # Check if the supervisor has changed. If so, then get new id.
-            # Gets the supervision object and the supervisor person object
-            # from the database to compare
-            # See if there's a matching supervisor in the database and update
-            # if it's not the same
-            supervisor_id = FindId.person(supervision[:supervisor])
-            supervision_object = Supervision.find(supervision[:supervision_id])
-            if supervision_object.person_id != supervisor_id
-              Supervision.update(supervision[:supervision_id], supervisor_id: supervisor_id)
-            end
-
-            # Find or create the degree id from the database
-            # If it is not the same as supervision[:degree_id], then update
-            # supervision with the new id
-            # * Since multiple people may have the same degree, it may be best
-            # not to update the degree in the database *
-            degree_id = FindId.degree(supervision[:year],
-                                      supervision[:type],
-                                      supervision[:institution])
-            if degree_id != supervision[:degree_id]
-              Supervision.update(supervision[:supervision_id], degree_id: degree_id)
-            end
-
-            # Remove id from the supervision_array
-            supervision_array.delete(supervision[:supervision_id])
-
-          # If the supervision[:supervision_id] is nil, then it is new so create
-          # a new supervision and degree
-          else
-            Degree.new_degree(supervision[:year], supervision[:type], supervision[:institution])
-            Supervision.new_supervision(supervision[:year],
-                                        supervision[:type],
-                                        supervision[:institution],
-                                        name,
-                                        supervision[:supervisor])
+          # If the supervision is in the supervision_array, remove from the array
+          if supervision_array.include? supervision_id
+            supervision_array.delete(supervision_id)
           end
         end
 
@@ -125,11 +103,62 @@ class Supervision < ActiveRecord::Base
       end
     end
 
+    # # For each supervision in the supervision_array_received, check if it
+    # # exists in the supervision_array.
+    # # If so, then update. If not, create a new supervision and degree
+    # supervision_array_received.each do |supervision|
+    #
+    #   # If the supervision is new, then the supervision[:supervision_id]
+    #   # should be nil
+    #   # Maybe this as well: if supervision_array.include? supervision[:supervision_id]
+    #   unless supervision[:supervision_id].nil?
+    #
+    #     # Check if the supervisor has changed. If so, then get new id.
+    #     # Gets the supervision object and the supervisor person object
+    #     # from the database to compare
+    #     # See if there's a matching supervisor in the database and update
+    #     # if it's not the same
+    #     supervisor_id = FindId.person(supervision[:supervisor])
+    #     supervision_object = Supervision.find(supervision[:supervision_id])
+    #     if supervision_object.person_id != supervisor_id
+    #       Supervision.update(supervision[:supervision_id], supervisor_id: supervisor_id)
+    #     end
+    #
+    #     # Find or create the degree id from the database
+    #     # If it is not the same as supervision[:degree_id], then update
+    #     # supervision with the new id
+    #     # * Since multiple people may have the same degree, it may be best
+    #     # not to update the degree in the database *
+    #     degree_id = FindId.degree(supervision[:year],
+    #                               supervision[:type],
+    #                               supervision[:institution])
+    #     if degree_id != supervision[:degree_id]
+    #       Supervision.update(supervision[:supervision_id], degree_id: degree_id)
+    #     end
+    #
+    #     # Remove id from the supervision_array
+    #     supervision_array.delete(supervision[:supervision_id])
+    #
+    #   # If the supervision[:supervision_id] is nil, then it is new so create
+    #   # a new supervision and degree
+    #   else
+    #     Degree.new_degree(supervision[:year], supervision[:type], supervision[:institution])
+    #     Supervision.new_supervision(supervision[:year],
+    #                                 supervision[:type],
+    #                                 supervision[:institution],
+    #                                 name,
+    #                                 supervision[:supervisor])
+    #   end
+    # end
 
 
   end
 
-  # Returns serialized supervision with degree information
+  # Makes a serialized supervision with degree information to be sent to the frontend in a JSON format.
+  # @note Could probably take ids off if the frontend isn't using it
+  #
+  # @param supervision [Hash{String => String, Number}] a person's supervision
+  # @return result [Hash{String => String, Number}] serialized supervision
   def serializer_for_supervision(supervision)
     result = Api::SupervisionSerializer.new(self).serializable_hash
 
@@ -147,6 +176,7 @@ class Supervision < ActiveRecord::Base
     return result
   end
 
+  # Handles rendering a supervision in a JSON format.
   def as_json(options={})
     super(:except => [:created_at, :updated_at])
   end

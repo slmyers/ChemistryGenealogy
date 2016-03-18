@@ -1,16 +1,19 @@
+# Model for handling people
 class Person < ActiveRecord::Base
   belongs_to :institution, :class_name => 'Institution'
   has_many :mentorships
   has_many :supervisions
 
-  #track changes
+  # Tracks changes
   has_paper_trail
 
-  # creates a new person with the submitted information
-  # lower cases the position entered
-  # adds a new institution if it doesn't exist
-  # only checks to see if the name exists in the database
-  # we have not decided how to handle people with same names
+  # Creates a new person.
+  # @note We have not decided how to handle people with same names
+  #
+  # @param name [String] name of the person
+  # @param position [String] current position of the person
+  # @param institution [String] current institution of the person
+  # @return person [Hash{String => String}] created person
   def Person.new_person(name, position, institution_name)
     name = name.downcase
 
@@ -29,7 +32,10 @@ class Person < ActiveRecord::Base
     return person
   end
 
-  # takes input name to find the person then return json object of person
+  # Makes a serializable hash for a person to be sent to the frontend in a JSON format.
+  #
+  # @param person_object [Hash{String => String}] a person's basic information
+  # @return result.to_json [Hash{String => String, Array<Hash{String => String, Number}>}] a person's information in JSON format
   def serializer_for_person(person_object)
     unless person_object.institution_id.nil?
       institution_object = Institution.find(person_object.institution_id)
@@ -62,6 +68,7 @@ class Person < ActiveRecord::Base
     return result.to_json
   end
 
+  # Handles rendering a person in a JSON format.
   def as_json(options={})
     super(:except => [:created_at, :updated_at])
   end
