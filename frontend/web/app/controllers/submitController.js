@@ -49,6 +49,147 @@ angular.module('chemGeno')
 
          ];
 
+
+            /**
+             * SUEPRVISED POSTDOCS SECTION YES THIS IS A MESS HERE BUT IT MUST BE DONE FASTT!!!! AHHHHHHH!!!!!!!!!!!!!
+             * @type {*[]}
+             */
+
+            $scope.postdocSupervisionVisibility = false;
+            $scope.superDocStartYear = null;
+            $scope.superDocEndYear = null;
+            $scope.superDocInstitution = null;
+            $scope.superdocNameOfPerson = null;
+
+
+            /**
+             * Object for SuperDoc
+             * @param superDocNameOfPerson
+             * @param superDocStartYear
+             * @param superDocEndYear
+             * @param superDocInstitution
+             * @constructor
+             */
+            function SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution)
+            {
+                this.superDocNameOfPerson = superDocNameOfPerson,
+                    this.superDocStartYear = superDocStartYear,
+                    this.superDocEndYear = superDocEndYear,
+                    this.superDocInstitution = superDocInstitution
+            }
+
+
+            $scope.addSuperDocInstance = function(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution){
+                var newSuperDocInstance = new SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution);
+                $scope.superDocInformation.push(newSuperDocInstance);
+                console.log("addSuperDocInstance Called on" + $scope.superDocInformation);
+
+
+            };
+
+
+            /**
+             * Initialize superDoc array as an empty array. Will hold SuperDoc objects :)!
+             * @type {Array}
+             */
+            $scope.superDocInformation = [ ];
+
+
+            $scope.showSuperDocInfo = function(){
+                $scope.postdocSupervisionVisibility = true;
+            };
+
+            $scope.hideSuperDocInfo = function(){
+                $scope.postdocSupervisionVisibility = false;
+            };
+
+
+            $scope.removeSuperDocInstance = function(superDocInstance){
+                console.log("removeSuperDocInstance called with index" + superDocInstance);
+                console.log($scope.superDocInformation.length);
+
+                var index = $scope.superDocInformation.indexOf(superDocInstance);
+                console.log($scope.superDocInformation.length);
+                //Splice out the entry that is desired to be removed.
+                $scope.superDocInformation.splice(index,1);
+                console.log($scope.superDocInformation);
+            };
+
+            /**
+             * SUPERDEGREE SECTION
+             * @type {*[]}
+             */
+
+
+            /**
+             * Super degree variables.
+             * @type {boolean}
+             */
+            $scope.superDegVisibility = false;
+
+            //
+            //$scope.superDegStartYear = null;
+            //$scope.superDegEndYear = null;
+            //$scope.superDegInstitution = null;
+            $scope.superDegNameOfPerson = null;
+
+            /**
+             * Construct a super DEGREE object.
+             * @param superDegNameOfPerson
+             * @param superDegStartYear
+             * @param superDegEndYear
+             * @param superDegInstitution
+             * @constructor
+             */
+            function SuperDegInstance(superDegNameOfPerson)
+            {
+                this.superDegNameOfPerson = superDegNameOfPerson;
+                    //this.superDegStartYear = superDegStartYear,
+                    //this.superDegEndYear = superDegEndYear,
+                    //this.superDegInstitution = superDegInstitution
+            }
+
+
+            $scope.addSuperDegInstance = function(superDegNameOfPerson){
+                var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson);
+                $scope.superDegInformation.push(newSuperDegInstance);
+                console.log("addSuperDegInstance Called on" + $scope.superDegInformation);
+
+
+            };
+
+
+            $scope.showSuperDegInfo = function(){
+                $scope.superDegVisibility = true;
+            };
+
+            $scope.hideSuperDegInfo = function(){
+                $scope.superDegVisibility = false;
+            };
+
+            /**
+             * Initialize as an empty array, for now. Will be populated with SUPER DEGREE objects.
+             * @type {Array}
+             */
+            $scope.superDegInformation = [ ] ;
+
+            $scope.removeSuperDegInstance = function(superDegInstance){
+                console.log("removeSuperDegInstance called with index" + superDegInstance);
+                console.log($scope.superDegInformation.length);
+
+                var index = $scope.superDegInformation.indexOf(superDegInstance);
+                console.log($scope.superDegInformation.length);
+                //Splice out the entry that is desired to be removed.
+                $scope.superDegInformation.splice(index,1);
+                console.log($scope.superDegInformation);
+            };
+
+
+            /**
+             * OTHER STUFFS
+             * @type {*[]}
+             */
+
             //Postdoc Variables.
             $scope.postDocTabs = postDocTab; //Formally assigning the list above to the scope tab variable.
             $scope.selectedIndex = 2; //Index that the tabs start at.
@@ -432,7 +573,7 @@ angular.module('chemGeno')
 
 
                 //Refresh the view of the scope.
-                $scope.$apply();
+                //$scope.$apply();
             };
 
             /**
@@ -496,7 +637,8 @@ angular.module('chemGeno')
              * @param postDocInformation
              */
             function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
-                        currentInstitutionName, postDocInformation, degreeInformation)
+                        currentInstitutionName, postDocInformation, degreeInformation,
+                        superDegInformation, superDocInformation)
             {
                 //Concatenating the first and last name together with a space between for now...
                 var concatednatedNames = firstName + " " + lastName;
@@ -507,6 +649,10 @@ angular.module('chemGeno')
                 //Now the arrays of postdoc appointments and degrees.
                 this.postDocInformation = postDocInformation;
                 this.degreeInformation = degreeInformation;
+
+                //Now the super degree and super postdoc information.
+                this.superDegInformation = superDegInformation;
+                this.superDocInformation = superDocInformation;
             }
 
             $scope.submitPageObject= null;
@@ -581,7 +727,7 @@ angular.module('chemGeno')
                 //Create the new object for the submission page.
                 var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
                     $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation,
-                    $scope.degreeInformation);
+                    $scope.degreeInformation, $scope.superDegInformation, $scope.superDocInformation);
 
 
                 $scope.submitPageObject = newSubmitObject;

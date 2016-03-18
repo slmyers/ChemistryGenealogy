@@ -57,13 +57,16 @@
             </md-subheader>
             <md-divider ></md-divider>
           </div>
-          <md-list-item class="md-3-line" ng-repeat="person in target">
-            <div class="md-list-item-text" layout="column">
+          <md-list-item id='searchDetailedInfoTarget' class="md-3-line" ng-repeat="person in target">
+            <a ng-click="goToView(person)">
+              <div class="md-list-item-text" layout="column">
               <h3>{{person.name}}</h3>
               <h4>{{person.institution}}</h4>
               <p>{{person.position}}
+
               <md-divider ></md-divider>
             </div>
+            </a>
           </md-list-item>
 
           <div ng-if="mentors.length >0">
@@ -72,13 +75,15 @@
             </md-subheader>
             <md-divider ></md-divider>
           </div>
-          <md-list-item class="md-3-line" ng-repeat="mentor in mentors">
-            <div class="md-list-item-text" layout="column">
-              <h3>{{mentor.name}}</h3>
-              <h4>{{mentor.institution}}</h4>
-              <p>{{mentor.position}}
-              <md-divider ></md-divider>
-            </div>
+          <md-list-item id="searchDetailedInfoMentors" class="md-3-line" ng-repeat="mentor in mentors">
+            <a ng-click="goToView(mentor)">
+              <div class="md-list-item-text" layout="column">
+                <h3>{{mentor.name}}</h3>
+                <h4>{{mentor.institution}}</h4>
+                <p>{{mentor.position}}
+                <md-divider ></md-divider>
+              </div>
+            </a>
           </md-list-item>
 
           <div ng-if="mentored.length >0">
@@ -87,13 +92,15 @@
             </md-subheader>
             <md-divider ></md-divider>
           </div>
-          <md-list-item class="md-3-line" ng-repeat="mentor in mentored">
-            <div class="md-list-item-text" layout="column">
-              <h3>{{mentor.name}}</h3>
-              <h4>{{mentor.institution}}</h4>
-              <p>{{mentor.position}}
-              <md-divider ></md-divider>
-            </div>
+          <md-list-item id="searchDetailedInfoMentored" class="md-3-line" ng-repeat="mentor in mentored">
+            <a ng-click="goToView(mentor)">
+              <div class="md-list-item-text" layout="column">
+                <h3>{{mentor.name}}</h3>
+                <h4>{{mentor.institution}}</h4>
+                <p>{{mentor.position}}
+                <md-divider ></md-divider>
+              </div>
+            </a>
           </md-list-item>
 
           <div ng-if="supervisors.length >0">
@@ -102,13 +109,15 @@
             </md-subheader>
             <md-divider ></md-divider>
           </div>
-          <md-list-item class="md-3-line" ng-repeat="supervisor in supervisors">
-            <div class="md-list-item-text" layout="column">
-              <h3>{{supervisor.name}}</h3>
-              <h4>{{supervisor.institution}}</h4>
-              <p>{{supervisor.position}}
-              <md-divider ></md-divider>
-            </div>
+          <md-list-item id="searchDetailedInfoSupervisors" class="md-3-line" ng-repeat="supervisor in supervisors">
+            <a ng-click="goToView(supervisor)">
+              <div class="md-list-item-text" layout="column">
+                <h3>{{supervisor.name}}</h3>
+                <h4>{{supervisor.institution}}</h4>
+                <p>{{supervisor.position}}
+                <md-divider ></md-divider>
+              </div>
+            </a>
           </md-list-item>
 
           <div ng-if="supervised.length >0">
@@ -117,13 +126,15 @@
             </md-subheader>
             <md-divider ></md-divider>
           </div>
-          <md-list-item class="md-3-line" ng-repeat="supervisor in supervised">
-            <div class="md-list-item-text" layout="column">
-              <h3>{{supervisor.name}}</h3>
-              <h4>{{supervisor.institution}}</h4>
-              <p>{{supervisor.position}}
-              <md-divider ></md-divider>
-            </div>
+          <md-list-item id="searchDetailedInfoSupervised" class="md-3-line" ng-repeat="supervisor in supervised">
+            <a ng-click="goToView(supervisor)">
+              <div class="md-list-item-text" layout="column">
+                <h3>{{supervisor.name}}</h3>
+                <h4>{{supervisor.institution}}</h4>
+                <p>{{supervisor.position}}
+                <md-divider ></md-divider>
+              </div>
+            </a>
           </md-list-item>
 
         </md-list>

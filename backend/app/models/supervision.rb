@@ -4,6 +4,9 @@ class Supervision < ActiveRecord::Base
   belongs_to :person, :class_name => 'Person'
   belongs_to :supervisor, :class_name => 'Person'
 
+  # Tracks changes
+  has_paper_trail on: [:update], :ignore => [:created_at, :updated_at, :approved, :id]#ignores pointless attributes, only on update
+
   # Creates a new supervision.
   #
   # @param degree_year [Number] year the degree was awarded

@@ -21,21 +21,36 @@
 angular.module('chemGeno')
 
     //Stating that this is a controller for this project.
-    .controller('adminPanelController', ['$scope', 'adminPanelService', '$mdDialog', '$mdMedia',
-        function($scope, adminPanelService, $mdDialog, $mdMedia) {
+    .controller('adminPanelController', ['$scope', 'adminPanelService', '$mdDialog', '$mdMedia', '$location',
+        function($scope, adminPanelService, $mdDialog, $mdMedia, $location) {
 
             $scope.mockChangesObject = {
+                //List of all of the changes made in the application.
                changesList: [
                    {
-                       type: 'New Submission',
-                       userId: '1'
+                       person: 'personname 1',
+                       title: 'title 1',
+                       institution: 'instituttion 1',
+                       postdoc :[{
+                           pdStartYear: 2078, pdSupervisor: "the cheese goddess", pdInstitution: "NeverEverLand", pdEndYear: "0007"
+                       }],
+
+                       degree:[{
+                           year: "2973", supervisor: "Cheese King", institution: "University of NeverEverLand", type:  "Doctorate"
+
+                       }]
                    },
                    {
-                       type: 'Edit Submission',
-                       userId: '2239'
+                       person: 'onion knight',
+                       title: 'onion knight (of course)',
+                       institution: 'onion knight... academy...?',
+                       postdoc: 'c2',
+                       degree: 'd2',
+                       degree_Supervision: 'e2'
                    }
                ],
 
+                //List for all newly registered accounts.
                 newUsersList: [
                     {
                         username: "Username1",
@@ -58,6 +73,40 @@ angular.module('chemGeno')
             };
 
 
+            /**
+             * Mock object for what I am sending to the backend from the admin panel page. (INFORMATION.)
+             */
+
+            $scope.mockReturnObject = {
+                uniqueID: "10281921", //String? Int? Whatever you guys send me! Returning it for identification.
+                status: "accepted" //User hit accept button, commit changes.
+            };
+
+            $scope.mockReturnObject2 = {
+                uniqueID: "991", //String? Int? Whatever you guys send me! Returning it for identification.
+                status: "rejected" //User hit the reject button, discard changes.
+            };
+
+            /**
+             * Mock object for what I am sending to the backend from the admin panel page. (USERS.)
+             */
+
+            $scope.mockReturnObject3 = {
+                uniqueID: "usr91", //unique identifier
+                status: "accepted" //accepted the new user
+            };
+
+            $scope.mockReturnObject4 = {
+                uniqueID: "usr71827818291", //unique identifier
+                status: "rejected" //rejected the new user
+            };
+
+
+
+            $scope.goBackToMain = function(){
+                $location.path('search'); // path not hash
+
+            };
 
             //For information modification requests.
             $scope.viewInformationModRequests = false;

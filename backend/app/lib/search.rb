@@ -19,6 +19,7 @@ class Search
     @persons = Set.new
     @institutions = Set.new
 
+    #this code could be cleaner still reference notifier.rb
     @search_target = Person.where('id' => person_id)
                      .where('approved' => true)
                      .includes(:institution).first
@@ -67,5 +68,104 @@ class Search
             }
   end
 
+  def self.person(id)
+    unless Person.exists?(id)
+      return nil
+    end
 
+    @person = Person.includes(:institution)
+              .includes( {mentorships: [:institution, {mentor: [:institution]}] })
+              .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
+              .where(:id => id).first
+
+    @mentored = Mentorship.where(:mentor_id => id)
+                .includes(:institution)
+                .includes(person: :institution)
+
+    @supervised = Supervision.where(:supervisor_id => id)
+                  .includes(degree: :institution)
+                  .includes(person: :institution)
+
+    @mentorships_array = Array.new
+    unless @person.mentorships.blank?
+      @person.mentorships.each do |m|
+        @mentorship = {
+          'id' => m.id,
+          'start' => m.start,
+          'end' => m.end,
+          'institution' => m.institution,
+          'mentor' => {
+            'data' => m.mentor,
+            'institution' => m.mentor.institution
+          }
+        }
+        @mentorships_array.push(@mentorship)
+      end
+    end
+
+    @supervision_array = Array.new
+    unless @person.supervisions.blank?
+      @person.supervisions.each do |s|
+        @supervision = {
+          'id' => s.id,
+          'degree' => {
+            'data' => s.degree,
+            'institution' => s.degree.institution
+          },
+          'supervisor' => {
+            'person' => s.supervisor,
+            'institution' => s.supervisor.institution
+          }
+        }
+        @supervision_array.push(@supervision)
+      end
+    end
+
+    @mentored_array = Array.new
+    unless @mentored.blank?
+      @mentored.each do |m|
+        @mentored_obj = {
+          'id' => m.id,
+          'start' => m.start,
+          'end' => m.end,
+          'institution' => m.institution,
+          'mentored' => {
+            'person' => m.person,
+            'institution' => m.person.institution
+            }
+          }
+        @mentored_array.push(@mentored_obj)
+      end
+    end
+
+    @supervised_array = Array.new
+    unless @supervised.blank?
+      @supervised.each do |s|
+        @supervised_obj = {
+          'id' => s.id,
+          'degree' => {
+            'data' => s.degree,
+            'institution' => s.degree.institution
+          },
+          'person' => {
+            'data' => s.person,
+            'institution' => s.person.institution
+          }
+        }
+        @supervised_array.push(@supervised_obj)
+      end
+    end
+
+    @data = {
+      'person' => {
+        'data' => @person,
+        'institution' => @person.institution
+      },
+      'mentors' => @mentorships_array,
+      'mentored' => @mentored_array,
+      'supervisors' => @supervision_array,
+      'supervised' => @supervised_array
+    }
+    return @data.as_json
+  end
 end

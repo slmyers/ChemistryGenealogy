@@ -19,8 +19,8 @@ angular.module('chemGeno')
             return $http({
                 header: 'Content-Type: application/json',
                 method: 'GET',
-                url: 'http://localhost:3000/aggregated',
-                data: id //Sending this id as a json with the ID in it.
+                url: 'http://localhost:3000/api/aggregated/' + id,
+                data: id //Sending this i+d as a json with the ID in it.
             }).success(function (resp) {
                 d.resolve(resp);
             }).error(function (resp) {
@@ -55,9 +55,10 @@ angular.module('chemGeno')
              * the backend to be parsed and the modifications made in the server.
              *
              * @param modifications A specialized object of the modifications
+             * @param idObj is the id of the current peep.
              * @returns {*} A promise of the event occurance.
              */
-            var sendEditedData = function(modifications){
+            var sendEditedData = function(modifications, idObj){
                 var d = $q.defer();
                 var token = loginService.getAuthToken(); //Obtain the authentication token from the login service.
                 return $http({
@@ -66,7 +67,7 @@ angular.module('chemGeno')
                             "Authorization": token
                         },
                     method: 'PUT',
-                    url: 'http://localhost:3000/aggregated',
+                    url: 'http://localhost:3000/api/aggregated/' + idObj.id.toString(),
                     data: {
                         name: modifications.name,
                         position: modifications.currentPositionTitle,
@@ -76,6 +77,7 @@ angular.module('chemGeno')
                     }
                 }).success(function(resp) {
                     d.resolve(resp);
+                    console.log(resp);
                 }).error(function(resp) {
                     console.log(resp);
                     d.reject(resp.error);

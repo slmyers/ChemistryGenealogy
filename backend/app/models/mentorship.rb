@@ -4,6 +4,10 @@ class Mentorship < ActiveRecord::Base
   belongs_to :mentor, :class_name => 'Person'
   belongs_to :institution, :class_name => 'Institution'
 
+  # Tracks changes
+  has_paper_trail on: [:update], :ignore => [:created_at, :updated_at, :approved, :id]#ignores pointless attributes, only on update
+
+
   # Creates a new mentorship.
   #
   # @param person_name [String] name of the person mentored

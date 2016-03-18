@@ -3,9 +3,6 @@ class Institution < ActiveRecord::Base
   has_many :people
   has_many :degrees
 
-  # Tracks changes
-  has_paper_trail
-
   # Creates a new institution
   #
   # @param name [String] name of the institution

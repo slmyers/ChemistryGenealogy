@@ -34,6 +34,7 @@ angular.module('chemGeno')
                     }
             }).success(function(resp) {
                 d.resolve(resp);
+                console.log(resp);
             }).error(function(resp) {
                 console.log(resp);
                 d.reject(resp.error);

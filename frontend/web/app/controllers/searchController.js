@@ -1,6 +1,6 @@
 angular.module('chemGeno')
-.controller('searchController', ['$scope', 'searchService',
-  function($scope, searchService) {
+.controller('searchController', ['$scope', 'searchService', '$state',
+  function($scope, searchService, $state) {
    $scope.target = [];
    $scope.mentors = [];
    $scope.mentored = [];
@@ -10,14 +10,16 @@ angular.module('chemGeno')
    // probably should've just put institutions with people
    $scope.$on('search:response', function(event,data) {
      $scope.clearResults();
+     console.log(data);
 
 
-      var targetInstitution =
+       var targetInstitution =
           $scope.findInstitution(data.target.institution_id, data.institutions);
       var _target = {
         name: data.target.name,
         institution: targetInstitution,
-        position: data.target.position
+        position: data.target.position,
+        id: data.target.id
       };
       $scope.target.push(_target);
       // TODO: refactor method into sub methods
@@ -30,7 +32,8 @@ angular.module('chemGeno')
         var mentor = {
           name: _mentor_.name,
           institution: inst,
-          position: _mentor_.position
+          position: _mentor_.position,
+          id: _mentor_.id
         };
         toPush.push(mentor)
       }
@@ -45,7 +48,8 @@ angular.module('chemGeno')
         var mentor = {
           name: _mentor_.name,
           institution: inst,
-          position: _mentor_.position
+          position: _mentor_.position,
+          id: _mentor_.id
         };
         toPush.push(mentor)
       }
@@ -60,7 +64,8 @@ angular.module('chemGeno')
         var mentor = {
           name: _supervisor_.name,
           institution: inst,
-          position: _supervisor_.position
+          position: _supervisor_.position,
+          id: _supervisor_.id
         };
         toPush.push(_supervisor_)
       }
@@ -75,7 +80,8 @@ angular.module('chemGeno')
         var mentor = {
           name: _supervisor_.name,
           institution: inst,
-          position: _supervisor_.position
+          position: _supervisor_.position,
+          id: _supervisor_.id
         };
         toPush.push(_supervisor_)
       }
@@ -90,6 +96,19 @@ angular.module('chemGeno')
        }
      }
    }
+      /**
+       * My work
+       */
+
+
+      $scope.goToView = function(person){
+          console.log("goToView function called! :) ");
+          //alert(person.id);
+          console.log(person);
+          $state.go('main.view', {id: person.id});
+
+      };
+
 
    $scope.clearResults = function() {
      $scope.target = [];

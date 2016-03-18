@@ -4,8 +4,9 @@ class Person < ActiveRecord::Base
   has_many :mentorships
   has_many :supervisions
 
+
   # Tracks changes
-  has_paper_trail
+  has_paper_trail on: [:update], :ignore => [:created_at, :updated_at, :approved, :id]#ignores pointless attributes, only on update
 
   # Creates a new person.
   # @note We have not decided how to handle people with same names
