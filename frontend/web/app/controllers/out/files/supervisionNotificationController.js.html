@@ -70,7 +70,13 @@
                 
                 The user controller is located here, that handles the affairs dealing with the users of the application
                 working with the application.</a></li>
-                                <li><a href="../classes/personAutoController.html">personAutoController</a></li>
+                                <li><a href="../classes/personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file..html">personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file.</a></li>
                                 <li><a href="../classes/personNotificationController
                 
                 Notifications for persons are dealt with here..html">personNotificationController
@@ -140,9 +146,9 @@
                 slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.</a></li>
                                 <li><a href="../classes/viewController
                 
-                This controller does all that can be done with the view page....html">viewController
+                This controller does all that can be done with the view page..html">viewController
                 
-                This controller does all that can be done with the view page...</a></li>
+                This controller does all that can be done with the view page.</a></li>
                                 <li><a href="../classes/visController
                 
                 Notifications for mentorships are dealt with here..html">visController
@@ -213,6 +219,13 @@
 angular.module(&#x27;chemGeno&#x27;)
 .controller(&#x27;supervisionNotificationController&#x27;, [&#x27;$scope&#x27;, &#x27;$stateParams&#x27;, &#x27;viewService&#x27;, &#x27;$q&#x27;, &#x27;verificationService&#x27;, &#x27;$state&#x27;,
 function($scope, $stateParams, viewService, $q, verificationService, $state) {
+
+  /**
+   * Loads the data upon entry of this controller from the services which gets the object desired from the backend
+   * of the application :)
+   *
+   * @method loadData
+   */
   $scope.loadData = function() {
     var promises = {
       supervisorPromise: viewService.getPerson($stateParams.supervisorId),
@@ -223,8 +236,15 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
       $scope.supervised = values.supervisedPromies.data;
     });
   }
+
+  //This method is called when this controller first invoked at all by the application.
   $scope.loadData();
 
+  /**
+   * Verifies the supervision notification.
+   *
+   * @method verifySupervision
+   */
   $scope.verifySupervision = function() {
     var paramObj = {supervision: $stateParams.supervisionId};
     var promise = verificationService.verifyInfo(paramObj);
@@ -236,6 +256,11 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
     });
   };
 
+  /**
+   * Rejects the supervision notification
+   *
+   * @method rejectSupervision
+   */
   $scope.rejectSupervision = function() {
     var paramObj = {supervision: $stateParams.supervisionId};
     var promise = verificationService.deleteInfo(paramObj);

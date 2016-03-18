@@ -70,7 +70,13 @@
                 
                 The user controller is located here, that handles the affairs dealing with the users of the application
                 working with the application.</a></li>
-                                <li><a href="../classes/personAutoController.html">personAutoController</a></li>
+                                <li><a href="../classes/personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file..html">personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file.</a></li>
                                 <li><a href="../classes/personNotificationController
                 
                 Notifications for persons are dealt with here..html">personNotificationController
@@ -140,9 +146,9 @@
                 slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.</a></li>
                                 <li><a href="../classes/viewController
                 
-                This controller does all that can be done with the view page....html">viewController
+                This controller does all that can be done with the view page..html">viewController
                 
-                This controller does all that can be done with the view page...</a></li>
+                This controller does all that can be done with the view page.</a></li>
                                 <li><a href="../classes/visController
                 
                 Notifications for mentorships are dealt with here..html">visController
@@ -207,7 +213,7 @@
  * @module viewController
  * @class viewController
  *
- * This controller does all that can be done with the view page...
+ * This controller does all that can be done with the view page.
  */
 
 
@@ -219,7 +225,13 @@ angular.module(&#x27;chemGeno&#x27;)
     $scope.mentoredVisibility = false;
     $scope.supervisedVisibility = false;
     $scope.supervisorVisibility = false;
-    $scope.unlockObject = function(){
+
+      /**
+       * Called when the page is loaded to get the object from the backend and associate it with the data.
+       *
+       * @method unlockObject
+       */
+      $scope.unlockObject = function(){
       var promise = viewService.obtainInformationFromBackEnd( {id: $stateParams.id});
       promise.then(function(resp){
         $scope.data = resp.data;
@@ -227,22 +239,37 @@ angular.module(&#x27;chemGeno&#x27;)
         console.log(&quot;unable to retrive information about person: &quot; + $stateParams.id);
       });
     };
+
+      //Calls the object to be unlocked.
     $scope.unlockObject();
-    
-    // idk what this code is or who put it here
+
+      /**
+       * Go to the edit page for this view, sending the id of the currently examined person
+       *
+       * @method invokeEditPage
+       */
     $scope.invokeEditPage = function(){
       console.log(&quot;Edit button pressed!&quot;);
       alert($stateParams.id);
       console.log($stateParams.id);
     };
-    $scope.goBackToMain = function(){
+
+      /**
+       * Go back to the main (search) page
+       *
+       * @method goBackToMain
+       */
+      $scope.goBackToMain = function(){
       $location.path(&#x27;search&#x27;); // path not hash
     };
 
 
-
-
-    $scope.goToEdit = function(){
+      /**
+       * Go to the edit page.
+       *
+       * @method goToEdit
+       */
+      $scope.goToEdit = function(){
       var idVal = $scope.data.person.data.id;
       $state.go(&#x27;main.edit&#x27;, {id: idVal});
     };

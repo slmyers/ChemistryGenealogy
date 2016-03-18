@@ -70,7 +70,13 @@
                 
                 The user controller is located here, that handles the affairs dealing with the users of the application
                 working with the application.</a></li>
-                                <li><a href="../classes/personAutoController.html">personAutoController</a></li>
+                                <li><a href="../classes/personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file..html">personAutoController
+                
+                Deals with the automatic updating and searching for the people supplied into the query string provided
+                through the search bar at the top of the main html file.</a></li>
                                 <li><a href="../classes/personNotificationController
                 
                 Notifications for persons are dealt with here..html">personNotificationController
@@ -140,9 +146,9 @@
                 slightly associated with the User Controller (userController.js), yet is kept distinct for clarity of functions.</a></li>
                                 <li><a href="../classes/viewController
                 
-                This controller does all that can be done with the view page....html">viewController
+                This controller does all that can be done with the view page..html">viewController
                 
-                This controller does all that can be done with the view page...</a></li>
+                This controller does all that can be done with the view page.</a></li>
                                 <li><a href="../classes/visController
                 
                 Notifications for mentorships are dealt with here..html">visController
@@ -215,7 +221,15 @@ angular.module(&#x27;chemGeno&#x27;)
 .controller(&#x27;userController&#x27;, [&#x27;$scope&#x27;,&#x27;$mdMedia&#x27;, &#x27;$mdDialog&#x27;, &#x27;loginService&#x27;,
   function($scope, $mdMedia, $mdDialog, loginService) {
     $scope.currentUser = {};
+
+
     // https://github.com/angular/material/issues/1413 passing stuff to dialog
+    /**
+     * This method when invoked will log in a user.
+     * // https://github.com/angular/material/issues/1413 passing stuff to dialog
+     * @param $event An angular event object.
+     * @method login
+       */
     $scope.login = function($event) {
       var useFullScreen = ($mdMedia(&#x27;sm&#x27;) || $mdMedia(&#x27;xs&#x27;))  &amp;&amp; $scope.customFullscreen;
       $mdDialog.show({
@@ -227,6 +241,11 @@ angular.module(&#x27;chemGeno&#x27;)
         fullscreen: useFullScreen
       });
 
+      /**
+       * This method is an angular method that will watch the current state of the application.
+       *
+       * @method $watch
+       */
       $scope.$watch(function() {
         return $mdMedia(&#x27;xs&#x27;) || $mdMedia(&#x27;sm&#x27;);
       }, function(wantsFullScreen) {
@@ -234,14 +253,34 @@ angular.module(&#x27;chemGeno&#x27;)
       });
     };
 
+    /**
+     * This method when invoked will query the login service and see if the user is or is not logged into the
+     * application :)
+     *
+     * @returns {boolean}
+     * @method showLogin
+       */
     $scope.showLogin = function() {
       return !loginService.userLoggedIn();
     };
 
+    /**
+     * This method when invoked will show the user to the current controller when looking through the login service.
+     *
+     * @returns {boolean} true/false
+     * @method showUser
+       */
     $scope.showUser = function() {
       return loginService.userLoggedIn();
     };
 
+    /**
+     * Obtains the username from the backend of the application through the login service :)
+     *
+     *
+     * @returns {*}
+     * @method getUsername
+       */
     $scope.getUsername = function() {
       if (loginService.userLoggedIn()) {
         return loginService.getUser().user.email;
@@ -249,10 +288,21 @@ angular.module(&#x27;chemGeno&#x27;)
       return &#x27;&#x27;;
     };
 
+    /**
+     * This function will invoke the login service&#x27;s logout function and then it will log them out.
+     *
+     * @method logout
+     */
     $scope.logout = function() {
       loginService.logout();
     };
 
+    /**
+     * This method when invoked will query the loginservice and see if the currently logged in user is or is not
+     * an administrator of this webapplication.
+     *
+     * @method isAdmin
+     */
     $scope.isAdmin = function() {
       return loginService.isAdmin();
     }

@@ -8,6 +8,13 @@
 angular.module('chemGeno')
 .controller('supervisionNotificationController', ['$scope', '$stateParams', 'viewService', '$q', 'verificationService', '$state',
 function($scope, $stateParams, viewService, $q, verificationService, $state) {
+
+  /**
+   * Loads the data upon entry of this controller from the services which gets the object desired from the backend
+   * of the application :)
+   *
+   * @method loadData
+   */
   $scope.loadData = function() {
     var promises = {
       supervisorPromise: viewService.getPerson($stateParams.supervisorId),
@@ -18,8 +25,15 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
       $scope.supervised = values.supervisedPromies.data;
     });
   }
+
+  //This method is called when this controller first invoked at all by the application.
   $scope.loadData();
 
+  /**
+   * Verifies the supervision notification.
+   *
+   * @method verifySupervision
+   */
   $scope.verifySupervision = function() {
     var paramObj = {supervision: $stateParams.supervisionId};
     var promise = verificationService.verifyInfo(paramObj);
@@ -31,6 +45,11 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
     });
   };
 
+  /**
+   * Rejects the supervision notification
+   *
+   * @method rejectSupervision
+   */
   $scope.rejectSupervision = function() {
     var paramObj = {supervision: $stateParams.supervisionId};
     var promise = verificationService.deleteInfo(paramObj);
