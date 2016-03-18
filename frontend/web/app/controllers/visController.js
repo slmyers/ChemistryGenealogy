@@ -87,73 +87,79 @@ angular.module('chemGeno')
 
 
          var targetInstitution =
-             $scope.findInstitution(data.target.institution_id, data.institutions);
+            $scope.findInstitution(data.target.institution_id, data.institutions);
          var _target = {
-           name: data.target.name,
-           institution: targetInstitution,
-           position: data.target.position
-         };
-         $scope.target.push(_target);
-         // TODO: refactor method into sub methods
-         var toPush = [];
-         for(var i = 0; i < data.mentors.length; i++) {
-           var _mentor_ = data.mentors[i];
-           var inst = $scope.findInstitution(_mentor_.institution_id,
-             data.institutions);
+          name: data.target.name,
+          institution: targetInstitution,
+          position: data.target.position,
+          id: data.target.id
+        };
 
-           var mentor = {
-             name: _mentor_.name,
-             institution: inst,
-             position: _mentor_.position
-           };
-           toPush.push(mentor)
-         }
-         $scope.mentors = toPush;
+        $scope.target.push(_target);
+        // TODO: refactor method into sub methods
+        var toPush = [];
+        for(var i = 0; i < data.mentors.length; i++) {
+          var _mentor_ = data.mentors[i];
+          var inst = $scope.findInstitution(_mentor_.institution_id,
+            data.institutions);
 
-         var toPush = [];
-         for(var i = 0; i < data.mentored.length; i++) {
-           var _mentor_ = data.mentored[i];
-           var inst = $scope.findInstitution(_mentor_.institution_id,
-             data.institutions);
+          var mentor = {
+            name: _mentor_.name,
+            institution: inst,
+            position: _mentor_.position,
+            id: _mentor_.id
+          };
+          toPush.push(mentor)
+        }
+        $scope.mentors = toPush;
 
-           var mentor = {
-             name: _mentor_.name,
-             institution: inst,
-             position: _mentor_.position
-           };
-           toPush.push(mentor)
-         }
-         $scope.mentored = toPush;
+        var toPush = [];
+        for(var i = 0; i < data.mentored.length; i++) {
+          var _mentor_ = data.mentored[i];
+          var inst = $scope.findInstitution(_mentor_.institution_id,
+            data.institutions);
 
-         var toPush = [];
-         for(var i = 0; i < data.supervised.length; i++) {
-           var _supervisor_ = data.supervised[i];
-           var inst = $scope.findInstitution(_supervisor_.institution_id,
-             data.institutions);
+          var mentor = {
+            name: _mentor_.name,
+            institution: inst,
+            position: _mentor_.position,
+            id: _mentor_.id
+          };
+          toPush.push(mentor)
+        }
+        $scope.mentored = toPush;
 
-           var mentor = {
-             name: _supervisor_.name,
-             institution: inst,
-             position: _supervisor_.position
-           };
-           toPush.push(mentor)
-         }
-         $scope.supervised = toPush;
+        var toPush = [];
+        for(var i = 0; i < data.supervised.length; i++) {
+          var _supervisor_ = data.supervised[i];
+          var inst = $scope.findInstitution(_supervisor_.institution_id,
+            data.institutions);
+          console.log(inst)
+          var mentor = {
+            name: _supervisor_.name,
+            institution: inst,
+            position: _supervisor_.position,
+            id: _supervisor_.id
+          };
+          toPush.push(mentor)
+        }
+        $scope.supervised = toPush;
 
-         var toPush = [];
-         for(var i = 0; i < data.supervisors.length; i++) {
-           var _supervisor_ = data.supervisors[i];
-           var inst = $scope.findInstitution(_supervisor_.institution_id,
-             data.institutions);
-
-           var mentor = {
-             name: _supervisor_.name,
-             institution: inst,
-             position: _supervisor_.position
-           };
-           toPush.push(mentor)
-         }
-         $scope.supervisors = toPush;
+        var toPush = [];
+        for(var i = 0; i < data.supervisors.length; i++) {
+          var _supervisor_ = data.supervisors[i];
+          var inst = $scope.findInstitution(_supervisor_.institution_id,
+            data.institutions);
+          console.log(inst)
+          var mentor = {
+            name: _supervisor_.name,
+            institution: inst,
+            position: _supervisor_.position,
+            id: _supervisor_.id
+          };
+          toPush.push(mentor)
+        }
+        $scope.supervisors = toPush;
 
          var g = new dagre.graphlib.Graph().setGraph({
 
@@ -219,6 +225,7 @@ angular.module('chemGeno')
            var node = g.node(v);
            node.rx = node.ry = 5;
          });
+
 
          dagre.layout(g);
          render(container, g);

@@ -8,6 +8,7 @@
 angular.module('chemGeno')
 .controller('searchController', ['$scope', 'searchService', '$state',
   function($scope, searchService, $state) {
+
    $scope.target = [];
    $scope.mentors = [];
    $scope.mentored = [];
@@ -26,7 +27,7 @@ angular.module('chemGeno')
 
        var targetInstitution =
           $scope.findInstitution(data.target.institution_id, data.institutions);
-      var _target = {
+       var _target = {
         name: data.target.name,
         institution: targetInstitution,
         position: data.target.position,
