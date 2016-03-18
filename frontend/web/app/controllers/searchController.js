@@ -15,6 +15,10 @@ angular.module('chemGeno')
    $scope.supervised = [];
 
    // probably should've just put institutions with people
+      /**
+       * This method is invoked in the type of angular $on functionality
+       * @method
+       */
    $scope.$on('search:response', function(event,data) {
      $scope.clearResults();
      console.log(data);
@@ -28,6 +32,8 @@ angular.module('chemGeno')
         position: data.target.position,
         id: data.target.id
       };
+
+
       $scope.target.push(_target);
       // TODO: refactor method into sub methods
       var toPush = [];
@@ -96,6 +102,14 @@ angular.module('chemGeno')
 
    });
 
+      /**
+       * This method is involved in finding an instiutiton data, given an id and institutions list.
+       *
+       * @param id A particular ID.
+       * @param institutions An array of institututions objects.
+       * @returns {*}
+       * @method findInstitution
+       */
    $scope.findInstitution = function(id, institutions) {
      for(var i = 0; i < institutions.length; i++){
        if (institutions[i].id === id) {
@@ -108,6 +122,12 @@ angular.module('chemGeno')
        */
 
 
+      /**
+       * This method is invoked to return to the view page of the web application.
+       *
+       * @method goToView
+       * @param person A person Object :)
+       */
       $scope.goToView = function(person){
           console.log("goToView function called! :) ");
           //alert(person.id);
@@ -117,6 +137,10 @@ angular.module('chemGeno')
       };
 
 
+      /**
+       * This function is used to clear all of the results returned.
+       * @method clearResults
+       */
    $scope.clearResults = function() {
      $scope.target = [];
      $scope.mentors = [];

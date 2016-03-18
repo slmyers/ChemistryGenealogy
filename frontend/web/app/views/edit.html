@@ -397,7 +397,7 @@
         <md-card-actions layout="row" layout-align="right">
 
             <!-- Submission button -->
-            <md-button ng-click="addDegreeInfoInstance(diYear, diSupervisor, diInstitution, diType)">Submit
+            <md-button ng-click="addDegreeInfoInstance(diYear, diSupervisor, diInstitution, diType, item.mentors.id, false)">Submit
                 <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                     Click here to Submit this Degree.
                 </md-tooltip>

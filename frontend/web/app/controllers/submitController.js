@@ -72,7 +72,7 @@ angular.module('chemGeno')
              * @param superDocStartYear
              * @param superDocEndYear
              * @param superDocInstitution
-             * @constructor
+             * @constructor SuperDocInstance
              */
             function SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution)
             {
@@ -83,6 +83,16 @@ angular.module('chemGeno')
             }
 
 
+            /**
+             * This function is invoked when we want to create a new superdoc object with the parameters supplied
+             * to this method, and then it will also put this newly created object into the array of all of the
+             * superdoc objects.
+             *
+             * @param superDocNameOfPerson Person name
+             * @param superDocStartYear Start year
+             * @param superDocEndYear End year
+             * @param superDocInstitution Institution of the supervised postdoc
+             */
             $scope.addSuperDocInstance = function(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution){
                 var newSuperDocInstance = new SuperDocInstance(superDocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution);
                 $scope.superDocInformation.push(newSuperDocInstance);
@@ -99,15 +109,30 @@ angular.module('chemGeno')
             $scope.superDocInformation = [ ];
 
 
+            /**
+             * Show the superdoc information
+             * @method showSuperDocInfo
+             */
             $scope.showSuperDocInfo = function(){
                 $scope.postdocSupervisionVisibility = true;
             };
 
+            /**
+             * Hide the superdoc information
+             *
+             * @method hideSuperDocInfo
+             */
             $scope.hideSuperDocInfo = function(){
                 $scope.postdocSupervisionVisibility = false;
             };
 
 
+            /**
+             * Remove a passed in superdoc object from the superdoc array of superdoc objects.
+             *
+             * @param superDocInstance A superdoc object
+             * @method removeSuperDocInstance
+             */
             $scope.removeSuperDocInstance = function(superDocInstance){
                 console.log("removeSuperDocInstance called with index" + superDocInstance);
                 console.log($scope.superDocInformation.length);
@@ -143,7 +168,7 @@ angular.module('chemGeno')
              * @param superDegStartYear
              * @param superDegEndYear
              * @param superDegInstitution
-             * @constructor
+             * @constructor SuperDegInstance
              */
             function SuperDegInstance(superDegNameOfPerson)
             {
@@ -154,6 +179,10 @@ angular.module('chemGeno')
             }
 
 
+            /**
+             * Adds a new instance of a superdegree to the arraylist of super degree objects.
+             * @param superDegNameOfPerson A name of a superdeg person
+             */
             $scope.addSuperDegInstance = function(superDegNameOfPerson){
                 var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson);
                 $scope.superDegInformation.push(newSuperDegInstance);
@@ -163,10 +192,18 @@ angular.module('chemGeno')
             };
 
 
+            /**
+             * Shows the superdeg infroamtion
+             * @method showSuperDegInfo
+             */
             $scope.showSuperDegInfo = function(){
                 $scope.superDegVisibility = true;
             };
 
+            /**
+             * Hides the superdeg information
+             * @method hideSuperDegInfo
+             */
             $scope.hideSuperDegInfo = function(){
                 $scope.superDegVisibility = false;
             };
@@ -177,6 +214,13 @@ angular.module('chemGeno')
              */
             $scope.superDegInformation = [ ] ;
 
+
+            /**
+             * Removes the passed in superdegree object from the list of all superdegree objects.
+             *
+             * @param superDegInstance
+             * @method removeSuperDegInstance
+             */
             $scope.removeSuperDegInstance = function(superDegInstance){
                 console.log("removeSuperDegInstance called with index" + superDegInstance);
                 console.log($scope.superDegInformation.length);
@@ -225,6 +269,7 @@ angular.module('chemGeno')
              * @param pdYearEnd The date of the end of the postdoc appointment.
              * @param pdSupervisor The supervisor of the postdoc appointment.
              * @param pdInstitution The institution of the postdoc appointment.
+             * @method addPDInfo
              */
             $scope.addPDInfo = function (pdYearStart, pdYearEnd, pdSupervisor, pdInstitution) {
                 //view = view || title + " Content View";
@@ -235,6 +280,7 @@ angular.module('chemGeno')
             /** POSTDOC FUNCTION
              * This function when evoked will remove the selected tab from the screen.
              * @param tab The tab to be removed.
+             * @method removePDTab
              */
             $scope.removePDTab = function (tab) {
                 $scope.postDocID--; //Decrement global postDocID with removal.

@@ -22,6 +22,11 @@ function($scope, $stateParams, verificationService, $state) {
   $scope.supervisedVisibility = false;
   $scope.supervisorVisibility = false;
 
+  /**
+   * This method is invoked when we want to verify a person notification.
+   *
+   * @method verifyPerson
+   */
   $scope.verifyPerson = function() {
     var paramObj = {person: $scope.person.id};
     var promise = verificationService.verifyInfo(paramObj);
@@ -33,6 +38,11 @@ function($scope, $stateParams, verificationService, $state) {
     });
   };
 
+  /**
+   * This methid is invoked when we want to reject a person notification.
+   *
+   * @method rejectPerson
+   */
   $scope.rejectPerson = function() {
     var paramObj = {person: $scope.person.id};
     var promise = verificationService.deleteInfo(paramObj);

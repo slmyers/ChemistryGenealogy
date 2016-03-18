@@ -10,8 +10,12 @@ angular.module('chemGeno')
         function($scope, auditTrailService, $state) {
 
 
-
-
+            /**
+             * This function is called at the very start of the audit trail, this obtains the information from
+             * the backend and then associates it with the $scope.data object, which will be unpacked later.
+             *
+             * @method unlockObject
+             */
             $scope.unlockObject = function(){
                 var promise = auditTrailService.obtainInformationFromBackEnd();
                 promise.then(function(resp){
@@ -25,6 +29,7 @@ angular.module('chemGeno')
 
 
             //Object I can expect from the backend.
+            //This is mainly used for testing and early development of this page. :)
             $scope.mockObject ={
                 "edits":
                     [
@@ -76,9 +81,11 @@ angular.module('chemGeno')
             };
 
 
-
-
-
+            /**
+             * Return to the main page (search page) of this application when the button is pressed.
+             *
+             * @method goBackToMain
+             */
             $scope.goBackToMain = function () {
                 if ($state.$current.name !== 'main.search') {
                     $state.go('main.search');
