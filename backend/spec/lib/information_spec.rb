@@ -1,3 +1,4 @@
+# @author Ji Hwan Kim 
 # spec test for information in general
 describe Person, '.new_person' do
   before do
@@ -7,6 +8,9 @@ describe Person, '.new_person' do
   it 'creates a new person to db' do
     # this test will fail since the new name doesn't exist in db yet
     # the name "Ji Hwan Kim" is not on the db yet
+
+    # actually this test will fail, because because an ActiveRecord will never
+    # be equal to a number. http://guides.rubyonrails.org/active_record_querying.html
     expect(@person.find_by_name("Ji Hwan Kim")).not_to eql(1)
     @person.new_person("Ji Hwan Kim", "Doctorate", "University of Alberta")
     # check if the person got created in db
@@ -76,4 +80,3 @@ describe Degree, '.new_degree' do
     expect(@degree.find_by_id(5)).not_to eql(0)
   end
 end
-
