@@ -11,12 +11,12 @@ class Information
   # @param degree_array [Array<Hash{String => String, Number}>] array of the person's degree information
   # @return [Hash{String} => String, Number] created person in the database
   def Information.submit_handling(name, position, institution_name, postdoc_array, degree_array)
-    person = Person.new_person(name, position, institution_name)
+    person = Person.new_person(name.downcase, position, institution_name)
 
     # Checks that the postdoc_array is not null before adding new mentorships
     unless postdoc_array.nil?
       postdoc_array.each do |postdoc|
-        Mentorship.new_mentorship(name, postdoc[:pdSupervisor], postdoc[:pdInstitution],
+        Mentorship.new_mentorship(name.downcase, postdoc[:pdSupervisor], postdoc[:pdInstitution],
           postdoc[:pdStartYear], postdoc[:pdEndYear])
       end
     end
@@ -51,7 +51,7 @@ class Information
     # Checks if the name is the same. If not, change it.
     unless name.nil?
       if person_object.name != name
-        Person.update(id, name: name)
+        Person.update(id, name: name.downcase)
       end
     end
 
