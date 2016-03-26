@@ -71,6 +71,8 @@ angular.module('chemGeno')
                     url: 'http://localhost:3000/api/aggregated/' + idObj.id.toString(),
                     data: {
                         name: modifications.name,
+                        id: modifications.id,
+                        approved: modifications.approved,
                         position: modifications.currentPositionTitle,
                         institution: modifications.currentInstitutionName,
                         degree: modifications.degreeInformation,
