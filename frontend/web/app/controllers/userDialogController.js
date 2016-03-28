@@ -1,7 +1,7 @@
 /**
  * @module userDialogController
  * @class userDialogController
- *
+ * @author Steven Myers
  *  Controller for the User Dialogue
  *
  * Status: CONTROLLER
@@ -13,7 +13,6 @@
  *
  */
 angular.module('chemGeno')
-//Stating that this is a controller as well as the fact that this takes in certain information.
 .controller('userDialogController', ['$scope', '$mdDialog', 'loginService', 'registerService', '$mdToast',
     function($scope, $mdDialog, loginService, registerService, $mdToast) {
       $scope.master = {};

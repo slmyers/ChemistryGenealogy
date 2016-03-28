@@ -6,7 +6,7 @@
  *
  * The Register service is associated with storing and handling the local information services in the app.
  *
- *
+ * @author Steven Myers
  */
 
 angular.module('chemGeno')

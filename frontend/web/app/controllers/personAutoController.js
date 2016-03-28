@@ -1,7 +1,7 @@
 /**
  * @module personAutoController
  * @class personAutoController
- *
+ * @author Steven Myers
  * Deals with the automatic updating and searching for the people supplied into the query string provided
  * through the search bar at the top of the main html file.
  */
@@ -11,13 +11,6 @@ function($scope, autoService, searchService, $state) {
   $scope.selectedItem;
   $scope.searchText = '';
 
-  /**
-   * Given an item, it will then execute a search upon the item passed into this method.
-   *  @function myFunction stuff and more stuff
-   *  @memberof personAutoController
-   *  @instance
-   *  @method selectedItemChange
-   */
   $scope.selectedItemChange = function selectedItemChange(item) {
     searchService.executeSearch(item.id);
   };

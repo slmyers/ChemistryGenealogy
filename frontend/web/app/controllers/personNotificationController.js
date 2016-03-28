@@ -1,7 +1,7 @@
 /**
  * @module personNotificationController
  * @class personNotificationController
- *
+ * @author Steven Myers
  * Notifications for persons are dealt with here.
  */
 

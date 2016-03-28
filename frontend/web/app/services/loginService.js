@@ -1,3 +1,6 @@
+/**
+ * @author Steven Myers
+ */
 angular.module('chemGeno')
 .service('loginService', function(store, $q, $http, $state) {
   var userNamespace = '401ChemGenoUser'

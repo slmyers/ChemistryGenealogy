@@ -1,3 +1,6 @@
+/**
+ * @author Steven Myers
+ */
 angular.module('chemGeno')
 .service('searchService', function($q, $http, $rootScope) {
   var searchPerson = function(id) {

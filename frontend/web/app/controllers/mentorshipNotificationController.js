@@ -1,7 +1,7 @@
 /**
  * @module mentorshipNotificationController
  * @class mentorshipNotificationController
- *
+ * @author Steven Myers
  * Notifications for mentorships are dealt with here.
  */
 

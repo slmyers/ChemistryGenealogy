@@ -1,3 +1,7 @@
+/**
+ *  @author Steven Myers
+ */
+
 angular.module('chemGeno')
 .service('verificationService', function($q, $http, loginService) {
   // backend expects an :id but I didn't factor this in when writing the

@@ -1,7 +1,7 @@
 /**
  * @module supervisionNotificationController
  * @class supervisionNotificationController
- *
+ * @author Steven Myers
  * Notifications for supervision are dealt with here.
  */
 
