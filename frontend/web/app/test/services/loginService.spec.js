@@ -1,3 +1,8 @@
+/**
+ *  @author Steven Myers
+ */
+
+
 describe('loginService unit tests', function() {
   var service, httpMock, mockStore;
   beforeEach(module('chemGeno'));

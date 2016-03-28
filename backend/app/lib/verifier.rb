@@ -3,7 +3,7 @@
 # methods just turn approved = true for respective entries
 class Verifier
 
-  # yeah it does what you think
+  # verifies a user by their id
   def self.verify_user(user_id)
     @user = User.find_by_id(user_id)
 
@@ -15,10 +15,13 @@ class Verifier
     end
   end
 
+  # verifies an admin by their id
   def self.verify_admin(admin_id)
     @admin = Admin.find_by_id(admin_id)
     @admin.approved = true
-    if @admin.save
+    @user = User.find_by_id(@admin.user_id)
+    @user.approved = true
+    if @admin.save && @user.save
       return {'admin' => @admin}
     else
       return nil
@@ -76,12 +79,14 @@ class Verifier
   # if a user approves a person, they also approve everything related to that
   # person. So, if you see something funny on an unapproved person's details,
   # then you shouldn't improve.
-  # TODO: this method is very slow. Investigate optimizations. 
+  # TODO: this method is very slow. Investigate optimizations.
   def self.verify_person(person_id)
     @person = Search.person_info(person_id)
 
     if @person["person"].approved == false
       @person["person"].approved = true
+      #search/autocomplete is performed assuming all lower cases in name
+      @person["person"].name = @person["person"].name.downcase
       @person["person"].save
     end
     if @person["person"].institution.approved == false

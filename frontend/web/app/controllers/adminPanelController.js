@@ -1,7 +1,7 @@
 /**
  * @module adminPanelController
  * @class adminPanelController
- *
+ * @author Steven Myers
  * Responsible for every functionality given by the administrator panel for the frontend.
  */
 

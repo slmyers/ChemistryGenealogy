@@ -1,7 +1,7 @@
 /**
  * @module searchController
  * @class searchController
- *
+ * @author Steven Myers
  * Entire Search Functionality located here.
  */
 

@@ -1,7 +1,7 @@
 /**
  * @module userDialogController
  * @class userDialogController
- *
+ * @author Steven Myers
  *  Controller for the User Dialogue
  *
  * Status: CONTROLLER
@@ -13,7 +13,6 @@
  *
  */
 angular.module('chemGeno')
-//Stating that this is a controller as well as the fact that this takes in certain information.
 .controller('userDialogController', ['$scope', '$mdDialog', 'loginService', 'registerService', '$mdToast',
     function($scope, $mdDialog, loginService, registerService, $mdToast) {
       $scope.master = {};
@@ -85,12 +84,16 @@ angular.module('chemGeno')
        */
       $scope.registrationConfirmation = function() {
         $mdDialog.cancel();
+        /*
+        when/if the app is extended to provide mailer support one should
+        uncomment this line.
         $mdToast.show(
           $mdToast.simple()
           .textContent("We'll contact you at " + $scope.registerUser.email + " upon account approval!")
           .position('top right')
           .hideDelay(3000)
         );
+        */
       };
 
       /**

@@ -1,3 +1,5 @@
+# @author Steven Myers
+# the notifier is tested against data in /lib/tasks/test_data.rake 
 describe Notifier do
   it "is instantiable" do
     @notifier = Notifier.new()

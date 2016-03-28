@@ -1,3 +1,6 @@
+/**
+ *  @author Steven Myers
+ */
 angular.module('chemGeno')
 .service('adminPanelService', function($q, $http, loginService) {
 

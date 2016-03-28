@@ -19,7 +19,7 @@ class Search
 
   # returns a hash that contains the relations to a person
   # and the person/institution records.
-  # it is used in conjunction with autocomplete on the frontend, and it is likely
+  # it is used in conjunction with search on the frontend, and it is likely
   # that this class can be optimized
   # TODO: investigate optimizations
   def self.relations_by_id(person_id)
@@ -105,26 +105,14 @@ class Search
   # this class is different from relations_by_id, because it not only gathers
   # the relations, but also the information required to "fill" out these relations.
   # used to detail or "view" a person on the frontend.
-  # TODO: take out the begining of the function and call self.person_info instead.
   def self.person(id)
     unless Person.exists?(id) then return nil end
 
-    @person = Person.includes(:institution)
-              .includes( {mentorships: [:institution, {mentor: [:institution]}] })
-              .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
-              .where(:id => id).first
-
-    @mentored = Mentorship.where(:mentor_id => id)
-                .includes(:institution)
-                .includes(person: :institution)
-
-    @supervised = Supervision.where(:supervisor_id => id)
-                  .includes(degree: :institution)
-                  .includes(person: :institution)
+    @person_info = self.person_info(id)
 
     @mentorships_array = Array.new
-    unless @person.mentorships.blank?
-      @person.mentorships.each do |m|
+    unless @person_info["person"].mentorships.blank?
+      @person_info["person"].mentorships.each do |m|
         @mentorship = {
           'id' => m.id,
           'start' => m.start,
@@ -140,8 +128,8 @@ class Search
     end
 
     @supervision_array = Array.new
-    unless @person.supervisions.blank?
-      @person.supervisions.each do |s|
+    unless @person_info["person"].supervisions.blank?
+       @person_info["person"].supervisions.each do |s|
         @supervision = {
           'id' => s.id,
           'degree' => {
@@ -158,8 +146,8 @@ class Search
     end
 
     @mentored_array = Array.new
-    unless @mentored.blank?
-      @mentored.each do |m|
+    unless @person_info["mentored"].blank?
+      @person_info["mentored"].each do |m|
         @mentored_obj = {
           'id' => m.id,
           'start' => m.start,
@@ -175,8 +163,8 @@ class Search
     end
 
     @supervised_array = Array.new
-    unless @supervised.blank?
-      @supervised.each do |s|
+    unless @person_info["supervised"].blank?
+      @person_info["supervised"].each do |s|
         @supervised_obj = {
           'id' => s.id,
           'degree' => {
@@ -194,8 +182,8 @@ class Search
 
     @data = {
       'person' => {
-        'data' => @person,
-        'institution' => @person.institution
+        'data' => @person_info["person"],
+        'institution' => @person_info["person"].institution
       },
       'mentors' => @mentorships_array,
       'mentored' => @mentored_array,

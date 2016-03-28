@@ -1,7 +1,7 @@
 /**
  * @module viewController
  * @class viewController
- *
+ * @author Steven Myers
  * This controller does all that can be done with the view page.
  */
 
@@ -24,6 +24,7 @@ angular.module('chemGeno')
       var promise = viewService.obtainInformationFromBackEnd( {id: $stateParams.id});
       promise.then(function(resp){
         $scope.data = resp.data;
+        console.log($scope.data);
       }, function(error){
         console.log("unable to retrive information about person: " + $stateParams.id);
       });

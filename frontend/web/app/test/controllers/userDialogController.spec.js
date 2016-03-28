@@ -1,3 +1,7 @@
+/**
+ *  @author Steven Myers
+ */
+
 describe('userDialogController unit tests',  function() {
   var scope, controller, httpMock;
   beforeEach(module('chemGeno'));

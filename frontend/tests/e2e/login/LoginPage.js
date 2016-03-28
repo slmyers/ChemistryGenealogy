@@ -151,7 +151,8 @@ var LoginPage = function(){
         browser.waitForAngular();
 
         //Now confirm the registration process succeeded. By checking if the toast is displayed.
-        expect(this.loginRegistrationConfirmToast.isDisplayed());
+        // toast is removed
+        //expect(this.loginRegistrationConfirmToast.isDisplayed());
 
     };
 

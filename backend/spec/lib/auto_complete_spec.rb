@@ -1,4 +1,5 @@
-
+# @author Steven Myers
+# the autocomplete class is tested against data in /lib/tasks/test_data.rake 
 describe AutoComplete do
   it "is instantiable" do
     @auto = AutoComplete.new

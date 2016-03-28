@@ -14,7 +14,7 @@ exports.config = {
     // Spec patterns are relative to the location of the spec file. They may
     // include glob patterns.
     suites: {
-        search: ['tests/e2e/search/SearchSpec.js'] //Search page tests
+        search: ['e2e/search/SearchSpec.js'] //Search page tests
     },
 
     // Options to be passed to Jasmine-node.

@@ -1,3 +1,6 @@
+/**
+ *  @author Steven Myers
+ */
 angular.module('chemGeno')
 // avoid any namespace clobbering
 .directive('chemautoComplete', function($parse){
