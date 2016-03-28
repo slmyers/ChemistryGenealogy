@@ -1,3 +1,5 @@
+# @author Steven Myers
+# the search class is tested against data in /lib/tasks/test_data.rake
 describe Search do
   it "is instantiable" do
     @search = Search.new()
