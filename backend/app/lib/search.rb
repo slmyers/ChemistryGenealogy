@@ -19,7 +19,7 @@ class Search
 
   # returns a hash that contains the relations to a person
   # and the person/institution records.
-  # it is used in conjunction with autocomplete on the frontend, and it is likely
+  # it is used in conjunction with search on the frontend, and it is likely
   # that this class can be optimized
   # TODO: investigate optimizations
   def self.relations_by_id(person_id)
@@ -105,7 +105,6 @@ class Search
   # this class is different from relations_by_id, because it not only gathers
   # the relations, but also the information required to "fill" out these relations.
   # used to detail or "view" a person on the frontend.
-  # TODO: take out the begining of the function and call self.person_info instead.
   def self.person(id)
     unless Person.exists?(id) then return nil end
 
@@ -113,7 +112,7 @@ class Search
 
     @mentorships_array = Array.new
     unless @person_info["person"].mentorships.blank?
-      @person_info["person"].mentorships do |m|
+      @person_info["person"].mentorships.each do |m|
         @mentorship = {
           'id' => m.id,
           'start' => m.start,
