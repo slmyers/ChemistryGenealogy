@@ -10,7 +10,7 @@ var util = require('util');
 describe('Search', function() {
 
     //Creates an instance of the LoginPage object, which holds most of the specific low level details of the tests.
-    var searchPage = require('SearchPage.js');
+    var searchPage = require('./SearchPage.js');
 
 
     //Variables that will be used through these tests.
