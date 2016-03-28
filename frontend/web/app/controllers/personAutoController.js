@@ -6,13 +6,13 @@
  * through the search bar at the top of the main html file.
  */
 angular.module('chemGeno')
-.controller('personAutoController', ['$scope', 'autoService', 'searchService', '$state',
+.controller('personAutoController', ['$scope', 'autoService', 'searchService', '$state', '$q',
 function($scope, autoService, searchService, $state) {
   $scope.selectedItem;
   $scope.searchText = '';
 
   $scope.selectedItemChange = function selectedItemChange(item) {
-    searchService.executeSearch(item.id);
+    searchService.executeSearch('id', item.id);
   };
 
   /**
@@ -22,8 +22,7 @@ function($scope, autoService, searchService, $state) {
   $scope.searchOnEnter = function searchOnEnter() {
     console.log('searchOnEnter: ' + $scope.searchText);
     /* this loads the data into searchService as searchResult */
-
-    searchService.executeSearch($scope.searchText);
+    searchService.executeSearch('name', $scope.searchText);
   }
 
   /**
