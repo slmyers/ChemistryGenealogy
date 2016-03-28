@@ -4,6 +4,9 @@
  * @author Steven Myers
  * Deals with the automatic updating and searching for the people supplied into the query string provided
  * through the search bar at the top of the main html file.
+ * ideally this search would be able to execute in all states, but if the state !== main.search,
+ * and we try to transition to main.search and then execute search some type of weird hanging behavior
+ * is experienced. 
  */
 angular.module('chemGeno')
 .controller('personAutoController', ['$scope', 'autoService', 'searchService', '$state', '$q',

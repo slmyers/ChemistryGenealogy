@@ -34,22 +34,12 @@ angular.module('chemGeno')
   }
 
   var executeSearch = function(type, identifier) {
+    console.log(type);
     var promise = searchPerson(type, identifier);
-    if (!$state.is('main.search')){
-      $state.go('main.search', {}, {reload: true})
-      .then(promise.then(function(result){
-        $rootScope.$broadcast('search:response',result.data);
-      }))
-    }
-    else {
-      promise.then(function(result) {
-        console.log('successful search on ' + identifier);
-        $rootScope.$broadcast('search:response',result.data);
-      }, function(error) {
-        console.log('error search on ' + identifier);
-        console.log(error);
-      });
-    }
+    promise.then(function(result){
+      console.log(result.data);
+      $rootScope.$broadcast('search:response',result.data);
+    });
   }
 
   return {
