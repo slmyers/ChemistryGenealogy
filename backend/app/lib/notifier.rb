@@ -107,6 +107,7 @@ class Notifier
 
   #this method will bundle all relationships + information w.r.t. an unapproved
   #person. This reflects a person that was just added to the database.
+  #TODO: refactor and fold with Search.person_info
   def self.person_notifications
     # person, their mentors and their supervisors
     @unapproved_people = Person.where({:approved => false})

@@ -47,7 +47,7 @@ class Deleter
   # TODO: I'm sure this is leaving "ghost rows" as described at the
   # begining of this class
   def self.delete_person(person_id)
-    @person = Search.person_info(person_id)
+    @person = Search.person_info(person_id, false)
 
     @person["person"].mentorships.each do |m|
       m.destroy

@@ -81,7 +81,10 @@ class Verifier
   # then you shouldn't improve.
   # TODO: this method is very slow. Investigate optimizations.
   def self.verify_person(person_id)
-    @person = Search.person_info(person_id)
+    # false because we're using the search function to find unapproved person
+    # information. False is handed to the :approved key in the where clause
+    # for Search.person_info(id, approved)
+    @person = Search.person_info(person_id, false)
 
     if @person["person"].approved == false
       @person["person"].approved = true

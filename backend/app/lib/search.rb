@@ -79,19 +79,19 @@ class Search
   # Notifier and Deleter. It is used to retrieve the relationships w.r.t
   # @param id
   # @return hash contating the relationships
-  def self.person_info(id)
+  def self.person_info(id, approved)
     unless Person.exists?(id) then return nil end
 
     @person = Person.includes(:institution)
               .includes( {mentorships: [:institution, {mentor: [:institution]}] })
               .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
-              .where(:id => id).first
+              .where(:id => id, :approved => approved).first
 
-    @mentored = Mentorship.where(:mentor_id => id)
+    @mentored = Mentorship.where(:mentor_id => id, :approved => approved)
                 .includes(:institution)
                 .includes(person: :institution)
 
-    @supervised = Supervision.where(:supervisor_id => id)
+    @supervised = Supervision.where(:supervisor_id => id, :approved => approved)
                   .includes(degree: :institution)
                   .includes(person: :institution)
 
@@ -108,7 +108,7 @@ class Search
   def self.person(id)
     unless Person.exists?(id) then return nil end
 
-    @person_info = self.person_info(id)
+    @person_info = self.person_info(id, true)
 
     @mentorships_array = Array.new
     unless @person_info["person"].mentorships.blank?

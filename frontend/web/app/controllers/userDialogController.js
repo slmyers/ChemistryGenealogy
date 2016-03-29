@@ -84,16 +84,11 @@ angular.module('chemGeno')
        */
       $scope.registrationConfirmation = function() {
         $mdDialog.cancel();
-        /*
-        when/if the app is extended to provide mailer support one should
-        uncomment this line.
-        $mdToast.show(
-          $mdToast.simple()
-          .textContent("We'll contact you at " + $scope.registerUser.email + " upon account approval!")
-          .position('top right')
-          .hideDelay(3000)
-        );
-        */
+        $mdToast.show({
+          hideDelay   : 3000,
+          position    : 'top right',
+          templateUrl : '/app/views/toast-template.html'
+        });
       };
 
       /**
