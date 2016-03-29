@@ -84,7 +84,7 @@ class Verifier
     # false because we're using the search function to find unapproved person
     # information. False is handed to the :approved key in the where clause
     # for Search.person_info(id, approved)
-    @person = Search.person_info(person_id, false)
+    @person = Search.person_info(person_id)
 
     if @person["person"].approved == false
       @person["person"].approved = true

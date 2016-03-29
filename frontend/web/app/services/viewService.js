@@ -28,6 +28,7 @@ angular.module('chemGeno')
       header: 'Content-Type: application/json',
       method: 'GET',
       url: 'http://localhost:3000/api/aggregated/'+ id.toString(),
+      params: {approved: false}
     }).success(function (resp) {
       d.resolve(resp);
     }).error(function (resp) {

@@ -107,16 +107,35 @@ class Search
   # used to detail or "view" a person on the frontend.
   def self.person(id, approved)
     unless Person.exists?(id) then return nil end
-    puts approved
     @person_info = self.person_info(id)
-    
     if @person_info["person"] == nil
       return nil
     end
+
+    # be warned: the following nested if-elsif statements are ugly as sin
+    # but i'm experiencing a bug and don't have time for elegance
+
+    # TODO: the problem is that the approved value is a string and not a boolean
+    # so, write a helper method that returns true/false depending on the value
+    # of the string and then use the returned boolean value to query database
+    # instead of these nested if/elsif blocks of nasty 
+
     @mentorships_array = Array.new
     unless @person_info["person"].mentorships.blank?
       @person_info["person"].mentorships.each do |m|
-        unless approved == true && m.approved == false
+        if m.approved && approved == 'true'
+          @mentorship = {
+            'id' => m.id,
+            'start' => m.start,
+            'end' => m.end,
+            'institution' => m.institution,
+            'mentor' => {
+              'data' => m.mentor,
+              'institution' => m.mentor.institution
+            }
+          }
+          @mentorships_array.push(@mentorship)
+        elsif approved == 'false'
           @mentorship = {
             'id' => m.id,
             'start' => m.start,
@@ -135,7 +154,20 @@ class Search
     @supervision_array = Array.new
     unless @person_info["person"].supervisions.blank?
        @person_info["person"].supervisions.each do |s|
-        unless approved == true && s.approved == false
+        if s.approved && approved == 'true'
+          @supervision = {
+            'id' => s.id,
+            'degree' => {
+              'data' => s.degree,
+              'institution' => s.degree.institution
+            },
+            'supervisor' => {
+              'person' => s.supervisor,
+              'institution' => s.supervisor.institution
+            }
+          }
+          @supervision_array.push(@supervision)
+        elsif approved == 'false'
           @supervision = {
             'id' => s.id,
             'degree' => {
@@ -155,7 +187,19 @@ class Search
     @mentored_array = Array.new
     unless @person_info["mentored"].blank?
       @person_info["mentored"].each do |m|
-        unless approved == true && m.approved == false
+        if m.approved && approved == 'true'
+          @mentored_obj = {
+            'id' => m.id,
+            'start' => m.start,
+            'end' => m.end,
+            'institution' => m.institution,
+            'mentored' => {
+              'person' => m.person,
+              'institution' => m.person.institution
+              }
+            }
+          @mentored_array.push(@mentored_obj)
+        elsif approved == 'false'
           @mentored_obj = {
             'id' => m.id,
             'start' => m.start,
@@ -174,7 +218,20 @@ class Search
     @supervised_array = Array.new
     unless @person_info["supervised"].blank?
       @person_info["supervised"].each do |s|
-        unless approved == true && s.approved == false
+        if s.approved && approved == 'true'
+          @supervised_obj = {
+            'id' => s.id,
+            'degree' => {
+              'data' => s.degree,
+              'institution' => s.degree.institution
+            },
+            'person' => {
+              'data' => s.person,
+              'institution' => s.person.institution
+            }
+          }
+          @supervised_array.push(@supervised_obj)
+        elsif approved == 'false'
           @supervised_obj = {
             'id' => s.id,
             'degree' => {
