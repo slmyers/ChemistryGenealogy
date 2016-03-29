@@ -4,11 +4,17 @@
  * @constructor
  */
 
-
+// what is this???
 var util = require('util');
 
 describe('Search', function() {
 
+    it('has a login button', function() {
+      browser.get('http://localhost:5000/search');
+      expect(element(by.id('theMainLoginButton')).isPresent()).toBe(true);
+    });
+    /*
+    idk if you want to keep this stuff
     //Creates an instance of the LoginPage object, which holds most of the specific low level details of the tests.
     var searchPage = require('./SearchPage.js');
 
@@ -73,7 +79,5 @@ describe('Search', function() {
 
         expect(browser.getCurrentUrl.toBe('http://localhost:5000/view/7'));
 
-    });
-
-
+    }); */
 });
