@@ -11,8 +11,10 @@
         <a ui-sref="main.search" data-ui-sref-opts="{reload: true}"><b>Chemistry Genealogy</b></a>
       </span>
       <span flex="5"></span>
-      <span flex="3">
-        <md-icon md-svg-src="/static/img/ic_search_black_24px.svg" aria-label="search"></md-icon>
+      <span flex="3" ng-controller="personAutoController">
+        <div ng-if="showSearch()">
+          <md-icon md-svg-src="/static/img/ic_search_black_24px.svg" aria-label="search"></md-icon>
+        </div>
       </span>
       <span flex="40">
         <chemauto-complete type="person"></chemauto-complete>

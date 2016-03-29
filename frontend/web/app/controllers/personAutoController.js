@@ -6,13 +6,22 @@
  * through the search bar at the top of the main html file.
  * ideally this search would be able to execute in all states, but if the state !== main.search,
  * and we try to transition to main.search and then execute search some type of weird hanging behavior
- * is experienced. 
+ * is experienced.
  */
 angular.module('chemGeno')
 .controller('personAutoController', ['$scope', 'autoService', 'searchService', '$state', '$q',
 function($scope, autoService, searchService, $state) {
   $scope.selectedItem;
   $scope.searchText = '';
+
+  $scope.showSearch = function showSearch() {
+    if ($state.is('main.search')) {
+      console.log('true')
+      return true;
+    }
+    console.log('false')
+    return false;
+  }
 
   $scope.selectedItemChange = function selectedItemChange(item) {
     searchService.executeSearch('id', item.id);
