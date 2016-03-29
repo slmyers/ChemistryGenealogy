@@ -13,6 +13,7 @@ class Api::AggregatedController < ApiController
   # Retrives a person's information with GET to the frontend
   # @note currently uses the search module to get the information
   def show
+    Rails.logger.info(params)
     if params.has_key?(:id) && params.has_key?(:approved)
       @person = Search.person(params[:id], params[:approved])
       render :json => @person.to_json

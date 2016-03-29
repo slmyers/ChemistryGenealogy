@@ -80,36 +80,20 @@ class Search
   # if approved == nil then we will gather all information, good for notifications
   # @param id
   # @return hash contating the relationships
-  def self.person_info(id, approved)
+  def self.person_info(id)
     unless Person.exists?(id) then return nil end
-    if approved != nil
-      @person = Person.includes(:institution)
-                .includes( {mentorships: [:institution, {mentor: [:institution]}] })
-                .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
-                .where(:id => id, :approved => approved).first
+    @person = Person.includes(:institution)
+              .includes( {mentorships: [:institution, {mentor: [:institution]}] })
+              .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
+              .where(:id => id).first
 
-      @mentored = Mentorship.where(:mentor_id => id, :approved => approved)
-                  .includes(:institution)
+    @mentored = Mentorship.where(:mentor_id => id)
+                .includes(:institution)
+                .includes(person: :institution)
+
+    @supervised = Supervision.where(:supervisor_id => id)
+                  .includes(degree: :institution)
                   .includes(person: :institution)
-
-      @supervised = Supervision.where(:supervisor_id => id, :approved => approved)
-                    .includes(degree: :institution)
-                    .includes(person: :institution)
-    else
-      @person = Person.includes(:institution)
-                .includes( {mentorships: [:institution, {mentor: [:institution]}] })
-                .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
-                .where(:id => id).first
-
-      @mentored = Mentorship.where(:mentor_id => id)
-                  .includes(:institution)
-                  .includes(person: :institution)
-
-      @supervised = Supervision.where(:supervisor_id => id)
-                    .includes(degree: :institution)
-                    .includes(person: :institution)
-
-    end
 
     return {
       'person' => @person,
@@ -123,78 +107,87 @@ class Search
   # used to detail or "view" a person on the frontend.
   def self.person(id, approved)
     unless Person.exists?(id) then return nil end
-    if approved != nil
-      @person_info = self.person_info(id, approved)
-    else
-      @person_info = self.person_info(id, nil)
+    puts approved
+    @person_info = self.person_info(id)
+    
+    if @person_info["person"] == nil
+      return nil
     end
     @mentorships_array = Array.new
     unless @person_info["person"].mentorships.blank?
       @person_info["person"].mentorships.each do |m|
-        @mentorship = {
-          'id' => m.id,
-          'start' => m.start,
-          'end' => m.end,
-          'institution' => m.institution,
-          'mentor' => {
-            'data' => m.mentor,
-            'institution' => m.mentor.institution
+        unless approved == true && m.approved == false
+          @mentorship = {
+            'id' => m.id,
+            'start' => m.start,
+            'end' => m.end,
+            'institution' => m.institution,
+            'mentor' => {
+              'data' => m.mentor,
+              'institution' => m.mentor.institution
+            }
           }
-        }
-        @mentorships_array.push(@mentorship)
+          @mentorships_array.push(@mentorship)
+        end
       end
     end
 
     @supervision_array = Array.new
     unless @person_info["person"].supervisions.blank?
        @person_info["person"].supervisions.each do |s|
-        @supervision = {
-          'id' => s.id,
-          'degree' => {
-            'data' => s.degree,
-            'institution' => s.degree.institution
-          },
-          'supervisor' => {
-            'person' => s.supervisor,
-            'institution' => s.supervisor.institution
+        unless approved == true && s.approved == false
+          @supervision = {
+            'id' => s.id,
+            'degree' => {
+              'data' => s.degree,
+              'institution' => s.degree.institution
+            },
+            'supervisor' => {
+              'person' => s.supervisor,
+              'institution' => s.supervisor.institution
+            }
           }
-        }
-        @supervision_array.push(@supervision)
+          @supervision_array.push(@supervision)
+        end
       end
     end
 
     @mentored_array = Array.new
     unless @person_info["mentored"].blank?
       @person_info["mentored"].each do |m|
-        @mentored_obj = {
-          'id' => m.id,
-          'start' => m.start,
-          'end' => m.end,
-          'institution' => m.institution,
-          'mentored' => {
-            'person' => m.person,
-            'institution' => m.person.institution
+        unless approved == true && m.approved == false
+          @mentored_obj = {
+            'id' => m.id,
+            'start' => m.start,
+            'end' => m.end,
+            'institution' => m.institution,
+            'mentored' => {
+              'person' => m.person,
+              'institution' => m.person.institution
+              }
             }
-          }
-        @mentored_array.push(@mentored_obj)
+          @mentored_array.push(@mentored_obj)
+        end
       end
     end
 
     @supervised_array = Array.new
     unless @person_info["supervised"].blank?
       @person_info["supervised"].each do |s|
-        @supervised_obj = {
-          'id' => s.id,
-          'degree' => {
-            'data' => s.degree,
-            'institution' => s.degree.institution
-          },
-          'person' => {
-            'data' => s.person,
-            'institution' => s.person.institution
+        unless approved == true && s.approved == false
+          @supervised_obj = {
+            'id' => s.id,
+            'degree' => {
+              'data' => s.degree,
+              'institution' => s.degree.institution
+            },
+            'person' => {
+              'data' => s.person,
+              'institution' => s.person.institution
+            }
           }
-        }
-        @supervised_array.push(@supervised_obj)
+          @supervised_array.push(@supervised_obj)
+        end
       end
     end
 
