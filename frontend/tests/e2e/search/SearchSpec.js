@@ -13,6 +13,137 @@ describe('Search', function() {
       browser.get('http://localhost:5000/search');
       expect(element(by.id('theMainLoginButton')).isPresent()).toBe(true);
     });
+
+    it('has a search bar', function(){
+        browser.get('http://localhost:5000/search');
+        expect(element(by.id('peopleSearchInput')).isPresent()).toBe(true);
+
+
+    });
+
+    it('The search bar can accept text input and retains it', function(){
+        browser.get('http://localhost:5000/search');
+        //Enter "Todd" into the search bar.
+        element(by.id('peopleSearchInput')).sendKeys("Todd");
+
+        //Check that the search bar has the correct name in itself.
+        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+
+    });
+
+    it('Has a data visualization', function(){
+        browser.get('http://localhost:5000/search');
+        expect(element(by.id('dataVis')).isPresent()).toBe(true);
+    });
+
+
+    it('Has the search options displayed', function(){
+        browser.get('http://localhost:5000/search');
+        //Enter "Todd" into the search bar.
+        element(by.id('peopleSearchInput')).sendKeys("Todd");
+
+        //Check that the search bar has the correct name in itself.
+        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+
+
+        browser.waitForAngular();
+        expect(element(by.id('searchResultsArray')).isPresent()).toBe(true);
+        //searchResultsArray
+    });
+
+    it('Has a data visualization', function(){
+
+    });
+
+
+
+    /** LOGIN TESTS **/
+
+    it('Lets the login button be clicked and brings up the login prompt', function(){
+
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+        //userDialog
+
+    });
+
+
+    it('The user can enter their username and password', function(){
+
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+        //userDialog
+
+        //Enter data.
+        element(by.model('loginUser.email')).sendKeys("Todd");
+        element(by.model('loginUser.password')).sendKeys("Todd");
+
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("Todd");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("Todd");
+
+        //loginUser.email
+
+        //loginUser.password
+    });
+
+    it('The user can cancel their login process', function(){
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+        //userDialog
+
+        //Enter data.
+        element(by.model('loginUser.email')).sendKeys("Todd");
+        element(by.model('loginUser.password')).sendKeys("Todd");
+
+        //Check fields before hitting cancel button.
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("Todd");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("Todd");
+
+        //Now click cancel button.
+        element(by.id('loginCancelButton')).click();
+        expect(element(by.id('userDialog')).isPresent()).toBe(false);
+    });
+
+
+    it('The user can navigate to the registration page', function(){
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+        element(by.id('loginRegisterButton')).click();
+        expect(element(by.model('registerUser.email')).isPresent()).toBe(true);
+        expect(element(by.model('registerUser.password')).isPresent()).toBe(true);
+        expect(element(by.model('registerUser.firstName')).isPresent()).toBe(true);
+        expect(element(by.model('registerUser.lastName')).isPresent()).toBe(true);
+        //loginRegisterButton
+    });
+
+
+    it('The user can navigate to the registration page and then cancel', function(){
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+        element(by.id('loginRegisterButton')).click();
+        expect(element(by.model('registerUser.email')).isPresent()).toBe(true);
+        expect(element(by.model('registerUser.password')).isPresent()).toBe(true);
+        expect(element(by.model('registerUser.firstName')).isPresent()).toBe(true);
+        expect(element(by.model('registerUser.lastName')).isPresent()).toBe(true);
+
+
+        element(by.id('loginRegistrationCancelButton')).click();
+        expect(element(by.id('userDialog')).isPresent()).toBe(false);
+    });
+
+
     /*
     idk if you want to keep this stuff
     //Creates an instance of the LoginPage object, which holds most of the specific low level details of the tests.
