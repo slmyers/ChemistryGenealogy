@@ -11,4 +11,4 @@ These can be found [online](http://401chemistrygenealogy.github.io/) or in the [
 
 
 ####FRONTend docs are here:
-https://github.com/401ChemistryGenealogy/ChemistryGenealogy/tree/master/frontend/web/app/controllers/out
+https://github.com/401ChemistryGenealogy/ChemistryGenealogy/tree/master/out
