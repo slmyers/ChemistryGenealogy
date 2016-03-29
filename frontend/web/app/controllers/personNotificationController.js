@@ -8,6 +8,7 @@
 angular.module('chemGeno')
 .controller('personNotificationController', ['$scope', '$stateParams', 'verificationService', '$state',
 function($scope, $stateParams, verificationService, $state) {
+  /*
   // unpacking person parameter
   $scope.person = $stateParams.person.target.person;
   $scope.personInstitution = $stateParams.person.target.person_institution;
@@ -27,6 +28,7 @@ function($scope, $stateParams, verificationService, $state) {
    *
    * @method verifyPerson
    */
+   /*
   $scope.verifyPerson = function() {
     var paramObj = {person: $scope.person.id};
     var promise = verificationService.verifyInfo(paramObj);
@@ -43,6 +45,7 @@ function($scope, $stateParams, verificationService, $state) {
    *
    * @method rejectPerson
    */
+   /*
   $scope.rejectPerson = function() {
     var paramObj = {person: $scope.person.id};
     var promise = verificationService.deleteInfo(paramObj);
@@ -53,4 +56,5 @@ function($scope, $stateParams, verificationService, $state) {
       alert(error);
     });
   };
+  */
 }]);

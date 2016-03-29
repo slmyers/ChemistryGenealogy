@@ -2,7 +2,6 @@
 # This class is used to find unapproved information in the database and bundle
 # it in a manner that the frontend can parse effectively.
 class Notifier
-
   # helper class to gather all notifications
   def self.all_notifications
     return {

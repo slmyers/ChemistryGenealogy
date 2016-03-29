@@ -18,7 +18,6 @@ angular.module('chemGeno')
         method: 'GET',
         url: 'http://localhost:3000/api/notification',
     }).success(function (resp) {
-        console.log(resp)
         d.resolve(resp);
     }).error(function (resp) {
         console.log(resp);

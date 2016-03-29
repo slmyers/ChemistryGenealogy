@@ -3,6 +3,7 @@
  * @class viewController
  * @author Steven Myers
  * This controller does all that can be done with the view page.
+ * TODO: find bug that breaks on reload/refresh
  */
 
 

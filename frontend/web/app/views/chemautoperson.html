@@ -22,7 +22,9 @@
     ng-keypress="($event.charCode==13)?searchOnEnter(item):return">
 
     <md-item-template id="searchResultsArray">
-      {{item.name}}
+      <div class="autocompleteItem">
+        {{item.name}}
+      </div>
     </md-item-template>
   </md-autocomplete>
 </div>

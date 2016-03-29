@@ -1,10 +1,5 @@
 <!-- @author Steven Myers -->
 <style>
-  #viewNav{
-    height: 50%;
-    height: 50vh;
-    position: fixed;
-  }
   #viewContent{
     height: 100%;
     height: 100vh;
@@ -13,7 +8,7 @@
   }
 </style>
 <div ng-controller="viewController" layout="column" flex >
-  <section layout="row" id="viewNav">
+  <section layout="row">
       <md-sidenav class="md-sidenav-left md-whiteframe-z2"
         md-component-id="left"
         md-is-locked-open="$mdMedia('gt-sm')">
