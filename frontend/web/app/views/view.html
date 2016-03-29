@@ -1,44 +1,70 @@
 <!-- @author Steven Myers -->
-<div ng-controller="viewController" layout="column" flex>
-  <section layout="row" flex>
-      <md-sidenav flex class="md-sidenav-left md-whiteframe-z2"
+<style>
+  #viewNav{
+    height: 50%;
+    height: 50vh;
+    position: fixed;
+  }
+  #viewContent{
+    height: 100%;
+    height: 100vh;
+    position: fixed;
+    overflow: scroll;
+  }
+</style>
+<div ng-controller="viewController" layout="column" flex >
+  <section layout="row" id="viewNav">
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2"
         md-component-id="left"
         md-is-locked-open="$mdMedia('gt-sm')">
         <md-list-item>
-          <md-content class="md-padding">
+          <md-content ng-click="allDetails()">
             Full Details
           </md-content>
         </md-list-item>
         <md-list-item>
-          <md-content class="md-padding">
-            Mentors
+          <md-content ng-click="onlyMentorDetails()">
+            Postdocs
           </md-content>
         </md-list-item>
         <md-list-item>
-          <md-content class="md-padding">
+          <md-content ng-click="onlyMentoredDetails()">
             Mentored
           </md-content>
         </md-list-item>
         <md-list-item>
-          <md-content class="md-padding">
-            Supervisors
+          <md-content ng-click="onlySupervisorDetails()">
+            Degrees
           </md-content>
         </md-list-item>
         <md-list-item>
-          <md-content class="md-padding">
+          <md-content ng-click="onlySupervisedDetails()">
             Supervised
           </md-content>
         </md-list-item>
       </md-sidenav>
-      <div layout="column" style="width:80%;">
-        <md-content layout-padding>
-          <md-toolbar layout-align="center center" layout="column">
-            <div> {{data.person.data.name.toUpperCase()}} </div>
-            <div> {{data.person.data.position.toUpperCase()}} </div>
-            <div> {{data.person.institution.name.toUpperCase()}} </div>
-          </md-toolbar>
-        </md-content>
-        <view-mentors data="data.mentors"></view-mentors>
+      <div layout="column" style="width:80%;" id="viewContent">
+        <md-toolbar class="md-warn" layout-align="center center" layout="column" id="viewContentHeader">
+          <div> {{data.person.data.name.toUpperCase()}} </div>
+          <div> {{data.person.data.position.toUpperCase()}} </div>
+          <div> {{data.person.institution.name.toUpperCase()}} </div>
+        </md-toolbar>
+
+        <div ng-if="mentorDetails && data.mentors.length > 0">
+          <view-mentors data="data.mentors"></view-mentors>
+        </div>
+        <div ng-if="supervisorDetails && data.supervisors.length > 0">
+          <view-supervisors data="data.supervisors"></view-supervisors>
+        </div>
+        <div ng-if="supervisedDetails && data.supervised.length > 0">
+          <view-supervised data="data.supervised"></view-supervised>
+        </div>
+        <div ng-if="mentoredDetails && data.mentored.length > 0">
+          <view-mentored data="data.mentored"></view-mentored>
+        </div>
+        <!-- bad -->
+        <br><br><br><br><br>
+
      </div>
   </section>
 </div>

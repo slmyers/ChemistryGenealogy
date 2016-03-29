@@ -8,8 +8,11 @@ angular.module('chemGeno')
     scope: {
       data: '='
     },
-    // extend towards institutions and such, ie, /app/views/chemautoinstitution.html
-    // could exist one day.
-    templateUrl: '/app/views/viewMentored.html'
+    templateUrl: '/app/views/viewMentors.html',
+    controller: ['$scope', '$state', function($scope, $state) {
+      $scope.goNext = function(mentor) {
+        $state.go('main.view', {id: mentor.mentor.data.id});
+      }
+    }]
   }
 });
