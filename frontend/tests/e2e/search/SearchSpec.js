@@ -143,6 +143,281 @@ describe('Search', function() {
         expect(element(by.id('userDialog')).isPresent()).toBe(false);
     });
 
+    it('The user can fill the registration form out and submit their registration', function(){
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+        element(by.id('loginRegisterButton')).click();
+        expect(element(by.model('registerUser.email')).isPresent()).toBe(true);
+        expect(element(by.model('registerUser.password')).isPresent()).toBe(true);
+        expect(element(by.model('registerUser.firstName')).isPresent()).toBe(true);
+        expect(element(by.model('registerUser.lastName')).isPresent()).toBe(true);
+
+
+        element(by.id('loginRegistrationRegisterButton')).click();
+        //expect(element(by.id('userDialog')).isPresent()).toBe(false);
+    });
+
+    it('User can log into the system.', function(){
+
+        //pw:testPassword
+        //usr:testEmail@email.ca
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+        //Enter data.
+        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+        element(by.model('loginUser.password')).sendKeys("testPassword");
+
+        //Check the fields before hitting the login button.
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+
+        element(by.id('loginLoginButton')).click();
+        //loginSuccessButton
+
+        expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+
+
+    });
+
+    /**
+     * Also is being used to reset the webpage, need to instruct it to log out directly.
+     */
+    it('User can log out of the system', function(){
+        element(by.id('loginSuccessButton')).click();
+
+        element(by.id('theMainLogoutButton')).click();
+
+        browser.get('http://localhost:5000/search');
+        expect(element(by.id('theMainLoginButton')).isPresent()).toBe(true);
+    });
+
+
+    it('Administrator still has their logout button accessible', function(){
+
+        //pw:testPassword
+        //usr:testEmail@email.ca
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+        //Enter data.
+        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+        element(by.model('loginUser.password')).sendKeys("testPassword");
+
+        //Check the fields before hitting the login button.
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+
+        element(by.id('loginLoginButton')).click();
+        //loginSuccessButton
+
+        expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+    });
+
+
+    /**
+     * Also is being used to reset the webpage, need to instruct it to log out directly.
+     */
+    it('User can log out of the system', function(){
+        element(by.id('loginSuccessButton')).click();
+
+        element(by.id('theMainLogoutButton')).click();
+
+        browser.get('http://localhost:5000/search');
+        expect(element(by.id('theMainLoginButton')).isPresent()).toBe(true);
+    });
+
+
+
+    it('Administrator has access to the administrator only button still.', function(){
+
+
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+        element(by.model('loginUser.password')).sendKeys("testPassword");
+
+
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+
+        element(by.id('loginLoginButton')).click();
+
+
+        expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    });
+
+    /**
+     * Also is being used to reset the webpage, need to instruct it to log out directly.
+     */
+    it('Admin can log out of the system', function(){
+        element(by.id('loginSuccessButton')).click();
+
+        element(by.id('theMainLogoutButton')).click();
+
+        browser.get('http://localhost:5000/search');
+        expect(element(by.id('theMainLoginButton')).isPresent()).toBe(true);
+    });
+
+    it('Administrator has access to the search bar still.', function(){
+
+
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+        element(by.model('loginUser.password')).sendKeys("testPassword");
+
+
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+
+        element(by.id('loginLoginButton')).click();
+
+
+        expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+
+        expect(element(by.id('peopleSearchInput')).isPresent()).toBe(true);
+    });
+
+    /**
+     * Also is being used to reset the webpage, need to instruct it to log out directly.
+     */
+    it('Admin can log out of the system', function(){
+        element(by.id('loginSuccessButton')).click();
+
+        element(by.id('theMainLogoutButton')).click();
+
+        browser.get('http://localhost:5000/search');
+        expect(element(by.id('theMainLoginButton')).isPresent()).toBe(true);
+    });
+
+    it('Administrator has access to the display sstill.', function(){
+
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+        element(by.model('loginUser.password')).sendKeys("testPassword");
+
+
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+
+        element(by.id('loginLoginButton')).click();
+
+        expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+
+        expect(element(by.id('dataVis')).isPresent()).toBe(true);
+    });
+
+    /**
+     * Also is being used to reset the webpage, need to instruct it to log out directly.
+     */
+    it('Admin can log out of the system', function(){
+        element(by.id('loginSuccessButton')).click();
+
+        element(by.id('theMainLogoutButton')).click();
+
+        browser.get('http://localhost:5000/search');
+        expect(element(by.id('theMainLoginButton')).isPresent()).toBe(true);
+    });
+
+
+
+    it('Administrator can log into the system with special functionalities.', function(){
+
+
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+        element(by.model('loginUser.password')).sendKeys("testPassword");
+
+
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+
+        element(by.id('loginLoginButton')).click();
+
+
+        expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+        expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    });
+
+
+    /**
+     * Also is being used to reset the webpage, need to instruct it to log out directly.
+     */
+    it('Administrator can log out of the system', function(){
+        element(by.id('loginSuccessButton')).click();
+
+        element(by.id('theMainLogoutButton')).click();
+
+        browser.get('http://localhost:5000/search');
+        expect(element(by.id('theMainLoginButton')).isPresent()).toBe(true);
+    });
+
+    /** Odd synchronization bug, tests should work if that is fixed.
+
+    it('Administrator can navigate to administrator panel.', function(){
+
+        //pw:testPassword
+        //usr:testEmail@email.ca
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+        element(by.model('loginUser.password')).sendKeys("testPassword");
+
+
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+
+        element(by.id('loginLoginButton')).click();
+
+
+        expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+        expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+
+        element(by.id('adminOnlyButton')).click();
+        browser.waitForAngular();
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+
+    });
+
+
+
+    it('Administrator can navigate to the search page again and is still logged in.', function(){
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+
+        element(by.id('adminOnlyButton')).click();
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+    });**/
+
+
+    //adminOnlyButton
+
+
 
     /*
     idk if you want to keep this stuff
