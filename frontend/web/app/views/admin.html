@@ -39,9 +39,20 @@
       </md-list-item>
     </md-sidenav>
     <div layout="column" style="width:80%;" id="adminContent">
-      <div ng-if="personNotifications && data.person_notifications.length > 0">
-        <person-notifications data="data.person_notifications"></person-notifications>
-      </div>
+      <md-content flex layout-padding>
+        <div ng-if="personNotifications && data.person_notifications.length > 0">
+          <person-notifications data="data.person_notifications"></person-notifications>
+        </div>
+        <div ng-if="mentorshipNotifications && data.mentorship_notifications.length > 0">
+          <mentorship-notifications data="data.mentorship_notifications"></mentorship-notifications>
+        </div>
+        <div ng-if="supervisionNotifications && data.supervision_notifications.length > 0">
+          <supervision-notifications data="data.supervision_notifications"></supervision-notifications>
+        </div>
+      </md-content>
+
+      <!-- bad -->
+      <br><br><br><br><br>
     </div>
   </section>
 </div>

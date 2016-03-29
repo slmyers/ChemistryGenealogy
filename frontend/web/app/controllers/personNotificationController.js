@@ -8,6 +8,10 @@
 angular.module('chemGeno')
 .controller('personNotificationController', ['$scope', '$stateParams', 'verificationService', '$state',
 function($scope, $stateParams, verificationService, $state) {
+  $scope.gotoPerson = function(){
+    console.log('called');
+  }
+
   /*
   // unpacking person parameter
   $scope.person = $stateParams.person.target.person;

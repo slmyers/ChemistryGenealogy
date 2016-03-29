@@ -9,6 +9,6 @@ angular.module('chemGeno')
       data: '='
     },
     templateUrl: '/app/views/personNotifications.html',
-    controller: 'personNotificationController'
+    controller: 'personNotificationsController'
   }
 });

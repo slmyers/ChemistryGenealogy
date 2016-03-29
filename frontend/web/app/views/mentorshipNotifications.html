@@ -3,33 +3,31 @@ md-grid-tile-footer figcaption md-button {
   margin: 0;
   font-weight: 700;
   width: 100%;
-  text-align: center;
-}
-/* TODO: style the text */
-.gridContent {
-}
+  text-align: center; }
 </style>
-
 <md-grid-list
   md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
   md-row-height-gt-md="1:1" md-row-height="1:1"
   md-gutter="12px" md-gutter-gt-sm="8px">
 
   <md-grid-tile
-    style="background: #b9f6ca;"
+    style="background: #ffff8d"
     md-rowspan="1"
     md-colspan="1"
     md-colspan-sm="1"
-    ng-repeat="person in data">
-    <div layout ="column" class="gridContent">
-      <span>{{person.target.person.position}} {{person.target.person.name}}</span>
-      <span>{{person.target.person_institution.name}}</span>
+    ng-repeat="mentorship in data">
+    <div layout ="column">
+      <span>{{mentorship.mentor.person.name}} </span>
+      <span>  mentored </span>
+      <span>{{mentorship.mentored.person.name}}</span>
+      <span>{{mentorship.mentorship.institution.name}}</span>
+      <span>{{mentorship.mentorship.data.start}} - {{mentorship.mentorship.data.end}}</span>
     </div>
     <md-grid-tile-header layout-align="center center">
-      <md-button ng-click="gotoPerson()">view detail</md-button>
+      <md-button ng-click="viewMentorship()">view detail</md-button>
     </md-grid-tile-header>
     <md-grid-tile-footer layout-align="center center">
-      <md-button ng-click="gotoPerson()">dismiss</md-button>
+      <md-button ng-click="viewMentorship()">dismiss</md-button>
     </md-grid-tile-footer>
   </md-grid-tile>
 </md-grid-list>

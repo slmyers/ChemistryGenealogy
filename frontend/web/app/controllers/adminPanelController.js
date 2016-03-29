@@ -20,6 +20,16 @@ function($scope, adminPanelService, verificationService, $state) {
   //Invokes the function that loads the data into the admin panel.
   $scope.loadData();
 
+  $scope.loadTestData = function() {
+    var testArray = [];
+    for (var i = 0; i < 20; i++){
+      var item = {id: i};
+      testArray.push(item);
+    }
+    return testArray;
+  }
+
+  $scope.testData = $scope.loadTestData();
 
   $scope.allNotifications = function() {
     console.log('allNotifications called')
