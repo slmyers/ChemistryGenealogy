@@ -16,10 +16,8 @@ function($scope, autoService, searchService, $state) {
 
   $scope.showSearch = function showSearch() {
     if ($state.is('main.search')) {
-      console.log('true')
       return true;
     }
-    console.log('false')
     return false;
   }
 
