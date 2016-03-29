@@ -7,8 +7,8 @@
 
 
 angular.module('chemGeno')
-.controller('viewController', ['$scope', '$state', 'viewService', '$location', '$stateParams',
-function($scope, $state, viewService, $location, $stateParams) {
+.controller('viewController', ['$scope', '$state', 'viewService', '$stateParams',
+function($scope, $state, viewService, $stateParams) {
   //Keep the postdoc and degree information collapsed when the users first arrive at the page!
   $scope.mentorDetails = true;
   $scope.mentoredDetails = true;
@@ -62,4 +62,11 @@ function($scope, $state, viewService, $location, $stateParams) {
     $scope.supervisorDetails = true;
   }
 
+  $scope.gotoEdit = function(){
+    $state.go('main.edit', {id: $scope.data.person.data.id});
+  }
+
+  $scope.gotoHome = function(){
+    $state.go('main.search', {}, {reload:true});
+  }
 }]);
