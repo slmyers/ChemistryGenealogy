@@ -77,23 +77,39 @@ class Search
 
   # this function was extracted from self.person(id) and is called by
   # Notifier and Deleter. It is used to retrieve the relationships w.r.t
+  # if approved == nil then we will gather all information, good for notifications
   # @param id
   # @return hash contating the relationships
   def self.person_info(id, approved)
     unless Person.exists?(id) then return nil end
+    if approved != nil
+      @person = Person.includes(:institution)
+                .includes( {mentorships: [:institution, {mentor: [:institution]}] })
+                .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
+                .where(:id => id, :approved => approved).first
 
-    @person = Person.includes(:institution)
-              .includes( {mentorships: [:institution, {mentor: [:institution]}] })
-              .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
-              .where(:id => id, :approved => approved).first
-
-    @mentored = Mentorship.where(:mentor_id => id, :approved => approved)
-                .includes(:institution)
-                .includes(person: :institution)
-
-    @supervised = Supervision.where(:supervisor_id => id, :approved => approved)
-                  .includes(degree: :institution)
+      @mentored = Mentorship.where(:mentor_id => id, :approved => approved)
+                  .includes(:institution)
                   .includes(person: :institution)
+
+      @supervised = Supervision.where(:supervisor_id => id, :approved => approved)
+                    .includes(degree: :institution)
+                    .includes(person: :institution)
+    else
+      @person = Person.includes(:institution)
+                .includes( {mentorships: [:institution, {mentor: [:institution]}] })
+                .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
+                .where(:id => id).first
+
+      @mentored = Mentorship.where(:mentor_id => id)
+                  .includes(:institution)
+                  .includes(person: :institution)
+
+      @supervised = Supervision.where(:supervisor_id => id)
+                    .includes(degree: :institution)
+                    .includes(person: :institution)
+
+    end
 
     return {
       'person' => @person,
@@ -105,11 +121,13 @@ class Search
   # this class is different from relations_by_id, because it not only gathers
   # the relations, but also the information required to "fill" out these relations.
   # used to detail or "view" a person on the frontend.
-  def self.person(id)
+  def self.person(id, approved)
     unless Person.exists?(id) then return nil end
-
-    @person_info = self.person_info(id, true)
-
+    if approved != nil
+      @person_info = self.person_info(id, approved)
+    else
+      @person_info = self.person_info(id, nil)
+    end
     @mentorships_array = Array.new
     unless @person_info["person"].mentorships.blank?
       @person_info["person"].mentorships.each do |m|

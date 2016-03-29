@@ -13,10 +13,13 @@ class Api::AggregatedController < ApiController
   # Retrives a person's information with GET to the frontend
   # @note currently uses the search module to get the information
   def show
-    if params.has_key?(:id)
-      @person = Search.person(params[:id])
+    if params.has_key?(:id) && params.has_key?(:approved)
+      @person = Search.person(params[:id], params[:approved])
       render :json => @person.to_json
-    elsif
+    elsif params.has_key?(:id)
+      @person = Search.person(params[:id], nil)
+      render :json => @person.to_json
+    else
       render json: {warning: 'expected id param'}, status: 200
     end
 
