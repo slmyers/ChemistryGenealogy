@@ -2,7 +2,8 @@
  * @author Steven Myers
  */
 angular.module('chemGeno')
-.controller('adminPanelController', ['$scope', 'adminPanelService', 'verificationService', '$state',
+.controller('adminPanelController', ['$scope', 'adminPanelService', 'verificationService',
+'$state',
 function($scope, adminPanelService, verificationService, $state) {
   $scope.personNotifications = true;
   $scope.mentorshipNotifications = true;

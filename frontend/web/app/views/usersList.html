@@ -1,0 +1,12 @@
+<md-toolbar>
+  <div class="md-toolbar-tools" layout-align="center">
+    <div>Approved Users</div>
+  </div>
+</md-toolbar>
+<md-list>
+  <md-list-item ng-repeat="user in data" layout="row" layout-padding>
+    <p>{{user.first_name}} {{user.last_name}}</p>
+    <md-button class="md-raised md-primary" ng-click="makeAdmin(user)">make admin</md-button>
+    <md-button class="md-raised md-warn" ng-click="removeUser(user)">remove</md-button>
+  </md-list-item>
+</md-list>

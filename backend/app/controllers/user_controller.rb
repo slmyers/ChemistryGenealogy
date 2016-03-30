@@ -3,8 +3,16 @@
 class UserController < ApplicationController
   respond_to :json
 
+  #TODO: make less sloppy (joins etc)
   def index
-    render json: {warning: 'not implemented'}, status: 200
+    @admins = Admin.where('approved' => true)
+    @user_ids = Array.new
+    @admins.each do |a|
+      @user_ids.push(a.user_id)
+    end
+    @users = User.where('approved' => true)
+             .where.not('id' => @user_ids)
+    render json: @users, status: 200
   end
 
   # this is the registration endpoint
@@ -34,7 +42,16 @@ class UserController < ApplicationController
   end
 
   def destroy
-    render json: {warning: 'not implemented'}, status: 200
+    if params.has_key?(:id)
+      if User.exists?('id' => params[:id])
+        User.find(params[:id]).destroy
+        render json: {user_destroyed: params[:id]}, status: 200
+        return
+      end
+      render json: {user_not_exist: params[:id]}, status: 200
+    else
+      render json: {error: 'insufficient params'}, status: :bad_request
+    end
   end
 
 end

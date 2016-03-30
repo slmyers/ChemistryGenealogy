@@ -1,10 +1,17 @@
 <style>
   #userContent{
-    width:80%;
+    width: 80%;
     height: 100%;
     height: 100vh;
     position: fixed;
     overflow: scroll;
+  }
+
+  #userList{
+    padding-left: 10%;
+    padding-top: 2%;
+    width: 600px;
+    padding-bottom: 5%;
   }
 </style>
 
@@ -14,7 +21,7 @@
       md-component-id="left"
       md-is-locked-open="$mdMedia('gt-sm')">
       <md-list-item>
-        <md-content ng-click="userNotifications()">
+        <md-content ng-click="userNotifs()">
           User Notifications
         </md-content>
       </md-list-item>
@@ -29,16 +36,17 @@
         </md-content>
       </md-list-item>
     </md-sidenav>
-    <div layout="column" id="userContent">
-      <md-content flex layout-padding>
-        <div ng-if="userNotifications">
-          <user-notifications data="userData"></user-notifications>
-        </div>
-      </md-content>
-      <div layout-align="center center" flex>
-        <md-content layout-align="center">
+    <div id="userContent">
+      <div layout="column">
+        <md-content flex layout-padding>
+          <div ng-if="userNotifications">
+            <user-notifications data="userData"></user-notifications>
+          </div>
         </md-content>
       </div>
+      <md-content ng-if="userInfo" id="userList" layout-padding>
+        <md-card><users-list data="users"></users-list></md-card>
+      </md-content>
     </div>
   </section>
 </div>

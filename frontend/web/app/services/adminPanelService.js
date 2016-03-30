@@ -24,9 +24,43 @@ angular.module('chemGeno')
         d.reject(resp.error);
     });
     return d.promise;
-  }
+  };
+
+  var getUsers = function() {
+    if (!loginService.isAdmin()) {
+      return null;
+    }
+    var d = $q.defer();
+    return $http({
+      method: 'GET',
+      url: 'http://localhost:3000/user'
+    }).success(function(res){
+      d.resolve(res);
+    }).error(function(res){
+      d.reject(res);
+    });
+    return d.promise;
+  };
+
+  var getAdmins = function() {
+    if (!loginService.isAdmin()) {
+      return null;
+    }
+    var d = $q.defer();
+    return $http({
+      method: 'GET',
+      url: 'http://localhost:3000/admins'
+    }).success(function(res){
+      d.resolve(res);
+    }).error(function(res){
+      d.reject(res);
+    });
+    return d.promise;
+  };
 
   return {
-    loadNotifications: loadNotifications
+    loadNotifications: loadNotifications,
+    getUsers: getUsers,
+    getAdmins: getAdmins
   }
 });

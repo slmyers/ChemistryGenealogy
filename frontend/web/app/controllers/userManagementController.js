@@ -4,15 +4,31 @@
 
 angular.module('chemGeno')
 .controller('userManagementController', ['$scope', '$stateParams', 'verificationService',
-function($scope, $stateParams, verificationService) {
+'adminPanelService', '$q',
+function($scope, $stateParams, verificationService, adminPanelService, $q)  {
+  // user notifications are sent in params
+  // TODO: refactor and only call for user notifications in this state
   $scope.userData = $stateParams.userNotifications;
-  console.log($scope.userData)
-
   $scope.userNotifications = true;
   $scope.userInfo = false;
   $scope.adminInfo = false;
 
-  $scope.userNotifications = function() {
+  $scope.loadData = function() {
+    var promises = {
+      usersPromise: adminPanelService.getUsers(),
+      adminsPromise: adminPanelService.getAdmins()
+    }
+    $q.all(promises).then(function(values) {
+      $scope.users = values.usersPromise.data;
+      $scope.admins = values.adminsPromise.data;
+    });
+  }
+  $scope.loadData();
+
+
+
+
+  $scope.userNotifs = function() {
     $scope.userNotifications = true;
     $scope.userInfo = false;
     $scope.adminInfo = false;

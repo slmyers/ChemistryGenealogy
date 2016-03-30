@@ -23,9 +23,7 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
     $q.all(promises).then(function(values) {
       $scope.supervisor = values.supervisorPromise.data;
       $scope.supervised = values.supervisedPromies.data;
-      console.log('supervisor');
       console.log($scope.supervisor);
-      console.log('supervised');
       console.log($scope.supervised);
     });
   }

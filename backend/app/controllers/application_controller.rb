@@ -33,6 +33,15 @@ class ApplicationController < ActionController::API
     raise NotAuthenticatedError
   end
 
+  # used to check if current_user is an admin
+  def is_admin?
+    @admin = Admin.find_by(:user_id => @current_user.id, :approved => true)
+    unless @admin.blank?
+      return true
+    end
+    raise NotAuthenticatedError
+  end
+
   private
 
   # Authentication Related Helper Methods
@@ -55,14 +64,7 @@ class ApplicationController < ActionController::API
                          end
   end
 
-  # used to check if current_user is an admin
-  def is_admin?
-    @admin = Admin.find_by(:user_id => @current_user.id, :approved => true)
-    unless @admin.blank?
-      return true
-    end
-    raise NotAuthenticatedError
-  end
+
 
   # Helper Methods for responding to errors
   # ------------------------------------------------------------
