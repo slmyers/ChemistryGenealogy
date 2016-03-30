@@ -23,6 +23,7 @@ angular.module('chemGeno')
 
   /* used to view unapproved information */
   var getPerson = function(id) {
+    console.log(id)
     var d = $q.defer();
     return $http({
       header: 'Content-Type: application/json',

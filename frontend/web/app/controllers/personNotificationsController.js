@@ -6,9 +6,9 @@
  */
 
 angular.module('chemGeno')
-.controller('personNotificationsController', ['$scope', '$stateParams', 'verificationService', '$state',
-function($scope, $stateParams, verificationService, $state) {
-  $scope.gotoPerson = function(){
-    console.log('called');
+.controller('personNotificationsController', ['$scope', 'verificationService', '$state',
+function($scope, verificationService, $state) {
+  $scope.gotoPerson = function(person){
+    $state.go('main.personNotification', {personId: person.target.person.id})
   }
 }]);

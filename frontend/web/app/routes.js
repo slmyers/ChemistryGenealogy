@@ -36,9 +36,8 @@ angular.module('chemGeno')
     templateUrl: '/app/views/auditTrail.html'
   })
   .state('main.personNotification', {
-    url: '/personNotification',
-    templateUrl: 'app/views/personNotification.html',
-    params: {person: null},
+    url: '/personNotification/person/:personId',
+    templateUrl: 'app/views/personNotification.html'
   })
   .state('main.mentorshipNotification', {
     url: '/mentorshipNotification/mentor/:mentorId/mentee/:menteeId/mentorship/:mentorshipId',
