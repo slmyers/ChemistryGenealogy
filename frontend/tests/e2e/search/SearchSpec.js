@@ -3466,6 +3466,36 @@ describe('Search', function() {
     });
 
 
+    it('Check that there is a visible mentored section. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+
+
+        expect(element(by.id('adminMentorshipDetailMenteeInstitution')).isPresent()).toBe(true);
+
+        expect(element(by.id('adminMentorshipDetailMenteeInstitution')).getText()).toEqual("university of alberta");
+
+
+    });
+
+
+    it('Check that there is a visible mentored section. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+
+
+        expect(element(by.id('adminMentorshipDetailMenteeInstitution')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageMentoredName2')).getText()).toEqual("mentored by x");
+
+
+    });
+
+
+    //viewPageMentoredName2
+
     //adminMentorshipDetailMenteeName
 
 
