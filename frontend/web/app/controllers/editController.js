@@ -322,6 +322,9 @@ angular.module('chemGeno')
              * @param superDegYear year earned
              * @param superDegInst institution earned from
              * @method addSuperDegInstance
+             *
+             * //
+             <md-button ng-click="addSuperDegInstance(superDegNameOfPerson,superDegCurrPosition,superDegCurrInst,superDegDegType,superDegYear,superDegInst
              */
             $scope.addSuperDegInstance = function(superDegNameOfPerson, superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst){
                 var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson, superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst);
@@ -1061,7 +1064,8 @@ angular.module('chemGeno')
              */
 
             function SubmissionPageModelObject(firstName, lastName, currentPositionTitle,
-                                               currentInstitutionName, postDocInformation, degreeInformation)
+                                               currentInstitutionName, postDocInformation,  degreeInformation,
+                                               superDegInformation, superDocInformation)
             {
                 //Single units of data for this object.
                 //this.firstName = firstName;
@@ -1083,6 +1087,10 @@ angular.module('chemGeno')
                 //Now the arrays.
                 this.postDocInformation = postDocInformation;
                 this.degreeInformation = degreeInformation;
+
+                //Now the super degree and super postdoc information.
+                this.superDegInformation = superDegInformation;
+                this.superDocInformation = superDocInformation;
             }
 
             $scope.submitPageObject= null;
@@ -1208,7 +1216,7 @@ angular.module('chemGeno')
                 //Create the new object for the submission page.
                 var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
                     $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation,
-                    $scope.degreeInformation);
+                    $scope.degreeInformation, $scope.superDegInformation, $scope.superDocInformation);
 
                 $scope.submitPageObject = newSubmitObject;
 

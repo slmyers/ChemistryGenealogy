@@ -2,7 +2,7 @@
 <md-card>
   <md-card-title>
     <md-card-title-text>
-      <span class="md-headline">Supervised</span>
+      <span class="md-headline" id="viewPageSupervisedBox">Supervised</span>
     </md-card-title-text>
   </md-card-title>
 <md-list layout="row">
@@ -11,11 +11,11 @@
       <a>
       <md-card ng-click="goNext(supervised)">
         <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">{{supervised.person.data.name}}</span>
-            <span class="md-subhead">{{supervised.degree.institution.name}}</span>
-            <span class="md-subhead">{{supervised.degree.data.degree_type}}</span>
-            <span class="md-subhead">{{supervised.degree.data.year}}</span>
+          <md-card-title-text id="viewPageSupervisedCardInfo">
+            <span class="md-headline" id="viewPageSupervisedName">{{supervised.person.data.name}}</span>
+            <span class="md-subhead" id="viewPageSupervisedInstitution">{{supervised.degree.institution.name}}</span>
+            <span class="md-subhead" id="viewPageSupervisedDegreeType">{{supervised.degree.data.degree_type}}</span>
+            <span class="md-subhead" id="viewPageSupervisedYear">{{supervised.degree.data.year}}</span>
           </md-card-title-text>
         </md-card-title>
       </md-card>
@@ -25,10 +25,10 @@
       <md-card>
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">{{supervised.person.data.name}}</span>
-            <span class="md-subhead">{{supervised.degree.institution.name}}</span>
-            <span class="md-subhead">{{supervised.degree.data.degree_type}}</span>
-            <span class="md-subhead">{{supervised.degree.data.year}}</span>
+            <span class="md-headline" id="viewPageSupervisedCardInfo2">{{supervised.person.data.name}}</span>
+            <span class="md-subhead" id="viewPageSupervisedInstitution2">{{supervised.degree.institution.name}}</span>
+            <span class="md-subhead" id="viewPageSupervisedDegreeType2">{{supervised.degree.data.degree_type}}</span>
+            <span class="md-subhead" id="viewPageSupervisedYear2">{{supervised.degree.data.year}}</span>
           </md-card-title-text>
         </md-card-title>
       </md-card>

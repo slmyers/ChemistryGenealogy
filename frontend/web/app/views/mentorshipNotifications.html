@@ -17,14 +17,14 @@ md-grid-tile-footer figcaption md-button {
     md-colspan-sm="1"
     ng-repeat="mentorship in data">
     <div layout ="column">
-      <span>{{mentorship.mentor.person.name}} </span>
+      <span id="adminPanelMentorshipMentorName">{{mentorship.mentor.person.name}} </span>
       <span>  mentored </span>
-      <span>{{mentorship.mentored.person.name}}</span>
-      <span>{{mentorship.mentorship.institution.name}}</span>
-      <span>{{mentorship.mentorship.data.start}} - {{mentorship.mentorship.data.end}}</span>
+      <span id="adminPanelMentorshipMentoredPersonName">{{mentorship.mentored.person.name}}</span>
+      <span id="adminPanelMentorshipInstitutionName">{{mentorship.mentorship.institution.name}}</span>
+      <span id="adminPanelMentorshipYearsName">{{mentorship.mentorship.data.start}} - {{mentorship.mentorship.data.end}}</span>
     </div>
     <md-grid-tile-footer layout-align="center center">
-      <md-button ng-click="viewMentorship(mentorship)">view detail</md-button>
+      <md-button id="adminPanelViewDetailButton" ng-click="viewMentorship(mentorship)">view detail</md-button>
     </md-grid-tile-footer>
   </md-grid-tile>
 </md-grid-list>

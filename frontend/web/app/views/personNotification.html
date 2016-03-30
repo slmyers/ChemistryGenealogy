@@ -14,57 +14,57 @@
         md-is-locked-open="$mdMedia('gt-sm')">
         <md-list-item>
           <md-content layout-padding layout="row">
-            <md-button class="md-raised md-primary" ng-click="verifyPerson()">
+            <md-button id="adminPersonApproveButton" class="md-raised md-primary" ng-click="verifyPerson()">
               Approve
             </md-button class="md-raised md-primary">
-            <md-button class="md-raised md-primary" ng-click="rejectPerson()">
+            <md-button id="adminPersonRejectButton" class="md-raised md-primary" ng-click="rejectPerson()">
               Reject
             </md-button class="md-raised md-primary">
           </md-content>
         </md-list-item>
         <md-list-item>
-          <md-content ng-click="allDetails()">
+          <md-content id="adminPersonFullDetailsOnlyButton" ng-click="allDetails()">
             Full Details
           </md-content>
         </md-list-item>
         <md-list-item>
-          <md-content ng-click="onlyMentorDetails()">
+          <md-content id="adminPersonPostDocsOnlyDetailsButton" ng-click="onlyMentorDetails()">
             Postdocs
           </md-content>
         </md-list-item>
         <md-list-item>
-          <md-content ng-click="onlyMentoredDetails()">
+          <md-content id="adminPersonMentoredOnlyDetailsButton" ng-click="onlyMentoredDetails()">
             Mentored
           </md-content>
         </md-list-item>
         <md-list-item>
-          <md-content ng-click="onlySupervisorDetails()">
+          <md-content id="adminPersonDegreesOnlyDetailsButton" ng-click="onlySupervisorDetails()">
             Degrees
           </md-content>
         </md-list-item>
         <md-list-item>
-          <md-content ng-click="onlySupervisedDetails()">
+          <md-content id="adminPersonSupervisedOnlyDetailsButton" ng-click="onlySupervisedDetails()">
             Supervised
           </md-content>
         </md-list-item>
       </md-sidenav>
       <div layout="column" style="width:80%;" id="viewContent">
         <md-toolbar class="md-warn" layout-align="center center" layout="column" id="viewContentHeader">
-          <div> {{data.person.data.name.toUpperCase()}} </div>
-          <div> {{data.person.data.position.toUpperCase()}} </div>
-          <div> {{data.person.institution.name.toUpperCase()}} </div>
+          <div id="adminPersonNameName"> {{data.person.data.name.toUpperCase()}} </div>
+          <div id="adminPersonPosition"> {{data.person.data.position.toUpperCase()}} </div>
+          <div id="adminPersonInstitution"> {{data.person.institution.name.toUpperCase()}} </div>
         </md-toolbar>
 
-        <div ng-if="mentorDetails && data.mentors.length > 0">
+        <div id="adminPersonPostDocsSection" ng-if="mentorDetails && data.mentors.length > 0">
           <view-mentors data="data.mentors" links="false"></view-mentors>
         </div>
-        <div ng-if="supervisorDetails && data.supervisors.length > 0">
+        <div id="adminPersonSupervisorsSection" ng-if="supervisorDetails && data.supervisors.length > 0">
           <view-supervisors data="data.supervisors" links="false"></view-supervisors>
         </div>
-        <div ng-if="supervisedDetails && data.supervised.length > 0">
+        <div id="adminPersonSupervisedSection" ng-if="supervisedDetails && data.supervised.length > 0">
           <view-supervised data="data.supervised" links="false"></view-supervised>
         </div>
-        <div ng-if="mentoredDetails && data.mentored.length > 0">
+        <div id="adminPersonMentoredSection" ng-if="mentoredDetails && data.mentored.length > 0">
           <view-mentored data="data.mentored" links="false"></view-mentored>
         </div>
         <!-- bad -->

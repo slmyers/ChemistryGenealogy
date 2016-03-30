@@ -13,41 +13,41 @@
       md-component-id="left"
       md-is-locked-open="$mdMedia('gt-sm')">
       <md-list-item>
-        <md-content ng-click="allNotifications()">
+        <md-content id="adminPanelAllButton" ng-click="allNotifications()">
           All Notifications
         </md-content>
       </md-list-item>
       <md-list-item>
-        <md-content ng-click="people()">
+        <md-content id="adminPanelPersonsButton" ng-click="people()">
           Person Notifications
         </md-content>
       </md-list-item>
       <md-list-item>
-        <md-content ng-click="mentorships()">
+        <md-content id="adminPanelMentorshipsButton"  ng-click="mentorships()">
           Mentorship Notifications
         </md-content>
       </md-list-item>
       <md-list-item>
-        <md-content ng-click="supervisions()">
+        <md-content id="adminPanelSupervisionsButton" ng-click="supervisions()">
           Supervision Notifications
         </md-content>
       </md-list-item>
       <md-list-item>
-        <md-content ng-click="manageUsers()">
+        <md-content id="adminPanelUserManagementButton" ng-click="manageUsers()">
           User Management
         </md-content>
       </md-list-item>
     </md-sidenav>
     <div layout="column" style="width:80%;" id="adminContent">
       <md-content flex layout-padding>
-        <div ng-if="personNotifications && data.person_notifications.length > 0">
-          <person-notifications data="data.person_notifications"></person-notifications>
+        <div id="AdminPanelPersonNotificationsGeneral" ng-if="personNotifications && data.person_notifications.length > 0">
+          <person-notifications id="individualPersonNotification" data="data.person_notifications"></person-notifications>
         </div>
-        <div ng-if="mentorshipNotifications && data.mentorship_notifications.length > 0">
-          <mentorship-notifications data="data.mentorship_notifications"></mentorship-notifications>
+        <div id="AdminPanelMentorshipNotificationsGeneral" ng-if="mentorshipNotifications && data.mentorship_notifications.length > 0">
+          <mentorship-notifications id="individualMentorshipNotification" data="data.mentorship_notifications"></mentorship-notifications>
         </div>
-        <div ng-if="supervisionNotifications && data.supervision_notifications.length > 0">
-          <supervision-notifications data="data.supervision_notifications"></supervision-notifications>
+        <div id="AdminPanelSupervisionNotificationsGeneral" ng-if="supervisionNotifications && data.supervision_notifications.length > 0">
+          <supervision-notifications id="individualSupervisionNotification" data="data.supervision_notifications"></supervision-notifications>
         </div>
       </md-content>
 
