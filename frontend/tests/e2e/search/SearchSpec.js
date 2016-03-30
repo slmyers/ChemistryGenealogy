@@ -1039,16 +1039,462 @@ describe('Search', function() {
     //
     //});
 
+    //
+    //
+    //it('Confirm that view page postdocs mentor name information is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageSupervisedYear')).getText()).toEqual("2008");
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPagePostdocsMentorName')).getText()).toEqual("mentored by david bundle");
+    //
+    //});
+
+    /**
+     * I am breaking from the current example because I lack any sort of "mentored" information for the running
+     * sample data example.
+     */
 
 
-    it('Confirm that view page postdocs mentor name information is as expected', function() {
+    //it('Confirm that view page viewPageMentoredName information is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageMentoredName')).getText()).toEqual("todd lowary");
+    //
+    //});
+
+
+
+    //it('Confirm that view page viewPageMentoredName information is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageMentoredYears')).getText()).toEqual("1993 - 1995");
+    //
+    //});
+    //
+    //it('Confirm that view page viewPageMentoredName information is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageMentoredInstitution')).getText()).toEqual("university of alberta");
+    //
+    //});
+
+
+    /**
+     * View page navigation. Does it traverse properly?
+     */
+
+
+    //it('Can traverse through view page to degrees page', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('viewSupervisorCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/3');
+    //});
+    //
+    //it('Can traverse through view page to postdocs link page', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('viewPagePostDocsCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //});
+
+    //it('Can traverse through view page to postdocs link page', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/2');
+    //});
+
+    /**
+     * Check that the view page filters work.
+     */
+
+    //
+    //it('Check that the view page\'s full detail button is present', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //    expect(element(by.id('viewPageAllDetailsButton')).isPresent()).toBe(true);
+    //});
+
+    //
+    //it('Check that the view page\'sviewPageMentorDetailsButton button is present', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //    expect(element(by.id('viewPageMentorDetailsButton')).isPresent()).toBe(true);
+    //});
+
+    //it('Check that the view page\'s viewPageMentoredDetailsButton button is present', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //    expect(element(by.id('viewPageMentoredDetailsButton')).isPresent()).toBe(true);
+    //});
+    //
+
+    //
+    //it('Check that the view page\'s viewPageSupervisorDetailsButton button is present', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //    expect(element(by.id('viewPageSupervisorDetailsButton')).isPresent()).toBe(true);
+    //});
+
+
+    //it('Check that the view page\'s viewPageSupervisedDetailsButton button is present', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //});
+    //
+    //
+    //it('Check that the view page\'s viewPageGoToEditButton button is present', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //    expect(element(by.id('viewPageGoToEditButton')).isPresent()).toBe(true);
+    //});
+
+
+
+    //it('Check that the view page\'s viewPageGoToEditButton button is present', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //    expect(element(by.id('viewPageGoToHomeButton')).isPresent()).toBe(true);
+    //});
+
+
+
+
+    it('Check that the view page\'s viewPage postdocs (only) button works ', function() {
 
         browser.get('http://localhost:5000/search');
         //Enter "Todd" into the search bar.
-        element(by.id('peopleSearchInput')).sendKeys("Todd");
+        element(by.id('peopleSearchInput')).sendKeys("David");
 
         //Check that the search bar has the correct name in itself.
-        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
 
 
         expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
@@ -1062,18 +1508,50 @@ describe('Search', function() {
 
         element.all(by.id('searchDetailedInfoTarget')).first().click();
 
-        expect(element(by.id('viewPageSupervisedYear')).getText()).toEqual("2008");
 
         expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
 
-        expect(element(by.id('viewPagePostdocsMentorName')).getText()).toEqual("mentored by david bundle");
+        //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+
+        expect(element(by.id('viewPageMentorDetailsButton')).isPresent()).toBe(true);
+        element.all(by.id('viewPageMentorDetailsButton')).first().click();
+
+
+        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(true);
+        expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(true);
+        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(true);
+        expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(true);
+        expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(true);
+        expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+
+        expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(false);
+
+        expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageDegreesDegreeInstitution')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageDegreesSupervisorName')).isPresent()).toBe(false);
+        expect(element(by.id('')).isPresent()).toBe(false);
+        expect(element(by.id('')).isPresent()).toBe(false);
+
 
     });
 
 
-
-
-
+    //1993 - 1995
 
 
     //viewPageMentoredYears
