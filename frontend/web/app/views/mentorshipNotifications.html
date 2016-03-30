@@ -23,11 +23,8 @@ md-grid-tile-footer figcaption md-button {
       <span>{{mentorship.mentorship.institution.name}}</span>
       <span>{{mentorship.mentorship.data.start}} - {{mentorship.mentorship.data.end}}</span>
     </div>
-    <md-grid-tile-header layout-align="center center">
-      <md-button ng-click="viewMentorship(mentorship)">view detail</md-button>
-    </md-grid-tile-header>
     <md-grid-tile-footer layout-align="center center">
-      <md-button ng-click="viewMentorship()">dismiss</md-button>
+      <md-button ng-click="viewMentorship(mentorship)">view detail</md-button>
     </md-grid-tile-footer>
   </md-grid-tile>
 </md-grid-list>

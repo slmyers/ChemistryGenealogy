@@ -1,5 +1,5 @@
 # @author Steven Myers
-# the autocomplete class is tested against data in /lib/tasks/test_data.rake 
+# the autocomplete class is tested against data in /lib/tasks/test_data.rake
 describe AutoComplete do
   it "is instantiable" do
     @auto = AutoComplete.new
@@ -9,8 +9,8 @@ describe AutoComplete do
   it "any empty string will return all people" do
     @res = AutoComplete.find_names('')
     @count = @res.length
-    @people_count = Person.count
-    expect(@people_count == @count).to be(true)
+    @people_count = Person.where('approved' => true)
+    expect(@people_count.length == @count).to be(true)
   end
 
   it "no will return 1 result" do

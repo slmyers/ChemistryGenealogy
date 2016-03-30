@@ -47,4 +47,9 @@ angular.module('chemGeno')
     url: '/supervisionNotification/supervisor/:supervisorId/supervised/:supervisedId/supervision/:supervisionId',
     templateUrl: 'app/views/supervisionNotification.html'
   })
+  .state('main.userManagement', {
+    url: '/admin/userManagement',
+    templateUrl: 'app/views/userManagement.html',
+    params: {userNotifications: null, adminNotifications: null}
+  })
 });

@@ -60,6 +60,10 @@ function($scope, adminPanelService, verificationService, $state) {
   }
 
   $scope.manageUsers = function() {
-    $state.go('main.userManagement', {users: $scope.data.user_notifications});
+    $state.go('main.userManagement',
+      {
+        userNotifications: $scope.data.user_notifications,
+        adminNotifications: $scope.data.admin_notifications
+      });
   }
 }]);

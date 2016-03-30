@@ -11,20 +11,17 @@ md-grid-tile-footer figcaption md-button {
   md-gutter="12px" md-gutter-gt-sm="8px">
 
   <md-grid-tile
-    style="background: #ff80ab;"
+    style="background: #84ffff;"
     md-rowspan="1"
     md-colspan="1"
     md-colspan-sm="1"
-    ng-repeat="supervision in data">
+    ng-repeat="user in data">
     <div layout ="column">
-      <span>{{supervision.supervisor.person.name}} </span>
-      <span>supervised</span>
-      <span>{{supervision.supervised.person.name}}</span>
-      <span>{{supervision.supervision.institution.name}}</span>
-      <span>{{supervision.supervision.degree.degree_type}} - {{supervision.supervision.degree.year}}</span>
+      <span>{{user.first_name}} {{user.last_name}}</span>
+      <span>{{user.email}}</span>
     </div>
     <md-grid-tile-footer layout-align="center center">
-      <md-button ng-click="viewSupervision(supervision)">view detail</md-button>
+      <md-button ng-click="approveUser(user, $index)">Approve</md-button>
     </md-grid-tile-footer>
   </md-grid-tile>
 </md-grid-list>
