@@ -22,11 +22,11 @@ md-grid-tile-footer figcaption md-button {
     md-colspan-sm="1"
     ng-repeat="person in data">
     <div layout ="column" class="gridContent">
-      <span>{{person.target.person.position}} {{person.target.person.name}}</span>
-      <span>{{person.target.person_institution.name}}</span>
+      <span id="adminPanelPersonPositionAndName">{{person.target.person.position}} {{person.target.person.name}}</span>
+      <span id="adminPanelPersonInstitution">{{person.target.person_institution.name}}</span>
     </div>
     <md-grid-tile-footer layout-align="center center">
-      <md-button ng-click="gotoPerson(person)">view detail</md-button>
+      <md-button id="adminPanelPersonViewDetailButton" ng-click="gotoPerson(person)">view detail</md-button>
     </md-grid-tile-footer>
   </md-grid-tile>
 </md-grid-list>

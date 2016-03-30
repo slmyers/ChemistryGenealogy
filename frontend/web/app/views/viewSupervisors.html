@@ -2,7 +2,7 @@
 <md-card>
   <md-card-title>
     <md-card-title-text>
-      <span class="md-headline">Degrees</span>
+      <span class="md-headline" id="viewPageDegreesBox">Degrees</span>
     </md-card-title-text>
   </md-card-title>
 <md-list layout="row">
@@ -11,11 +11,11 @@
       <a>
       <md-card ng-click="goNext(supervisor)">
         <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">{{supervisor.degree.data.degree_type}}</span>
-            <span class="md-subhead">{{supervisor.degree.data.year}}</span>
-            <span class="md-subhead">{{supervisor.degree.institution.name}}</span>
-            <span class="md-subhead">supervised by {{supervisor.supervisor.person.name}}</span>
+          <md-card-title-text id="viewSupervisorCardInfo">
+            <span class="md-headline" id="viewPageDegreesDegreeType">{{supervisor.degree.data.degree_type}}</span>
+            <span class="md-subhead" id="viewPageDegreesDegreeYear">{{supervisor.degree.data.year}}</span>
+            <span class="md-subhead" id="viewPageDegreesDegreeInstitution">{{supervisor.degree.institution.name}}</span>
+            <span class="md-subhead" id="viewPageDegreesSupervisorName">supervised by {{supervisor.supervisor.person.name}}</span>
           </md-card-title-text>
         </md-card-title>
       </md-card>
