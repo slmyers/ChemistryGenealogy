@@ -597,9 +597,451 @@ describe('Search', function() {
     //    expect(element(by.id('viewPageTopBar')).isPresent()).toBe(true);
     //
     //});
+    //
+    //
+    //it('Confirm that upon navigation to the view pages name shown is correct', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    //expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoTarget')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //    expect(element(by.id('viewPageTopBarName')).getText()).toEqual("TODD LOWARY");
+    //
+    //});
+    //
+    //it('Confirm that upon navigation to the view pages name shown is correct', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageTopBarPosition')).isPresent()).toBe(true);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //    expect(element(by.id('viewPageTopBarPosition')).getText()).toEqual("PROFESSOR");
+    //
+    //});
 
 
-    it('Confirm that upon navigation to the view pages name shown is correct', function(){
+    //it('Confirm that upon navigation to the view pages institution shown is correct', function() {
+    //
+    //        browser.get('http://localhost:5000/search');
+    //        //Enter "Todd" into the search bar.
+    //        element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //        //Check that the search bar has the correct name in itself.
+    //        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //        expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //        element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //        //http://localhost:5000/view/1
+    //
+    //        //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //        element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //        expect(element(by.id('viewPageTopBarPosition')).isPresent()).toBe(true);
+    //
+    //        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //        expect(element(by.id('viewPageTopBarPosition')).getText()).toEqual("PROFESSOR");
+    //
+    //
+    //    expect(element(by.id('viewPageTopBarInstitution')).isPresent()).toBe(true);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //});
+
+    //
+    //it('Confirm that view page shows Degrees', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    //viewPageDegreesBox
+    //    expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Confirm that view page shows Postdocs', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    //viewPageDegreesBox
+    //    expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Confirm that view page shows Supervised', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    //viewPageDegreesBox
+    //    expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Confirm that view page viewPageDegreesDegreeType is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeType')).getText()).toEqual("phd");
+    //
+    //    //viewPageDegreesDegreeType
+    //
+    //});
+    //
+    //it('Confirm that view page viewPageDegreesDegreeYear is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeYear')).getText()).toEqual("1993");
+    //
+    //});
+    //
+    //
+    //it('Confirm that view page viewPageDegreesDegreeInstitution is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution')).getText()).toEqual("university of alberta");
+    //
+    //});
+
+    //it('Confirm that view page viewPageDegreesSupervisorName is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageDegreesSupervisorName')).getText()).toEqual("supervised by ole hindsgaul");
+    //
+    //});
+    //
+    //it('Confirm that view page viewPageSupervisedName is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageSupervisedName')).getText()).toEqual("wei shi");
+    //
+    //});
+
+
+    //it('Confirm that view page viewPageSupervisedInstitution is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageSupervisedInstitution')).getText()).toEqual("university of alberta");
+    //
+    //});
+
+    //
+    //it('Confirm that view page viewPageSupervisedDegreeType is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageSupervisedDegreeType')).getText()).toEqual("phd");
+    //
+    //});
+    //
+    //
+    //
+    //it('Confirm that view page viewPageSupervisedYear is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageSupervisedYear')).getText()).toEqual("2008");
+    //
+    //});
+
+
+
+    //it('Confirm that view page postdocs institution information is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageSupervisedYear')).getText()).toEqual("2008");
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPagePostdocsName')).getText()).toEqual("university of alberta");
+    //
+    //});
+
+
+    //it('Confirm that view page postdocs year information is as expected', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(element(by.id('viewPageSupervisedYear')).getText()).toEqual("2008");
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPagePostdocsYears')).getText()).toEqual("1993 - 1995");
+    //
+    //});
+
+
+
+    it('Confirm that view page postdocs mentor name information is as expected', function() {
 
         browser.get('http://localhost:5000/search');
         //Enter "Todd" into the search bar.
@@ -617,42 +1059,29 @@ describe('Search', function() {
 
         //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
 
-        expect(element(by.id('searchDetailedInfoTarget')).isPresent()).toBe(true);
 
         element.all(by.id('searchDetailedInfoTarget')).first().click();
 
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
-        expect(element(by.id('viewPageTopBarName')).getText()).toEqual("TODD LOWARY");
+        expect(element(by.id('viewPageSupervisedYear')).getText()).toEqual("2008");
+
+        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPagePostdocsMentorName')).getText()).toEqual("mentored by david bundle");
 
     });
 
-    it('Confirm that upon navigation to the view pages name shown is correct', function(){
-
-        browser.get('http://localhost:5000/search');
-        //Enter "Todd" into the search bar.
-        element(by.id('peopleSearchInput')).sendKeys("Todd");
-
-        //Check that the search bar has the correct name in itself.
-        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
 
 
-        expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
 
-        element.all(by.css('.autocompleteItem')).first().click();
 
-        //http://localhost:5000/view/1
 
-        //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
 
-        expect(element(by.id('searchDetailedInfoTarget')).isPresent()).toBe(true);
+    //viewPageMentoredYears
 
-        element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //viewPageMentoredInstitution
 
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
-        expect(element(by.id('viewPageTopBarName')).getText()).toEqual("TODD LOWARY");
 
-    });
-
+//        expect(element(by.id('viewPageTopBarInstitution')).getText()).toEqual("UNIVERSITY OF ALBERTA");
 
     //data.person.data.name
 
