@@ -2271,6 +2271,81 @@ describe('Search', function() {
     //
     //});
 
+    //it('Should be able to log out', function(){
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //    element.all(by.id('loginSuccessButton')).first().click();
+    //    element.all(by.id('theMainLogoutButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //    //loginSuccessButton
+    //
+    //    ////Enter data.
+    //    //element(by.model('loginUser.email')).sendKeys("Todd");
+    //    //element(by.model('loginUser.password')).sendKeys("Todd");
+    //    //
+    //    ////Check fields before hitting cancel button.
+    //    //expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("Todd");
+    //    //expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //});
+
+
+    it('Should be able to register', function(){
+
+        /** NOTE STRONGLY: ONCE THIS TEST IS RAN IT WILL ALWAYS ALWAYS ALWAYS FAIL. WHY? BECAUSE
+         * THE DATABASE STILL MAINTAINS THE VALUE OF THE USER EMAIL USED HERE!
+         *
+         * SOLUTION:
+         * MUST REFRESH DATABASE OR CHANGE THE NAME HERE OR YOU WILL RUN INTO THIS TEST FAILING!
+         */
+        browser.get('http://localhost:5000/search');
+
+
+           // element.all(by.id('loginSuccessButton')).first().click();
+
+
+            browser.get('http://localhost:5000/search');
+            element(by.id('theMainLoginButton')).click();
+
+            expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+            element(by.id('loginRegisterButton')).click();
+            expect(element(by.model('registerUser.email')).isPresent()).toBe(true);
+            expect(element(by.model('registerUser.password')).isPresent()).toBe(true);
+            expect(element(by.model('registerUser.firstName')).isPresent()).toBe(true);
+            expect(element(by.model('registerUser.lastName')).isPresent()).toBe(true);
+
+
+        //Furnish out the registration page.
+            element(by.model('registerUser.email')).sendKeys("automatedTestasdsadSADASasdasds@autotests.ca");
+            element(by.model('registerUser.password')).sendKeys("Todd");
+            element(by.model('registerUser.firstName')).sendKeys("Todd");
+            element(by.model('registerUser.lastName')).sendKeys("Todd");
+
+
+        //Now submit the registration data.
+        element.all(by.id('loginRegistrationRegisterButton')).first().click();
+
+
+        //Expect to see the toast.
+
+        expect(element(by.id('registrationAcceptedText')).isPresent()).toBe(true);
+
+
+
+    });
+
+
+
+
+
+
 
 
     //1993 - 1995
