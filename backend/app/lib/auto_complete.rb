@@ -7,7 +7,9 @@ require 'set'
 class AutoComplete
   def self.find_names(name)
     @name = "%#{name}%".downcase
-    @response = Person.where("name LIKE ?", @name).includes(:institution)
+    @response = Person.where("name LIKE ?", @name)
+                      .where('approved' => true)
+                      .includes(:institution)
     @institutions = Set.new
     return @response
   end
