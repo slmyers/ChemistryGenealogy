@@ -40,23 +40,31 @@ class Search
     end
 
     @mentors = Person.joins('LEFT OUTER JOIN mentorships ON mentorships.mentor_id = people.id')
-               .where('mentorships.person_id' => person_id).where('approved' => true)
+               .where('mentorships.person_id' => person_id)
+               .where('approved' => true)
+               .where('mentorships.approved' => true)
                .includes(:institution)
 
     unless @mentors.blank? then @persons.add(@mentors) end
 
     @mentored = Person.joins(:mentorships)
-                .where('mentorships.mentor_id' => person_id).where('approved' => true)
+                .where('mentorships.mentor_id' => person_id)
+                .where('approved' => true)
+                .where('mentorships.approved' => true)
                 .includes(:institution)
     unless @mentored.blank? then @persons.add(@mentored) end
 
     @supervisors = Person.joins('LEFT OUTER JOIN supervisions ON supervisions.supervisor_id = people.id')
-                   .where('supervisions.person_id' => person_id).where('approved' => true)
+                   .where('supervisions.person_id' => person_id)
+                   .where('approved' => true)
+                   .where('supervisions.approved' => true)
                    .includes(:institution)
     unless @supervisors.blank? then @persons.add(@supervisors) end
 
     @supervised = Person.joins(:supervisions)
-                  .where('supervisions.supervisor_id' => person_id).where('approved' => true)
+                  .where('supervisions.supervisor_id' => person_id)
+                  .where('approved' => true)
+                  .where('supervisions.approved' => true)
                   .includes(:institution)
     unless @supervised.blank? then @persons.add(@supervised) end
 
@@ -118,7 +126,7 @@ class Search
     # TODO: the problem is that the approved value is a string and not a boolean
     # so, write a helper method that returns true/false depending on the value
     # of the string and then use the returned boolean value to query database
-    # instead of these nested if/elsif blocks of nasty 
+    # instead of these nested if/elsif blocks of nasty
 
     @mentorships_array = Array.new
     unless @person_info["person"].mentorships.blank?

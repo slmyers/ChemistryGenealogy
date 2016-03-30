@@ -57,16 +57,16 @@
         <div> {{mentor.person.institution.name}} </div>
       </md-toolbar>
       <div ng-if="mentorDetails && mentor.mentors.length > 0">
-        <view-mentors data="mentor.mentors"></view-mentors>
+        <view-mentors data="mentor.mentors" links="false"></view-mentors>
       </div>
       <div ng-if="supervisorDetails && mentor.supervisors.length > 0">
-        <view-supervisors data="mentor.supervisors"></view-supervisors>
+        <view-supervisors data="mentor.supervisors" links="false"></view-supervisors>
       </div>
       <div ng-if="supervisedDetails && mentor.supervised.length > 0">
-        <view-supervised data="mentor.supervised"></view-supervised>
+        <view-supervised data="mentor.supervised" links="false"></view-supervised>
       </div>
       <div ng-if="mentoredDetails && mentor.mentored.length > 0">
-        <view-mentored data="mentor.mentored"></view-mentored>
+        <view-mentored data="mentor.mentored" links="false"></view-mentored>
       </div>
 
     </div>
@@ -78,16 +78,16 @@
         <div> {{mentee.person.institution.name}} </div>
       </md-toolbar>
       <div ng-if="mentorDetails && mentee.mentors.length > 0">
-        <view-mentors data="mentee.mentors"></view-mentors>
+        <view-mentors data="mentee.mentors" links="false"></view-mentors>
       </div>
       <div ng-if="supervisorDetails && mentee.supervisors.length > 0">
-        <view-supervisors data="mentee.supervisors"></view-supervisors>
+        <view-supervisors data="mentee.supervisors" links="false"></view-supervisors>
       </div>
       <div ng-if="supervisedDetails && mentee.supervised.length > 0">
-        <view-supervised data="mentee.supervised"></view-supervised>
+        <view-supervised data="mentee.supervised" links="false"></view-supervised>
       </div>
       <div ng-if="mentoredDetails && mentee.mentored.length > 0">
-        <view-mentored data="mentee.mentored"></view-mentored>
+        <view-mentored data="mentee.mentored" links="false"></view-mentored>
       </div>
     </div>
   </section>

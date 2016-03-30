@@ -6,7 +6,8 @@ angular.module('chemGeno')
   return {
     restrict: 'E',
     scope: {
-      data: '='
+      data: '=',
+      links: '='
     },
     controller: ['$scope', '$state', function($scope, $state) {
       $scope.goNext = function(supervised) {

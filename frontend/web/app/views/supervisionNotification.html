@@ -47,16 +47,16 @@
         <div> {{supervisor.person.institution.name}} </div>
       </md-toolbar>
       <div ng-if="mentorDetails && supervisor.mentors.length > 0">
-        <view-mentors data="supervisor.mentors"></view-mentors>
+        <view-mentors data="supervisor.mentors" links="false"></view-mentors>
       </div>
       <div ng-if="supervisorDetails && supervisor.supervisors.length > 0">
-        <view-supervisors data="supervisor.supervisors"></view-supervisors>
+        <view-supervisors data="supervisor.supervisors" links="false"></view-supervisors>
       </div>
       <div ng-if="supervisedDetails && supervisor.supervised.length > 0">
-        <view-supervised data="supervisor.supervised"></view-supervised>
+        <view-supervised data="supervisor.supervised" links="false"></view-supervised>
       </div>
       <div ng-if="mentoredDetails && supervisor.mentored.length > 0">
-        <view-mentored data="supervisor.mentored"></view-mentored>
+        <view-mentored data="supervisor.mentored" links="false"></view-mentored>
       </div>
 
     </div>
@@ -68,16 +68,16 @@
         <div> {{supervised.person.institution.name}} </div>
       </md-toolbar>
       <div ng-if="mentorDetails && supervised.mentors.length > 0">
-        <view-mentors data="supervised.mentors"></view-mentors>
+        <view-mentors data="supervised.mentors" links="false"></view-mentors>
       </div>
       <div ng-if="supervisorDetails && supervised.supervisors.length > 0">
-        <view-supervisors data="supervised.supervisors"></view-supervisors>
+        <view-supervisors data="supervised.supervisors" links="false"></view-supervisors>
       </div>
       <div ng-if="supervisedDetails && supervised.supervised.length > 0">
-        <view-supervised data="supervised.supervised"></view-supervised>
+        <view-supervised data="supervised.supervised" links="false"></view-supervised>
       </div>
       <div ng-if="mentoredDetails && supervised.mentored.length > 0">
-        <view-mentored data="supervised.mentored"></view-mentored>
+        <view-mentored data="supervised.mentored" links="false"></view-mentored>
       </div>
     </div>
   </section>

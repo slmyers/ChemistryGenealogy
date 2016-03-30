@@ -56,16 +56,16 @@
         </md-toolbar>
 
         <div ng-if="mentorDetails && data.mentors.length > 0">
-          <view-mentors data="data.mentors"></view-mentors>
+          <view-mentors data="data.mentors" links="true"></view-mentors>
         </div>
         <div ng-if="supervisorDetails && data.supervisors.length > 0">
-          <view-supervisors data="data.supervisors"></view-supervisors>
+          <view-supervisors data="data.supervisors" links="true"></view-supervisors>
         </div>
         <div ng-if="supervisedDetails && data.supervised.length > 0">
-          <view-supervised data="data.supervised"></view-supervised>
+          <view-supervised data="data.supervised" links="true"></view-supervised>
         </div>
         <div ng-if="mentoredDetails && data.mentored.length > 0">
-          <view-mentored data="data.mentored"></view-mentored>
+          <view-mentored data="data.mentored" links="true"></view-mentored>
         </div>
         <!-- bad -->
         <br><br><br><br><br>

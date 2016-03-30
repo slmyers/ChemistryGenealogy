@@ -6,7 +6,8 @@ angular.module('chemGeno')
   return {
     restrict: 'E',
     scope: {
-      data: '='
+      data: '=',
+      links: '='
     },
     templateUrl: '/app/views/viewMentors.html',
     controller: ['$scope', '$state', function($scope, $state) {
