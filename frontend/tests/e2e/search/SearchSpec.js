@@ -2296,48 +2296,319 @@ describe('Search', function() {
     //});
 
 
-    it('Should be able to register', function(){
+    //it('Should be able to register', function(){
+    //
+    //    /** NOTE STRONGLY: ONCE THIS TEST IS RAN IT WILL ALWAYS ALWAYS ALWAYS FAIL. WHY? BECAUSE
+    //     * THE DATABASE STILL MAINTAINS THE VALUE OF THE USER EMAIL USED HERE!
+    //     *
+    //     * SOLUTION:
+    //     * MUST REFRESH DATABASE OR CHANGE THE NAME HERE OR YOU WILL RUN INTO THIS TEST FAILING!
+    //     */
+    //    browser.get('http://localhost:5000/search');
+    //
+    //
+    //       // element.all(by.id('loginSuccessButton')).first().click();
+    //
+    //
+    //        browser.get('http://localhost:5000/search');
+    //        element(by.id('theMainLoginButton')).click();
+    //
+    //        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //        element(by.id('loginRegisterButton')).click();
+    //        expect(element(by.model('registerUser.email')).isPresent()).toBe(true);
+    //        expect(element(by.model('registerUser.password')).isPresent()).toBe(true);
+    //        expect(element(by.model('registerUser.firstName')).isPresent()).toBe(true);
+    //        expect(element(by.model('registerUser.lastName')).isPresent()).toBe(true);
+    //
+    //
+    //    //Furnish out the registration page.
+    //        element(by.model('registerUser.email')).sendKeys("automatedTestasdsadSADasdASasdas@autotests.ca");
+    //        element(by.model('registerUser.password')).sendKeys("Todd");
+    //        element(by.model('registerUser.firstName')).sendKeys("Todd");
+    //        element(by.model('registerUser.lastName')).sendKeys("Todd");
+    //
+    //
+    //    //Now submit the registration data.
+    //    element.all(by.id('loginRegistrationRegisterButton')).first().click();
+    //
+    //
+    //    //Expect to see the toast.
+    //
+    //    expect(element(by.id('registrationAcceptedText')).isPresent()).toBe(true);
+    //
+    //
+    //
+    //});
 
-        /** NOTE STRONGLY: ONCE THIS TEST IS RAN IT WILL ALWAYS ALWAYS ALWAYS FAIL. WHY? BECAUSE
-         * THE DATABASE STILL MAINTAINS THE VALUE OF THE USER EMAIL USED HERE!
-         *
-         * SOLUTION:
-         * MUST REFRESH DATABASE OR CHANGE THE NAME HERE OR YOU WILL RUN INTO THIS TEST FAILING!
-         */
+
+
+    //it('Should get warning message when trying to register with already existing name', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //
+    //
+    //    // element.all(by.id('loginSuccessButton')).first().click();
+    //
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //    element(by.id('loginRegisterButton')).click();
+    //    expect(element(by.model('registerUser.email')).isPresent()).toBe(true);
+    //    expect(element(by.model('registerUser.password')).isPresent()).toBe(true);
+    //    expect(element(by.model('registerUser.firstName')).isPresent()).toBe(true);
+    //    expect(element(by.model('registerUser.lastName')).isPresent()).toBe(true);
+    //
+    //
+    //    //Furnish out the registration page.
+    //    element(by.model('registerUser.email')).sendKeys("testEmail@email.ca");
+    //    element(by.model('registerUser.password')).sendKeys("Todd");
+    //    element(by.model('registerUser.firstName')).sendKeys("Todd");
+    //    element(by.model('registerUser.lastName')).sendKeys("Todd");
+    //
+    //
+    //    //Now submit the registration data.
+    //    element.all(by.id('loginRegistrationRegisterButton')).first().click();
+    //
+    //
+    //    //Expect to see the toast.
+    //
+    //    expect(element(by.id('registrationAcceptedText')).isPresent()).toBe(false);
+    //    expect(element(by.id('invalidRegistrationButtonShown')).isPresent()).toBe(true);
+    //
+    //    //invalidRegistrationButtonShown
+    //
+    //});
+
+
+
+
+
+
+    //it('Admin should be able to navigate to administrator panel', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //
+    //
+    //    // element.all(by.id('loginSuccessButton')).first().click();
+    //
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //    element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+    //    element(by.model('loginUser.password')).sendKeys("testPassword");
+    //
+    //
+    //    expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+    //    expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+    //
+    //    element(by.id('loginLoginButton')).click();
+    //
+    //
+    //    expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('adminOnlyButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //});
+
+        //it('Should be able to log out', function(){
+        //    browser.get('http://localhost:5000/search');
+        //    element(by.id('theMainLoginButton')).click();
+        //
+        //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+        //    element.all(by.id('loginSuccessButton')).first().click();
+        //    element.all(by.id('theMainLogoutButton')).first().click();
+        //
+        //
+        //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+        //
+        //    //loginSuccessButton
+        //
+        //    ////Enter data.
+        //    //element(by.model('loginUser.email')).sendKeys("Todd");
+        //    //element(by.model('loginUser.password')).sendKeys("Todd");
+        //    //
+        //    ////Check fields before hitting cancel button.
+        //    //expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("Todd");
+        //    //expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("Todd");
+        //
+        //
+        //});
+
+    it('Adminpanel should have all notifications button', function(){
+
         browser.get('http://localhost:5000/search');
 
 
-           // element.all(by.id('loginSuccessButton')).first().click();
+        // element.all(by.id('loginSuccessButton')).first().click();
 
 
-            browser.get('http://localhost:5000/search');
-            element(by.id('theMainLoginButton')).click();
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
 
-            expect(element(by.id('userDialog')).isPresent()).toBe(true);
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
 
-            element(by.id('loginRegisterButton')).click();
-            expect(element(by.model('registerUser.email')).isPresent()).toBe(true);
-            expect(element(by.model('registerUser.password')).isPresent()).toBe(true);
-            expect(element(by.model('registerUser.firstName')).isPresent()).toBe(true);
-            expect(element(by.model('registerUser.lastName')).isPresent()).toBe(true);
+        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+        element(by.model('loginUser.password')).sendKeys("testPassword");
 
 
-        //Furnish out the registration page.
-            element(by.model('registerUser.email')).sendKeys("automatedTestasdsadSADASasdasds@autotests.ca");
-            element(by.model('registerUser.password')).sendKeys("Todd");
-            element(by.model('registerUser.firstName')).sendKeys("Todd");
-            element(by.model('registerUser.lastName')).sendKeys("Todd");
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+
+        element(by.id('loginLoginButton')).click();
 
 
-        //Now submit the registration data.
-        element.all(by.id('loginRegistrationRegisterButton')).first().click();
+        expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+        expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+
+        element.all(by.id('adminOnlyButton')).first().click();
 
 
-        //Expect to see the toast.
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
 
-        expect(element(by.id('registrationAcceptedText')).isPresent()).toBe(true);
+        expect(element(by.id('adminPanelAllButton')).isPresent()).toBe(true);
+
+    });
+
+    it('Adminpanel should have a person notifications button', function(){
 
 
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('adminPanelPersonsButton')).isPresent()).toBe(true);
+
+    });
+
+    it('Adminpanel should have a adminPanelMentorshipsButton notifications button', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('adminPanelMentorshipsButton')).isPresent()).toBe(true);
+
+    });
+
+    it('Adminpanel should have a adminPanelSupervisionsButton notifications button', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('adminPanelSupervisionsButton')).isPresent()).toBe(true);
+
+    });
+
+    it('Adminpanel should have a adminPanelUserManagementButton notifications button', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('adminPanelUserManagementButton')).isPresent()).toBe(true);
+
+    });
+
+    it('Adminpanel should show AdminPanelPersonNotificationsGeneral', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('AdminPanelPersonNotificationsGeneral')).isPresent()).toBe(true);
+
+    });
+
+
+    it('Adminpanel should show AdminPanelMentorshipNotificationsGeneral', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('AdminPanelMentorshipNotificationsGeneral')).isPresent()).toBe(true);
+
+    });
+
+
+    it('Adminpanel should show AdminPanelSupervisionNotificationsGeneral', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('AdminPanelSupervisionNotificationsGeneral')).isPresent()).toBe(true);
+
+    });
+
+
+    it('Adminpanel should have a persons notification', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('individualPersonNotification')).isPresent()).toBe(true);
+
+    });
+
+    it('Adminpanel should have a mentorship notification', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('individualMentorshipNotification')).isPresent()).toBe(true);
+
+    });
+
+    it('Adminpanel should have a supervision notification', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
+
+    });
+
+
+
+    it('Adminpanel should have a persons notification position/name text should be correct', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
+
+        expect(element(by.id('adminPanelPersonPositionAndName')).getText()).toEqual("professor steven myers");
+
+    });
+
+
+    it('Adminpanel should have a persons notification institution text should be correct', function(){
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+        //http://localhost:5000/admin
+
+        expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
+
+        expect(element(by.id('adminPanelPersonInstitution')).getText()).toEqual("university of alberta");
 
     });
 
