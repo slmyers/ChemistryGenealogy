@@ -1618,68 +1618,658 @@ describe('Search', function() {
 
 
 
-    it('Check that the view page\'s viewPage degrees (only) button works ', function() {
+    //it('Check that the view page\'s viewPage degrees (only) button works ', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //    expect(element(by.id('viewPageSupervisorDetailsButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageSupervisorDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesSupervisorName')).isPresent()).toBe(true);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //
+    //});
 
-        browser.get('http://localhost:5000/search');
-        //Enter "Todd" into the search bar.
-        element(by.id('peopleSearchInput')).sendKeys("David");
 
-        //Check that the search bar has the correct name in itself.
-        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //it('Check that the view page\'s viewPage Supervised (only) button works ', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageSupervisedDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //
+    //});
 
 
-        expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //it('Check that the view page\'s viewPage navigate to edit page button works ', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('viewPageGoToEditButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageGoToEditButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/edit/1');
+    //
+    //
+    //});
+    //
+    //
+    //it('Check that the view page\'s viewPage navigate to home/main page button works ', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('viewPageGoToHomeButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageGoToHomeButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //
+    //});
 
-        element.all(by.css('.autocompleteItem')).first().click();
 
-        //http://localhost:5000/view/1
-
-        //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
-
-
-        element.all(by.id('searchDetailedInfoTarget')).first().click();
-
-
-        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
-
-        //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
-
-        expect(element(by.id('viewPageSupervisorDetailsButton')).isPresent()).toBe(true);
-        element.all(by.id('viewPageSupervisorDetailsButton')).first().click();
-
-
-        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
-        expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
-        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
-        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
-        expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
-        expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
-        expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
-
-        expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
-
-        expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(false);
-
-        expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesDegreeInstitution')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesSupervisorName')).isPresent()).toBe(true);
-        expect(element(by.id('')).isPresent()).toBe(false);
-        expect(element(by.id('')).isPresent()).toBe(false);
-
-
-    });
+    //it('View page navigation stress test ', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('viewPageGoToHomeButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageGoToHomeButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //
+    //    /** Now go to view page 1 and then  check supervised only **/
+    //        element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //        //Check that the search bar has the correct name in itself.
+    //        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //        expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //        element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //        //http://localhost:5000/view/1
+    //
+    //        //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //        element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //        //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //        expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //        element.all(by.id('viewPageSupervisedDetailsButton')).first().click();
+    //
+    //
+    //        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //
+    //        expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(false);
+    //        expect(element(by.id('')).isPresent()).toBe(false);
+    //        expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //    /** Now check the navigation from home button **/
+    //    expect(element(by.id('viewPageGoToHomeButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageGoToHomeButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //
+    //
+    //
+    //    /** Now check the mentored's only button **/
+    //        element(by.id('peopleSearchInput')).sendKeys("David");
+    //
+    //        //Check that the search bar has the correct name in itself.
+    //        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("David");
+    //
+    //
+    //        expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //        element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //        //http://localhost:5000/view/1
+    //
+    //        //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //        element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //        //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //        expect(element(by.id('viewPageSupervisorDetailsButton')).isPresent()).toBe(true);
+    //        element.all(by.id('viewPageSupervisorDetailsButton')).first().click();
+    //
+    //
+    //        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageDegreesDegreeInstitution')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageDegreesSupervisorName')).isPresent()).toBe(true);
+    //        expect(element(by.id('')).isPresent()).toBe(false);
+    //        expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //    /** Now check the degrees only button **/
+    //        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //
+    //        expect(element(by.id('viewPageSupervisorDetailsButton')).isPresent()).toBe(true);
+    //        element.all(by.id('viewPageSupervisorDetailsButton')).first().click();
+    //
+    //
+    //        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageDegreesDegreeInstitution')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPageDegreesSupervisorName')).isPresent()).toBe(true);
+    //        expect(element(by.id('')).isPresent()).toBe(false);
+    //        expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //    /** Now test mentored button again **/
+    //    expect(element(by.id('viewPageSupervisorDetailsButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageSupervisorDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesSupervisorName')).isPresent()).toBe(true);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //    /** Now test going to the postdocs only button **/
+    //
+    //        expect(element(by.id('viewPageMentorDetailsButton')).isPresent()).toBe(true);
+    //        element.all(by.id('viewPageMentorDetailsButton')).first().click();
+    //
+    //
+    //        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(true);
+    //        expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(true);
+    //
+    //        expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(false);
+    //
+    //        expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageDegreesDegreeInstitution')).isPresent()).toBe(false);
+    //        expect(element(by.id('viewPageDegreesSupervisorName')).isPresent()).toBe(false);
+    //        expect(element(by.id('')).isPresent()).toBe(false);
+    //        expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //    /** Continue stress test after **/
+    //
+    //
+    //
+    //
+    //});
+    //
+    //
+    //it('View page navigation stress test CONTINUED ', function() {
+    //
+    //    /** Now test going back to mentored  **/
+    //    expect(element(by.id('viewPageSupervisorDetailsButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageSupervisorDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesSupervisorName')).isPresent()).toBe(true);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //    /** Now check the navigation from home button **/
+    //    expect(element(by.id('viewPageGoToHomeButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageGoToHomeButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //    /** Now test the supervised **/
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //
+    //    //element.all(by.id('viewPageSupervisedCardInfo')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageSupervisedDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //    /** Now test postdocs **/
+    //
+    //    expect(element(by.id('viewPageMentorDetailsButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageMentorDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesSupervisorName')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //    /** Now test supervised **/
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //    element.all(by.id('viewPageSupervisedDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsArray')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostDocsCardInfo')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPagePostdocsMentorName')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredName')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredYears')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageMentoredInstitution')).isPresent()).toBe(false);
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedName')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedInstitution')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDegreeType')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedYear')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedBox')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDetailsButton')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeType')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeYear')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //    expect(element(by.id('')).isPresent()).toBe(false);
+    //
+    //    /** Now test navigation to the edit page one last time **/
+    //
+    //
+    //        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //        expect(element(by.id('viewPageGoToEditButton')).isPresent()).toBe(true);
+    //        element.all(by.id('viewPageGoToEditButton')).first().click();
+    //
+    //
+    //        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/edit/1');
+    //
+    //});
 
 
 
