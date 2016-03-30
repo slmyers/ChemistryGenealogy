@@ -8,7 +8,12 @@ exports.config = {
 
     // Capabilities to be passed to the webdriver instance.
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'chrome',
+        chromeOptions: {
+            args: [
+                '--start-maximized'
+            ]
+        }
     },
 
     // Spec patterns are relative to the location of the spec file. They may
@@ -21,6 +26,7 @@ exports.config = {
     jasmineNodeOpts: {
         showColors: true // Use colors in the command line report.
     },
+
 
 
 

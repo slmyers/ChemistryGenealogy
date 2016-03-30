@@ -566,12 +566,98 @@ describe('Search', function() {
     //
     //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
     //});
+    //
+    //
+    ///**
+    // * Checking the target view page.
+    // */
+    //it('Confirm that upon navigation to the view page for target we see the top bar', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoMentors')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('searchDetailedInfoMentors')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //    expect(element(by.id('viewPageTopBar')).isPresent()).toBe(true);
+    //
+    //});
+
+
+    it('Confirm that upon navigation to the view pages name shown is correct', function(){
+
+        browser.get('http://localhost:5000/search');
+        //Enter "Todd" into the search bar.
+        element(by.id('peopleSearchInput')).sendKeys("Todd");
+
+        //Check that the search bar has the correct name in itself.
+        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+
+
+        expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+
+        element.all(by.css('.autocompleteItem')).first().click();
+
+        //http://localhost:5000/view/1
+
+        //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+
+        expect(element(by.id('searchDetailedInfoTarget')).isPresent()).toBe(true);
+
+        element.all(by.id('searchDetailedInfoTarget')).first().click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+        expect(element(by.id('viewPageTopBarName')).getText()).toEqual("TODD LOWARY");
+
+    });
+
+    it('Confirm that upon navigation to the view pages name shown is correct', function(){
+
+        browser.get('http://localhost:5000/search');
+        //Enter "Todd" into the search bar.
+        element(by.id('peopleSearchInput')).sendKeys("Todd");
+
+        //Check that the search bar has the correct name in itself.
+        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+
+
+        expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+
+        element.all(by.css('.autocompleteItem')).first().click();
+
+        //http://localhost:5000/view/1
+
+        //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+
+        expect(element(by.id('searchDetailedInfoTarget')).isPresent()).toBe(true);
+
+        element.all(by.id('searchDetailedInfoTarget')).first().click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+        expect(element(by.id('viewPageTopBarName')).getText()).toEqual("TODD LOWARY");
+
+    });
+
+
+    //data.person.data.name
 
 
 
-
-    
-    //searchDetailedInfoMentors
 
     /** Odd synchronization bug, tests should work if that is fixed.
 
