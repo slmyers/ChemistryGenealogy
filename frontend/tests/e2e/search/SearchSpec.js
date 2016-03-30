@@ -372,31 +372,207 @@ describe('Search', function() {
     //    expect(element(by.id('theMainLoginButton')).isPresent()).toBe(true);
     //});
     //
+    //
+    //
+    //it('Should have the autocomplete search data displayed for target', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoTarget')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //
+    //it('Should have the autocomplete search data displayed for mentors', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoMentors')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //
+    //it('Should have the autocomplete search data displayed for Supervisors', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoSupervisors')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Should have the autocomplete search data displayed for Supervised', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoSupervised')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Should navigate to the page of the target when target is clicked', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoSupervised')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('searchDetailedInfoTarget')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //});
+    //
+    //
+    //it('Should navigate to the page of the supervised when supervised is clicked', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoSupervised')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('searchDetailedInfoSupervised')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/2');
+    //});
+    //
+    //
+    //it('Should navigate to the page of the supervisor when supervisor is clicked', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoSupervisors')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('searchDetailedInfoSupervisors')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/3');
+    //});
+    //
+    //
+    //it('Should navigate to the page of the mentors when mentors is clicked', function(){
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    //Enter "Todd" into the search bar.
+    //    element(by.id('peopleSearchInput')).sendKeys("Todd");
+    //
+    //    //Check that the search bar has the correct name in itself.
+    //    expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
+    //
+    //
+    //    expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    //
+    //    element.all(by.css('.autocompleteItem')).first().click();
+    //
+    //    //http://localhost:5000/view/1
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+    //
+    //    expect(element(by.id('searchDetailedInfoMentors')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('searchDetailedInfoMentors')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/4');
+    //});
 
 
-    it('Should have the autocomplete search data displayed for target', function(){
-
-        browser.get('http://localhost:5000/search');
-        //Enter "Todd" into the search bar.
-        element(by.id('peopleSearchInput')).sendKeys("Todd");
-
-        //Check that the search bar has the correct name in itself.
-        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("Todd");
 
 
-        expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+    
+    //searchDetailedInfoMentors
 
-        element.all(by.css('.autocompleteItem')).first().click();
-
-        //http://localhost:5000/view/1
-
-        //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
-
-        expect(element(by.id('searchDetailedInfoTarget')).isPresent()).toBe(true);
-
-    });
-
-    ///autocompleteItem
     /** Odd synchronization bug, tests should work if that is fixed.
 
     it('Administrator can navigate to administrator panel.', function(){
