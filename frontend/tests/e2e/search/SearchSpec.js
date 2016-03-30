@@ -3123,11 +3123,169 @@ describe('Search', function() {
 
     });
 
+    it('Check that viewPagePostdocsName2 is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('adminPersonMentoredSection')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPagePostdocsName2')).getText()).toEqual("university of alberta");
+
+
+    });
 
 
 
+    it('Check that viewPagePostdocsMentorName2 is displayed and the information is correct. ', function() {
 
 
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('adminPersonMentoredSection')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPagePostdocsMentorName2')).getText()).toEqual("mentored by steve's mentor");
+
+
+    });
+
+
+    it('Check that viewPagePostdocsName is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('adminPersonMentoredSection')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPagePostdocsMentorName2')).getText()).toEqual("mentored by steve's mentor");
+
+
+    });
+
+
+    /**
+     * Supervised section of admin person view details page.
+     */
+    it('Check that viewPageSupervisedCardInfo2 is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('adminPersonMentoredSection')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageSupervisedCardInfo2')).getText()).toEqual("steve supervised");
+
+
+    });
+
+    it('Check thatviewPageSupervisedInstitution2 is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('adminPersonMentoredSection')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageSupervisedInstitution2')).getText()).toEqual("university of alberta");
+
+
+    });
+
+    it('Check that viewPageSupervisedDegreeType2 is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('adminPersonMentoredSection')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageSupervisedDegreeType2')).getText()).toEqual("phd");
+
+
+    });
+
+
+    it('Check that viewPageSupervisedYear2 is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('adminPersonMentoredSection')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2030");
+
+
+    });
+
+    /**
+     * Supervised section of admin mentored view details page.
+     */
+
+
+    it('Check that viewPageMentoredName2 is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('adminPersonMentoredSection')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageMentoredName2')).getText()).toEqual("steve's mentored");
+
+
+    });
+
+    it('Check that viewPageMentoredYears2 is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('viewPageMentoredYears2')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageMentoredYears2')).getText()).toEqual("2031 - 2032");
+
+
+    });
+
+    it('Check that viewPageMentoredInstitution2 is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('viewPageMentoredInstitution2')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageMentoredInstitution2')).getText()).toEqual("university of alberta");
+
+
+    });
+
+    /**
+     * Postdocs section of admin mentored view details page.
+     */
+    it('Check that viewPageMentoredInstitution2 is displayed and the information is correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+
+
+        expect(element(by.id('viewPageMentoredInstitution2')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageMentoredInstitution2')).getText()).toEqual("university of alberta");
+
+
+    });
+
+
+    /**
+     * admin mentorship notification view details page tests
+     */
 
 
 
