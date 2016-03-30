@@ -2650,14 +2650,178 @@ describe('Search', function() {
     //});
 
 
+    //
+    ///** Admin panel test for the mentorship notifications **/
+    //
+    //it('Adminpanel should have a persons notification position/name text should be correct', function(){
+    //    browser.get('http://localhost:5000/search');
+    //
+    //
+    //    // element.all(by.id('loginSuccessButton')).first().click();
+    //
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //    element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+    //    element(by.model('loginUser.password')).sendKeys("testPassword");
+    //
+    //
+    //    expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+    //    expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+    //
+    //    element(by.id('loginLoginButton')).click();
+    //
+    //
+    //    expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('adminOnlyButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualMentorshipNotification')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminPanelMentorshipMentorName')).getText()).toEqual("x mentor");
+    //
+    //});
+    //
+    //it('Adminpanel mentorship notification person name should be accurate', function(){
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminPanelPersonViewDetailButton')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Adminpanel mentorship notification mentor name should be accurate', function(){
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminPanelMentorshipMentoredPersonName')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminPanelMentorshipMentoredPersonName')).getText()).toEqual("mentored by x");
+    //
+    //});
+    //
+    //it('Adminpanel mentorship notification institution should be accurate', function(){
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminPanelMentorshipInstitutionName')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminPanelMentorshipInstitutionName')).getText()).toEqual("carlsberg laboratory");
+    //
+    //});
+    //
+    //
+    //it('Adminpanel mentorship notification years should be accurate', function(){
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminPanelMentorshipInstitutionName')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminPanelMentorshipYearsName')).getText()).toEqual("1999 - 2001");
+    //
+    //});
+    //
+    //
+    //
+    //it('Adminpanel should have a mentorships notification box with a view details buttont', function(){
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('adminPanelViewDetailButton')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Adminpanel clicking view detail of persons notification should navigate', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //
+    //    element.all(by.id('adminPanelViewDetailButton')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+    //
+    //
+    //
+    //
+    //    element.all(by.id('loginSuccessButton')).first().click();
+    //    element.all(by.id('theMainLogoutButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //});
+    //
+    //it('Should be able to log out from the admin panel', function() {
+    //
+    //
+    //
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //    element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+    //    element(by.model('loginUser.password')).sendKeys("testPassword");
+    //
+    //
+    //    expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+    //    expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+    //
+    //    element(by.id('loginLoginButton')).click();
+    //
+    //
+    //    expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('adminOnlyButton')).first().click();
+    //
+    //
+    //
+    //    element.all(by.id('loginSuccessButton')).first().click();
+    //    element.all(by.id('theMainLogoutButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //});
 
-    /** Admin panel test for the mentorship notifications **/
 
-    it('Adminpanel should have a persons notification position/name text should be correct', function(){
-        browser.get('http://localhost:5000/search');
+    /** Checking admin panel Supervision notifications **/
+
+    it('Admin panel supervision notification person name should match ', function() {
 
 
-        // element.all(by.id('loginSuccessButton')).first().click();
 
 
         browser.get('http://localhost:5000/search');
@@ -2682,17 +2846,17 @@ describe('Search', function() {
 
 
         expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+            //http://localhost:5000/admin
 
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-        //http://localhost:5000/admin
+        expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
 
-        expect(element(by.id('individualMentorshipNotification')).isPresent()).toBe(true);
 
-        expect(element(by.id('adminPanelMentorshipMentorName')).getText()).toEqual("x mentor");
+        //adminPanelSupervisionPersonName
+        expect(element(by.id('adminPanelSupervisionPersonName')).getText()).toEqual("y supervisor");
 
     });
 
-    it('Adminpanel mentorship notification person name should be accurate', function(){
+    it('Adminpanel supervision notification supervisor name should be accurate', function(){
 
 
         expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
@@ -2702,9 +2866,11 @@ describe('Search', function() {
 
         expect(element(by.id('adminPanelPersonViewDetailButton')).isPresent()).toBe(true);
 
+        //adminPanelSupervisionSupervisorName
+        expect(element(by.id('adminPanelSupervisionSupervisorName')).getText()).toEqual("supervised by y");
     });
 
-    it('Adminpanel mentorship notification mentor name should be accurate', function(){
+    it('Adminpanel supervision notification supervisor name should be accurate', function(){
 
 
         expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
@@ -2712,13 +2878,13 @@ describe('Search', function() {
 
         expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
 
-        expect(element(by.id('adminPanelMentorshipMentoredPersonName')).isPresent()).toBe(true);
+        expect(element(by.id('adminPanelPersonViewDetailButton')).isPresent()).toBe(true);
 
-        expect(element(by.id('adminPanelMentorshipMentoredPersonName')).getText()).toEqual("mentored by x");
-
+        //adminPanelSupervisionSupervisorName
+        expect(element(by.id('adminPanelSupervisionInstitutionName')).getText()).toEqual("johns hopkins university");
     });
 
-    it('Adminpanel mentorship notification institution should be accurate', function(){
+    it('Adminpanel supervision notification degree type should be accurate', function(){
 
 
         expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
@@ -2726,59 +2892,10 @@ describe('Search', function() {
 
         expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
 
-        expect(element(by.id('adminPanelMentorshipInstitutionName')).isPresent()).toBe(true);
+        expect(element(by.id('adminPanelPersonViewDetailButton')).isPresent()).toBe(true);
 
-        expect(element(by.id('adminPanelMentorshipInstitutionName')).getText()).toEqual("carlsberg laboratory");
-
-    });
-
-
-    it('Adminpanel mentorship notification years should be accurate', function(){
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-        //http://localhost:5000/admin
-
-        expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
-
-        expect(element(by.id('adminPanelMentorshipInstitutionName')).isPresent()).toBe(true);
-
-        expect(element(by.id('adminPanelMentorshipYearsName')).getText()).toEqual("1999 - 2001");
-
-    });
-
-
-
-    it('Adminpanel should have a mentorships notification box with a view details buttont', function(){
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-        //http://localhost:5000/admin
-
-        expect(element(by.id('adminPanelViewDetailButton')).isPresent()).toBe(true);
-
-    });
-
-    it('Adminpanel clicking view detail of persons notification should navigate', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-        //http://localhost:5000/admin
-
-
-        element.all(by.id('adminPanelViewDetailButton')).first().click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
-
-
-
-
-        element.all(by.id('loginSuccessButton')).first().click();
-        element.all(by.id('theMainLogoutButton')).first().click();
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
-
+        //adminPanelSupervisionSupervisorName
+        expect(element(by.id('adminPanelSupervisionDegreeType')).getText()).toEqual("masters - 2050");
     });
 
 
