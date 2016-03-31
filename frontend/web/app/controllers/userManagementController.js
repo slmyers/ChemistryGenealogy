@@ -14,6 +14,7 @@ function($scope, $stateParams, verificationService, adminPanelService, $q)  {
   $scope.adminInfo = false;
 
   $scope.loadData = function() {
+    console.log('called');
     var promises = {
       usersPromise: adminPanelService.getUsers(),
       adminsPromise: adminPanelService.getAdmins()
@@ -25,7 +26,9 @@ function($scope, $stateParams, verificationService, adminPanelService, $q)  {
   }
   $scope.loadData();
 
-
+  $scope.$on('userMangement:reload', function(){
+    $scope.loadData();
+  });
 
 
   $scope.userNotifs = function() {

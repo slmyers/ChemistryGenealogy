@@ -7,8 +7,8 @@
     overflow: scroll;
   }
 
-  #userList{
-    padding-left: 10%;
+  .mangementList{
+    padding-left: 15%;
     padding-top: 2%;
     width: 600px;
     padding-bottom: 5%;
@@ -44,8 +44,11 @@
           </div>
         </md-content>
       </div>
-      <md-content ng-if="userInfo" id="userList" layout-padding>
+      <md-content ng-if="userInfo" class="mangementList" layout-padding>
         <md-card><users-list data="users"></users-list></md-card>
+      </md-content>
+      <md-content ng-if="adminInfo" class="mangementList" layout-padding>
+        <md-card><admins-list data="admins"></admins-list></md-card>
       </md-content>
     </div>
   </section>

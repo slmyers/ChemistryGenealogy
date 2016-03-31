@@ -3,19 +3,19 @@
   */
 
 angular.module('chemGeno')
-.controller('usersListController', ['$scope', '$q', '$http',
-function($scope, $q, $http){
+.controller('usersListController', ['$scope', '$q', '$http', '$rootScope',
+function($scope, $q, $http, $rootScope){
   $scope.removeUser = function(user, index) {
     var promise = $scope.removePromise(user);
     promise.then(function(){
-      $scope.data.splice(index, 1);
+      $rootScope.$broadcast('userMangement:reload');
     })
   };
 
   $scope.makeAdmin = function(user, index) {
     var promise = $scope.adminPromise(user);
     promise.then(function(){
-      $scope.data.splice(index, 1);
+      $rootScope.$broadcast('userMangement:reload');
     })
   };
 
