@@ -8,8 +8,7 @@
 <md-list layout="row">
   <md-list-item id="viewPagePostDocsArray" ng-repeat="mentor in data" >
     <div ng-if="links === true">
-      <a>
-      <md-card ng-click="goNext(mentor)">
+      <md-card>
         <md-card-title >
           <md-card-title-text id="viewPagePostDocsCardInfo">
             <span class="md-headline" id="viewPagePostdocsName">{{mentor.institution.name}}</span>
@@ -17,8 +16,14 @@
             <span class="md-subhead" id="viewPagePostdocsMentorName">mentored by {{mentor.mentor.data.name}}</span>
           </md-card-title-text>
         </md-card-title>
+        <md-card-actions>
+          <md-button
+            ng-click="goNext(mentor)"
+            class="md-raised md-primary">
+              view
+          </md-button>
+        </md-card-actions>
       </md-card>
-      </a>
     </div>
     <div ng-if="links === false">
       <md-card>

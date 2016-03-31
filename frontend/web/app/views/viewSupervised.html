@@ -9,7 +9,7 @@
   <md-list-item ng-repeat="supervised in data">
     <div ng-if="links === true">
       <a>
-      <md-card ng-click="goNext(supervised)">
+      <md-card>
         <md-card-title>
           <md-card-title-text id="viewPageSupervisedCardInfo">
             <span class="md-headline" id="viewPageSupervisedName">{{supervised.person.data.name}}</span>
@@ -18,6 +18,13 @@
             <span class="md-subhead" id="viewPageSupervisedYear">{{supervised.degree.data.year}}</span>
           </md-card-title-text>
         </md-card-title>
+        <md-card-actions>
+          <md-button
+            ng-click="goNext(supervised)"
+            class="md-raised md-primary">
+              view
+          </md-button>
+        </md-card-actions>
       </md-card>
     </a>
     </div>

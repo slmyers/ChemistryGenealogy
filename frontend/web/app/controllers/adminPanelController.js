@@ -67,4 +67,8 @@ function($scope, adminPanelService, verificationService, $state) {
         adminNotifications: $scope.data.admin_notifications
       });
   }
+
+  $scope.gotoHome = function(){
+    $state.go('main.search', {}, {reload:true});
+  }
 }]);
