@@ -3761,10 +3761,715 @@ describe('Search', function() {
     //});
 
     /** Now checking out view person detail page from administrator page **/
-    it('Get to view person detail page from search screen. ', function() {
+    //it('Get to view person detail page from search screen. ', function() {
+    //
+    //
+    //
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //    element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+    //    element(by.model('loginUser.password')).sendKeys("testPassword");
+    //
+    //
+    //    expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+    //    expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+    //
+    //    element(by.id('loginLoginButton')).click();
+    //
+    //
+    //    expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('adminOnlyButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //        //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
+    //
+    //
+    //
+    //    element.all(by.id('adminPanelClickSupervisionViewDetailButton')).first().click();
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //});
+    //
+    //
+    ///**
+    // * Check interactable elements
+    // */
+    //it('Check that adminMentorshipDetailAcceptButton is displayed and the information is correct. ', function() {
+    //
+    //    expect(element(by.id('adminMentorshipDetailAcceptButton')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Check that adminMentorshipDetailRejectButton is displayed and the information is correct. ', function() {
+    //
+    //    expect(element(by.id('adminMentorshipDetailRejectButton')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Check that adminMentorshipDetailAllDetailsButton is displayed and the information is correct. ', function() {
+    //
+    //    expect(element(by.id('adminMentorshipDetailAllDetailsButton')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Check that adminMentorshipDetailMentorOnlyButton is displayed and the information is correct. ', function() {
+    //
+    //    expect(element(by.id('adminMentorshipDetailMentorOnlyButton')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Check that adminMentorshipDetailMentoredOnlyButton is displayed and the information is correct. ', function() {
+    //
+    //    expect(element(by.id('adminMentorshipDetailMentoredOnlyButton')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Check that adminMentorshipDetailSupervisorOnlyButton is displayed and the information is correct. ', function() {
+    //
+    //    expect(element(by.id('adminMentorshipDetailSupervisorOnlyButton')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Check that adminMentorshipDetailSupervisedOnlyButton is displayed and the information is correct. ', function() {
+    //
+    //    expect(element(by.id('adminMentorshipDetailSupervisedOnlyButton')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    ////adminMentorshipDetailPersonName
+    //
+    //it('Check that adminSupervisionDetailedName is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('adminSupervisionDetailedName')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminSupervisionDetailedName')).getText()).toEqual("y supervisor");
+    //
+    //
+    //});
+    //
+    //
+    //it('Check that adminSupervisionDetailedPosition is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('adminSupervisionDetailedPosition')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminSupervisionDetailedPosition')).getText()).toEqual("professor");
+    //
+    //
+    //});
+    //
+    //
+    //it('Check that adminSupervisionDetailedInstitution is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('adminSupervisionDetailedInstitution')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminSupervisionDetailedInstitution')).getText()).toEqual("university of arkansas");
+    //
+    //
+    //});
+    //
+    //
+    //it('Check that adminSupervisionDetailedSupervisedName is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('adminSupervisionDetailedSupervisedName')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminSupervisionDetailedSupervisedName')).getText()).toEqual("supervised by y");
+    //
+    //
+    //});
+    //
+    //it('Check that adminSupervisionDetailedSupervisedPosition is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('adminSupervisionDetailedSupervisedPosition')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminSupervisionDetailedSupervisedPosition')).getText()).toEqual("professor");
+    //
+    //
+    //});
+    //
+    //it('Check that adminSupervisionDetailedSupervisedInstitution is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('adminSupervisionDetailedSupervisedInstitution')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('adminSupervisionDetailedSupervisedInstitution')).getText()).toEqual("carlsberg laboratory");
+    //
+    //
+    //});
+    //
+    ///**
+    // * Now delving into details of the admin panel supervision view details supervised card.
+    // */
+    //
+    //it('Check that viewPageSupervisedCardInfo2 is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).getText()).toEqual("supervised by y");
+    //
+    //
+    //});
+    //
+    //
+    //it('Check that viewPageSupervisedInstitution2 is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).getText()).toEqual("johns hopkins university");
+    //
+    //
+    //});
+    //
+    //
+    //it('Check that viewPageSupervisedDegreeType2 is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageSupervisedDegreeType2')).getText()).toEqual("masters");
+    //
+    //
+    //});
+    //
+    //it('Check that viewPageSupervisedYear2 is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2050");
+    //
+    //
+    //});
+    //
+    //
+    //it('Check tha viewPageDegreesBox is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(true);
+    //
+    //    //expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2050");
+    //
+    //
+    //});
+    //
+    //
+    //it('Check that viewPageDegreesDegreeType2 is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeType2')).getText()).toEqual("masters");
+    //
+    //
+    //});
+    //
+    //it('Check that viewPageSupervisedYear2 is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2050");
+    //
+    //
+    //});
+    //
+    //it('Check that viewPageSupervisedInstitution2 is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).getText()).toEqual("johns hopkins university");
+    //
+    //
+    //});
+    //
+    //it('Check that viewPageSupervisedCardInfo2 is displayed and the information is correct. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).getText()).toEqual("supervised by y");
+    //
+    //
+    //});
+    //
+    ///**
+    // * Now test the visibility buttons.
+    // */
+    //
+    //it('Check that the hitting all button again shows all data. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //    element.all(by.id('adminMentorshipDetailAllDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(true);
+    //
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeYear2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesSupervisorName2')).isPresent()).toBe(true);
+    //
+    //
+    //});
+    //
+    //
+    //it('Check that the hitting mentored button hides all data. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //    element.all(by.id('adminMentorshipDetailMentoredOnlyButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(false);
+    //
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeYear2')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution2')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageDegreesSupervisorName2')).isPresent()).toBe(false);
+    //
+    //
+    //});
+    //
+    //
+    //it('Check that the hitting the degree button hides all non-degree data. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //    element.all(by.id('adminMentorshipDetailSupervisorOnlyButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(false);
+    //    expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(false);
+    //
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeYear2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesSupervisorName2')).isPresent()).toBe(true);
+    //
+    //
+    //});
+    //
+    //it('Check that the hitting all button again shows all data again. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //    element.all(by.id('adminMentorshipDetailAllDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(true);
+    //
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeYear2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesSupervisorName2')).isPresent()).toBe(true);
+    //
+    //
+    //});
+    //
+    //it('Check that the hitting all button again shows all data again. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //    element.all(by.id('adminMentorshipDetailAllDetailsButton')).first().click();
+    //
+    //
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(true);
+    //
+    //
+    //    expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeYear2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution2')).isPresent()).toBe(true);
+    //    expect(element(by.id('viewPageDegreesSupervisorName2')).isPresent()).toBe(true);
+    //
+    //
+    //});
+    //
+    //
+    //
+    ///**
+    // * Check that we can still log out
+    // */
+    //it('Check that we can still log out from mentorship detail. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //    //Log out
+    //    element.all(by.id('loginSuccessButton')).first().click();
+    //    element.all(by.id('theMainLogoutButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //
+    //});
+
+    /**
+     * Test rejecting a piece of data, NOTE: DATABASE BUT BE RELOADED USING THE SCRIPT OR THIS WILL CAUSE OTHER
+     * TESTS TO FAIL IF YOU TRY AND RUN THIS AGAIN. THIS CHANGE STAYS. REJECT CAUSES A PERMANENT CHANGE FROM
+     * THIS POINT ONWARDS IN THE TEST DATA.
+     *
+     * PLEASE DO NOT FORGET TO DO THIS! THIS WILL CAUSE ERRORS IF NOT HANDLED.
+     */
 
 
+    //it('Relog as admin, and reject the supervision change. ', function() {
+    //
+    //
+    //
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //    element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+    //    element(by.model('loginUser.password')).sendKeys("testPassword");
+    //
+    //
+    //    expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+    //    expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+    //
+    //    element(by.id('loginLoginButton')).click();
+    //
+    //
+    //    expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('adminOnlyButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //        //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
+    //
+    //
+    //
+    //    element.all(by.id('adminPanelClickSupervisionViewDetailButton')).first().click();
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    //
+    //
+    //    //Now click the reject button
+    //
+    //    element.all(by.id('adminMentorshipDetailRejectButton')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //});
+    //
+    ///**
+    // * Now go and check that the supervision data that was rejected is actually removed.
+    // */
+    //
+    //it('Test that the rejected data is no longer there... ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(false);
+    //
+    //});
+    //
+    //it('Check that we can still log out after rejecting detail. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    //Log out
+    //    element.all(by.id('loginSuccessButton')).first().click();
+    //    element.all(by.id('theMainLogoutButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //
+    //});
+    //
+    //
+    ///**
+    // * Test that logging back in, the change in the data (of the rejection) persists
+    // */
+    //
+    //it('Relog as admin, and reject the supervision change. ', function() {
+    //
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //    element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+    //    element(by.model('loginUser.password')).sendKeys("testPassword");
+    //
+    //
+    //    expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+    //    expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+    //
+    //    element(by.id('loginLoginButton')).click();
+    //
+    //
+    //    expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('adminOnlyButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(false);
+    //
+    //});
+    //
+    ///**
+    // * Test rejecting a piece of data, NOTE: DATABASE BUT BE RELOADED USING THE SCRIPT OR THIS WILL CAUSE OTHER
+    // * TESTS TO FAIL IF YOU TRY AND RUN THIS AGAIN. THIS CHANGE STAYS. REJECT CAUSES A PERMANENT CHANGE FROM
+    // * THIS POINT ONWARDS IN THE TEST DATA.
+    // *
+    // * PLEASE DO NOT FORGET TO DO THIS! THIS WILL CAUSE ERRORS IF NOT HANDLED.
+    // */
+    //
+    ///**
+    // * Now go and accept the person notification
+    // */
+    //
+    //it('Test that we can accept the person notification, that it is there and the webpage is correct ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualPersonNotification')).isPresent()).toBe(true);
+    //
+    //
+    //
+    //    element.all(by.id('adminPanelPersonViewDetailButton')).first().click();
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/11');
+    //
+    //
+    //    //Now click the reject button
+    //
+    //    element.all(by.id('adminPersonApproveButton')).first().click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //adminPersonApproveButton
+    //});
+    //
+    //
+    ///**
+    // * Check that it is gone and accepted
+    // */
+    //
+    //it('Test that the accepted data is no longer there... ', function() {
+    //
+    //
+    //    //expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualPersonNotification')).isPresent()).toBe(false);
+    //
+    //});
+    //
+    //it('Check that we can still log out after accepting detail. ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    //Log out
+    //    element.all(by.id('loginSuccessButton')).first().click();
+    //    element.all(by.id('theMainLogoutButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //
+    //});
+    //
+    //
+    //
+    ///**
+    // * Check that it is gone and accepted
+    // */
+    //
+    //it('Test that the accepted data is no longer there... ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualPersonNotification')).isPresent()).toBe(false);
+    //
+    //});
+    //
+    //
+    ///**
+    // * Test rejecting a piece of data, NOTE: DATABASE BUT BE RELOADED USING THE SCRIPT OR THIS WILL CAUSE OTHER
+    // * TESTS TO FAIL IF YOU TRY AND RUN THIS AGAIN. THIS CHANGE STAYS. REJECT CAUSES A PERMANENT CHANGE FROM
+    // * THIS POINT ONWARDS IN THE TEST DATA.
+    // *
+    // * PLEASE DO NOT FORGET TO DO THIS! THIS WILL CAUSE ERRORS IF NOT HANDLED.
+    // */
+    //
+    //
+    ///**
+    // * Check that the acceptance persisted.
+    // */
+    //
+    //it('Test that the accepted data is no longer there... ', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //    element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+    //    element(by.model('loginUser.password')).sendKeys("testPassword");
+    //
+    //
+    //    expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+    //    expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+    //
+    //    element(by.id('loginLoginButton')).click();
+    //
+    //
+    //    expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    //
+    //    element.all(by.id('adminOnlyButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //    //http://localhost:5000/admin
+    //
+    //    expect(element(by.id('individualPersonNotification')).isPresent()).toBe(false);
+    //
+    //});
+    //
+    //it('Check that we can still log out ', function() {
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    //Log out
+    //    element.all(by.id('loginSuccessButton')).first().click();
+    //    element.all(by.id('theMainLogoutButton')).first().click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //
+    //});
 
+
+    /**
+     *  From this point forward: NOTE: DATABASE BUT BE RELOADED USING THE SCRIPT OR THIS WILL CAUSE OTHER
+     * TESTS TO FAIL IF YOU TRY AND RUN THIS AGAIN. THIS CHANGE STAYS. REJECT CAUSES A PERMANENT CHANGE FROM
+     * THIS POINT ONWARDS IN THE TEST DATA.
+     *
+     * PLEASE DO NOT FORGET TO DO THIS! THIS WILL CAUSE ERRORS IF NOT HANDLED.
+     */
+
+    it('Not logged in user should not see submit button. ', function() {
+
+        browser.get('http://localhost:5000/search');
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+
+        expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
+
+
+        //mainHeaderSubmitNewSubmissionButton
+
+    });
+
+
+    it('Test that a logged in user can see the submit button. ', function() {
 
         browser.get('http://localhost:5000/search');
         element(by.id('theMainLoginButton')).click();
@@ -3784,343 +4489,183 @@ describe('Search', function() {
         expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
         expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
 
-        element.all(by.id('adminOnlyButton')).first().click();
 
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-            //http://localhost:5000/admin
-
-        expect(element(by.id('individualSupervisionNotification')).isPresent()).toBe(true);
-
-
-
-        element.all(by.id('adminPanelClickSupervisionViewDetailButton')).first().click();
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+        //Submission button should be there.
+        expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
     });
 
+    it('Test the navigation to the submit page. ', function() {
 
-    /**
-     * Check interactable elements
-     */
-    it('Check that adminMentorshipDetailAcceptButton is displayed and the information is correct. ', function() {
+        browser.get('http://localhost:5000/search');
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
 
-        expect(element(by.id('adminMentorshipDetailAcceptButton')).isPresent()).toBe(true);
 
-    });
+        expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
 
-    it('Check that adminMentorshipDetailRejectButton is displayed and the information is correct. ', function() {
+        //Click the newsubmission button.
+        element(by.id('mainHeaderSubmitNewSubmissionButton')).click();
 
-        expect(element(by.id('adminMentorshipDetailRejectButton')).isPresent()).toBe(true);
 
-    });
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
 
-    it('Check that adminMentorshipDetailAllDetailsButton is displayed and the information is correct. ', function() {
-
-        expect(element(by.id('adminMentorshipDetailAllDetailsButton')).isPresent()).toBe(true);
-
-    });
-
-    it('Check that adminMentorshipDetailMentorOnlyButton is displayed and the information is correct. ', function() {
-
-        expect(element(by.id('adminMentorshipDetailMentorOnlyButton')).isPresent()).toBe(true);
-
-    });
-
-    it('Check that adminMentorshipDetailMentoredOnlyButton is displayed and the information is correct. ', function() {
-
-        expect(element(by.id('adminMentorshipDetailMentoredOnlyButton')).isPresent()).toBe(true);
-
-    });
-
-    it('Check that adminMentorshipDetailSupervisorOnlyButton is displayed and the information is correct. ', function() {
-
-        expect(element(by.id('adminMentorshipDetailSupervisorOnlyButton')).isPresent()).toBe(true);
-
-    });
-
-    it('Check that adminMentorshipDetailSupervisedOnlyButton is displayed and the information is correct. ', function() {
-
-        expect(element(by.id('adminMentorshipDetailSupervisedOnlyButton')).isPresent()).toBe(true);
-
-    });
-
-    //adminMentorshipDetailPersonName
-
-    it('Check that adminSupervisionDetailedName is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('adminSupervisionDetailedName')).isPresent()).toBe(true);
-
-        expect(element(by.id('adminSupervisionDetailedName')).getText()).toEqual("y supervisor");
-
-
-    });
-
-
-    it('Check that adminSupervisionDetailedPosition is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('adminSupervisionDetailedPosition')).isPresent()).toBe(true);
-
-        expect(element(by.id('adminSupervisionDetailedPosition')).getText()).toEqual("professor");
-
-
-    });
-
-
-    it('Check that adminSupervisionDetailedInstitution is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('adminSupervisionDetailedInstitution')).isPresent()).toBe(true);
-
-        expect(element(by.id('adminSupervisionDetailedInstitution')).getText()).toEqual("university of arkansas");
-
-
-    });
-
-
-    it('Check that adminSupervisionDetailedSupervisedName is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('adminSupervisionDetailedSupervisedName')).isPresent()).toBe(true);
-
-        expect(element(by.id('adminSupervisionDetailedSupervisedName')).getText()).toEqual("supervised by y");
-
-
-    });
-
-    it('Check that adminSupervisionDetailedSupervisedPosition is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('adminSupervisionDetailedSupervisedPosition')).isPresent()).toBe(true);
-
-        expect(element(by.id('adminSupervisionDetailedSupervisedPosition')).getText()).toEqual("professor");
-
-
-    });
-
-    it('Check that adminSupervisionDetailedSupervisedInstitution is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('adminSupervisionDetailedSupervisedInstitution')).isPresent()).toBe(true);
-
-        expect(element(by.id('adminSupervisionDetailedSupervisedInstitution')).getText()).toEqual("carlsberg laboratory");
-
+        //mainHeaderSubmitNewSubmissionButton
 
     });
 
     /**
-     * Now delving into details of the admin panel supervision view details supervised card.
+     * Check interactables of the submit page are all there.
      */
 
-    it('Check that viewPageSupervisedCardInfo2 is displayed and the information is correct. ', function() {
 
+    //firstName
 
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+    it('Check the firstname angular model is there.. ', function() {
 
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
 
-        expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(true);
+        expect(element(by.model('firstName')).isPresent()).toBe(true);
 
-        expect(element(by.id('viewPageSupervisedCardInfo2')).getText()).toEqual("supervised by y");
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
 
+    });
+
+    it('Check the lastname angular model is there.. ', function() {
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        expect(element(by.model('lastName')).isPresent()).toBe(true);
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+    });
+
+    it('Check the current position title angular model is there.. ', function() {
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        expect(element(by.model('currentPositionTitle')).isPresent()).toBe(true);
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
 
     });
 
 
-    it('Check that viewPageSupervisedInstitution2 is displayed and the information is correct. ', function() {
+    it('Check the current currentInstitutionName angular model is there.. ', function() {
 
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
 
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+        expect(element(by.model('currentInstitutionName')).isPresent()).toBe(true);
 
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
 
-        expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(true);
+    });
 
-        expect(element(by.id('viewPageSupervisedInstitution2')).getText()).toEqual("johns hopkins university");
+    it('Check the expand postdocs section button is there.. ', function() {
 
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        expect(element(by.id('expandPostDocInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('minimizePostDocInfoButton')).isPresent()).toBe(false);
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+    });
+
+    it('Check the "expandDegreeInfoButton section button is there.. ', function() {
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        expect(element(by.id('expandDegreeInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('minimizeDegreeInfoButton')).isPresent()).toBe(false);
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+    });
+
+    it('Check the "expandSuperDocsInfoButton section button is there.. ', function() {
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        expect(element(by.id('expandSuperDocsInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('minimizeSuperDocsInfoButton')).isPresent()).toBe(false);
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+    });
+
+    it('Check the "expandSuperDegsInfoButton section button is there.. ', function() {
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        expect(element(by.id('expandSuperDegsInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('minimizeSuperDegsInfoButton')).isPresent()).toBe(false);
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+    });
+
+    it('Test the expand postdocs button works ', function() {
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        expect(element(by.id('expandPostDocInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('minimizePostDocInfoButton')).isPresent()).toBe(false);
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        element(by.id('expandPostDocInfoButton')).click();
+
+        expect(element(by.id('minimizePostDocInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('expandPostDocInfoButton')).isPresent()).toBe(false);
+
+    });
+
+    it('Test the expand Degree button works ', function() {
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        expect(element(by.id('expandDegreeInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('minimizeDegreeInfoButton')).isPresent()).toBe(false);
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        element(by.id('expandDegreeInfoButton')).click();
+
+        expect(element(by.id('minimizeDegreeInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('expandDegreeInfoButton')).isPresent()).toBe(false);
+
+    });
+
+    it('Test the expand SuperDocs button works ', function() {
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        expect(element(by.id('expandSuperDocsInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('minimizeSuperDocsInfoButton')).isPresent()).toBe(false);
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+
+        element(by.id('expandSuperDocsInfoButton')).click();
+
+        expect(element(by.id('minimizeSuperDocsInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('expandSuperDocsInfoButton')).isPresent()).toBe(false);
 
     });
 
 
-    it('Check that viewPageSupervisedDegreeType2 is displayed and the information is correct. ', function() {
+    it('Test the expand SuperDegs button works ', function() {
 
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
 
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
+        expect(element(by.id('expandSuperDegsInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('minimizeSuperDegsInfoButton')).isPresent()).toBe(false);
 
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
 
-        expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(true);
+        element(by.id('expandSuperDegsInfoButton')).click();
 
-        expect(element(by.id('viewPageSupervisedDegreeType2')).getText()).toEqual("masters");
-
-
-    });
-
-    it('Check that viewPageSupervisedYear2 is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(true);
-
-        expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2050");
-
-
-    });
-
-
-    it('Check tha viewPageDegreesBox is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('viewPageDegreesBox')).isPresent()).toBe(true);
-
-        //expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2050");
-
-
-    });
-
-
-    it('Check that viewPageDegreesDegreeType2 is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(true);
-
-        expect(element(by.id('viewPageDegreesDegreeType2')).getText()).toEqual("masters");
-
-
-    });
-
-    it('Check that viewPageSupervisedYear2 is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(true);
-
-        expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2050");
-
-
-    });
-
-    it('Check that viewPageSupervisedInstitution2 is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(true);
-
-        expect(element(by.id('viewPageSupervisedInstitution2')).getText()).toEqual("johns hopkins university");
-
-
-    });
-
-    it('Check that viewPageSupervisedCardInfo2 is displayed and the information is correct. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-
-        expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(true);
-
-        expect(element(by.id('viewPageSupervisedCardInfo2')).getText()).toEqual("supervised by y");
-
-
-    });
-
-    /**
-     * Now test the visibility buttons.
-     */
-
-    it('Check that the hitting all button again shows all data. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-        element.all(by.id('adminMentorshipDetailAllDetailsButton')).first().click();
-
-
-        expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(true);
-
-
-        expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesDegreeYear2')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesDegreeInstitution2')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesSupervisorName2')).isPresent()).toBe(true);
-
-
-    });
-
-
-    it('Check that the hitting mentored button hides all data. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-        element.all(by.id('adminMentorshipDetailMentoredOnlyButton')).first().click();
-
-
-        expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(false);
-
-
-        expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageDegreesDegreeYear2')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageDegreesDegreeInstitution2')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageDegreesSupervisorName2')).isPresent()).toBe(false);
-
-
-    });
-
-
-    it('Check that the hitting the degree button hides all non-degree data. ', function() {
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/supervisionNotification/supervisor/17/supervised/18/supervision/7');
-
-        element.all(by.id('adminMentorshipDetailSupervisorOnlyButton')).first().click();
-
-
-        expect(element(by.id('viewPageSupervisedCardInfo2')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedInstitution2')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedDegreeType2')).isPresent()).toBe(false);
-        expect(element(by.id('viewPageSupervisedYear2')).isPresent()).toBe(false);
-
-
-        expect(element(by.id('viewPageDegreesDegreeType2')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesDegreeYear2')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesDegreeInstitution2')).isPresent()).toBe(true);
-        expect(element(by.id('viewPageDegreesSupervisorName2')).isPresent()).toBe(true);
-
+        expect(element(by.id('minimizeSuperDegsInfoButton')).isPresent()).toBe(true);
+        expect(element(by.id('expandSuperDegsInfoButton')).isPresent()).toBe(false);
 
     });
 
@@ -4133,23 +4678,6 @@ describe('Search', function() {
 
 
 
-
-
-
-
-    //viewPageMentoredName2
-
-    //adminMentorshipDetailMenteeName
-
-
-
-
-    //1993 - 1995
-
-
-    //viewPageMentoredYears
-
-    //viewPageMentoredInstitution
 
 
 //        expect(element(by.id('viewPageTopBarInstitution')).getText()).toEqual("UNIVERSITY OF ALBERTA");
