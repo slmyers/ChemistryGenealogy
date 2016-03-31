@@ -4977,6 +4977,32 @@ describe('Search', function() {
     });
 
 
+    /**
+     * Now check "submitting" a postdoc appointment for it's consistency.
+     */
+
+
+    it('Test submitting a postdoc appointment', function() {
+        
+        //expect(element(by.model('postDocSubmittedInfoStartYear')).getAttribute('value')).toEqual("2016");
+
+        expect(element(by.model('pdEndYear')).getAttribute('value')).toEqual("999999");
+
+
+        expect(element(by.model('pdSupervisor')).getAttribute('value')).toEqual("John Doe");
+
+        expect(element(by.model('pdInstitution')).getAttribute('value')).toEqual("test university");
+
+        //postDocAddSubmissionButton
+
+        element(by.id('postDocAddSubmissionButton')).click();
+        browser.waitForAngular();
+
+
+    });
+
+
+
 
 
 //        expect(element(by.id('viewPageTopBarInstitution')).getText()).toEqual("UNIVERSITY OF ALBERTA");
