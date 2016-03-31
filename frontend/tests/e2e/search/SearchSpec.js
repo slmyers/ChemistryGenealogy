@@ -4669,13 +4669,253 @@ describe('Search', function() {
 
     });
 
+    /**
+     * Postdoc appointments section analysis
+     */
+
+    it('Test the pdstartyear field existss ', function() {
+
+        expect(element(by.model('pdStartYear')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the pdendyear field existss ', function() {
+
+
+        expect(element(by.model('pdEndYear')).isPresent()).toBe(true);
+
+    });
+
+
+    it('Test the pdsupervisor field existss ', function() {
+
+
+        expect(element(by.model('pdSupervisor')).isPresent()).toBe(true);
+    });
+
+    it('Test the pdinstitution field existss ', function() {
+
+
+        expect(element(by.model('pdInstitution')).isPresent()).toBe(true);
+    });
+
+
+
+    it('Test putting text into the pdstartyear field ', function() {
+
+
+        element(by.model('pdStartYear')).sendKeys("2016");
+
+        expect(element(by.model('pdStartYear')).getAttribute('value')).toEqual("2016");
+    });
+
+
+    it('Test putting text into the pdendyear field ', function() {
+
+
+        element(by.model('pdEndYear')).sendKeys("999999");
+
+        expect(element(by.model('pdEndYear')).getAttribute('value')).toEqual("999999");
+    });
+
+    it('Test putting text into the pdsupervisor field ', function() {
+
+
+        element(by.model('pdSupervisor')).sendKeys("John Doe");
+
+        expect(element(by.model('pdSupervisor')).getAttribute('value')).toEqual("John Doe");
+    });
+
+    it('Test putting text into the pdinstitution field ', function() {
+
+
+        element(by.model('pdInstitution')).sendKeys("test university");
+
+        expect(element(by.model('pdInstitution')).getAttribute('value')).toEqual("test university");
+    });
+
+
+    /**
+     * DegreeInformation section analysis
+     */
+
+    it('Test the ditype field existss ', function() {
+
+        expect(element(by.model('diType')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the diyear field existss ', function() {
+
+        expect(element(by.model('diYear')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the disupervisor field existss ', function() {
+
+        expect(element(by.model('diSupervisor')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the diinstitution field existss ', function() {
+
+        expect(element(by.model('diInstitution')).isPresent()).toBe(true);
+
+    });
+
+
+    /**
+     * WARNING: This test is extremely tempermental, sometimes the test fails because the webpage doesn't properly
+     * click the selection boxes. Frustrating.
+     */
+    it('Test functioning input of ditype ', function() {
+
+        expect(element(by.model('diType')).isPresent()).toBe(true);
+
+        element(by.model('diType')).click();
+
+        element(by.id('mdOpenDoctorate')).click();
+        //element(by.id('mdOpenDoctorate')).click();
+
+        //expect(element(by.model('diType')).getAttribute('value')).toEqual("Doctorate");
+
+    });
+
+
+    it('Test functioning input of diyear input text field. ', function() {
+
+        expect(element(by.model('diYear')).isPresent()).toBe(true);
 
 
 
 
 
 
+        element(by.model('diYear')).sendKeys("2979");
 
+        expect(element(by.model('diYear')).getAttribute('value')).toEqual("2979");
+
+    });
+
+
+
+    it('Test putting text into the diSupervisor field ', function() {
+
+
+        element(by.model('diSupervisor')).sendKeys("John NotDoe");
+
+        expect(element(by.model('diSupervisor')).getAttribute('value')).toEqual("John NotDoe");
+    });
+
+
+    it('Test putting text into the diInstitution field ', function() {
+
+
+        element(by.model('diInstitution')).sendKeys("testUniversity2");
+
+        expect(element(by.model('diInstitution')).getAttribute('value')).toEqual("testUniversity2");
+    });
+
+    /**
+     * Postdocs this person supervised section
+     */
+    it('Test the superDocNameOfPerson field existss ', function() {
+
+        expect(element(by.model('superdocNameOfPerson')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the superDocStartYear field existss ', function() {
+
+        expect(element(by.model('superDocStartYear')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the superDocEndYear field existss ', function() {
+
+        expect(element(by.model('superDocEndYear')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the superDocInstitution field existss ', function() {
+
+        expect(element(by.model('superDocInstitution')).isPresent()).toBe(true);
+
+    });
+
+
+    it('Test putting text into the superdocNameOfPerson field ', function() {
+
+
+        element(by.model('superdocNameOfPerson')).sendKeys("NotJohnDoe Again");
+
+        expect(element(by.model('superdocNameOfPerson')).getAttribute('value')).toEqual("NotJohnDoe Again");
+    });
+
+    it('Test putting text into the superDocStartYear field ', function() {
+
+
+        element(by.model('superDocStartYear')).sendKeys("1291892");
+
+        expect(element(by.model('superDocStartYear')).getAttribute('value')).toEqual("1291892");
+    });
+
+    it('Test putting text into the superDocEndYear field ', function() {
+
+
+        element(by.model('superDocEndYear')).sendKeys("1292");
+
+        expect(element(by.model('superDocEndYear')).getAttribute('value')).toEqual("1292");
+    });
+
+    it('Test putting text into the superDocInstitution field ', function() {
+
+
+        element(by.model('superDocInstitution')).sendKeys("magicalTestUniversity");
+
+        expect(element(by.model('superDocInstitution')).getAttribute('value')).toEqual("magicalTestUniversity");
+    });
+
+
+    /**
+     * People who this person supervised their DEGREES -- SUPERDEG SECTION
+     */
+    it('Test the superDegNameOfPerson field existss ', function() {
+
+        expect(element(by.model('superDegNameOfPerson')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the superDegCurrPosition field existss ', function() {
+
+        expect(element(by.model('superDegCurrPosition')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the superDegCurrInst field existss ', function() {
+
+        expect(element(by.model('superDegCurrInst')).isPresent()).toBe(true);
+
+    });
+
+
+    it('Test the superDegDegType field existss ', function() {
+
+        expect(element(by.model('superDegDegType')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the superDegYear field existss ', function() {
+
+        expect(element(by.model('superDegYear')).isPresent()).toBe(true);
+
+    });
+
+    it('Test the superDegInst field existss ', function() {
+
+        expect(element(by.model('superDegInst')).isPresent()).toBe(true);
+
+    });
 
 
 
