@@ -4472,463 +4472,34 @@ describe('Search', function() {
     /**
      * Start of submit page (Perhaps comment this out for test demos?) :/ That click box bug is quite bad...
      */
-
-    it('Test that a logged in user can see the submit button. ', function() {
-
-        browser.get('http://localhost:5000/search');
-        element(by.id('theMainLoginButton')).click();
-
-        expect(element(by.id('userDialog')).isPresent()).toBe(true);
-
-        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
-        element(by.model('loginUser.password')).sendKeys("testPassword");
-
-
-        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
-        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
-
-        element(by.id('loginLoginButton')).click();
-
-
-        expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
-        expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
-
-
-        //Submission button should be there.
-        expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
-    });
-
-    /**
-     * NOW NAVIGATE TO ADMIN PANEL AND EXAMINE IF THE NEW SUBMISSION IS ACTUALLY THERE OR NOT!
-     */
-    it('Test that the submitted data IS in the admin panel!!!! First: adminpanelpersonposandname', function() {
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-        expect(element.all(by.id('adminPanelPersonPositionAndName')).get(0).getText()).toEqual("testcurrentposition testfirstname testlastname");
-
-    });
-
-
-    it('Test that the submitted data IS in the admin panel!!!! Second: adminPanelPersonPositionAndName', function() {
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-        expect(element.all(by.id('adminPanelPersonPositionAndName')).get(1).getText()).toEqual("john doe");
-
-    });
-
-
-    it('Test that the submitted data IS in the admin panel!!!! third: adminPanelPersonPositionAndName', function() {
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-        expect(element.all(by.id('adminPanelPersonPositionAndName')).get(2).getText()).toEqual("john notdoe");
-
-    });
-
-
-    it('Test that the submitted data IS in the admin panel!!!! 4: adminPanelPersonInstitution', function() {
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-        expect(element.all(by.id('adminPanelPersonInstitution')).get(0).getText()).toEqual("testinstitutionname");
-
-    });
-
-    it('Test that the submitted data IS in the admin panel!!!! 5: adminPanelPersonInstitution', function() {
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-        expect(element.all(by.id('adminPanelPersonInstitution')).get(1).getText()).toEqual("test university");
-
-    });
-
-    it('Test that the submitted data IS in the admin panel!!!! 6: adminPanelPersonInstitution', function() {
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-        expect(element.all(by.id('adminPanelPersonInstitution')).get(2).getText()).toEqual("testuniversity2");
-
-    });
-
-    it('Test that the submitted data IS in the admin panel!!!! 7: button', function() {
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-            expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(0).isPresent()).toBe(true);
-
-    });
-
-    it('Test that the submitted data IS in the admin panel!!!! 8: button', function() {
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-        expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(1).isPresent()).toBe(true);
-
-    });
-
-
-    it('Test that the submitted data IS in the admin panel!!!! 9: button', function() {
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-        expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(2).isPresent()).toBe(true);
-
-    });
-
-
-    it('Test that we can navigate through the first part of the new submitted data', function(){
-
-        element.all(by.id('adminPanelPersonViewDetailButton')).get(0).click();
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-    it('Should have adminPersonNameName as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('adminPersonNameName')).getText()).toEqual("TESTFIRSTNAME TESTLASTNAME");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-    it('Should have adminPersonPosition as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('adminPersonPosition')).getText()).toEqual("TESTCURRENTPOSITION");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-    it('Should have adminPersonInstitution as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('adminPersonInstitution')).getText()).toEqual("TESTINSTITUTIONNAME");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-
-    it('Should have viewPagePostdocsName2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPagePostdocsName2')).getText()).toEqual("test university");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-
-    it('Should have viewPagePostdocsYears2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPagePostdocsYears2')).getText()).toEqual("2016 - 999999");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-
-    it('Should have viewPagePostdocsMentorName2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPagePostdocsMentorName2')).getText()).toEqual("mentored by john doe");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-    it('Should have viewPageDegreesDegreeType2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageDegreesDegreeType2')).getText()).toEqual("doctorate");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-    it('Should have viewPageDegreesDegreeYear2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageDegreesDegreeYear2')).getText()).toEqual("2979");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-    it('Should have viewPageDegreesDegreeInstitution2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageDegreesDegreeInstitution2')).getText()).toEqual("testuniversity2");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-    it('Should have viewPageDegreesSupervisorName2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageDegreesSupervisorName2')).getText()).toEqual("supervised by john notdoe");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
-
-    });
-
-
-
-    it('Should be able to navigate back to admin panel from this page to look at others.', function(){
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-
-    });
-
-    it('Should be able to navigate to the second new submit item.', function(){
-
-
-        element.all(by.id('adminPanelPersonViewDetailButton')).get(1).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
-
-
-    });
-
-    it('Should have adminPersonNameName as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('adminPersonNameName')).getText()).toEqual("JOHN DOE");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
-
-    });
-
-
-    it('Should have adminPersonInstitution as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('adminPersonInstitution')).getText()).toEqual("TEST UNIVERSITY");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
-
-    });
-
-
-    it('Should have viewPageMentoredName2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageMentoredName2')).getText()).toEqual("testfirstname testlastname");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
-
-    });
-
-    it('Should have viewPageMentoredYears2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageMentoredYears2')).getText()).toEqual("2016 - 999999");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
-
-    });
-
-
-    it('Should have viewPageMentoredInstitution2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageMentoredInstitution2')).getText()).toEqual("test university");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
-
-    });
-
-
-
-    it('Should be able to navigate back to admin panel from this page to look at others.', function(){
-
-
-        element(by.id('adminOnlyButton')).click();
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
-
-
-    });
-
-    it('Test that we can navigate through the third part of the new submitted data', function(){
-
-        element.all(by.id('adminPanelPersonViewDetailButton')).get(2).click();
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
-
-    });
-
-
-    it('Should have adminPersonNameName as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('adminPersonNameName')).getText()).toEqual("JOHN NOTDOE");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
-
-    });
-
-    it('Should have adminPersonInstitution as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('adminPersonInstitution')).getText()).toEqual("TESTUNIVERSITY2");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
-
-    });
-
-
-    it('Should have viewPageSupervisedCardInfo2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageSupervisedCardInfo2')).getText()).toEqual("testfirstname testlastname");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
-
-    });
-
-
-    it('Should have viewPageSupervisedInstitution2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageSupervisedInstitution2')).getText()).toEqual("testuniversity2");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
-
-    });
-
-    it('Should have viewPageSupervisedDegreeType2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageSupervisedDegreeType2')).getText()).toEqual("doctorate");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
-
-    });
-
-    it('Should have viewPageSupervisedYear2 as expected', function(){
-
-
-        //adminPersonNameName
-        expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2979");
-
-
-        //http://localhost:5000/personNotification/person/19
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
-
-    });
-
-
-    //TESTUNIVERSITY2
-
-
-    //      expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(2).isPresent()).toBe(true);
-
-
-
-
+    //
+    //it('Test that a logged in user can see the submit button. ', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    element(by.id('theMainLoginButton')).click();
+    //
+    //    expect(element(by.id('userDialog')).isPresent()).toBe(true);
+    //
+    //    element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+    //    element(by.model('loginUser.password')).sendKeys("testPassword");
+    //
+    //
+    //    expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+    //    expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+    //
+    //    element(by.id('loginLoginButton')).click();
+    //
+    //
+    //    expect(element(by.id('loginSuccessButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+    //
+    //
+    //    //Submission button should be there.
+    //    expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
+    //});
+    //
+    //
+    //
     //it('Test the navigation to the submit page. ', function() {
     //
     //    browser.get('http://localhost:5000/search');
@@ -5633,10 +5204,439 @@ describe('Search', function() {
     //
     //    //    expect(element(by.id('adminPanelPersonPositionAndName')).getText()).toEqual("professor steven myers");
     //});
-
-
-
-
+    //
+    //
+    ///**
+    // * NOW NAVIGATE TO ADMIN PANEL AND EXAMINE IF THE NEW SUBMISSION IS ACTUALLY THERE OR NOT!
+    // */
+    //it('Test that the submitted data IS in the admin panel!!!! First: adminpanelpersonposandname', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element.all(by.id('adminPanelPersonPositionAndName')).get(0).getText()).toEqual("testcurrentposition testfirstname testlastname");
+    //
+    //});
+    //
+    //
+    //it('Test that the submitted data IS in the admin panel!!!! Second: adminPanelPersonPositionAndName', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element.all(by.id('adminPanelPersonPositionAndName')).get(1).getText()).toEqual("john doe");
+    //
+    //});
+    //
+    //
+    //it('Test that the submitted data IS in the admin panel!!!! third: adminPanelPersonPositionAndName', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element.all(by.id('adminPanelPersonPositionAndName')).get(2).getText()).toEqual("john notdoe");
+    //
+    //});
+    //
+    //
+    //it('Test that the submitted data IS in the admin panel!!!! 4: adminPanelPersonInstitution', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element.all(by.id('adminPanelPersonInstitution')).get(0).getText()).toEqual("testinstitutionname");
+    //
+    //});
+    //
+    //it('Test that the submitted data IS in the admin panel!!!! 5: adminPanelPersonInstitution', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element.all(by.id('adminPanelPersonInstitution')).get(1).getText()).toEqual("test university");
+    //
+    //});
+    //
+    //it('Test that the submitted data IS in the admin panel!!!! 6: adminPanelPersonInstitution', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element.all(by.id('adminPanelPersonInstitution')).get(2).getText()).toEqual("testuniversity2");
+    //
+    //});
+    //
+    //it('Test that the submitted data IS in the admin panel!!!! 7: button', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(0).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test that the submitted data IS in the admin panel!!!! 8: button', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(1).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //
+    //it('Test that the submitted data IS in the admin panel!!!! 9: button', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(2).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //
+    //it('Test that we can navigate through the first part of the new submitted data', function(){
+    //
+    //    element.all(by.id('adminPanelPersonViewDetailButton')).get(0).click();
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //it('Should have adminPersonNameName as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('adminPersonNameName')).getText()).toEqual("TESTFIRSTNAME TESTLASTNAME");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //it('Should have adminPersonPosition as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('adminPersonPosition')).getText()).toEqual("TESTCURRENTPOSITION");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //it('Should have adminPersonInstitution as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('adminPersonInstitution')).getText()).toEqual("TESTINSTITUTIONNAME");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //
+    //it('Should have viewPagePostdocsName2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPagePostdocsName2')).getText()).toEqual("test university");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //
+    //it('Should have viewPagePostdocsYears2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPagePostdocsYears2')).getText()).toEqual("2016 - 999999");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //
+    //it('Should have viewPagePostdocsMentorName2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPagePostdocsMentorName2')).getText()).toEqual("mentored by john doe");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //it('Should have viewPageDegreesDegreeType2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageDegreesDegreeType2')).getText()).toEqual("doctorate");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //it('Should have viewPageDegreesDegreeYear2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageDegreesDegreeYear2')).getText()).toEqual("2979");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //it('Should have viewPageDegreesDegreeInstitution2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageDegreesDegreeInstitution2')).getText()).toEqual("testuniversity2");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //it('Should have viewPageDegreesSupervisorName2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageDegreesSupervisorName2')).getText()).toEqual("supervised by john notdoe");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+    //
+    //});
+    //
+    //
+    //
+    //it('Should be able to navigate back to admin panel from this page to look at others.', function(){
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //
+    //});
+    //
+    //it('Should be able to navigate to the second new submit item.', function(){
+    //
+    //
+    //    element.all(by.id('adminPanelPersonViewDetailButton')).get(1).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+    //
+    //
+    //});
+    //
+    //it('Should have adminPersonNameName as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('adminPersonNameName')).getText()).toEqual("JOHN DOE");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+    //
+    //});
+    //
+    //
+    //it('Should have adminPersonInstitution as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('adminPersonInstitution')).getText()).toEqual("TEST UNIVERSITY");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+    //
+    //});
+    //
+    //
+    //it('Should have viewPageMentoredName2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageMentoredName2')).getText()).toEqual("testfirstname testlastname");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+    //
+    //});
+    //
+    //it('Should have viewPageMentoredYears2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageMentoredYears2')).getText()).toEqual("2016 - 999999");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+    //
+    //});
+    //
+    //
+    //it('Should have viewPageMentoredInstitution2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageMentoredInstitution2')).getText()).toEqual("test university");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+    //
+    //});
+    //
+    //
+    //
+    //it('Should be able to navigate back to admin panel from this page to look at others.', function(){
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //
+    //});
+    //
+    //it('Test that we can navigate through the third part of the new submitted data', function(){
+    //
+    //    element.all(by.id('adminPanelPersonViewDetailButton')).get(2).click();
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+    //
+    //});
+    //
+    //
+    //it('Should have adminPersonNameName as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('adminPersonNameName')).getText()).toEqual("JOHN NOTDOE");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+    //
+    //});
+    //
+    //it('Should have adminPersonInstitution as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('adminPersonInstitution')).getText()).toEqual("TESTUNIVERSITY2");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+    //
+    //});
+    //
+    //
+    //it('Should have viewPageSupervisedCardInfo2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageSupervisedCardInfo2')).getText()).toEqual("testfirstname testlastname");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+    //
+    //});
+    //
+    //
+    //it('Should have viewPageSupervisedInstitution2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageSupervisedInstitution2')).getText()).toEqual("testuniversity2");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+    //
+    //});
+    //
+    //it('Should have viewPageSupervisedDegreeType2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageSupervisedDegreeType2')).getText()).toEqual("doctorate");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+    //
+    //});
+    //
+    //it('Should have viewPageSupervisedYear2 as expected', function(){
+    //
+    //
+    //    //adminPersonNameName
+    //    expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2979");
+    //
+    //
+    //    //http://localhost:5000/personNotification/person/19
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+    //
+    //});
+    //
+    //
+    //it('User can log out of the system', function(){
+    //    element(by.id('loginSuccessButton')).click();
+    //
+    //    element(by.id('theMainLogoutButton')).click();
+    //
+    //    browser.get('http://localhost:5000/search');
+    //});
+    //
 
 
 
