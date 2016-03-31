@@ -4927,6 +4927,7 @@ describe('Search', function() {
 
 
 
+
     it('Test putting text into the superDegNameOfPerson field ', function() {
 
 
@@ -4977,6 +4978,16 @@ describe('Search', function() {
     });
 
 
+    it('Test putting a value into the superdeg inst field. ', function() {
+
+
+
+        element(by.model('superDegInst')).sendKeys("uofa");
+
+        expect(element(by.model('superDegInst')).getAttribute('value')).toEqual("uofa");
+
+    });
+
     /**
      * Now check "submitting" a postdoc appointment for it's consistency.
      */
@@ -5000,6 +5011,197 @@ describe('Search', function() {
 
 
     });
+
+
+    it('Test submitting a degree instance', function() {
+
+        //expect(element(by.model('postDocSubmittedInfoStartYear')).getAttribute('value')).toEqual("2016");
+
+        expect(element(by.model('diType')).isPresent()).toBe(true);
+
+        expect(element(by.model('diYear')).isPresent()).toBe(true);
+
+        expect(element(by.model('diSupervisor')).isPresent()).toBe(true);
+
+        expect(element(by.model('diInstitution')).isPresent()).toBe(true);
+
+
+        //postDocAddSubmissionButton
+
+        element(by.id('diSubmitButton')).click();
+        browser.waitForAngular();
+
+
+    });
+
+
+    it('Test submitting a superdoc instance', function() {
+
+
+
+        expect(element(by.model('superdocNameOfPerson')).getAttribute('value')).toEqual("NotJohnDoe Again");
+
+        expect(element(by.model('superDocStartYear')).getAttribute('value')).toEqual("1291892");
+
+        expect(element(by.model('superDocEndYear')).getAttribute('value')).toEqual("1292");
+
+        expect(element(by.model('superDocInstitution')).getAttribute('value')).toEqual("magicalTestUniversity");
+
+
+        //postDocAddSubmissionButton
+
+        element(by.id('addSuperdocinstanceButton')).click();
+        browser.waitForAngular();
+
+
+    });
+
+
+
+    it('Test submitting a superdeg instance', function() {
+
+
+        expect(element(by.model('superDegNameOfPerson')).getAttribute('value')).toEqual("Johnny Doe");
+
+        expect(element(by.model('superDegCurrPosition')).getAttribute('value')).toEqual("Professor");
+
+        expect(element(by.model('superDegCurrInst')).getAttribute('value')).toEqual("auniversity");
+
+        expect(element(by.model('superDegYear')).getAttribute('value')).toEqual("1989");
+
+        element(by.id('addSuperDegInstanceButton')).click();
+        browser.waitForAngular();
+
+
+    });
+
+
+    it('Test hitting the ultimate submit (all page submit) button prompts a firstname warning', function() {
+
+
+        element(by.id('leUultimateSubmitButton')).click();
+        browser.waitForAngular();
+
+
+        expect(element(by.id('firstNameWarning')).isPresent()).toBe(true);
+    });
+
+
+    it('Test putting in a value for the first name', function() {
+
+
+
+
+
+        element(by.model('firstName')).sendKeys("testFirstName");
+
+        expect(element(by.model('firstName')).getAttribute('value')).toEqual("testFirstName");
+
+
+    });
+
+
+    it('Test hitting the ultimate submit (all page submit) button prompts a lastname warning', function() {
+
+
+        element(by.id('leUultimateSubmitButton')).click();
+        browser.waitForAngular();
+
+
+        expect(element(by.id('lastNameWarning')).isPresent()).toBe(true);
+    });
+
+
+
+    it('Test putting in a value for the last name', function() {
+
+
+
+
+
+        element(by.model('lastName')).sendKeys("testLastName");
+
+        expect(element(by.model('lastName')).getAttribute('value')).toEqual("testLastName");
+
+
+    });
+
+
+    it('Test hitting the ultimate submit (all page submit) button prompts a currpositiontitle warning', function() {
+
+
+        element(by.id('leUultimateSubmitButton')).click();
+        browser.waitForAngular();
+
+
+        expect(element(by.id('currPosTitleWarning')).isPresent()).toBe(true);
+    });
+
+
+
+    it('Test putting in a value for the currentposition name', function() {
+
+
+
+
+
+        element(by.model('currentPositionTitle')).sendKeys("testCurrentPosition");
+
+        expect(element(by.model('currentPositionTitle')).getAttribute('value')).toEqual("testCurrentPosition");
+
+
+    });
+
+
+    it('Test hitting the ultimate submit (all page submit) button prompts a currpositiontitle warning', function() {
+
+
+        element(by.id('leUultimateSubmitButton')).click();
+        browser.waitForAngular();
+
+
+        expect(element(by.id('currInstNameWarning')).isPresent()).toBe(true);
+    });
+
+
+    it('Test putting in a value for the currentposition name', function() {
+
+
+
+
+
+        element(by.model('currentInstitutionName')).sendKeys("testInstitutionName");
+
+        expect(element(by.model('currentInstitutionName')).getAttribute('value')).toEqual("testInstitutionName");
+
+
+    });
+
+    it('Test hitting the ultimate submit button WILL submit the data!', function() {
+
+
+        element(by.id('leUultimateSubmitButton')).click();
+        browser.waitForAngular();
+
+
+        expect(element(by.id('submitObjectSuccessWarning')).isPresent()).toBe(true);
+    });
+
+
+    /**
+     * NOW NAVIGATE TO ADMIN PANEL AND EXAMINE IF THE NEW SUBMISSION IS ACTUALLY THERE OR NOT!
+     */
+    it('Test that the submitted data IS in the admin panel!!!!', function() {
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+    });
+
+
+
 
 
 
