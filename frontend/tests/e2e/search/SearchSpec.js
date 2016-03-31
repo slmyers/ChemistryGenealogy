@@ -3472,23 +3472,131 @@ describe('Search', function() {
         expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
 
 
-        expect(element(by.id('adminMentorshipDetailMenteeInstitution')).isPresent()).toBe(true);
+        expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(true);
 
-        expect(element(by.id('adminMentorshipDetailMenteeInstitution')).getText()).toEqual("university of alberta");
+        expect(element(by.id('viewPageMentoredsBox')).getText()).toEqual("Mentored");
 
 
     });
 
 
-    it('Check that there is a visible mentored section. ', function() {
+    it('Check that the data in viewPageMentoredName2 is present and correct. ', function() {
 
 
         expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
 
 
-        expect(element(by.id('adminMentorshipDetailMenteeInstitution')).isPresent()).toBe(true);
+        expect(element(by.id('viewPageMentoredName2')).isPresent()).toBe(true);
 
         expect(element(by.id('viewPageMentoredName2')).getText()).toEqual("mentored by x");
+
+
+    });
+
+
+    it('Check that the data in viewPageMentoredYears2 is present and correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+
+
+        expect(element(by.id('viewPageMentoredYears2')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageMentoredYears2')).getText()).toEqual("1999 - 2001");
+
+
+    });
+
+    it('Check that the data in viewPageMentoredInstitution2 is present and correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+
+
+        expect(element(by.id('viewPageMentoredInstitution2')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPageMentoredInstitution2')).getText()).toEqual("carlsberg laboratory");
+
+
+    });
+
+
+    it('Check that there is a visible postdocs section. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+
+
+        expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPagePostdocsBox')).getText()).toEqual("Postdocs");
+
+
+    });
+
+    it('Check that the data in viewPagePostdocsName2 is present and correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+
+
+        expect(element(by.id('viewPagePostdocsName2')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPagePostdocsName2')).getText()).toEqual("carlsberg laboratory");
+
+
+    });
+
+    it('Check that the data in viewPagePostdocsName2 is present and correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+
+
+        expect(element(by.id('viewPagePostdocsYears2')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPagePostdocsYears2')).getText()).toEqual("1999 - 2001");
+
+
+    });
+
+    it('Check that the data in viewPagePostdocsName2 is present and correct. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+
+
+        expect(element(by.id('viewPagePostdocsMentorName2')).isPresent()).toBe(true);
+
+        expect(element(by.id('viewPagePostdocsMentorName2')).getText()).toEqual("mentored by x mentor");
+
+
+    });
+
+    /** Now test hitting postdocs only button **/
+
+    it('Check that the hitting postdocs only button hides the other info. ', function() {
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/mentorshipNotification/mentor/15/mentee/16/mentorship/9');
+
+        element.all(by.id('adminMentorshipDetailMentorOnlyButton')).first().click();
+
+
+        expect(element(by.id('viewPageMentoredsBox')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageMentoredName2')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageMentoredYears2')).isPresent()).toBe(false);
+        expect(element(by.id('viewPageMentoredInstitution2')).isPresent()).toBe(false);
+
+
+        expect(element(by.id('viewPagePostdocsBox')).isPresent()).toBe(true);
+        expect(element(by.id('viewPagePostdocsName2')).isPresent()).toBe(true);
+        expect(element(by.id('viewPagePostdocsYears2')).isPresent()).toBe(true);
+        expect(element(by.id('viewPagePostdocsMentorName2')).isPresent()).toBe(true);
+
+
+
+        expect(element(by.id('viewPagePostdocsMentorName2')).getText()).toEqual("mentored by x mentor");
 
 
     });
