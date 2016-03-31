@@ -4498,707 +4498,1141 @@ describe('Search', function() {
         expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
     });
 
-    it('Test the navigation to the submit page. ', function() {
-
-        browser.get('http://localhost:5000/search');
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
-
-
-        expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
-
-        //Click the newsubmission button.
-        element(by.id('mainHeaderSubmitNewSubmissionButton')).click();
-
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        //mainHeaderSubmitNewSubmissionButton
-
-    });
-
-    /**
-     * Check interactables of the submit page are all there.
-     */
-
-
-    //firstName
-
-    it('Check the firstname angular model is there.. ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.model('firstName')).isPresent()).toBe(true);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-    });
-
-    it('Check the lastname angular model is there.. ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.model('lastName')).isPresent()).toBe(true);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-    });
-
-    it('Check the current position title angular model is there.. ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.model('currentPositionTitle')).isPresent()).toBe(true);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-    });
-
-
-    it('Check the current currentInstitutionName angular model is there.. ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.model('currentInstitutionName')).isPresent()).toBe(true);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-    });
-
-    it('Check the expand postdocs section button is there.. ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.id('expandPostDocInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('minimizePostDocInfoButton')).isPresent()).toBe(false);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-    });
-
-    it('Check the "expandDegreeInfoButton section button is there.. ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.id('expandDegreeInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('minimizeDegreeInfoButton')).isPresent()).toBe(false);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-    });
-
-    it('Check the "expandSuperDocsInfoButton section button is there.. ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.id('expandSuperDocsInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('minimizeSuperDocsInfoButton')).isPresent()).toBe(false);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-    });
-
-    it('Check the "expandSuperDegsInfoButton section button is there.. ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.id('expandSuperDegsInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('minimizeSuperDegsInfoButton')).isPresent()).toBe(false);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-    });
-
-    it('Test the expand postdocs button works ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.id('expandPostDocInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('minimizePostDocInfoButton')).isPresent()).toBe(false);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        element(by.id('expandPostDocInfoButton')).click();
-
-        expect(element(by.id('minimizePostDocInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('expandPostDocInfoButton')).isPresent()).toBe(false);
-
-    });
-
-    it('Test the expand Degree button works ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.id('expandDegreeInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('minimizeDegreeInfoButton')).isPresent()).toBe(false);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        element(by.id('expandDegreeInfoButton')).click();
-
-        expect(element(by.id('minimizeDegreeInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('expandDegreeInfoButton')).isPresent()).toBe(false);
-
-    });
-
-    it('Test the expand SuperDocs button works ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.id('expandSuperDocsInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('minimizeSuperDocsInfoButton')).isPresent()).toBe(false);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        element(by.id('expandSuperDocsInfoButton')).click();
-
-        expect(element(by.id('minimizeSuperDocsInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('expandSuperDocsInfoButton')).isPresent()).toBe(false);
-
-    });
-
-
-    it('Test the expand SuperDegs button works ', function() {
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        expect(element(by.id('expandSuperDegsInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('minimizeSuperDegsInfoButton')).isPresent()).toBe(false);
-
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
-
-        element(by.id('expandSuperDegsInfoButton')).click();
-
-        expect(element(by.id('minimizeSuperDegsInfoButton')).isPresent()).toBe(true);
-        expect(element(by.id('expandSuperDegsInfoButton')).isPresent()).toBe(false);
-
-    });
-
-    /**
-     * Postdoc appointments section analysis
-     */
-
-    it('Test the pdstartyear field existss ', function() {
-
-        expect(element(by.model('pdStartYear')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the pdendyear field existss ', function() {
-
-
-        expect(element(by.model('pdEndYear')).isPresent()).toBe(true);
-
-    });
-
-
-    it('Test the pdsupervisor field existss ', function() {
-
-
-        expect(element(by.model('pdSupervisor')).isPresent()).toBe(true);
-    });
-
-    it('Test the pdinstitution field existss ', function() {
-
-
-        expect(element(by.model('pdInstitution')).isPresent()).toBe(true);
-    });
-
-
-
-    it('Test putting text into the pdstartyear field ', function() {
-
-
-        element(by.model('pdStartYear')).sendKeys("2016");
-
-        expect(element(by.model('pdStartYear')).getAttribute('value')).toEqual("2016");
-    });
-
-
-    it('Test putting text into the pdendyear field ', function() {
-
-
-        element(by.model('pdEndYear')).sendKeys("999999");
-
-        expect(element(by.model('pdEndYear')).getAttribute('value')).toEqual("999999");
-    });
-
-    it('Test putting text into the pdsupervisor field ', function() {
-
-
-        element(by.model('pdSupervisor')).sendKeys("John Doe");
-
-        expect(element(by.model('pdSupervisor')).getAttribute('value')).toEqual("John Doe");
-    });
-
-    it('Test putting text into the pdinstitution field ', function() {
-
-
-        element(by.model('pdInstitution')).sendKeys("test university");
-
-        expect(element(by.model('pdInstitution')).getAttribute('value')).toEqual("test university");
-    });
-
-
-    /**
-     * DegreeInformation section analysis
-     */
-
-    it('Test the ditype field existss ', function() {
-
-        expect(element(by.model('diType')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the diyear field existss ', function() {
-
-        expect(element(by.model('diYear')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the disupervisor field existss ', function() {
-
-        expect(element(by.model('diSupervisor')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the diinstitution field existss ', function() {
-
-        expect(element(by.model('diInstitution')).isPresent()).toBe(true);
-
-    });
-
-
-
-
-    it('Test functioning input of diyear input text field. ', function() {
-
-        expect(element(by.model('diYear')).isPresent()).toBe(true);
-
-
-
-
-
-
-        element(by.model('diYear')).sendKeys("2979");
-
-        expect(element(by.model('diYear')).getAttribute('value')).toEqual("2979");
-
-    });
-
-
-
-    it('Test putting text into the diSupervisor field ', function() {
-
-
-        element(by.model('diSupervisor')).sendKeys("John NotDoe");
-
-        expect(element(by.model('diSupervisor')).getAttribute('value')).toEqual("John NotDoe");
-    });
-
-
-    it('Test putting text into the diInstitution field ', function() {
-
-
-        element(by.model('diInstitution')).sendKeys("testUniversity2");
-
-        expect(element(by.model('diInstitution')).getAttribute('value')).toEqual("testUniversity2");
-    });
-
-    /**
-     * Postdocs this person supervised section
-     */
-    it('Test the superDocNameOfPerson field existss ', function() {
-
-        expect(element(by.model('superdocNameOfPerson')).isPresent()).toBe(true);
-
-    });
-
-    /**
-     * WARNING: This test is extremely tempermental, sometimes the test fails because the webpage doesn't properly
-     * click the selection boxes. Frustrating.
-     */
-    it('Test functioning input of ditype ', function() {
-
-        expect(element(by.model('diType')).isPresent()).toBe(true);
-
-        element(by.model('diType')).click();
-
-        element(by.id('mdOpenDoctorate')).click();
-        //element(by.id('mdOpenDoctorate')).click();
-
-        //expect(element(by.model('diType')).getAttribute('value')).toEqual("Doctorate");
-
-    });
-
-
-    it('Test the superDocStartYear field existss ', function() {
-
-        expect(element(by.model('superDocStartYear')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the superDocEndYear field existss ', function() {
-
-        expect(element(by.model('superDocEndYear')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the superDocInstitution field existss ', function() {
-
-        expect(element(by.model('superDocInstitution')).isPresent()).toBe(true);
-
-    });
-
-
-    it('Test putting text into the superdocNameOfPerson field ', function() {
-
-
-        element(by.model('superdocNameOfPerson')).sendKeys("NotJohnDoe Again");
-
-        expect(element(by.model('superdocNameOfPerson')).getAttribute('value')).toEqual("NotJohnDoe Again");
-    });
-
-    it('Test putting text into the superDocStartYear field ', function() {
-
-
-        element(by.model('superDocStartYear')).sendKeys("1291892");
-
-        expect(element(by.model('superDocStartYear')).getAttribute('value')).toEqual("1291892");
-    });
-
-    it('Test putting text into the superDocEndYear field ', function() {
-
-
-        element(by.model('superDocEndYear')).sendKeys("1292");
-
-        expect(element(by.model('superDocEndYear')).getAttribute('value')).toEqual("1292");
-    });
-
-    it('Test putting text into the superDocInstitution field ', function() {
-
-
-        element(by.model('superDocInstitution')).sendKeys("magicalTestUniversity");
-
-        expect(element(by.model('superDocInstitution')).getAttribute('value')).toEqual("magicalTestUniversity");
-    });
-
-
-    /**
-     * People who this person supervised their DEGREES -- SUPERDEG SECTION
-     */
-    it('Test the superDegNameOfPerson field existss ', function() {
-
-        expect(element(by.model('superDegNameOfPerson')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the superDegCurrPosition field existss ', function() {
-
-        expect(element(by.model('superDegCurrPosition')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the superDegCurrInst field existss ', function() {
-
-        expect(element(by.model('superDegCurrInst')).isPresent()).toBe(true);
-
-    });
-
-
-    it('Test the superDegDegType field existss ', function() {
-
-        expect(element(by.model('superDegDegType')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the superDegYear field existss ', function() {
-
-        expect(element(by.model('superDegYear')).isPresent()).toBe(true);
-
-    });
-
-    it('Test the superDegInst field existss ', function() {
-
-        expect(element(by.model('superDegInst')).isPresent()).toBe(true);
-
-    });
-
-
-
-
-
-
-    it('Test putting text into the superDegNameOfPerson field ', function() {
-
-
-        element(by.model('superDegNameOfPerson')).sendKeys("Johnny Doe");
-
-        expect(element(by.model('superDegNameOfPerson')).getAttribute('value')).toEqual("Johnny Doe");
-    });
-
-    it('Test putting text into the diInstitution field ', function() {
-
-
-        element(by.model('superDegCurrPosition')).sendKeys("Professor");
-
-        expect(element(by.model('superDegCurrPosition')).getAttribute('value')).toEqual("Professor");
-    });
-
-    it('Test putting text into the superDegCurrInst field ', function() {
-
-
-        element(by.model('superDegCurrInst')).sendKeys("auniversity");
-
-        expect(element(by.model('superDegCurrInst')).getAttribute('value')).toEqual("auniversity");
-    });
-
-    /**
-     * WARNING: This test is extremely tempermental, sometimes the test fails because the webpage doesn't properly
-     * click the selection boxes. Frustrating.
-     */
-    it('Test functioning input of ditype ', function() {
-
-        expect(element(by.model('superDegDegType')).isPresent()).toBe(true);
-
-        element(by.model('superDegDegType')).click();
-
-        element(by.id('mdOpenSuperDoctorate')).click();
-        //element(by.id('mdOpenDoctorate')).click();
-
-        //expect(element(by.model('diType')).getAttribute('value')).toEqual("Doctorate");
-
-    });
-
-    it('Test putting text into the superDegYear field ', function() {
-
-
-        element(by.model('superDegYear')).sendKeys("1989");
-
-        expect(element(by.model('superDegYear')).getAttribute('value')).toEqual("1989");
-    });
-
-
-    it('Test putting a value into the superdeg inst field. ', function() {
-
-
-
-        element(by.model('superDegInst')).sendKeys("uofa");
-
-        expect(element(by.model('superDegInst')).getAttribute('value')).toEqual("uofa");
-
-    });
-
-    /**
-     * Now check "submitting" a postdoc appointment for it's consistency.
-     */
-
-
-    it('Test submitting a postdoc appointment', function() {
-        
-        //expect(element(by.model('postDocSubmittedInfoStartYear')).getAttribute('value')).toEqual("2016");
-
-        expect(element(by.model('pdEndYear')).getAttribute('value')).toEqual("999999");
-
-
-        expect(element(by.model('pdSupervisor')).getAttribute('value')).toEqual("John Doe");
-
-        expect(element(by.model('pdInstitution')).getAttribute('value')).toEqual("test university");
-
-        //postDocAddSubmissionButton
-
-        element(by.id('postDocAddSubmissionButton')).click();
-        browser.waitForAngular();
-
-
-    });
-
-
-    it('Test submitting a degree instance', function() {
-
-        //expect(element(by.model('postDocSubmittedInfoStartYear')).getAttribute('value')).toEqual("2016");
-
-        expect(element(by.model('diType')).isPresent()).toBe(true);
-
-        expect(element(by.model('diYear')).isPresent()).toBe(true);
-
-        expect(element(by.model('diSupervisor')).isPresent()).toBe(true);
-
-        expect(element(by.model('diInstitution')).isPresent()).toBe(true);
-
-
-        //postDocAddSubmissionButton
-
-        element(by.id('diSubmitButton')).click();
-        browser.waitForAngular();
-
-
-    });
-
-
-    it('Test submitting a superdoc instance', function() {
-
-
-
-        expect(element(by.model('superdocNameOfPerson')).getAttribute('value')).toEqual("NotJohnDoe Again");
-
-        expect(element(by.model('superDocStartYear')).getAttribute('value')).toEqual("1291892");
-
-        expect(element(by.model('superDocEndYear')).getAttribute('value')).toEqual("1292");
-
-        expect(element(by.model('superDocInstitution')).getAttribute('value')).toEqual("magicalTestUniversity");
-
-
-        //postDocAddSubmissionButton
-
-        element(by.id('addSuperdocinstanceButton')).click();
-        browser.waitForAngular();
-
-
-    });
-
-
-
-    it('Test submitting a superdeg instance', function() {
-
-
-        expect(element(by.model('superDegNameOfPerson')).getAttribute('value')).toEqual("Johnny Doe");
-
-        expect(element(by.model('superDegCurrPosition')).getAttribute('value')).toEqual("Professor");
-
-        expect(element(by.model('superDegCurrInst')).getAttribute('value')).toEqual("auniversity");
-
-        expect(element(by.model('superDegYear')).getAttribute('value')).toEqual("1989");
-
-        element(by.id('addSuperDegInstanceButton')).click();
-        browser.waitForAngular();
-
-
-    });
-
-
-    it('Test hitting the ultimate submit (all page submit) button prompts a firstname warning', function() {
-
-
-        element(by.id('leUultimateSubmitButton')).click();
-        browser.waitForAngular();
-
-
-        expect(element(by.id('firstNameWarning')).isPresent()).toBe(true);
-    });
-
-
-    it('Test putting in a value for the first name', function() {
-
-
-
-
-
-        element(by.model('firstName')).sendKeys("testFirstName");
-
-        expect(element(by.model('firstName')).getAttribute('value')).toEqual("testFirstName");
-
-
-    });
-
-
-    it('Test hitting the ultimate submit (all page submit) button prompts a lastname warning', function() {
-
-
-        element(by.id('leUultimateSubmitButton')).click();
-        browser.waitForAngular();
-
-
-        expect(element(by.id('lastNameWarning')).isPresent()).toBe(true);
-    });
-
-
-
-    it('Test putting in a value for the last name', function() {
-
-
-
-
-
-        element(by.model('lastName')).sendKeys("testLastName");
-
-        expect(element(by.model('lastName')).getAttribute('value')).toEqual("testLastName");
-
-
-    });
-
-
-    it('Test hitting the ultimate submit (all page submit) button prompts a currpositiontitle warning', function() {
-
-
-        element(by.id('leUultimateSubmitButton')).click();
-        browser.waitForAngular();
-
-
-        expect(element(by.id('currPosTitleWarning')).isPresent()).toBe(true);
-    });
-
-
-
-    it('Test putting in a value for the currentposition name', function() {
-
-
-
-
-
-        element(by.model('currentPositionTitle')).sendKeys("testCurrentPosition");
-
-        expect(element(by.model('currentPositionTitle')).getAttribute('value')).toEqual("testCurrentPosition");
-
-
-    });
-
-
-    it('Test hitting the ultimate submit (all page submit) button prompts a currpositiontitle warning', function() {
-
-
-        element(by.id('leUultimateSubmitButton')).click();
-        browser.waitForAngular();
-
-
-        expect(element(by.id('currInstNameWarning')).isPresent()).toBe(true);
-    });
-
-
-    it('Test putting in a value for the currentposition name', function() {
-
-
-
-
-
-        element(by.model('currentInstitutionName')).sendKeys("testInstitutionName");
-
-        expect(element(by.model('currentInstitutionName')).getAttribute('value')).toEqual("testInstitutionName");
-
-
-    });
-
-    it('Test hitting the ultimate submit button WILL submit the data!', function() {
-
-
-        element(by.id('leUultimateSubmitButton')).click();
-        browser.waitForAngular();
-
-
-        expect(element(by.id('submitObjectSuccessWarning')).isPresent()).toBe(true);
-    });
-
-
     /**
      * NOW NAVIGATE TO ADMIN PANEL AND EXAMINE IF THE NEW SUBMISSION IS ACTUALLY THERE OR NOT!
      */
-    it('Test that the submitted data IS in the admin panel!!!!', function() {
+    it('Test that the submitted data IS in the admin panel!!!! First: adminpanelpersonposandname', function() {
 
 
         element(by.id('adminOnlyButton')).click();
 
         expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
 
+        expect(element.all(by.id('adminPanelPersonPositionAndName')).get(0).getText()).toEqual("testcurrentposition testfirstname testlastname");
+
     });
+
+
+    it('Test that the submitted data IS in the admin panel!!!! Second: adminPanelPersonPositionAndName', function() {
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+        expect(element.all(by.id('adminPanelPersonPositionAndName')).get(1).getText()).toEqual("john doe");
+
+    });
+
+
+    it('Test that the submitted data IS in the admin panel!!!! third: adminPanelPersonPositionAndName', function() {
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+        expect(element.all(by.id('adminPanelPersonPositionAndName')).get(2).getText()).toEqual("john notdoe");
+
+    });
+
+
+    it('Test that the submitted data IS in the admin panel!!!! 4: adminPanelPersonInstitution', function() {
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+        expect(element.all(by.id('adminPanelPersonInstitution')).get(0).getText()).toEqual("testinstitutionname");
+
+    });
+
+    it('Test that the submitted data IS in the admin panel!!!! 5: adminPanelPersonInstitution', function() {
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+        expect(element.all(by.id('adminPanelPersonInstitution')).get(1).getText()).toEqual("test university");
+
+    });
+
+    it('Test that the submitted data IS in the admin panel!!!! 6: adminPanelPersonInstitution', function() {
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+        expect(element.all(by.id('adminPanelPersonInstitution')).get(2).getText()).toEqual("testuniversity2");
+
+    });
+
+    it('Test that the submitted data IS in the admin panel!!!! 7: button', function() {
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+            expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(0).isPresent()).toBe(true);
+
+    });
+
+    it('Test that the submitted data IS in the admin panel!!!! 8: button', function() {
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+        expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(1).isPresent()).toBe(true);
+
+    });
+
+
+    it('Test that the submitted data IS in the admin panel!!!! 9: button', function() {
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+        expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(2).isPresent()).toBe(true);
+
+    });
+
+
+    it('Test that we can navigate through the first part of the new submitted data', function(){
+
+        element.all(by.id('adminPanelPersonViewDetailButton')).get(0).click();
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+    it('Should have adminPersonNameName as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('adminPersonNameName')).getText()).toEqual("TESTFIRSTNAME TESTLASTNAME");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+    it('Should have adminPersonPosition as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('adminPersonPosition')).getText()).toEqual("TESTCURRENTPOSITION");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+    it('Should have adminPersonInstitution as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('adminPersonInstitution')).getText()).toEqual("TESTINSTITUTIONNAME");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+
+    it('Should have viewPagePostdocsName2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPagePostdocsName2')).getText()).toEqual("test university");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+
+    it('Should have viewPagePostdocsYears2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPagePostdocsYears2')).getText()).toEqual("2016 - 999999");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+
+    it('Should have viewPagePostdocsMentorName2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPagePostdocsMentorName2')).getText()).toEqual("mentored by john doe");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+    it('Should have viewPageDegreesDegreeType2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageDegreesDegreeType2')).getText()).toEqual("doctorate");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+    it('Should have viewPageDegreesDegreeYear2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageDegreesDegreeYear2')).getText()).toEqual("2979");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+    it('Should have viewPageDegreesDegreeInstitution2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageDegreesDegreeInstitution2')).getText()).toEqual("testuniversity2");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+    it('Should have viewPageDegreesSupervisorName2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageDegreesSupervisorName2')).getText()).toEqual("supervised by john notdoe");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/19');
+
+    });
+
+
+
+    it('Should be able to navigate back to admin panel from this page to look at others.', function(){
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+
+    });
+
+    it('Should be able to navigate to the second new submit item.', function(){
+
+
+        element.all(by.id('adminPanelPersonViewDetailButton')).get(1).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+
+
+    });
+
+    it('Should have adminPersonNameName as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('adminPersonNameName')).getText()).toEqual("JOHN DOE");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+
+    });
+
+
+    it('Should have adminPersonInstitution as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('adminPersonInstitution')).getText()).toEqual("TEST UNIVERSITY");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+
+    });
+
+
+    it('Should have viewPageMentoredName2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageMentoredName2')).getText()).toEqual("testfirstname testlastname");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+
+    });
+
+    it('Should have viewPageMentoredYears2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageMentoredYears2')).getText()).toEqual("2016 - 999999");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+
+    });
+
+
+    it('Should have viewPageMentoredInstitution2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageMentoredInstitution2')).getText()).toEqual("test university");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/20');
+
+    });
+
+
+
+    it('Should be able to navigate back to admin panel from this page to look at others.', function(){
+
+
+        element(by.id('adminOnlyButton')).click();
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+
+
+    });
+
+    it('Test that we can navigate through the third part of the new submitted data', function(){
+
+        element.all(by.id('adminPanelPersonViewDetailButton')).get(2).click();
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+
+    });
+
+
+    it('Should have adminPersonNameName as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('adminPersonNameName')).getText()).toEqual("JOHN NOTDOE");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+
+    });
+
+    it('Should have adminPersonInstitution as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('adminPersonInstitution')).getText()).toEqual("TESTUNIVERSITY2");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+
+    });
+
+
+    it('Should have viewPageSupervisedCardInfo2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageSupervisedCardInfo2')).getText()).toEqual("testfirstname testlastname");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+
+    });
+
+
+    it('Should have viewPageSupervisedInstitution2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageSupervisedInstitution2')).getText()).toEqual("testuniversity2");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+
+    });
+
+    it('Should have viewPageSupervisedDegreeType2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageSupervisedDegreeType2')).getText()).toEqual("doctorate");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+
+    });
+
+    it('Should have viewPageSupervisedYear2 as expected', function(){
+
+
+        //adminPersonNameName
+        expect(element(by.id('viewPageSupervisedYear2')).getText()).toEqual("2979");
+
+
+        //http://localhost:5000/personNotification/person/19
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/personNotification/person/21');
+
+    });
+
+
+    //TESTUNIVERSITY2
+
+
+    //      expect(element.all(by.id('adminPanelPersonViewDetailButton')).get(2).isPresent()).toBe(true);
+
+
+
+
+    //it('Test the navigation to the submit page. ', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //
+    //    expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
+    //
+    //    //Click the newsubmission button.
+    //    element(by.id('mainHeaderSubmitNewSubmissionButton')).click();
+    //
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    //mainHeaderSubmitNewSubmissionButton
+    //
+    //});
+    //
+    ///**
+    // * Check interactables of the submit page are all there.
+    // */
+    //
+    //
+    ////firstName
+    //
+    //it('Check the firstname angular model is there.. ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.model('firstName')).isPresent()).toBe(true);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //});
+    //
+    //it('Check the lastname angular model is there.. ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.model('lastName')).isPresent()).toBe(true);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //});
+    //
+    //it('Check the current position title angular model is there.. ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.model('currentPositionTitle')).isPresent()).toBe(true);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //});
+    //
+    //
+    //it('Check the current currentInstitutionName angular model is there.. ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.model('currentInstitutionName')).isPresent()).toBe(true);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //});
+    //
+    //it('Check the expand postdocs section button is there.. ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.id('expandPostDocInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('minimizePostDocInfoButton')).isPresent()).toBe(false);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //});
+    //
+    //it('Check the "expandDegreeInfoButton section button is there.. ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.id('expandDegreeInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('minimizeDegreeInfoButton')).isPresent()).toBe(false);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //});
+    //
+    //it('Check the "expandSuperDocsInfoButton section button is there.. ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.id('expandSuperDocsInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('minimizeSuperDocsInfoButton')).isPresent()).toBe(false);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //});
+    //
+    //it('Check the "expandSuperDegsInfoButton section button is there.. ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.id('expandSuperDegsInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('minimizeSuperDegsInfoButton')).isPresent()).toBe(false);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //});
+    //
+    //it('Test the expand postdocs button works ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.id('expandPostDocInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('minimizePostDocInfoButton')).isPresent()).toBe(false);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    element(by.id('expandPostDocInfoButton')).click();
+    //
+    //    expect(element(by.id('minimizePostDocInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('expandPostDocInfoButton')).isPresent()).toBe(false);
+    //
+    //});
+    //
+    //it('Test the expand Degree button works ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.id('expandDegreeInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('minimizeDegreeInfoButton')).isPresent()).toBe(false);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    element(by.id('expandDegreeInfoButton')).click();
+    //
+    //    expect(element(by.id('minimizeDegreeInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('expandDegreeInfoButton')).isPresent()).toBe(false);
+    //
+    //});
+    //
+    //it('Test the expand SuperDocs button works ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.id('expandSuperDocsInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('minimizeSuperDocsInfoButton')).isPresent()).toBe(false);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    element(by.id('expandSuperDocsInfoButton')).click();
+    //
+    //    expect(element(by.id('minimizeSuperDocsInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('expandSuperDocsInfoButton')).isPresent()).toBe(false);
+    //
+    //});
+    //
+    //
+    //it('Test the expand SuperDegs button works ', function() {
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    expect(element(by.id('expandSuperDegsInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('minimizeSuperDegsInfoButton')).isPresent()).toBe(false);
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/submit');
+    //
+    //    element(by.id('expandSuperDegsInfoButton')).click();
+    //
+    //    expect(element(by.id('minimizeSuperDegsInfoButton')).isPresent()).toBe(true);
+    //    expect(element(by.id('expandSuperDegsInfoButton')).isPresent()).toBe(false);
+    //
+    //});
+    //
+    ///**
+    // * Postdoc appointments section analysis
+    // */
+    //
+    //it('Test the pdstartyear field existss ', function() {
+    //
+    //    expect(element(by.model('pdStartYear')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the pdendyear field existss ', function() {
+    //
+    //
+    //    expect(element(by.model('pdEndYear')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //
+    //it('Test the pdsupervisor field existss ', function() {
+    //
+    //
+    //    expect(element(by.model('pdSupervisor')).isPresent()).toBe(true);
+    //});
+    //
+    //it('Test the pdinstitution field existss ', function() {
+    //
+    //
+    //    expect(element(by.model('pdInstitution')).isPresent()).toBe(true);
+    //});
+    //
+    //
+    //
+    //it('Test putting text into the pdstartyear field ', function() {
+    //
+    //
+    //    element(by.model('pdStartYear')).sendKeys("2016");
+    //
+    //    expect(element(by.model('pdStartYear')).getAttribute('value')).toEqual("2016");
+    //});
+    //
+    //
+    //it('Test putting text into the pdendyear field ', function() {
+    //
+    //
+    //    element(by.model('pdEndYear')).sendKeys("999999");
+    //
+    //    expect(element(by.model('pdEndYear')).getAttribute('value')).toEqual("999999");
+    //});
+    //
+    //it('Test putting text into the pdsupervisor field ', function() {
+    //
+    //
+    //    element(by.model('pdSupervisor')).sendKeys("John Doe");
+    //
+    //    expect(element(by.model('pdSupervisor')).getAttribute('value')).toEqual("John Doe");
+    //});
+    //
+    //it('Test putting text into the pdinstitution field ', function() {
+    //
+    //
+    //    element(by.model('pdInstitution')).sendKeys("test university");
+    //
+    //    expect(element(by.model('pdInstitution')).getAttribute('value')).toEqual("test university");
+    //});
+    //
+    //
+    ///**
+    // * DegreeInformation section analysis
+    // */
+    //
+    //it('Test the ditype field existss ', function() {
+    //
+    //    expect(element(by.model('diType')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the diyear field existss ', function() {
+    //
+    //    expect(element(by.model('diYear')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the disupervisor field existss ', function() {
+    //
+    //    expect(element(by.model('diSupervisor')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the diinstitution field existss ', function() {
+    //
+    //    expect(element(by.model('diInstitution')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //
+    //
+    //
+    //it('Test functioning input of diyear input text field. ', function() {
+    //
+    //    expect(element(by.model('diYear')).isPresent()).toBe(true);
+    //
+    //
+    //
+    //
+    //
+    //
+    //    element(by.model('diYear')).sendKeys("2979");
+    //
+    //    expect(element(by.model('diYear')).getAttribute('value')).toEqual("2979");
+    //
+    //});
+    //
+    //
+    //
+    //it('Test putting text into the diSupervisor field ', function() {
+    //
+    //
+    //    element(by.model('diSupervisor')).sendKeys("John NotDoe");
+    //
+    //    expect(element(by.model('diSupervisor')).getAttribute('value')).toEqual("John NotDoe");
+    //});
+    //
+    //
+    //it('Test putting text into the diInstitution field ', function() {
+    //
+    //
+    //    element(by.model('diInstitution')).sendKeys("testUniversity2");
+    //
+    //    expect(element(by.model('diInstitution')).getAttribute('value')).toEqual("testUniversity2");
+    //});
+    //
+    ///**
+    // * Postdocs this person supervised section
+    // */
+    //it('Test the superDocNameOfPerson field existss ', function() {
+    //
+    //    expect(element(by.model('superdocNameOfPerson')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    ///**
+    // * WARNING: This test is extremely tempermental, sometimes the test fails because the webpage doesn't properly
+    // * click the selection boxes. Frustrating.
+    // */
+    //it('Test functioning input of ditype ', function() {
+    //
+    //    expect(element(by.model('diType')).isPresent()).toBe(true);
+    //
+    //    element(by.model('diType')).click();
+    //
+    //    element(by.id('mdOpenDoctorate')).click();
+    //    //element(by.id('mdOpenDoctorate')).click();
+    //
+    //    //expect(element(by.model('diType')).getAttribute('value')).toEqual("Doctorate");
+    //
+    //});
+    //
+    //
+    //it('Test the superDocStartYear field existss ', function() {
+    //
+    //    expect(element(by.model('superDocStartYear')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the superDocEndYear field existss ', function() {
+    //
+    //    expect(element(by.model('superDocEndYear')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the superDocInstitution field existss ', function() {
+    //
+    //    expect(element(by.model('superDocInstitution')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //
+    //it('Test putting text into the superdocNameOfPerson field ', function() {
+    //
+    //
+    //    element(by.model('superdocNameOfPerson')).sendKeys("NotJohnDoe Again");
+    //
+    //    expect(element(by.model('superdocNameOfPerson')).getAttribute('value')).toEqual("NotJohnDoe Again");
+    //});
+    //
+    //it('Test putting text into the superDocStartYear field ', function() {
+    //
+    //
+    //    element(by.model('superDocStartYear')).sendKeys("1291892");
+    //
+    //    expect(element(by.model('superDocStartYear')).getAttribute('value')).toEqual("1291892");
+    //});
+    //
+    //it('Test putting text into the superDocEndYear field ', function() {
+    //
+    //
+    //    element(by.model('superDocEndYear')).sendKeys("1292");
+    //
+    //    expect(element(by.model('superDocEndYear')).getAttribute('value')).toEqual("1292");
+    //});
+    //
+    //it('Test putting text into the superDocInstitution field ', function() {
+    //
+    //
+    //    element(by.model('superDocInstitution')).sendKeys("magicalTestUniversity");
+    //
+    //    expect(element(by.model('superDocInstitution')).getAttribute('value')).toEqual("magicalTestUniversity");
+    //});
+    //
+    //
+    ///**
+    // * People who this person supervised their DEGREES -- SUPERDEG SECTION
+    // */
+    //it('Test the superDegNameOfPerson field existss ', function() {
+    //
+    //    expect(element(by.model('superDegNameOfPerson')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the superDegCurrPosition field existss ', function() {
+    //
+    //    expect(element(by.model('superDegCurrPosition')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the superDegCurrInst field existss ', function() {
+    //
+    //    expect(element(by.model('superDegCurrInst')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //
+    //it('Test the superDegDegType field existss ', function() {
+    //
+    //    expect(element(by.model('superDegDegType')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the superDegYear field existss ', function() {
+    //
+    //    expect(element(by.model('superDegYear')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //it('Test the superDegInst field existss ', function() {
+    //
+    //    expect(element(by.model('superDegInst')).isPresent()).toBe(true);
+    //
+    //});
+    //
+    //
+    //
+    //
+    //
+    //
+    //it('Test putting text into the superDegNameOfPerson field ', function() {
+    //
+    //
+    //    element(by.model('superDegNameOfPerson')).sendKeys("Johnny Doe");
+    //
+    //    expect(element(by.model('superDegNameOfPerson')).getAttribute('value')).toEqual("Johnny Doe");
+    //});
+    //
+    //it('Test putting text into the diInstitution field ', function() {
+    //
+    //
+    //    element(by.model('superDegCurrPosition')).sendKeys("Professor");
+    //
+    //    expect(element(by.model('superDegCurrPosition')).getAttribute('value')).toEqual("Professor");
+    //});
+    //
+    //it('Test putting text into the superDegCurrInst field ', function() {
+    //
+    //
+    //    element(by.model('superDegCurrInst')).sendKeys("auniversity");
+    //
+    //    expect(element(by.model('superDegCurrInst')).getAttribute('value')).toEqual("auniversity");
+    //});
+    //
+    ///**
+    // * WARNING: This test is extremely tempermental, sometimes the test fails because the webpage doesn't properly
+    // * click the selection boxes. Frustrating.
+    // */
+    //it('Test functioning input of ditype ', function() {
+    //
+    //    expect(element(by.model('superDegDegType')).isPresent()).toBe(true);
+    //
+    //    element(by.model('superDegDegType')).click();
+    //
+    //    element(by.id('mdOpenSuperDoctorate')).click();
+    //    //element(by.id('mdOpenDoctorate')).click();
+    //
+    //    //expect(element(by.model('diType')).getAttribute('value')).toEqual("Doctorate");
+    //
+    //});
+    //
+    //it('Test putting text into the superDegYear field ', function() {
+    //
+    //
+    //    element(by.model('superDegYear')).sendKeys("1989");
+    //
+    //    expect(element(by.model('superDegYear')).getAttribute('value')).toEqual("1989");
+    //});
+    //
+    //
+    //it('Test putting a value into the superdeg inst field. ', function() {
+    //
+    //
+    //
+    //    element(by.model('superDegInst')).sendKeys("uofa");
+    //
+    //    expect(element(by.model('superDegInst')).getAttribute('value')).toEqual("uofa");
+    //
+    //});
+    //
+    ///**
+    // * Now check "submitting" a postdoc appointment for it's consistency.
+    // */
+    //
+    //
+    //it('Test submitting a postdoc appointment', function() {
+    //
+    //    //expect(element(by.model('postDocSubmittedInfoStartYear')).getAttribute('value')).toEqual("2016");
+    //
+    //    expect(element(by.model('pdEndYear')).getAttribute('value')).toEqual("999999");
+    //
+    //
+    //    expect(element(by.model('pdSupervisor')).getAttribute('value')).toEqual("John Doe");
+    //
+    //    expect(element(by.model('pdInstitution')).getAttribute('value')).toEqual("test university");
+    //
+    //    //postDocAddSubmissionButton
+    //
+    //    element(by.id('postDocAddSubmissionButton')).click();
+    //    browser.waitForAngular();
+    //
+    //
+    //});
+    //
+    //
+    //it('Test submitting a degree instance', function() {
+    //
+    //    //expect(element(by.model('postDocSubmittedInfoStartYear')).getAttribute('value')).toEqual("2016");
+    //
+    //    expect(element(by.model('diType')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.model('diYear')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.model('diSupervisor')).isPresent()).toBe(true);
+    //
+    //    expect(element(by.model('diInstitution')).isPresent()).toBe(true);
+    //
+    //
+    //    //postDocAddSubmissionButton
+    //
+    //    element(by.id('diSubmitButton')).click();
+    //    browser.waitForAngular();
+    //
+    //
+    //});
+    //
+    //
+    //it('Test submitting a superdoc instance', function() {
+    //
+    //
+    //
+    //    expect(element(by.model('superdocNameOfPerson')).getAttribute('value')).toEqual("NotJohnDoe Again");
+    //
+    //    expect(element(by.model('superDocStartYear')).getAttribute('value')).toEqual("1291892");
+    //
+    //    expect(element(by.model('superDocEndYear')).getAttribute('value')).toEqual("1292");
+    //
+    //    expect(element(by.model('superDocInstitution')).getAttribute('value')).toEqual("magicalTestUniversity");
+    //
+    //
+    //    //postDocAddSubmissionButton
+    //
+    //    element(by.id('addSuperdocinstanceButton')).click();
+    //    browser.waitForAngular();
+    //
+    //
+    //});
+    //
+    //
+    //
+    //it('Test submitting a superdeg instance', function() {
+    //
+    //
+    //    expect(element(by.model('superDegNameOfPerson')).getAttribute('value')).toEqual("Johnny Doe");
+    //
+    //    expect(element(by.model('superDegCurrPosition')).getAttribute('value')).toEqual("Professor");
+    //
+    //    expect(element(by.model('superDegCurrInst')).getAttribute('value')).toEqual("auniversity");
+    //
+    //    expect(element(by.model('superDegYear')).getAttribute('value')).toEqual("1989");
+    //
+    //    element(by.id('addSuperDegInstanceButton')).click();
+    //    browser.waitForAngular();
+    //
+    //
+    //});
+    //
+    //
+    //it('Test hitting the ultimate submit (all page submit) button prompts a firstname warning', function() {
+    //
+    //
+    //    element(by.id('leUultimateSubmitButton')).click();
+    //    browser.waitForAngular();
+    //
+    //
+    //    expect(element(by.id('firstNameWarning')).isPresent()).toBe(true);
+    //});
+    //
+    //
+    //it('Test putting in a value for the first name', function() {
+    //
+    //
+    //
+    //
+    //
+    //    element(by.model('firstName')).sendKeys("testFirstName");
+    //
+    //    expect(element(by.model('firstName')).getAttribute('value')).toEqual("testFirstName");
+    //
+    //
+    //});
+    //
+    //
+    //it('Test hitting the ultimate submit (all page submit) button prompts a lastname warning', function() {
+    //
+    //
+    //    element(by.id('leUultimateSubmitButton')).click();
+    //    browser.waitForAngular();
+    //
+    //
+    //    expect(element(by.id('lastNameWarning')).isPresent()).toBe(true);
+    //});
+    //
+    //
+    //
+    //it('Test putting in a value for the last name', function() {
+    //
+    //
+    //
+    //
+    //
+    //    element(by.model('lastName')).sendKeys("testLastName");
+    //
+    //    expect(element(by.model('lastName')).getAttribute('value')).toEqual("testLastName");
+    //
+    //
+    //});
+    //
+    //
+    //it('Test hitting the ultimate submit (all page submit) button prompts a currpositiontitle warning', function() {
+    //
+    //
+    //    element(by.id('leUultimateSubmitButton')).click();
+    //    browser.waitForAngular();
+    //
+    //
+    //    expect(element(by.id('currPosTitleWarning')).isPresent()).toBe(true);
+    //});
+    //
+    //
+    //
+    //it('Test putting in a value for the currentposition name', function() {
+    //
+    //
+    //
+    //
+    //
+    //    element(by.model('currentPositionTitle')).sendKeys("testCurrentPosition");
+    //
+    //    expect(element(by.model('currentPositionTitle')).getAttribute('value')).toEqual("testCurrentPosition");
+    //
+    //
+    //});
+    //
+    //
+    //it('Test hitting the ultimate submit (all page submit) button prompts a currpositiontitle warning', function() {
+    //
+    //
+    //    element(by.id('leUultimateSubmitButton')).click();
+    //    browser.waitForAngular();
+    //
+    //
+    //    expect(element(by.id('currInstNameWarning')).isPresent()).toBe(true);
+    //});
+    //
+    //
+    //it('Test putting in a value for the currentposition name', function() {
+    //
+    //
+    //
+    //
+    //
+    //    element(by.model('currentInstitutionName')).sendKeys("testInstitutionName");
+    //
+    //    expect(element(by.model('currentInstitutionName')).getAttribute('value')).toEqual("testInstitutionName");
+    //
+    //
+    //});
+    //
+    //it('Test hitting the ultimate submit button WILL submit the data!', function() {
+    //
+    //
+    //    element(by.id('leUultimateSubmitButton')).click();
+    //    browser.waitForAngular();
+    //
+    //
+    //    expect(element(by.id('submitObjectSuccessWarning')).isPresent()).toBe(true);
+    //});
+    //
+    //
+    ///**
+    // * NOW NAVIGATE TO ADMIN PANEL AND EXAMINE IF THE NEW SUBMISSION IS ACTUALLY THERE OR NOT!
+    // */
+    //it('Test that the submitted data IS in the admin panel!!!!', function() {
+    //
+    //
+    //    element(by.id('adminOnlyButton')).click();
+    //
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/admin');
+    //
+    //    expect(element(by.id('adminPanelPersonPositionAndName').get(2)).getText()).toEqual("testcurrentposition testfirstname testlastname");
+    //
+    //    //    expect(element(by.id('adminPanelPersonPositionAndName')).getText()).toEqual("professor steven myers");
+    //});
 
 
 
