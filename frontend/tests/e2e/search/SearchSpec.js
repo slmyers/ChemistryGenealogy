@@ -4469,6 +4469,10 @@ describe('Search', function() {
     });
 
 
+    /**
+     * Start of submit page (Perhaps comment this out for test demos?) :/ That click box bug is quite bad...
+     */
+
     it('Test that a logged in user can see the submit button. ', function() {
 
         browser.get('http://localhost:5000/search');
@@ -4764,22 +4768,6 @@ describe('Search', function() {
     });
 
 
-    /**
-     * WARNING: This test is extremely tempermental, sometimes the test fails because the webpage doesn't properly
-     * click the selection boxes. Frustrating.
-     */
-    it('Test functioning input of ditype ', function() {
-
-        expect(element(by.model('diType')).isPresent()).toBe(true);
-
-        element(by.model('diType')).click();
-
-        element(by.id('mdOpenDoctorate')).click();
-        //element(by.id('mdOpenDoctorate')).click();
-
-        //expect(element(by.model('diType')).getAttribute('value')).toEqual("Doctorate");
-
-    });
 
 
     it('Test functioning input of diyear input text field. ', function() {
@@ -4824,6 +4812,24 @@ describe('Search', function() {
         expect(element(by.model('superdocNameOfPerson')).isPresent()).toBe(true);
 
     });
+
+    /**
+     * WARNING: This test is extremely tempermental, sometimes the test fails because the webpage doesn't properly
+     * click the selection boxes. Frustrating.
+     */
+    it('Test functioning input of ditype ', function() {
+
+        expect(element(by.model('diType')).isPresent()).toBe(true);
+
+        element(by.model('diType')).click();
+
+        element(by.id('mdOpenDoctorate')).click();
+        //element(by.id('mdOpenDoctorate')).click();
+
+        //expect(element(by.model('diType')).getAttribute('value')).toEqual("Doctorate");
+
+    });
+
 
     it('Test the superDocStartYear field existss ', function() {
 
@@ -4920,9 +4926,67 @@ describe('Search', function() {
 
 
 
+
+    it('Test putting text into the superDegNameOfPerson field ', function() {
+
+
+        element(by.model('superDegNameOfPerson')).sendKeys("Johnny Doe");
+
+        expect(element(by.model('superDegNameOfPerson')).getAttribute('value')).toEqual("Johnny Doe");
+    });
+
+    it('Test putting text into the diInstitution field ', function() {
+
+
+        element(by.model('superDegCurrPosition')).sendKeys("Professor");
+
+        expect(element(by.model('superDegCurrPosition')).getAttribute('value')).toEqual("Professor");
+    });
+
+    it('Test putting text into the superDegCurrInst field ', function() {
+
+
+        element(by.model('superDegCurrInst')).sendKeys("auniversity");
+
+        expect(element(by.model('superDegCurrInst')).getAttribute('value')).toEqual("auniversity");
+    });
+
+    /**
+     * WARNING: This test is extremely tempermental, sometimes the test fails because the webpage doesn't properly
+     * click the selection boxes. Frustrating.
+     */
+    it('Test functioning input of ditype ', function() {
+
+        expect(element(by.model('superDegDegType')).isPresent()).toBe(true);
+
+        element(by.model('superDegDegType')).click();
+
+        element(by.id('mdOpenSuperDoctorate')).click();
+        //element(by.id('mdOpenDoctorate')).click();
+
+        //expect(element(by.model('diType')).getAttribute('value')).toEqual("Doctorate");
+
+    });
+
+    it('Test putting text into the superDegYear field ', function() {
+
+
+        element(by.model('superDegYear')).sendKeys("1989");
+
+        expect(element(by.model('superDegYear')).getAttribute('value')).toEqual("1989");
+    });
+
+
+
+
 //        expect(element(by.id('viewPageTopBarInstitution')).getText()).toEqual("UNIVERSITY OF ALBERTA");
 
     //data.person.data.name
+
+
+    /**
+     * End of submit page (Perhaps comment this out for test demos?) :/ That click box bug is quite bad...
+     */
 
 
 
