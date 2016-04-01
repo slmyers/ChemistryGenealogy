@@ -113,3 +113,12 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * auto generated documentation 
 * wrote various tests
 * updated UI
+
+--- 
+
+###Sprint 5 
+
+* reworked UI for view/admin panels 
+* found bugs in search 
+* found bugs in autocomplete
+* found bugs in verification 

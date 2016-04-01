@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: ErrorsController
+  Class: UserMailer
   
     &mdash; Documentation by YARD 0.8.7.6
   
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!ErrorsController.html";
+  framesUrl = "frames.html#!UserMailer.html";
 </script>
 
 
@@ -31,10 +31,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="_index.html">Index (E)</a> &raquo;
+    <a href="_index.html">Index (U)</a> &raquo;
     
     
-    <span class="title">ErrorsController</span>
+    <span class="title">UserMailer</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -63,7 +63,7 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><h1>Class: ErrorsController
+    <div id="content"><h1>Class: UserMailer
   
   
   
@@ -73,16 +73,14 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></span>
+      <span class="inheritName">ActionMailer::Base</span>
       
         <ul class="fullTree">
           <li>Object</li>
           
-            <li class="next">ActionController::API</li>
+            <li class="next">ActionMailer::Base</li>
           
-            <li class="next"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></li>
-          
-            <li class="next">ErrorsController</li>
+            <li class="next">UserMailer</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -98,7 +96,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">app/controllers/errors_controller.rb</dd>
+    <dd class="r2 last">app/mailers/user_mailer.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -106,8 +104,10 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>this class handles 404 errors, so we don&#39;t get a HTML dump in the
-developer console at the frontend.</p>
+<p>This mailer is used to notify a user that registered that their account has
+been approved. NOTE: this is not fully implemented due to lack of
+requirment, so you should view this as a starting point for extending the
+application.</p>
 
 
   </div>
@@ -137,15 +137,10 @@ developer console at the frontend.</p>
 
 
 
-  <h2>Instance Attribute Summary</h2>
-  
-  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#current_user-instance_method" title="ApplicationController#current_user (method)">#current_user</a></span></p>
-
 
   
     <h2>
-      Instance Method Summary
+      Class Method Summary
       <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
     </h2>
 
@@ -154,7 +149,7 @@ developer console at the frontend.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#routing-instance_method" title="#routing (instance method)">- (Object) <strong>routing</strong> </a>
+      <a href="#notify_user-class_method" title="notify_user (class method)">+ (Object) <strong>notify_user</strong>(user) </a>
     
 
     
@@ -168,7 +163,10 @@ developer console at the frontend.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>the view for this email is textual and it should be extended to have a link
+to the site in the email.</p>
+</div></span>
   
 </li>
 
@@ -178,41 +176,49 @@ developer console at the frontend.</p>
 
 
   
-  
-  
-  
-  
-  
-  
 
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="routing-instance_method">
+  <h3 class="signature first" id="notify_user-class_method">
   
-    - (<tt>Object</tt>) <strong>routing</strong> 
-  
-
+    + (<tt>Object</tt>) <strong>notify_user</strong>(user) 
   
 
   
-</h3><table class="source_code">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>the view for this email is textual and it should be extended to have a link
+to the site in the email. view: /app/views/user_mailer/notify_user.text.erb</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+12
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/errors_controller.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'app/mailers/user_mailer.rb', line 12</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_routing'>routing</span>
-  <span class='id identifier rubyid_render_404'>render_404</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_notify_user'>notify_user</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
+  <span class='ivar'>@user</span> <span class='op'>=</span> <span class='id identifier rubyid_user'>user</span>
+  <span class='id identifier rubyid_mail'>mail</span><span class='lparen'>(</span><span class='label'>to:</span> <span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='label'>subject:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Chemistry Geneology registration</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

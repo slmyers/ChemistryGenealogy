@@ -63,3 +63,27 @@
 |Participants|Cole, Connor, Daniel, Theresa|
 |Minutes|2 hours|
 |Agenda|Meeting with the professor and TA<li>Update on project planning and progress</li>|
+
+|Date|March 4, 2016|
+|Formality|Formal|
+|Participants|Cole, Daniel, Ji Hwan, Steven, Theresa|
+|Minutes|2 hours|
+|Agenda|Meeting with the professor and TA<li>Update on project progress</li><li>Made deadlines for the remaining use cases</li>|
+
+|Date|March 11, 2016|
+|Formality|Formal|
+|Participants|Cole, Connor, Daniel, Ji Hwan, Steven, Theresa|
+|Minutes|2 hours|
+|Agenda|Meeting with the TA<li>Update on project progress</li><li>Received feedback on part of the demo</li><li>Set a meeting time for the entire group to meet with the TA and work on the project</li>|
+
+|Date|March 14, 2016|
+|Formality|Formal|
+|Participants|Cole, Connor, Daniel, Ji Hwan, Steven, Theresa|
+|Minutes|5 hours|
+|Agenda|Meeting with the TA<li>Mandatory meeting to work on the project</li>|
+
+|Date|March 18, 2016|
+|Formality|Formal|
+|Participants|Cole, Connor, Daniel, Steven, Theresa|
+|Minutes|2 hours|
+|Agenda|Meeting with the TA<li>Update on project progress</li><li>Received feedback on the working demo</li>|
