@@ -37,7 +37,13 @@ class Api::AggregatedController < ApiController
   # Handles submitting information about a person with POST
   def create
     Rails.logger.info(params)
-    @person = Information.submit_handling(params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
+    @person = Information.submit_handling(params[:name],
+                                          params[:position],
+                                          params[:institution],
+                                          params[:postdoc],
+                                          params[:degree],
+                                          params[:superdeg],
+                                          params[:superdoc])
     if @person != nil && @person.save
       render json: {person: @person}
     else

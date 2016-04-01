@@ -170,6 +170,7 @@ class Supervision < ActiveRecord::Base
     result[:supervisor] = Person.find_by(:id => supervision.supervisor_id).name
     result[:institution] = Institution.find_by(id: degree.institution_id).name
     result[:type] = degree.degree_type
+    result[:supervised] = Person.find_by(id => supervision.person_id).name
 
     result[:degree_id] = degree.id
     result[:degree_approved] = degree.approved

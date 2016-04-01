@@ -168,6 +168,7 @@ class Mentorship < ActiveRecord::Base
     result[:pdEndYear] = mentorship.end
     result[:pdSupervisor] = Person.find_by(id: mentorship.mentor_id).name
     result[:pdInstitution] = Institution.find_by(id: mentorship.institution_id).name
+    result[:pdSupervised] = Person.find_by(id: mentorship.person_id).name
     result = result.except(:id, :approved)
     result[:postdoc_id] = mentorship.id
     result[:postdoc_approved] = mentorship.approved
