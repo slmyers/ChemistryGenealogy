@@ -86,3 +86,86 @@ describe Degree, '.new_degree' do
     expect(@degree.where(id: @dId)).not_to eql(nil)
   end
 end
+
+describe Person, '.edit_Person_Information' do
+  before do
+    @personFirst = Person.first
+  end
+
+  it 'edits an existing person information' do
+    # this test will test for edtiting information
+    
+    # test for edit name
+    # I want to change the name to Ji Hwan Kim, first check if it is not equal to Ji Hwan Kim
+    # first check if the parameter is not nil
+    expect(@personFirst.name).to_not eql(nil)
+
+    expect(@personFirst.name).to_not eql("Ji Hwan Kim")
+    @personFirst.update(name: "Ji Hwan Kim")
+    expect(@personFirst.name).to eql("Ji Hwan Kim")
+
+    # test for edit position
+    # check if param is not nil
+    expect(@personFirst.position).not_to eql(nil)
+
+    expect(@personFirst.position).to_not eql("Postition A")
+    @personFirst.update(position: "Position A")
+    expect(@personFirst.position).to eql("Position A")
+  end
+end
+
+describe Institution, '.edit_Institution_Information' do
+  before do
+    @institutionFirst = Institution.first
+  end
+
+  it 'edits an existing institution information' do
+    # test for editing institution information
+    # first check if param is not nil
+    expect(@institutionFirst.name).to_not eql(nil)
+
+    expect(@institutionFirst.name).to_not eql("University A")
+    @institutionFirst.update(name: "University A")
+    expect(@institutionFirst.name).to eql("University A")
+  end
+end
+
+describe Mentorship, '.edit_Mentorship_Information' do
+  before do
+    @mentorshipFirst = Mentorship.first
+    @person = Person
+  end
+
+  it 'edits an existing mentorship information' do
+    # test for editing mentorship information
+    # first check if param is not nil
+    @mId = @mentorshipFirst.mentor_id
+    expect(@mId).to_not eql(nil)
+
+    @mentor = @person.find_by_id(@mId)
+
+    expect(@mentor.name).to_not eql("Mentor A")
+    @mentor.update(name: "Mentor A")
+    expect(@mentor.name).to eql("Mentor A")
+  end
+end
+
+describe Supervision, '.edit_Supervision_Information' do
+  before do
+    @supervisionFirst = Supervision.first
+    @person = Person
+  end
+
+  it 'edits an exsiting supervision information' do
+    # test for editing supervision information
+    # first check if param is not nil
+    @sId = @supervisionFirst.supervisor_id
+    expect(@sId).to_not eql(nil)
+
+    @supervisor = @person.find_by_id(@sId)
+
+    expect(@supervisor.name).to_not eql("Supervisor A")
+    @supervisor.update(name: "Supervisor A")
+    expect(@supervisor.name).to eql("Supervisor A")
+  end
+end
