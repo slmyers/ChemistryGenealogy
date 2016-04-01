@@ -54,29 +54,75 @@ class Supervision < ActiveRecord::Base
       # Check that the supervision_array_received is not nil
       unless supervision_array_received.nil?
 
-        # For each supervision, see if it already exists in the database
-        # If not, create a new one
+        # For each supervision in the supervision_array_received,
+        # see if it already exists in the database
+        # If so, then the supervision is present and can be removed from the supervision_array
+        # as well as the supervision_array_received
         supervision_array_received.each do |supervision|
-
-          # This function will find or create a supervision given the required
-          # attributes. It will also create a new degree if needed.
-          supervision_object = Supervision.new_supervision(supervision[:year],
-                                                            supervision[:type],
-                                                            supervision[:institution],
-                                                            name,
-                                                            supervision[:supervisor],)
-          supervision_id = supervision_object.id
-
-          # If the supervision is in the supervision_array, remove from the array
-          if supervision_array.include? supervision_id
-            supervision_array.delete(supervision_id)
+          if supervision.has_key?(:id)
+            supervision_array.delete(supervision[:id])
+            supervision_array_received.delete(supervision)
           end
         end
 
-        # If there are any supervisions left in supervision_array, delete them
+        # The results left are ones that were either deleted or new
+        # Check if supervision_array is not nil
         unless supervision_array.nil?
-          supervision_array.each do |supervision_id|
-            Supervision.delete(supervision_id)
+
+          # Check if the supervision_array_received is not nil
+          unless supervision_array_received.nil?
+
+            # For each of the ids left in the array, update them with a new supervision information
+            supervision_array.each do |supervision_id|
+              unless supervision_array_received.nil?
+                new_supervision = supervision_array_received[0]
+                supervisor_id = FindId.person(new_supervision[:supervisor])
+                degree_id = FindId.degree(new_supervision[:year], new_supervision[:type], new_supervision[:institution])
+                Supervision.update(supervision_id, supervisor_id: supervisor_id)
+                Supervision.update(supervision_id, degree_id: degree_id)
+
+                supervision_array.delete(supervision_id)
+                supervision_array_received.delete(new_supervision)
+              end
+            end
+
+            # If there are any supervisions left in the supervision_array, delete them
+            unless supervision_array.nil?
+              supervision_array.each do |supervision_id|
+                Supervision.delete(supervision_id)
+              end
+            end
+
+            # If there are any supervisions left in the supervision_array_received, create them
+            unless supervision_array_received.nil?
+              supervision_array_received.each do |supervision|
+                Degree.new_degree(supervision[:year], supervision[:type], supervision[:institution])
+                Supervision.new_supervision(supervision[:year],
+                                            supervision[:type],
+                                            supervision[:institution],
+                                            name,
+                                            supervision[:supervisor])
+              end
+            end
+
+          # If the supervision_array_received is nil,
+          # then the rest of the supervisions connected to the person are removed from the database
+          else
+            supervision_array.each do |supervision_id|
+              Supervision.delete(supervision_id)
+            end
+          end
+        # If it is nil, add remaining supervisions to the database
+        else
+          unless supervision_array_received.nil?
+            supervision_array_received.each do |supervision|
+              Degree.new_degree(supervision[:year], supervision[:type], supervision[:institution])
+              Supervision.new_supervision(supervision[:year],
+                                          supervision[:type],
+                                          supervision[:institution],
+                                          name,
+                                          supervision[:supervisor])
+            end
           end
         end
 
@@ -91,8 +137,6 @@ class Supervision < ActiveRecord::Base
     # If there are no supervisions connected to the person, create new
     # supervisions and degrees for the person as long as supervision_array_received
     # is not nil either
-    # In this case, degree_id, degree_approved, supervision_id, and supervision_approved
-    # are all nil
     else
       unless supervision_array_received.nil?
         supervision_array_received.each do |supervision|
@@ -167,10 +211,10 @@ class Supervision < ActiveRecord::Base
 
     degree = Degree.find_by(id: degree_id)
     result[:year] = degree.year
-    result[:supervisor] = Person.find_by(:id => supervision.supervisor_id).name
+    result[:supervisor] = Person.find_by(id: supervision.supervisor_id).name
     result[:institution] = Institution.find_by(id: degree.institution_id).name
     result[:type] = degree.degree_type
-    result[:supervised] = Person.find_by(id => supervision.person_id).name
+    result[:supervised] = Person.find_by(id: supervision.person_id).name
 
     result[:degree_id] = degree.id
     result[:degree_approved] = degree.approved

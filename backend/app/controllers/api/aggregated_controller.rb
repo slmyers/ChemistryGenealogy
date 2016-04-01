@@ -42,8 +42,8 @@ class Api::AggregatedController < ApiController
                                           params[:institution],
                                           params[:postdoc],
                                           params[:degree],
-                                          params[:superdeg],
-                                          params[:superdoc])
+                                          params[:superdoc],
+                                          params[:superdeg])
     if @person != nil && @person.save
       render json: {person: @person}
     else
@@ -56,7 +56,14 @@ class Api::AggregatedController < ApiController
   def update
     Rails.logger.info(params)
     Rails.logger.debug params.inspect
-    @person = Information.update_handling(params[:id], params[:name], params[:position], params[:institution], params[:postdoc], params[:degree])
+    @person = Information.update_handling(params[:id],
+                                          params[:name],
+                                          params[:position],
+                                          params[:institution],
+                                          params[:postdoc],
+                                          params[:degree],
+                                          params[:superdoc],
+                                          params[:superdeg])
     if @person != nil && @person.save
       render json: {person: @person}
     else

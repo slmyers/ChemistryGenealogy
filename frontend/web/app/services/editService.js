@@ -77,7 +77,9 @@ angular.module('chemGeno')
                         position: modifications.currentPositionTitle,
                         institution: modifications.currentInstitutionName,
                         degree: modifications.degreeInformation,
-                        postdoc: modifications.postDocInformation
+                        postdoc: modifications.postDocInformation,
+                        superdoc: modifications.superDocInformation,
+                        superdeg: modifications.superDegInformation
                     }
                 }).success(function(resp) {
                     d.resolve(resp);

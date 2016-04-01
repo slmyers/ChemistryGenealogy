@@ -83,7 +83,7 @@ class Person < ActiveRecord::Base
     end
     result[:superDegInformation] = superdeg_array
 
-    return result.to_json
+    return result
   end
 
   # Handles rendering a person in a JSON format.

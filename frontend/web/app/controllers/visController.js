@@ -1,8 +1,8 @@
 /**
  * @module visController
  * @class visController
- *
- * Notifications for mentorships are dealt with here.
+ * @author Daniel Shin
+ * The visualization for the data is located here.
  */
 
 angular.module('chemGeno')
@@ -78,7 +78,10 @@ angular.module('chemGeno')
       $scope.supervisors = [];
       $scope.supervised = [];
 
-      // probably should've just put institutions with people
+      /**
+       * This method is invoked in the type of angular $on functionality
+       * @method
+       */
       $scope.$on('search:response', function(event,data) {
          $scope.clearResults();
          //Cleanup old graph
@@ -245,7 +248,14 @@ angular.module('chemGeno')
            .event(svg);
       });
 
-
+      /**
+       * This method is involved in finding an instiutiton data, given an id and institutions list.
+       *
+       * @param id A particular ID.
+       * @param institutions An array of institututions objects.
+       * @returns {*}
+       * @method findInstitution
+       */
       $scope.findInstitution = function(id, institutions) {
         for(var i = 0; i < institutions.length; i++){
           if (institutions[i].id === id) {
@@ -254,6 +264,11 @@ angular.module('chemGeno')
         }
       }
 
+
+      /**
+       * This function is used to clear all of the results returned.
+       * @method clearResults
+       */
       $scope.clearResults = function() {
         $scope.target = [];
         $scope.mentors = [];
