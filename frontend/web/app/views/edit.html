@@ -167,7 +167,7 @@
 <md-card  ng-if="!postDocVisibility">
 
     <md-card-header>
-        <md-card-avatar ng-click="showPostDocInfo()">
+        <md-card-avatar id="showPostDocInfoExpandButton" ng-click="showPostDocInfo()">
             <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
             <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                 Click here to expand the postdoc information.
@@ -312,7 +312,7 @@
     <md-card  ng-if="!degreeInfoVisibility">
 
         <md-card-header>
-            <md-card-avatar style="cursor:pointer" ng-click="showDegreeInfo()">
+            <md-card-avatar id="showDegreeInfoExpandButton" style="cursor:pointer" ng-click="showDegreeInfo()">
                 <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
                 <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                     Click here to expand the degree information section.
@@ -475,7 +475,7 @@ entered into the system -->
         <md-card  ng-if="!postdocSupervisionVisibility">
 
             <md-card-header>
-                <md-card-avatar style="cursor:pointer" ng-click="showSuperDocInfo()">
+                <md-card-avatar id="showSuperDocInfoExpandButton" style="cursor:pointer" ng-click="showSuperDocInfo()">
                     <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
                     <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                         Click here to expand the supervised postdocs information
@@ -627,7 +627,7 @@ entered into the system -->
             <md-card  ng-if="!superDegVisibility">
 
                 <md-card-header>
-                    <md-card-avatar style="cursor:pointer" ng-click="showSuperDegInfo()">
+                    <md-card-avatar id="showSuperDegInfoExpandButton" style="cursor:pointer" ng-click="showSuperDegInfo()">
                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
                         <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                             Click here to expand the people's degrees they supervised in the past information
