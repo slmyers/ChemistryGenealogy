@@ -8,17 +8,22 @@
 <md-list layout="row">
   <md-list-item ng-repeat="mentored in data" >
     <div ng-if="links === true">
-      <a>
-        <md-card ng-click="goNext(mentored)">
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline" id="viewPageMentoredName">{{mentored.mentored.person.name}}</span>
-              <span class="md-subhead" id="viewPageMentoredYears">{{mentored.start}} - {{mentored.end}}</span>
-              <span class="md-subhead" id="viewPageMentoredInstitution">{{mentored.institution.name}}</span>
-            </md-card-title-text>
-          </md-card-title>
-        </md-card>
-      </a>
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" id="viewPageMentoredName">{{mentored.mentored.person.name}}</span>
+            <span class="md-subhead" id="viewPageMentoredYears">{{mentored.start}} - {{mentored.end}}</span>
+            <span class="md-subhead" id="viewPageMentoredInstitution">{{mentored.institution.name}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions>
+          <md-button
+            ng-click="goNext(mentored)"
+            class="md-raised md-primary">
+              view
+          </md-button> 
+        </md-card-actions>
+      </md-card>
     </div>
     <div ng-if="links === false">
       <md-card>
