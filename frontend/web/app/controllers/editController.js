@@ -827,7 +827,6 @@ angular.module('chemGeno')
                     return;
                 }else{
                     $scope.pdInstitutionWarning = false;
-                    alert("alert value: " + pdInstitution);
                     console.log(pdInstitution);
                 }
 
@@ -1006,13 +1005,13 @@ angular.module('chemGeno')
                 }else{
                     $scope.diTypeWarning = false;
                 }
-                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType, idId, supervisionId);
+                var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType, diId, supervisionId);
                 $scope.degreeInformation.push(newDegreeInfoInstance);
                 console.log("AddPostDocInstance Called on" + $scope.degreeInfoInformation);
 
 
                 //Refresh the view of the scope.
-                $scope.$apply();
+                //$scope.$apply();
             };
 
             /**
