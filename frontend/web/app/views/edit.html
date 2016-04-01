@@ -397,7 +397,7 @@
         <md-card-actions layout="row" layout-align="right">
 
             <!-- Submission button -->
-            <md-button ng-click="addDegreeInfoInstance(diYear, diSupervisor, diInstitution, diType, item.mentors.id, false)">Submit
+            <md-button ng-click="addDegreeInfoInstance(diYear, diSupervisor, diInstitution, diType, item.supervisor.id, false)">Submit
                 <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                     Click here to Submit this Degree.
                 </md-tooltip>
@@ -549,11 +549,11 @@ entered into the system -->
                 </md-button>
 
                 <!-- Clear Fields Button -->
-                <md-button ng-click="clearDegreeInfoFields()">Clear Fields
+                <!-- <md-button ng-click="clearDegreeInfoFields()">Clear Fields
                     <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
                         Click here to clear the fields of this current Degree.
                     </md-tooltip>
-                </md-button>
+                </md-button> -->
             </md-card-actions>
         </md-card>
 
@@ -734,11 +734,11 @@ entered into the system -->
                     </md-button>
 
                     <!-- Clear Fields Button -->
-                    <md-button ng-click="clearDegreeInfoFields()">Clear Fields
+                    <!-- <md-button ng-click="clearDegreeInfoFields()">Clear Fields
                         <md-tooltip md-visible="pdClearButton.showTooltip" md-direction="{{demo.tipDirection}}">
                             Click here to clear the fields of this current Degree.
                         </md-tooltip>
-                    </md-button>
+                    </md-button> -->
                 </md-card-actions>
             </md-card>
 
