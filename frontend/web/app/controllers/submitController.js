@@ -656,7 +656,7 @@ angular.module('chemGeno')
 
                 var newDegreeInfoInstance = new DegreeInfoInstance(diYear, diSupervisor, diInstitution, diType);
                 $scope.degreeInformation.push(newDegreeInfoInstance);
-                console.log("AddPostDocInstance Called on" + $scope.degreeInfoInformation);
+                console.log("AddDegreeInfoInstance Called on" + $scope.degreeInformation);
 
                 diInstitution = null;
                 diYear = null;
