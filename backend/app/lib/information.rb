@@ -71,7 +71,7 @@ class Information
   # @param superdoc_array [Array<Hash{String => String, Number}>] array of the person's supervised postdocs
   # @param superdeg_array [Array<Hash{String => String, Number}>] array of the person's supervised degrees
   # @return [Hash{String => String}] updated person
-  def Information.update_handling(id, name, position, institution_name, postdoc_array, degree_array)
+  def Information.update_handling(id, name, position, institution_name, postdoc_array, degree_array, superdoc_array, superdeg_array)
 
     # Gets the person's information from the People table
     person_object = Person.find(id)
@@ -103,7 +103,9 @@ class Information
 
     # Update postdocs and degrees respectively
     Mentorship.update_mentorship(id, name, postdoc_array)
+    Mentorship.update_superdoc(id, name, superdoc_array)
     Supervision.update_supervision(id, name, degree_array)
+    Supervision.update_superdeg(id, name, superdeg_array)
 
 
     # Updates person_object (not sure if we need this)
