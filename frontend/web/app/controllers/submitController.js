@@ -768,6 +768,7 @@ angular.module('chemGeno')
             $scope.lastNameWarning = false;
             $scope.currPositionTitleWarning = false;
             $scope.currInstNameWarning = false;
+            $scope.submitPageWarning = false;
 
             /**
              * Method that when invoked will supply a warning state to the console detailing the current state.
@@ -832,6 +833,8 @@ angular.module('chemGeno')
                     $scope.currInstNameWarning = false; //If the field is not null set warning to false.
                 }
 
+
+                $scope.submitPageWarning = true;
                 //Create the new object for the submission page.
                 var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
                     $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation,

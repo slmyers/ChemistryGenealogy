@@ -170,7 +170,7 @@
             <md-card  ng-if="!postDocVisibility">
 
                 <md-card-header>
-                    <md-card-avatar ng-click="showPostDocInfo()">
+                    <md-card-avatar id="expandPostDocInfoButton" ng-click="showPostDocInfo()">
                         <md-icon style="cursor:pointer" class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
                         <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                             Click here to expand the postdoc information.
@@ -187,7 +187,7 @@
 
             <md-card  ng-if="postDocVisibility">
                 <md-card-header>
-                    <md-card-avatar style="cursor:pointer" ng-click="hidePostDocInfo()">
+                    <md-card-avatar id="minimizePostDocInfoButton" style="cursor:pointer" ng-click="hidePostDocInfo()">
                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
                         <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                             Collapse the postdoc information.
@@ -233,7 +233,7 @@
                 <md-card-actions layout="row" layout-align="right">
 
                     <!-- Submission button -->
-                    <md-button style="cursor:pointer" id="pdSubmitButton" ng-click="addPostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)">Submit
+                    <md-button id="postDocAddSubmissionButton" style="cursor:pointer" id="pdSubmitButton" ng-click="addPostDocInstance(pdStartYear, pdEndYear, pdSupervisor, pdInstitution)">Submit
                         <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                             Click here to Submit this PostDoc Instance
                         </md-tooltip>
@@ -252,7 +252,7 @@
                         <!-- Here is where I will be showing to the user the psotdoc information they already
                              entered into the system -->
                         <div ng-if="postDocVisibility" id="pdSubmittedItemArray" ng-repeat="item in postDocInformation" >
-                            <md-card>
+                            <md-card id="postDocSubmittedInfoDetails">
                                 <md-card-header>
                                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_check_circle_black_24px.svg"></md-icon>
                                         <md-tooltip md-visible="postDocShowing.showTooltip" md-direction="{{demo.tipDirection}}">
@@ -265,13 +265,13 @@
                                     </md-card-header-text>
                                 </md-card-header>
 
-                                <div layout="column" align="center">
+                                <div  layout="column" align="center">
 
 
-                                <span>Starting Year: {{item.pdStartYear}}</span>
-                                <span>Ending Year: {{item.pdEndYear}}</span>
-                                <span>Supervisor: {{item.pdSupervisor}}</span>
-                                <span>Institution: {{item.pdInstitution}}</span>
+                                <span id="postDocSubmittedInfoStartYear">Starting Year: {{item.pdStartYear}}</span>
+                                <span id="postDocSubmittedInfoEndYear">Ending Year: {{item.pdEndYear}}</span>
+                                <span id="postDocSubmittedInfoSupervisor">Supervisor: {{item.pdSupervisor}}</span>
+                                <span id="postDocSubmittedInfoInstitution">Institution: {{item.pdInstitution}}</span>
                                 </div>
 
                                 <!-- Buttons for each of the viewable cards.
@@ -318,7 +318,7 @@
                             <md-card  ng-if="!degreeInfoVisibility">
 
                                 <md-card-header>
-                                    <md-card-avatar style="cursor:pointer" ng-click="showDegreeInfo()">
+                                    <md-card-avatar id="expandDegreeInfoButton" style="cursor:pointer" ng-click="showDegreeInfo()">
                                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
                                         <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                                             Click here to expand the degree information section.
@@ -336,7 +336,7 @@
 
                             <md-card  ng-if="degreeInfoVisibility">
                                 <md-card-header>
-                                    <md-card-avatar style="cursor:pointer" ng-click="hideDegreeInfo()">
+                                    <md-card-avatar id="minimizeDegreeInfoButton" style="cursor:pointer" ng-click="hideDegreeInfo()">
                                         <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
                                         <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                                             Collapse the Degree Information Section.
@@ -363,10 +363,10 @@
                                                 <label>Type of Degree</label> <!-- State what the field is -->
                                                 <!-- Have the listing of all of the selectable options -->
                                                 <md-select name="myModel" ng-model="diType" required>
-                                                    <md-option value="Doctorate">Doctorate</md-option>
-                                                    <md-option value="Masters">Masters</md-option>
-                                                    <md-option value="BSc">BSc</md-option>
-                                                    <md-option value="BA">BA</md-option>
+                                                    <md-option id="mdOpenDoctorate" value="Doctorate">Doctorate</md-option>
+                                                    <md-option id="mdOpenMasters" value="Masters">Masters</md-option>
+                                                    <md-option id="mdOpenBSc" value="BSc">BSc</md-option>
+                                                    <md-option id="mdOpenBA" value="BA">BA</md-option>
                                                     <!--<md-option value="Highschool">Highschool</md-option>-->
                                                 </md-select>
                                                 <!-- Have the error messages be displayed to the user -->
@@ -487,7 +487,7 @@
                                     <md-card  ng-if="!postdocSupervisionVisibility">
 
                                         <md-card-header>
-                                            <md-card-avatar style="cursor:pointer" ng-click="showSuperDocInfo()">
+                                            <md-card-avatar id="expandSuperDocsInfoButton" style="cursor:pointer" ng-click="showSuperDocInfo()">
                                                 <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
                                                 <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                                                     Click here to expand the supervised postdocs information
@@ -505,7 +505,7 @@
 
                                     <md-card  ng-if="postdocSupervisionVisibility">
                                         <md-card-header>
-                                            <md-card-avatar style="cursor:pointer" ng-click="hideSuperDocInfo()">
+                                            <md-card-avatar id="minimizeSuperDocsInfoButton" style="cursor:pointer" ng-click="hideSuperDocInfo()">
                                                 <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
                                                 <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection324234}}">
                                                     Collapse the Supervised Postdocs Seciton
@@ -554,7 +554,7 @@
                                         <md-card-actions layout="row" layout-align="right">
 
                                             <!-- Submission button -->
-                                            <md-button ng-click="addSuperDocInstance(superdocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution)">Submit
+                                            <md-button id="addSuperdocinstanceButton" ng-click="addSuperDocInstance(superdocNameOfPerson, superDocStartYear, superDocEndYear, superDocInstitution)">Submit
                                                 <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                                     Click here to Submit this Degree.
                                                 </md-tooltip>
@@ -636,7 +636,7 @@
                                         <md-card  ng-if="!superDegVisibility">
 
                                             <md-card-header>
-                                                <md-card-avatar style="cursor:pointer" ng-click="showSuperDegInfo()">
+                                                <md-card-avatar id="expandSuperDegsInfoButton" style="cursor:pointer" ng-click="showSuperDegInfo()">
                                                     <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_expand_more_black_24px.svg"></md-icon>
                                                     <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
                                                         Click here to expand the people's degrees they supervised in the past information
@@ -654,7 +654,7 @@
 
                                         <md-card  ng-if="superDegVisibility">
                                             <md-card-header>
-                                                <md-card-avatar style="cursor:pointer" ng-click="hideSuperDegInfo()">
+                                                <md-card-avatar id="minimizeSuperDegsInfoButton" style="cursor:pointer" ng-click="hideSuperDegInfo()">
                                                     <md-icon class="md-avatar-icon" md-svg-icon="/static/img/ic_chevron_right_black_24px.svg"></md-icon>
                                                     <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection324234}}">
                                                         Collapse the people's degrees they supervised in the past Seciton
@@ -697,10 +697,10 @@
                                                             <label>Type of Degree</label> <!-- State what the field is -->
                                                             <!-- Have the listing of all of the selectable options -->
                                                             <md-select name="myModel" ng-model="superDegDegType" required>
-                                                                <md-option value="Doctorate">Doctorate</md-option>
-                                                                <md-option value="Masters">Masters</md-option>
-                                                                <md-option value="BSc">BSc</md-option>
-                                                                <md-option value="BA">BA</md-option>
+                                                                <md-option id="mdOpenSuperDoctorate" value="Doctorate">Doctorate</md-option>
+                                                                <md-option id="mdOpenSuperMasters" value="Masters">Masters</md-option>
+                                                                <md-option id="mdOpenSuperBSc" value="BSc">BSc</md-option>
+                                                                <md-option id="mdOpenSuperBA" value="BA">BA</md-option>
                                                             </md-select>
                                                             <!-- Have the error messages be displayed to the user -->
                                                             <!--<div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">-->
@@ -736,7 +736,7 @@
                                             <md-card-actions layout="row" layout-align="right">
 
                                                 <!-- Submission button -->
-                                                <md-button ng-click="addSuperDegInstance(superDegNameOfPerson,superDegCurrPosition,superDegCurrInst,superDegDegType,superDegYear,superDegInst)">Submit
+                                                <md-button id="addSuperDegInstanceButton" ng-click="addSuperDegInstance(superDegNameOfPerson,superDegCurrPosition,superDegCurrInst,superDegDegType,superDegYear,superDegInst)">Submit
                                                     <md-tooltip md-visible="pdSubmitButton.showTooltip2" md-direction="{{demo.tipDirection}}">
                                                         Click here to Submit this Supervised Degree Person.
                                                     </md-tooltip>
@@ -861,6 +861,9 @@
                             <div id="lastNameWarning" ng-if="lastNameWarning">LASTNAME NOT FILLED IN WITH A VALUE </div>
                             <div id="currPosTitleWarning" ng-if="currPositionTitleWarning">CURRENT POSITION NOT FILLED IN!</div>
                             <div id="currInstNameWarning" ng-if="currInstNameWarning"> CURRENT INSTITUTIOTION NOT FILLED IN!</div>
+
+
+                            <div id="submitObjectSuccessWarning" ng-if="submitPageWarning"> NEW SUBMISSION OBTAINED!</div>
 
 
                             <md-button id="leUultimateSubmitButton" style="cursor:pointer" class="md-icon-button" ng-click="finalSubmitButtonFunction()" aria-label="Share">

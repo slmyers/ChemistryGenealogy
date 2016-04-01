@@ -5707,7 +5707,25 @@ describe('Search', function() {
     });
 
 
+    it('Should show proper firstname value', function(){
 
+        expect(element(by.model('firstName')).getAttribute('value')).toEqual("todd");
+    });
+
+    it('Should show proper firstname value', function(){
+
+        expect(element(by.model('lastName')).getAttribute('value')).toEqual("lowary");
+    });
+
+    it('Should show proper firstname value', function(){
+
+        expect(element(by.model('currentPositionTitle')).getAttribute('value')).toEqual("professor");
+    });
+
+    it('Should show proper firstname value', function(){
+
+        expect(element(by.model('currentInstitutionName')).getAttribute('value')).toEqual("university of alberta");
+    });
 
     /**
      * Below are odd bugged out tests.
