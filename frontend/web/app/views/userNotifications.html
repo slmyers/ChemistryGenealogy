@@ -1,0 +1,30 @@
+<style>
+md-grid-tile-footer figcaption md-button {
+  margin: 0;
+  font-weight: 700;
+  width: 100%;
+  text-align: center; }
+</style>
+<md-grid-list
+  md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+  md-row-height-gt-md="1:1" md-row-height="1:1"
+  md-gutter="12px" md-gutter-gt-sm="8px">
+
+  <md-grid-tile
+    style="background: #84ffff;"
+    md-rowspan="1"
+    md-colspan="1"
+    md-colspan-sm="1"
+    ng-repeat="user in data">
+    <div layout ="column">
+      <span>{{user.first_name}} {{user.last_name}}</span>
+      <span>{{user.email}}</span>
+    </div>
+    <md-grid-tile-footer layout-align="center center">
+      <md-button ng-click="approveUser(user, $index)">Approve</md-button>
+    </md-grid-tile-footer>
+    <md-grid-tile-header layout-align="center center">
+      <md-button ng-click="rejectUser(user, $index)">Reject</md-button>
+    </md-grid-tile-header>
+  </md-grid-tile>
+</md-grid-list>

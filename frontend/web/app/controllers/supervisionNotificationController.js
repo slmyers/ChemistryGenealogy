@@ -1,7 +1,7 @@
 /**
  * @module supervisionNotificationController
  * @class supervisionNotificationController
- *
+ * @author Steven Myers
  * Notifications for supervision are dealt with here.
  */
 
@@ -23,6 +23,8 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
     $q.all(promises).then(function(values) {
       $scope.supervisor = values.supervisorPromise.data;
       $scope.supervised = values.supervisedPromies.data;
+      console.log($scope.supervisor);
+      console.log($scope.supervised);
     });
   }
 
@@ -60,14 +62,44 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
       alert(error);
     });
   };
-  // ui booleans for mentor info
-  $scope.supervisor_mentorVisibility = false;
-  $scope.supervisor_mentoredVisibility = false;
-  $scope.supervisor_supervisedVisibility = false;
-  $scope.supervisor_supervisorVisibility = false;
-  // ui booleans for mentee info
-  $scope.supervised_mentorVisibility = false;
-  $scope.supervised_mentoredVisibility = false;
-  $scope.supervised_supervisedVisibility = false;
-  $scope.supervised_supervisorVisibility = false;
+
+  $scope.mentorDetails = true;
+  $scope.mentoredDetails = true;
+  $scope.supervisedDetails = true;
+  $scope.supervisorDetails = true;
+
+  $scope.allDetails = function() {
+    $scope.mentorDetails = true;
+    $scope.mentoredDetails = true;
+    $scope.supervisedDetails = true;
+    $scope.supervisorDetails = true;
+  };
+
+  $scope.onlyMentorDetails = function(){
+    $scope.mentorDetails = true;
+    $scope.mentoredDetails = false;
+    $scope.supervisedDetails = false;
+    $scope.supervisorDetails = false;
+  }
+
+  $scope.onlyMentoredDetails = function(){
+    $scope.mentorDetails = false;
+    $scope.mentoredDetails = true;
+    $scope.supervisedDetails = false;
+    $scope.supervisorDetails = false;
+  }
+
+  $scope.onlySupervisedDetails = function(){
+    $scope.mentorDetails = false;
+    $scope.mentoredDetails = false;
+    $scope.supervisedDetails = true;
+    $scope.supervisorDetails = false;
+  }
+
+  $scope.onlySupervisorDetails = function(){
+    $scope.mentorDetails = false;
+    $scope.mentoredDetails = false;
+    $scope.supervisedDetails = false;
+    $scope.supervisorDetails = true;
+  }
 }]);

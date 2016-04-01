@@ -1,7 +1,7 @@
 /**
  * @module mentorshipNotificationController
  * @class mentorshipNotificationController
- *
+ * @author Steven Myers
  * Notifications for mentorships are dealt with here.
  */
 
@@ -61,13 +61,43 @@ function($scope, $stateParams, viewService, $q, verificationService, $state) {
   //Invoke the load data method at the very start of when this page is loaded.
   $scope.loadData();
   // ui booleans for mentor info
-  $scope.mentor_mentorVisibility = false;
-  $scope.mentor_mentoredVisibility = false;
-  $scope.mentor_supervisedVisibility = false;
-  $scope.mentor_supervisorVisibility = false;
-  // ui booleans for mentee info
-  $scope.mentee_mentorVisibility = false;
-  $scope.mentee_mentoredVisibility = false;
-  $scope.mentee_supervisedVisibility = false;
-  $scope.mentee_supervisorVisibility = false;
+  $scope.mentorDetails = true;
+  $scope.mentoredDetails = true;
+  $scope.supervisedDetails = true;
+  $scope.supervisorDetails = true;
+
+  $scope.allDetails = function() {
+    $scope.mentorDetails = true;
+    $scope.mentoredDetails = true;
+    $scope.supervisedDetails = true;
+    $scope.supervisorDetails = true;
+  };
+
+  $scope.onlyMentorDetails = function(){
+    $scope.mentorDetails = true;
+    $scope.mentoredDetails = false;
+    $scope.supervisedDetails = false;
+    $scope.supervisorDetails = false;
+  }
+
+  $scope.onlyMentoredDetails = function(){
+    $scope.mentorDetails = false;
+    $scope.mentoredDetails = true;
+    $scope.supervisedDetails = false;
+    $scope.supervisorDetails = false;
+  }
+
+  $scope.onlySupervisedDetails = function(){
+    $scope.mentorDetails = false;
+    $scope.mentoredDetails = false;
+    $scope.supervisedDetails = true;
+    $scope.supervisorDetails = false;
+  }
+
+  $scope.onlySupervisorDetails = function(){
+    $scope.mentorDetails = false;
+    $scope.mentoredDetails = false;
+    $scope.supervisedDetails = false;
+    $scope.supervisorDetails = true;
+  }
 }]);

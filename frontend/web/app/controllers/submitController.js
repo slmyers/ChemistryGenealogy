@@ -157,34 +157,50 @@ angular.module('chemGeno')
             $scope.superDegVisibility = false;
 
             //
-            //$scope.superDegStartYear = null;
-            //$scope.superDegEndYear = null;
-            //$scope.superDegInstitution = null;
+
             $scope.superDegNameOfPerson = null;
+            $scope.superDegCurrPosition = null;
+            $scope.superDegCurrInst = null;
+            $scope.superDegDegType = null;
+            $scope.superDegYear = null;
+            $scope.superDegInst= null;
+
 
             /**
              * Construct a super DEGREE object.
-             * @param superDegNameOfPerson
-             * @param superDegStartYear
-             * @param superDegEndYear
-             * @param superDegInstitution
+             * @param superDegNameOfPerson name of person
+             * @param superDegCurrPosition current position
+             * @param superDegCurrInst current institution
+             * @param superDegDegType degree type
+             * @param superDegYear degree year earned
+             * @param superDegInst degree institution
              * @constructor SuperDegInstance
              */
-            function SuperDegInstance(superDegNameOfPerson)
+            function SuperDegInstance(superDegNameOfPerson,superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst)
             {
-                this.superDegNameOfPerson = superDegNameOfPerson;
-                    //this.superDegStartYear = superDegStartYear,
-                    //this.superDegEndYear = superDegEndYear,
-                    //this.superDegInstitution = superDegInstitution
+                this.superDegNameOfPerson = superDegNameOfPerson,
+                    this.superDegCurrPosition = superDegCurrPosition,
+                    this.superDegCurrInst = superDegCurrInst,
+                    this.superDegDegType = superDegDegType,
+                    this.superDegYear = superDegYear,
+                    this.superDegInst = superDegInst
             }
 
 
             /**
-             * Adds a new instance of a superdegree to the arraylist of super degree objects.
-             * @param superDegNameOfPerson A name of a superdeg person
+             * This function when invoked will compile all of the passed in params into a single superDeg object
+             * and will append this superDeg object into the array of superdeg objects.
+             *
+             * @param superDegNameOfPerson name
+             * @param superDegCurrPosition positio n
+             * @param superDegCurrInst institution
+             * @param superDegDegType degree type
+             * @param superDegYear year earned
+             * @param superDegInst institution earned from
+             * @method addSuperDegInstance
              */
-            $scope.addSuperDegInstance = function(superDegNameOfPerson){
-                var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson);
+            $scope.addSuperDegInstance = function(superDegNameOfPerson, superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst){
+                var newSuperDegInstance = new SuperDegInstance(superDegNameOfPerson, superDegCurrPosition, superDegCurrInst, superDegDegType, superDegYear, superDegInst);
                 $scope.superDegInformation.push(newSuperDegInstance);
                 console.log("addSuperDegInstance Called on" + $scope.superDegInformation);
 
@@ -446,12 +462,12 @@ angular.module('chemGeno')
                 if(pdInstitution == undefined || pdInstitution == null || pdInstitution == ""){
                     console.log("error: pdinstitution empty");
                     $scope.pdInstitutionWarning = true;
-                    alert("String");
+                    //alert("String");
                     console.log(pdInstitution);
                     return;
                 }else{
                     $scope.pdInstitutionWarning = false;
-                    alert("alert value: " + pdInstitution);
+                    //alert("alert value: " + pdInstitution);
                     console.log(pdInstitution);
                 }
 
@@ -467,7 +483,7 @@ angular.module('chemGeno')
                 pdStartYear= null;
                 pdSupervisor = null;
                 pdInstitution = null;
-                alert("the Fields are clear...? :S");
+                //alert("the Fields are clear...? :S");
 
             };
 
@@ -752,6 +768,7 @@ angular.module('chemGeno')
             $scope.lastNameWarning = false;
             $scope.currPositionTitleWarning = false;
             $scope.currInstNameWarning = false;
+            $scope.submitPageWarning = false;
 
             /**
              * Method that when invoked will supply a warning state to the console detailing the current state.
@@ -816,6 +833,8 @@ angular.module('chemGeno')
                     $scope.currInstNameWarning = false; //If the field is not null set warning to false.
                 }
 
+
+                $scope.submitPageWarning = true;
                 //Create the new object for the submission page.
                 var newSubmitObject = new SubmissionPageModelObject($scope.firstName, $scope.lastName,
                     $scope.currentPositionTitle, $scope.currentInstitutionName, $scope.postDocInformation,

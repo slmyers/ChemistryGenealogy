@@ -1,28 +1,44 @@
+/**
+ * @author Steven Myers
+ */
 angular.module('chemGeno')
-.service('searchService', function($q, $http, $rootScope) {
-  var searchPerson = function(id) {
+.service('searchService', function($q, $http, $rootScope, $state) {
+  var searchPerson = function(type, id) {
     var d = $q.defer();
     var self = this;
-    return $http({
-      method: 'GET',
-      params: {id: id},
-      url: 'http://localhost:3000/search',
-    }).success(function(resp) {
-      d.resolve(resp);
-    }).error(function(err){
-      d.reject(err);
-    });
+    if (type === 'id') {
+      return $http({
+        method: 'GET',
+        params: {id: id},
+        url: 'http://localhost:3000/search',
+      }).success(function(resp) {
+        d.resolve(resp);
+      }).error(function(err){
+        d.reject(err);
+      });
+    } else if (type === 'name'){
+      return $http({
+        method: 'GET',
+        params: {name: id},
+        url: 'http://localhost:3000/search',
+      }).success(function(resp) {
+        d.resolve(resp);
+      }).error(function(err){
+        d.reject(err);
+      });
+    } else {
+      d.reject('must be by name or id');
+      console.log('searchService.searchPerson expects either a name or id')
+    }
     return d.promise;
   }
 
-  var executeSearch = function(personName) {
-    var promise = searchPerson(personName);
-    promise.then(function(result) {
-      console.log('successful search on ' + personName);
+  var executeSearch = function(type, identifier) {
+    console.log(type);
+    var promise = searchPerson(type, identifier);
+    promise.then(function(result){
+      console.log(result.data);
       $rootScope.$broadcast('search:response',result.data);
-    }, function(error) {
-      console.log('error search on ' + personName);
-      console.log(error);
     });
   }
 

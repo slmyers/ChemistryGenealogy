@@ -1,0 +1,41 @@
+<!-- @author Steven Myers -->
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline" id="viewPagePostdocsBox">Postdocs</span>
+    </md-card-title-text>
+  </md-card-title>
+<md-list layout="row">
+  <md-list-item id="viewPagePostDocsArray" ng-repeat="mentor in data" >
+    <div ng-if="links === true">
+      <md-card>
+        <md-card-title >
+          <md-card-title-text id="viewPagePostDocsCardInfo">
+            <span class="md-headline" id="viewPagePostdocsName">{{mentor.institution.name}}</span>
+            <span class="md-subhead" id="viewPagePostdocsYears">{{mentor.start}} - {{mentor.end}}</span>
+            <span class="md-subhead" id="viewPagePostdocsMentorName">mentored by {{mentor.mentor.data.name}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions>
+          <md-button
+            ng-click="goNext(mentor)"
+            class="md-raised md-primary">
+              view
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+    <div ng-if="links === false">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" id="viewPagePostdocsName2">{{mentor.institution.name}}</span>
+            <span class="md-subhead" id="viewPagePostdocsYears2">{{mentor.start}} - {{mentor.end}}</span>
+            <span class="md-subhead" id="viewPagePostdocsMentorName2">mentored by {{mentor.mentor.data.name}}</span>
+          </md-card-title-text>
+        </md-card-title>
+      </md-card>
+    </div>
+  </md-list-item>
+</md-list>
+</md-card>

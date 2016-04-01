@@ -1,3 +1,6 @@
+/**
+ *  @author Steven Myers
+ */
 angular.module('chemGeno')
 .directive('myEnter',
 function(scope, element, attrs){

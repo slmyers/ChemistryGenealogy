@@ -8,17 +8,28 @@ exports.config = {
 
     // Capabilities to be passed to the webdriver instance.
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'chrome',
+        chromeOptions: {
+            args: [
+                '--start-maximized'
+            ]
+        }
     },
 
     // Spec patterns are relative to the location of the spec file. They may
     // include glob patterns.
     suites: {
-        search: ['tests/e2e/search/SearchSpec.js'] //Search page tests
+        search: ['e2e/search/SearchSpec.js'] //Search page tests
     },
 
     // Options to be passed to Jasmine-node.
     jasmineNodeOpts: {
         showColors: true // Use colors in the command line report.
-    }
+    },
+
+
+
+
+    baseUrl: 'http://localhost:8100'
+
 };

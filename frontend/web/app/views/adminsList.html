@@ -1,0 +1,18 @@
+<md-toolbar>
+  <div class="md-toolbar-tools" layout-align="center">
+    <div>Administrators</div>
+  </div>
+</md-toolbar>
+<md-list>
+  <md-list-item ng-repeat="admin in data" class="md-2-line">
+    <div class="md-list-item-text">
+      <div>
+        <h3>{{admin.user.first_name}} {{admin.user.last_name}}</h3>
+      </div>
+      <div>
+        <p>{{admin.user.email}}</p>
+      </div>
+    </div>
+    <md-divider></md-divider>
+  </md-list-item>
+</md-list>

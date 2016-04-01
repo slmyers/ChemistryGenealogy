@@ -1,3 +1,6 @@
+/**
+ *  @author Steven Myers
+ */
 angular.module('chemGeno')
 .service('adminPanelService', function($q, $http, loginService) {
 
@@ -15,16 +18,49 @@ angular.module('chemGeno')
         method: 'GET',
         url: 'http://localhost:3000/api/notification',
     }).success(function (resp) {
-        console.log(resp)
         d.resolve(resp);
     }).error(function (resp) {
         console.log(resp);
         d.reject(resp.error);
     });
     return d.promise;
-  }
+  };
+
+  var getUsers = function() {
+    if (!loginService.isAdmin()) {
+      return null;
+    }
+    var d = $q.defer();
+    return $http({
+      method: 'GET',
+      url: 'http://localhost:3000/user'
+    }).success(function(res){
+      d.resolve(res);
+    }).error(function(res){
+      d.reject(res);
+    });
+    return d.promise;
+  };
+
+  var getAdmins = function() {
+    if (!loginService.isAdmin()) {
+      return null;
+    }
+    var d = $q.defer();
+    return $http({
+      method: 'GET',
+      url: 'http://localhost:3000/admins'
+    }).success(function(res){
+      d.resolve(res);
+    }).error(function(res){
+      d.reject(res);
+    });
+    return d.promise;
+  };
 
   return {
-    loadNotifications: loadNotifications
+    loadNotifications: loadNotifications,
+    getUsers: getUsers,
+    getAdmins: getAdmins
   }
 });

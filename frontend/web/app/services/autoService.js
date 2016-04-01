@@ -1,3 +1,6 @@
+/**
+ * @author Steven Myers
+ */
 angular.module('chemGeno')
 .service('autoService', function($q, $http) {
   var autoPerson = function(name) {

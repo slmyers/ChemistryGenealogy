@@ -1,0 +1,30 @@
+<style>
+md-grid-tile-footer figcaption md-button {
+  margin: 0;
+  font-weight: 700;
+  width: 100%;
+  text-align: center; }
+</style>
+<md-grid-list
+  md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+  md-row-height-gt-md="1:1" md-row-height="1:1"
+  md-gutter="12px" md-gutter-gt-sm="8px">
+
+  <md-grid-tile
+    style="background: #ff80ab;"
+    md-rowspan="1"
+    md-colspan="1"
+    md-colspan-sm="1"
+    ng-repeat="supervision in data">
+    <div layout ="column">
+      <span id="adminPanelSupervisionPersonName">{{supervision.supervisor.person.name}} </span>
+      <span>supervised</span>
+      <span id="adminPanelSupervisionSupervisorName">{{supervision.supervised.person.name}}</span>
+      <span id="adminPanelSupervisionInstitutionName">{{supervision.supervision.institution.name}}</span>
+      <span id="adminPanelSupervisionDegreeType">{{supervision.supervision.degree.degree_type}} - {{supervision.supervision.degree.year}}</span>
+    </div>
+    <md-grid-tile-footer layout-align="center center">
+      <md-button id="adminPanelClickSupervisionViewDetailButton" ng-click="viewSupervision(supervision)">view detail</md-button>
+    </md-grid-tile-footer>
+  </md-grid-tile>
+</md-grid-list>

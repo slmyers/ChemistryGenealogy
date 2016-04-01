@@ -1,7 +1,7 @@
 /**
  * @module userController
  * @class muserController
- *
+ * @author Steven Myers
  * The user controller is located here, that handles the affairs dealing with the users of the application
  * working with the application.
  */

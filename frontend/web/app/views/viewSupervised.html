@@ -1,0 +1,45 @@
+<!-- @author Steven Myers -->
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline" id="viewPageSupervisedBox">Supervised</span>
+    </md-card-title-text>
+  </md-card-title>
+<md-list layout="row">
+  <md-list-item ng-repeat="supervised in data">
+    <div ng-if="links === true">
+      <a>
+      <md-card>
+        <md-card-title>
+          <md-card-title-text id="viewPageSupervisedCardInfo">
+            <span class="md-headline" id="viewPageSupervisedName">{{supervised.person.data.name}}</span>
+            <span class="md-subhead" id="viewPageSupervisedInstitution">{{supervised.degree.institution.name}}</span>
+            <span class="md-subhead" id="viewPageSupervisedDegreeType">{{supervised.degree.data.degree_type}}</span>
+            <span class="md-subhead" id="viewPageSupervisedYear">{{supervised.degree.data.year}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions>
+          <md-button
+            ng-click="goNext(supervised)"
+            class="md-raised md-primary">
+              view
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    </a>
+    </div>
+    <div ng-if="links === false">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" id="viewPageSupervisedCardInfo2">{{supervised.person.data.name}}</span>
+            <span class="md-subhead" id="viewPageSupervisedInstitution2">{{supervised.degree.institution.name}}</span>
+            <span class="md-subhead" id="viewPageSupervisedDegreeType2">{{supervised.degree.data.degree_type}}</span>
+            <span class="md-subhead" id="viewPageSupervisedYear2">{{supervised.degree.data.year}}</span>
+          </md-card-title-text>
+        </md-card-title>
+      </md-card>
+    </div>
+  </md-list-item>
+</md-list>
+</md-card>

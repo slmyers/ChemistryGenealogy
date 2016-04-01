@@ -1,0 +1,32 @@
+<style>
+md-grid-tile-footer figcaption md-button {
+  margin: 0;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+}
+/* TODO: style the text */
+.gridContent {
+}
+</style>
+
+<md-grid-list
+  md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+  md-row-height-gt-md="1:1" md-row-height="1:1"
+  md-gutter="12px" md-gutter-gt-sm="8px">
+
+  <md-grid-tile
+    style="background: #b9f6ca;"
+    md-rowspan="1"
+    md-colspan="1"
+    md-colspan-sm="1"
+    ng-repeat="person in data">
+    <div layout ="column" class="gridContent">
+      <span id="adminPanelPersonPositionAndName">{{person.target.person.position}} {{person.target.person.name}}</span>
+      <span id="adminPanelPersonInstitution">{{person.target.person_institution.name}}</span>
+    </div>
+    <md-grid-tile-footer layout-align="center center">
+      <md-button id="adminPanelPersonViewDetailButton" ng-click="gotoPerson(person)">view detail</md-button>
+    </md-grid-tile-footer>
+  </md-grid-tile>
+</md-grid-list>

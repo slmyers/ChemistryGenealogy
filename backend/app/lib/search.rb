@@ -19,7 +19,7 @@ class Search
 
   # returns a hash that contains the relations to a person
   # and the person/institution records.
-  # it is used in conjunction with autocomplete on the frontend, and it is likely
+  # it is used in conjunction with search on the frontend, and it is likely
   # that this class can be optimized
   # TODO: investigate optimizations
   def self.relations_by_id(person_id)
@@ -40,23 +40,31 @@ class Search
     end
 
     @mentors = Person.joins('LEFT OUTER JOIN mentorships ON mentorships.mentor_id = people.id')
-               .where('mentorships.person_id' => person_id).where('approved' => true)
+               .where('mentorships.person_id' => person_id)
+               .where('approved' => true)
+               .where('mentorships.approved' => true)
                .includes(:institution)
 
     unless @mentors.blank? then @persons.add(@mentors) end
 
     @mentored = Person.joins(:mentorships)
-                .where('mentorships.mentor_id' => person_id).where('approved' => true)
+                .where('mentorships.mentor_id' => person_id)
+                .where('approved' => true)
+                .where('mentorships.approved' => true)
                 .includes(:institution)
     unless @mentored.blank? then @persons.add(@mentored) end
 
     @supervisors = Person.joins('LEFT OUTER JOIN supervisions ON supervisions.supervisor_id = people.id')
-                   .where('supervisions.person_id' => person_id).where('approved' => true)
+                   .where('supervisions.person_id' => person_id)
+                   .where('approved' => true)
+                   .where('supervisions.approved' => true)
                    .includes(:institution)
     unless @supervisors.blank? then @persons.add(@supervisors) end
 
     @supervised = Person.joins(:supervisions)
-                  .where('supervisions.supervisor_id' => person_id).where('approved' => true)
+                  .where('supervisions.supervisor_id' => person_id)
+                  .where('approved' => true)
+                  .where('supervisions.approved' => true)
                   .includes(:institution)
     unless @supervised.blank? then @persons.add(@supervised) end
 
@@ -77,11 +85,11 @@ class Search
 
   # this function was extracted from self.person(id) and is called by
   # Notifier and Deleter. It is used to retrieve the relationships w.r.t
+  # if approved == nil then we will gather all information, good for notifications
   # @param id
   # @return hash contating the relationships
   def self.person_info(id)
     unless Person.exists?(id) then return nil end
-
     @person = Person.includes(:institution)
               .includes( {mentorships: [:institution, {mentor: [:institution]}] })
               .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
@@ -105,97 +113,153 @@ class Search
   # this class is different from relations_by_id, because it not only gathers
   # the relations, but also the information required to "fill" out these relations.
   # used to detail or "view" a person on the frontend.
-  # TODO: take out the begining of the function and call self.person_info instead.
-  def self.person(id)
+  def self.person(id, approved)
     unless Person.exists?(id) then return nil end
+    @person_info = self.person_info(id)
+    if @person_info["person"] == nil
+      return nil
+    end
 
-    @person = Person.includes(:institution)
-              .includes( {mentorships: [:institution, {mentor: [:institution]}] })
-              .includes( {supervisions: [ {degree:  [:institution] }, {supervisor: [:institution]}] })
-              .where(:id => id).first
+    # be warned: the following nested if-elsif statements are ugly as sin
+    # but i'm experiencing a bug and don't have time for elegance
 
-    @mentored = Mentorship.where(:mentor_id => id)
-                .includes(:institution)
-                .includes(person: :institution)
-
-    @supervised = Supervision.where(:supervisor_id => id)
-                  .includes(degree: :institution)
-                  .includes(person: :institution)
+    # TODO: the problem is that the approved value is a string and not a boolean
+    # so, write a helper method that returns true/false depending on the value
+    # of the string and then use the returned boolean value to query database
+    # instead of these nested if/elsif blocks of nasty
 
     @mentorships_array = Array.new
-    unless @person.mentorships.blank?
-      @person.mentorships.each do |m|
-        @mentorship = {
-          'id' => m.id,
-          'start' => m.start,
-          'end' => m.end,
-          'institution' => m.institution,
-          'mentor' => {
-            'data' => m.mentor,
-            'institution' => m.mentor.institution
+    unless @person_info["person"].mentorships.blank?
+      @person_info["person"].mentorships.each do |m|
+        if m.approved && approved == 'true'
+          @mentorship = {
+            'id' => m.id,
+            'start' => m.start,
+            'end' => m.end,
+            'institution' => m.institution,
+            'mentor' => {
+              'data' => m.mentor,
+              'institution' => m.mentor.institution
+            }
           }
-        }
-        @mentorships_array.push(@mentorship)
+          @mentorships_array.push(@mentorship)
+        elsif approved == 'false'
+          @mentorship = {
+            'id' => m.id,
+            'start' => m.start,
+            'end' => m.end,
+            'institution' => m.institution,
+            'mentor' => {
+              'data' => m.mentor,
+              'institution' => m.mentor.institution
+            }
+          }
+          @mentorships_array.push(@mentorship)
+        end
       end
     end
 
     @supervision_array = Array.new
-    unless @person.supervisions.blank?
-      @person.supervisions.each do |s|
-        @supervision = {
-          'id' => s.id,
-          'degree' => {
-            'data' => s.degree,
-            'institution' => s.degree.institution
-          },
-          'supervisor' => {
-            'person' => s.supervisor,
-            'institution' => s.supervisor.institution
+    unless @person_info["person"].supervisions.blank?
+       @person_info["person"].supervisions.each do |s|
+        if s.approved && approved == 'true'
+          @supervision = {
+            'id' => s.id,
+            'degree' => {
+              'data' => s.degree,
+              'institution' => s.degree.institution
+            },
+            'supervisor' => {
+              'person' => s.supervisor,
+              'institution' => s.supervisor.institution
+            }
           }
-        }
-        @supervision_array.push(@supervision)
+          @supervision_array.push(@supervision)
+        elsif approved == 'false'
+          @supervision = {
+            'id' => s.id,
+            'degree' => {
+              'data' => s.degree,
+              'institution' => s.degree.institution
+            },
+            'supervisor' => {
+              'person' => s.supervisor,
+              'institution' => s.supervisor.institution
+            }
+          }
+          @supervision_array.push(@supervision)
+        end
       end
     end
 
     @mentored_array = Array.new
-    unless @mentored.blank?
-      @mentored.each do |m|
-        @mentored_obj = {
-          'id' => m.id,
-          'start' => m.start,
-          'end' => m.end,
-          'institution' => m.institution,
-          'mentored' => {
-            'person' => m.person,
-            'institution' => m.person.institution
+    unless @person_info["mentored"].blank?
+      @person_info["mentored"].each do |m|
+        if m.approved && approved == 'true'
+          @mentored_obj = {
+            'id' => m.id,
+            'start' => m.start,
+            'end' => m.end,
+            'institution' => m.institution,
+            'mentored' => {
+              'person' => m.person,
+              'institution' => m.person.institution
+              }
             }
-          }
-        @mentored_array.push(@mentored_obj)
+          @mentored_array.push(@mentored_obj)
+        elsif approved == 'false'
+          @mentored_obj = {
+            'id' => m.id,
+            'start' => m.start,
+            'end' => m.end,
+            'institution' => m.institution,
+            'mentored' => {
+              'person' => m.person,
+              'institution' => m.person.institution
+              }
+            }
+          @mentored_array.push(@mentored_obj)
+        end
       end
     end
 
     @supervised_array = Array.new
-    unless @supervised.blank?
-      @supervised.each do |s|
-        @supervised_obj = {
-          'id' => s.id,
-          'degree' => {
-            'data' => s.degree,
-            'institution' => s.degree.institution
-          },
-          'person' => {
-            'data' => s.person,
-            'institution' => s.person.institution
+    unless @person_info["supervised"].blank?
+      @person_info["supervised"].each do |s|
+        if s.approved && approved == 'true'
+          @supervised_obj = {
+            'id' => s.id,
+            'degree' => {
+              'data' => s.degree,
+              'institution' => s.degree.institution
+            },
+            'person' => {
+              'data' => s.person,
+              'institution' => s.person.institution
+            }
           }
-        }
-        @supervised_array.push(@supervised_obj)
+          @supervised_array.push(@supervised_obj)
+        elsif approved == 'false'
+          @supervised_obj = {
+            'id' => s.id,
+            'degree' => {
+              'data' => s.degree,
+              'institution' => s.degree.institution
+            },
+            'person' => {
+              'data' => s.person,
+              'institution' => s.person.institution
+            }
+          }
+          @supervised_array.push(@supervised_obj)
+        end
       end
     end
 
     @data = {
       'person' => {
-        'data' => @person,
-        'institution' => @person.institution
+        'data' => @person_info["person"],
+        'institution' => @person_info["person"].institution
       },
       'mentors' => @mentorships_array,
       'mentored' => @mentored_array,

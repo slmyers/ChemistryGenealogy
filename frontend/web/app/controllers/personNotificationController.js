@@ -1,26 +1,33 @@
 /**
  * @module personNotificationController
  * @class personNotificationController
- *
+ * @author Steven Myers
  * Notifications for persons are dealt with here.
  */
 
 angular.module('chemGeno')
-.controller('personNotificationController', ['$scope', '$stateParams', 'verificationService', '$state',
-function($scope, $stateParams, verificationService, $state) {
-  // unpacking person parameter
-  $scope.person = $stateParams.person.target.person;
-  $scope.personInstitution = $stateParams.person.target.person_institution;
-  $scope.mentored = $stateParams.person.mentored;
-  $scope.mentors = $stateParams.person.mentors;
-  $scope.supervisors = $stateParams.person.supervisors;
-  $scope.supervised = $stateParams.person.supervised;
+.controller('personNotificationController', ['$scope', 'viewService', '$stateParams', 'verificationService', '$state',
+function($scope, viewService, $stateParams, verificationService, $state) {
+
+  $scope.loadData = function(){
+    console.log($stateParams.personId);
+    var promise = viewService.getPerson($stateParams.personId);
+    promise.then(function(resp){
+      $scope.data = resp.data;
+      console.log($scope.data);
+    }, function(error) {
+      console.log("unable to retrive information about person: " + $stateParams.personId);
+      console.log(error);
+    })
+  }
+
+  $scope.loadData();
 
   // ui visibility stuff
-  $scope.mentorVisibility = false;
-  $scope.mentoredVisibility = false;
-  $scope.supervisedVisibility = false;
-  $scope.supervisorVisibility = false;
+  $scope.mentorDetails = true;
+  $scope.mentoredDetails = true;
+  $scope.supervisedDetails = true;
+  $scope.supervisorDetails = true;
 
   /**
    * This method is invoked when we want to verify a person notification.
@@ -28,7 +35,7 @@ function($scope, $stateParams, verificationService, $state) {
    * @method verifyPerson
    */
   $scope.verifyPerson = function() {
-    var paramObj = {person: $scope.person.id};
+    var paramObj = {person: $scope.data.person.data.id};
     var promise = verificationService.verifyInfo(paramObj);
     promise.then(function(resp) {
       console.log(resp);
@@ -44,7 +51,7 @@ function($scope, $stateParams, verificationService, $state) {
    * @method rejectPerson
    */
   $scope.rejectPerson = function() {
-    var paramObj = {person: $scope.person.id};
+    var paramObj = {person: $scope.data.person.data.id};
     var promise = verificationService.deleteInfo(paramObj);
     promise.then(function(resp) {
       console.log(resp);
@@ -53,4 +60,39 @@ function($scope, $stateParams, verificationService, $state) {
       alert(error);
     });
   };
+
+  $scope.allDetails = function() {
+    $scope.mentorDetails = true;
+    $scope.mentoredDetails = true;
+    $scope.supervisedDetails = true;
+    $scope.supervisorDetails = true;
+  };
+
+  $scope.onlyMentorDetails = function(){
+    $scope.mentorDetails = true;
+    $scope.mentoredDetails = false;
+    $scope.supervisedDetails = false;
+    $scope.supervisorDetails = false;
+  }
+
+  $scope.onlyMentoredDetails = function(){
+    $scope.mentorDetails = false;
+    $scope.mentoredDetails = true;
+    $scope.supervisedDetails = false;
+    $scope.supervisorDetails = false;
+  }
+
+  $scope.onlySupervisedDetails = function(){
+    $scope.mentorDetails = false;
+    $scope.mentoredDetails = false;
+    $scope.supervisedDetails = true;
+    $scope.supervisorDetails = false;
+  }
+
+  $scope.onlySupervisorDetails = function(){
+    $scope.mentorDetails = false;
+    $scope.mentoredDetails = false;
+    $scope.supervisedDetails = false;
+    $scope.supervisorDetails = true;
+  }
 }]);

@@ -1,0 +1,30 @@
+<style>
+md-grid-tile-footer figcaption md-button {
+  margin: 0;
+  font-weight: 700;
+  width: 100%;
+  text-align: center; }
+</style>
+<md-grid-list
+  md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+  md-row-height-gt-md="1:1" md-row-height="1:1"
+  md-gutter="12px" md-gutter-gt-sm="8px">
+
+  <md-grid-tile
+    style="background: #ffff8d"
+    md-rowspan="1"
+    md-colspan="1"
+    md-colspan-sm="1"
+    ng-repeat="mentorship in data">
+    <div layout ="column">
+      <span id="adminPanelMentorshipMentorName">{{mentorship.mentor.person.name}} </span>
+      <span>  mentored </span>
+      <span id="adminPanelMentorshipMentoredPersonName">{{mentorship.mentored.person.name}}</span>
+      <span id="adminPanelMentorshipInstitutionName">{{mentorship.mentorship.institution.name}}</span>
+      <span id="adminPanelMentorshipYearsName">{{mentorship.mentorship.data.start}} - {{mentorship.mentorship.data.end}}</span>
+    </div>
+    <md-grid-tile-footer layout-align="center center">
+      <md-button id="adminPanelViewDetailButton" ng-click="viewMentorship(mentorship)">view detail</md-button>
+    </md-grid-tile-footer>
+  </md-grid-tile>
+</md-grid-list>

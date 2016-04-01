@@ -1,14 +1,9 @@
 /**
- * Service for the view page of our application.
- *
- * Involved with making it so that the view page can retrieve the data from the backend to display.
+ *  @author Steven Myers
  */
-
-
-
-
 angular.module('chemGeno')
 .service('viewService', function($q, $http) {
+  /* used to view approved information */
   var obtainInformationFromBackEnd = function(idObj) {
     console.log(idObj)
     var d = $q.defer();
@@ -16,6 +11,7 @@ angular.module('chemGeno')
       header: 'Content-Type: application/json',
       method: 'GET',
       url: 'http://localhost:3000/api/aggregated/'+ idObj.id.toString(),
+      params: {approved: true}
     }).success(function (resp) {
       d.resolve(resp);
     }).error(function (resp) {
@@ -25,12 +21,15 @@ angular.module('chemGeno')
     return d.promise;
   };
 
+  /* used to view unapproved information */
   var getPerson = function(id) {
+    console.log(id)
     var d = $q.defer();
     return $http({
       header: 'Content-Type: application/json',
       method: 'GET',
       url: 'http://localhost:3000/api/aggregated/'+ id.toString(),
+      params: {approved: false}
     }).success(function (resp) {
       d.resolve(resp);
     }).error(function (resp) {

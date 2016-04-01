@@ -1,0 +1,55 @@
+<style>
+  #userContent{
+    width: 80%;
+    height: 100%;
+    height: 100vh;
+    position: fixed;
+    overflow: scroll;
+  }
+
+  .mangementList{
+    padding-left: 15%;
+    padding-top: 2%;
+    width: 600px;
+    padding-bottom: 5%;
+  }
+</style>
+
+<div ng-controller="userManagementController" layout="column" flex >
+  <section layout="row">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+      md-component-id="left"
+      md-is-locked-open="$mdMedia('gt-sm')">
+      <md-list-item>
+        <md-content ng-click="userNotifs()">
+          User Notifications
+        </md-content>
+      </md-list-item>
+      <md-list-item>
+        <md-content ng-click="viewUsers()">
+          View Users
+        </md-content>
+      </md-list-item>
+      <md-list-item>
+        <md-content ng-click="viewAdmins()">
+          View Admins
+        </md-content>
+      </md-list-item>
+    </md-sidenav>
+    <div id="userContent">
+      <div layout="column">
+        <md-content flex layout-padding>
+          <div ng-if="userNotifications">
+            <user-notifications data="userData"></user-notifications>
+          </div>
+        </md-content>
+      </div>
+      <md-content ng-if="userInfo" class="mangementList" layout-padding>
+        <md-card><users-list data="users"></users-list></md-card>
+      </md-content>
+      <md-content ng-if="adminInfo" class="mangementList" layout-padding>
+        <md-card><admins-list data="admins"></admins-list></md-card>
+      </md-content>
+    </div>
+  </section>
+</div>

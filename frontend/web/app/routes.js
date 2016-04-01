@@ -36,9 +36,8 @@ angular.module('chemGeno')
     templateUrl: '/app/views/auditTrail.html'
   })
   .state('main.personNotification', {
-    url: '/personNotification',
-    templateUrl: 'app/views/personNotification.html',
-    params: {person: null},
+    url: '/personNotification/person/:personId',
+    templateUrl: 'app/views/personNotification.html'
   })
   .state('main.mentorshipNotification', {
     url: '/mentorshipNotification/mentor/:mentorId/mentee/:menteeId/mentorship/:mentorshipId',
@@ -47,5 +46,10 @@ angular.module('chemGeno')
   .state('main.supervisionNotification', {
     url: '/supervisionNotification/supervisor/:supervisorId/supervised/:supervisedId/supervision/:supervisionId',
     templateUrl: 'app/views/supervisionNotification.html'
+  })
+  .state('main.userManagement', {
+    url: '/admin/userManagement',
+    templateUrl: 'app/views/userManagement.html',
+    params: {userNotifications: null, adminNotifications: null}
   })
 });

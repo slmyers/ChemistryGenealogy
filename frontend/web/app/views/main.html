@@ -1,4 +1,4 @@
-
+<!-- @author Steven Myers -->
 
 <header>
   <md-toolbar>
@@ -11,8 +11,10 @@
         <a ui-sref="main.search" data-ui-sref-opts="{reload: true}"><b>Chemistry Genealogy</b></a>
       </span>
       <span flex="5"></span>
-      <span flex="3">
-        <md-icon md-svg-src="/static/img/ic_search_black_24px.svg" aria-label="search"></md-icon>
+      <span flex="3" ng-controller="personAutoController">
+        <div ng-if="showSearch()">
+          <md-icon md-svg-src="/static/img/ic_search_black_24px.svg" aria-label="search"></md-icon>
+        </div>
       </span>
       <span flex="40">
         <chemauto-complete type="person"></chemauto-complete>
@@ -20,18 +22,18 @@
       <span flex="20"></span>
       <div ng-controller="userController" layout="row" layout-align="center end">
       <span flex="7">
-        <div ng-show="isAdmin()">
+        <div  ng-show="isAdmin()">
           <a ui-sref="main.admin">
-            <md-button class="md-fab md-accent">
-              <md-icon md-svg-src="/static/img/ic_security_black_24px.svg"></md-icon>
+            <md-button  class="md-fab md-accent">
+              <md-icon id="adminOnlyButton" md-svg-src="/static/img/ic_security_black_24px.svg"></md-icon>
             </md-button>
           </a>
         </div>
       </span>
       <span flex="7">
-      <div ng-show="showUser()">
+      <div id="mainHeaderSubmitNewSubmissionButton" ng-show="showUser()">
         <a ui-sref="main.submit">
-          <md-button class="md-fab md-accent">
+          <md-button  class="md-fab md-accent">
             <md-icon md-svg-src="/static/img/ic_add_black_24px.svg"></md-icon>
           </md-button>
         </a>
