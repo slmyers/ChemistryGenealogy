@@ -60,11 +60,12 @@ angular.module('chemGeno')
              */
             var sendEditedData = function(modifications, idObj){
                 var d = $q.defer();
-                console.log("modification"+modifications);
+                console.log(modifications.name);
+                console.log(idObj)
                 var token = loginService.getAuthToken(); //Obtain the authentication token from the login service.
                 return $http({
                         headers: {
-                            "Content-Type": "application/json'",
+                            "Content-Type": "application/json;charset=utf-8'",
                             "Authorization": token
                         },
                     method: 'PUT',
@@ -77,8 +78,8 @@ angular.module('chemGeno')
                         institution: modifications.currentInstitutionName,
                         degree: modifications.degreeInformation,
                         postdoc: modifications.postDocInformation,
-                        superdoc:submitFileObject.superDocInformation,
-                        superdeg: submitFileObject.superDegInformation
+                        superdoc: modifications.superDocInformation,
+                        superdeg: modifications.superDegInformation
                     }
                 }).success(function(resp) {
                     d.resolve(resp);

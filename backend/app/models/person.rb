@@ -66,7 +66,24 @@ class Person < ActiveRecord::Base
     end
     result[:degreeInformation] = supervision_array
 
-    return result.to_json
+    superdoc_array = Array.new
+    superdoc_list = Mentorship.where(:mentor_id => person_id)
+    superdoc_list.each do |single|
+      superdoc = single.serializer_for_mentorship(single)
+      superdoc_array.push(superdoc)
+    end
+    result[:superDocInformation] = superdoc_array
+
+    superdeg_array = Array.new
+    superdeg_list = Supervision.where(:supervisor_id => person_id)
+
+    superdeg_list.each do |single|
+      superdeg = single.serializer_for_supervision(single)
+      superdeg_array.push(superdeg)
+    end
+    result[:superDegInformation] = superdeg_array
+
+    return result
   end
 
   # Handles rendering a person in a JSON format.
