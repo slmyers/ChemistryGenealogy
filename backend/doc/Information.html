@@ -344,12 +344,12 @@
       <pre class="code"><span class="info file"># File 'app/lib/information.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='const'>Information</span><span class='period'>.</span><span class='id identifier rubyid_submit_handling'>submit_handling</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_position'>position</span><span class='comma'>,</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='comma'>,</span> <span class='id identifier rubyid_postdoc_array'>postdoc_array</span><span class='comma'>,</span> <span class='id identifier rubyid_degree_array'>degree_array</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_person'>person</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_new_person'>new_person</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_position'>position</span><span class='comma'>,</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_person'>person</span> <span class='op'>=</span> <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_new_person'>new_person</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='comma'>,</span> <span class='id identifier rubyid_position'>position</span><span class='comma'>,</span> <span class='id identifier rubyid_institution_name'>institution_name</span><span class='rparen'>)</span>
 
   <span class='comment'># Checks that the postdoc_array is not null before adding new mentorships
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_postdoc_array'>postdoc_array</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
     <span class='id identifier rubyid_postdoc_array'>postdoc_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_postdoc'>postdoc</span><span class='op'>|</span>
-      <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_new_mentorship'>new_mentorship</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_postdoc'>postdoc</span><span class='lbracket'>[</span><span class='symbol'>:pdSupervisor</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_postdoc'>postdoc</span><span class='lbracket'>[</span><span class='symbol'>:pdInstitution</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_new_mentorship'>new_mentorship</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='comma'>,</span> <span class='id identifier rubyid_postdoc'>postdoc</span><span class='lbracket'>[</span><span class='symbol'>:pdSupervisor</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_postdoc'>postdoc</span><span class='lbracket'>[</span><span class='symbol'>:pdInstitution</span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='id identifier rubyid_postdoc'>postdoc</span><span class='lbracket'>[</span><span class='symbol'>:pdStartYear</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_postdoc'>postdoc</span><span class='lbracket'>[</span><span class='symbol'>:pdEndYear</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -572,7 +572,7 @@
 </span>  <span class='comment'># Checks if the name is the same. If not, change it.
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_person_object'>person_object</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>!=</span> <span class='id identifier rubyid_name'>name</span>
-      <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+      <span class='const'>Person</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
@@ -611,9 +611,9 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Mar 18 12:09:03 2016 by
+  Generated on Fri Apr  1 00:25:47 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.2.3).
+  0.8.7.6 (ruby-2.3.0).
 </div>
 
   </body>

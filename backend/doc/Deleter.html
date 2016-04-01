@@ -405,7 +405,7 @@ begining of this class</p>
       <pre class="code"><span class="info file"># File 'app/lib/deleter.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delete_person'>delete_person</span><span class='lparen'>(</span><span class='id identifier rubyid_person_id'>person_id</span><span class='rparen'>)</span>
-  <span class='ivar'>@person</span> <span class='op'>=</span> <span class='const'>Search</span><span class='period'>.</span><span class='id identifier rubyid_person_info'>person_info</span><span class='lparen'>(</span><span class='id identifier rubyid_person_id'>person_id</span><span class='rparen'>)</span>
+  <span class='ivar'>@person</span> <span class='op'>=</span> <span class='const'>Search</span><span class='period'>.</span><span class='id identifier rubyid_person_info'>person_info</span><span class='lparen'>(</span><span class='id identifier rubyid_person_id'>person_id</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
 
   <span class='ivar'>@person</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>person</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_mentorships'>mentorships</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='op'>|</span>
     <span class='id identifier rubyid_m'>m</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
@@ -518,9 +518,9 @@ begining of this class</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Mar 18 12:09:01 2016 by
+  Generated on Fri Apr  1 00:25:46 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.2.3).
+  0.8.7.6 (ruby-2.3.0).
 </div>
 
   </body>

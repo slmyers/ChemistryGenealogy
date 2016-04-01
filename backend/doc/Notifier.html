@@ -422,6 +422,7 @@ supervised.</p>
       <pre class="lines">
 
 
+28
 29
 30
 31
@@ -436,11 +437,10 @@ supervised.</p>
 40
 41
 42
-43
-44</pre>
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_admin_notifications'>admin_notifications</span>
   <span class='ivar'>@unapproved_admins</span> <span class='op'>=</span> <span class='const'>Admin</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:approved</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -489,6 +489,7 @@ supervised.</p>
       <pre class="lines">
 
 
+6
 7
 8
 9
@@ -496,11 +497,10 @@ supervised.</p>
 11
 12
 13
-14
-15</pre>
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all_notifications'>all_notifications</span>
   <span class='kw'>return</span> <span class='lbrace'>{</span>
@@ -673,6 +673,7 @@ mentorships between existing people</p>
       <pre class="lines">
 
 
+79
 80
 81
 82
@@ -698,11 +699,10 @@ mentorships between existing people</p>
 102
 103
 104
-105
-106</pre>
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mentorship_notifications'>mentorship_notifications</span>
   <span class='ivar'>@unapproved_mentorships</span> <span class='op'>=</span> <span class='const'>Mentorship</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:approved</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -750,7 +750,7 @@ mentorships between existing people</p>
     
 <p>this method will bundle all relationships + information w.r.t. an
 unapproved person. This reflects a person that was just added to the
-database.</p>
+database. TODO: refactor and fold with Search.person_info</p>
 
 
   </div>
@@ -978,6 +978,7 @@ relationship between existing people</p>
       <pre class="lines">
 
 
+47
 48
 49
 50
@@ -1005,11 +1006,10 @@ relationship between existing people</p>
 72
 73
 74
-75
-76</pre>
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_supervision_notifications'>supervision_notifications</span>
   <span class='ivar'>@unapproved_supervisions</span> <span class='op'>=</span> <span class='const'>Supervision</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:approved</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1145,6 +1145,7 @@ supervised</p>
       <pre class="lines">
 
 
+17
 18
 19
 20
@@ -1152,11 +1153,10 @@ supervised</p>
 22
 23
 24
-25
-26</pre>
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'app/lib/notifier.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_user_notifications'>user_notifications</span>
   <span class='ivar'>@unapproved_users</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:approved</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1177,9 +1177,9 @@ supervised</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Mar 18 12:09:02 2016 by
+  Generated on Fri Apr  1 00:25:47 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.2.3).
+  0.8.7.6 (ruby-2.3.0).
 </div>
 
   </body>
