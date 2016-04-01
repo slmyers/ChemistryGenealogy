@@ -4456,17 +4456,17 @@ describe('Search', function() {
      * PLEASE DO NOT FORGET TO DO THIS! THIS WILL CAUSE ERRORS IF NOT HANDLED.
      */
 
-    it('Not logged in user should not see submit button. ', function() {
-
-        browser.get('http://localhost:5000/search');
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
-
-        expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
-
-
-        //mainHeaderSubmitNewSubmissionButton
-
-    });
+    //it('Not logged in user should not see submit button. ', function() {
+    //
+    //    browser.get('http://localhost:5000/search');
+    //    expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/search');
+    //
+    //    expect(element(by.id('mainHeaderSubmitNewSubmissionButton')).isPresent()).toBe(true);
+    //
+    //
+    //    //mainHeaderSubmitNewSubmissionButton
+    //
+    //});
 
 
     /**
@@ -5640,18 +5640,78 @@ describe('Search', function() {
 
 
 
-
-//        expect(element(by.id('viewPageTopBarInstitution')).getText()).toEqual("UNIVERSITY OF ALBERTA");
-
-    //data.person.data.name
-
-
     /**
-     * End of submit page (Perhaps comment this out for test demos?) :/ That click box bug is quite bad...
+     * END OF: End of submit page (Perhaps comment this out for test demos?) :/ That click box bug is quite bad...
      */
 
 
+    /**
+     * START OF EDIT PAGE
+     */
 
+    it('Check login.', function(){
+
+        browser.get('http://localhost:5000/search');
+        element(by.id('theMainLoginButton')).click();
+
+        expect(element(by.id('userDialog')).isPresent()).toBe(true);
+
+        element(by.model('loginUser.email')).sendKeys("testEmail@email.ca");
+        element(by.model('loginUser.password')).sendKeys("testPassword");
+
+
+        expect(element(by.model('loginUser.email')).getAttribute('value')).toEqual("testEmail@email.ca");
+        expect(element(by.model('loginUser.password')).getAttribute('value')).toEqual("testPassword");
+
+        element(by.id('loginLoginButton')).click();
+
+        expect(element(by.id('adminOnlyButton')).isPresent()).toBe(true);
+
+        expect(element(by.id('dataVis')).isPresent()).toBe(true);
+
+    });
+
+
+    it('Should have the autocomplete search data displayed for target, click it and get to view page', function(){
+
+        browser.get('http://localhost:5000/search');
+        //Enter "Todd" into the search bar.
+        element(by.id('peopleSearchInput')).sendKeys("todd");
+
+        //Check that the search bar has the correct name in itself.
+        expect(element(by.id('peopleSearchInput')).getAttribute('value')).toEqual("todd");
+
+
+        expect(element(by.css('.autocompleteItem')).isPresent()).toBe(true);
+
+        element.all(by.css('.autocompleteItem')).first().click();
+
+        //http://localhost:5000/view/1
+
+
+
+        expect(element(by.id('searchDetailedInfoTarget')).isPresent()).toBe(true);
+
+        element.all(by.id('searchDetailedInfoTarget')).first().click();
+
+
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/view/1');
+
+    });
+
+    it('Should have the autocomplete search data displayed for target, click it and get to view page', function(){
+
+        element.all(by.id('viewPageGoToEditButton')).first().click();
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:5000/edit/1');
+    });
+
+
+
+
+    /**
+     * Below are odd bugged out tests.
+     */
 
     /** Odd synchronization bug, tests should work if that is fixed.
 
