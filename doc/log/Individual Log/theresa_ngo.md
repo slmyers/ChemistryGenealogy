@@ -38,6 +38,10 @@
 #####February 27, 2016 - March 4, 2016
 * Worked on backend submit and edit information models
 
+---
+
+###Sprint 4
+
 #####March 5, 2016 - March 11, 2016
 * Made a class for formatting information to be sent to the frontend (not in use)
 
@@ -46,6 +50,10 @@
 * Submit completed
 * Edit mostly complete, but with some bugs
 * Documented submit and edit
+
+---
+
+###Sprint 5
 
 #####March 19, 2016 - March 25, 2016
 * Research on what could be causing the edit bugs
