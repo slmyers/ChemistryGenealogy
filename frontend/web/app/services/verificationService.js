@@ -3,7 +3,7 @@
  */
 
 angular.module('chemGeno')
-.service('verificationService', function($q, $http, loginService) {
+.service('verificationService', function($q, $http, loginService, urlService) {
   // backend expects an :id but I didn't factor this in when writing the
   // controller, so I'm just attaching an arbitray id.
   // 5:30am
@@ -16,7 +16,7 @@ angular.module('chemGeno')
         "Authorization": token
       },
       method: 'PUT',
-      url: 'http://localhost:3000/api/verification/1337',
+      url: urlService.baseUrl() + 'api/verification/1337',
       data: paramObj,
     }).success(function(resp){
       d.resolve(resp);
@@ -35,7 +35,7 @@ angular.module('chemGeno')
         "Authorization": token
       },
       method: 'DELETE',
-      url: 'http://localhost:3000/api/verification/1337',
+      url: urlService.baseUrl() + 'api/verification/1337',
       data: paramObj,
     }).success(function(resp){
       d.resolve(resp);

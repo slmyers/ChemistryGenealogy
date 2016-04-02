@@ -7,7 +7,7 @@
  */
 
 angular.module('chemGeno')
-    .service('submitService', function($q, $http, $state, loginService){
+    .service('submitService', function($q, $http, $state, loginService, urlService){
 
 
             /**
@@ -24,7 +24,7 @@ angular.module('chemGeno')
                   "Authorization": token
                 },
                 method: 'POST',
-                url: 'http://localhost:3000/api/aggregated',
+                url: urlService.baseUrl() + 'api/aggregated',
                 data: {
                     name: submitFileObject.name,
                     position: submitFileObject.currentPositionTitle,

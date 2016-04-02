@@ -4,7 +4,7 @@
 
 
 angular.module('chemGeno')
-    .service('auditTrailService', function($q, $http, $state, loginService){
+    .service('auditTrailService', function($q, $http, $state, loginService, urlService){
 
 
 
@@ -14,7 +14,7 @@ angular.module('chemGeno')
             return $http({
                 header: 'Content-Type: application/json',
                 method: 'GET',
-                url: 'http://localhost:3000/api/audit_trail',
+                url: urlService.baseUrl() + 'api/audit_trail',
             }).success(function (resp) {
                 console.log('AUDIT TRAIL SERV SUCCESS!')
                 console.log(resp)

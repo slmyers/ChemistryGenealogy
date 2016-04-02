@@ -2,7 +2,7 @@
  *  @author Steven Myers
  */
 angular.module('chemGeno')
-.service('viewService', function($q, $http) {
+.service('viewService', function($q, $http, urlService) {
   /* used to view approved information */
   var obtainInformationFromBackEnd = function(idObj) {
     console.log(idObj)
@@ -10,7 +10,7 @@ angular.module('chemGeno')
     return $http({
       header: 'Content-Type: application/json',
       method: 'GET',
-      url: 'http://localhost:3000/api/aggregated/'+ idObj.id.toString(),
+      url: urlService.baseUrl() + 'api/aggregated/'+ idObj.id.toString(),
       params: {approved: true}
     }).success(function (resp) {
       d.resolve(resp);
@@ -28,7 +28,7 @@ angular.module('chemGeno')
     return $http({
       header: 'Content-Type: application/json',
       method: 'GET',
-      url: 'http://localhost:3000/api/aggregated/'+ id.toString(),
+      url: urlService.baseUrl() + 'api/aggregated/'+ id.toString(),
       params: {approved: false}
     }).success(function (resp) {
       d.resolve(resp);
