@@ -64,15 +64,15 @@ class Mentorship < ActiveRecord::Base
           end
 
           # The results left are ones that were either deleted or new
-          # Check if mentorship_array is not nil
-          unless mentorship_array.nil?
+          # Check if mentorship_array is not empty
+          unless mentorship_array.empty?
 
-            # Check if the mentorship_array_received is not nil
-            unless mentorship_array_received.nil?
+            # Check if the mentorship_array_received is not empty
+            unless mentorship_array_received.empty?
 
               # For each of the ids left in the array, update them with a new postdoc information
               mentorship_array.each do |mentorship_id|
-                unless mentorship_array_received.nil?
+                unless mentorship_array_received.empty?
                   new_mentorship = mentorship_array_received[0]
                   mentor_id = FindId.person(new_mentorship[:pdSupervisor])
                   institution_id = FindId.institution(new_mentorship[:pdInstitution])
@@ -87,14 +87,14 @@ class Mentorship < ActiveRecord::Base
               end
 
               # If there are any mentorships left in the mentorship_array, delete them
-              unless mentorship_array.nil?
+              unless mentorship_array.empty?
                 mentorship_array.each do |mentorship_id|
                   Mentorship.delete(mentorship_id)
                 end
               end
 
               # If there are any mentorships left in the mentorship_array_received, create them
-              unless mentorship_array_received.nil?
+              unless mentorship_array_received.empty?
                 mentorship_array_received.each do |mentorship|
                   Mentorship.new_mentorship(person_name,
                                             mentorship[:pdSupervisor],
@@ -104,16 +104,16 @@ class Mentorship < ActiveRecord::Base
                 end
               end
 
-            # If the mentorship_array_received is nil,
+            # If the mentorship_array_received is empty,
             # then the rest of the mentorships connected to the person are removed from the database
             else
               mentorship_array.each do |mentorship_id|
                 Mentorship.delete(mentorship_id)
               end
             end
-          # If it is nil, add remaining mentorships to the database
+          # If it is empty, add remaining mentorships to the database
           else
-            unless mentorship_array_received.nil?
+            unless mentorship_array_received.empty?
               mentorship_array_received.each do |mentorship|
                 Mentorship.new_mentorship(person_name,
                                           mentorship[:pdSupervisor],
@@ -124,7 +124,7 @@ class Mentorship < ActiveRecord::Base
             end
           end
 
-        # If the mentorship_array_received is nil (or the person no long has mentorships),
+        # If the mentorship_array_received is nil (or the person no longer has mentorships),
         # then all mentorships connected to the person are removed from the database
         else
           mentorship_array.each do |mentorship_id|
@@ -149,122 +149,123 @@ class Mentorship < ActiveRecord::Base
       end
   end
 
-  #   # Make an array of mentorship ids that are connected to the person in the database
-  #   mentorship_array = Array.new
-  #   mentorship_list = Mentorship.where(:person_id => id)
-  #   mentorship_list.each do |mentorship_single|
-  #     mentorship_array.push(mentorship_single.id)
-  #   end
+  # Updates the mentorships that the person supervised.
+  # @note This could probably be combined with Mentorship.update_mentorship
   #
-  #   # Check that mentorship_array is not nil
-  #   unless mentorship_array.nil?
-  #
-  #     # Check that mentorship_array_received is not nil
-  #     unless mentorship_array_received.nil?
-  #
-  #       # For each mentorship in the mentorship_array_received, see if it
-  #       # already exists in the database
-  #       # If it exists, don't do anything. If not, create it.
-  #       mentorship_array_received.each do |mentorship|
-  #
-  #         # Reminder that this function will find or create a mentorship with
-  #         # the required attributes
-  #         mentorship_object = Mentorship.new_mentorship(person_name,
-  #                                                       mentorship[:pdSupervisor],
-  #                                                       mentorship[:pdInstitution],
-  #                                                       mentorship[:pdStartYear],
-  #                                                       mentorship[:pdEndYear])
-  #         mentorship_id = mentorship_object.id
-  #
-  #         # If the mentorship is in the mentorship_array, remove from the array
-  #         if mentorship_array.include? mentorship_id
-  #           mentorship_array.delete(mentorship_id)
-  #         end
-  #       end
-  #
-  #       # If there's anything left in the mentorship_array after, remove them
-  #       unless mentorship_array.nil?
-  #         mentorship_array.each do |mentorship_id|
-  #           Mentorship.delete(mentorship_id)
-  #         end
-  #       end
-  #
-  #     # If the mentorship_array_received is nil, remove all mentorships
-  #     # connected to the person
-  #     else
-  #       mentorship_array.each do |mentorship_id|
-  #         Mentorship.delete(mentorship_id)
-  #       end
-  #     end
-  #
-  #   # If mentorship_array is nil (or person has no mentorships),
-  #   # then if mentorship_array_received (or the mentorships received from edit page)
-  #   # is not nil, then add all of them to the table
-  #   else
-  #     unless mentorship_array_received.nil?
-  #       mentorship_array_received.each do |mentorship|
-  #         Mentorship.new_mentorship(person_name,
-  #                                   mentorship[:pdSupervisor],
-  #                                   mentorship[:pdInstitution],
-  #                                   mentorship[:pdStartYear],
-  #                                   mentorship[:pdEndYear])
-  #       end
-  #     end
-  #   end
-  # end
+  # @param id [Number] id of the person mentored
+  # @param person_name [String] name of the person mentored
+  # @param mentorship_array_received [Array<Hash{String => String, Number}>] array of the person's postdoc information
+  def Mentorship.update_superdoc(id, person_name, mentorship_array_received)
 
-  #   # Check that mentorship_array is not nil
-  #   unless mentorship_array.nil?
-  #
-  #     # Check that mentorship_array_received is not nil
-  #     unless mentorship_array_received.nil?
-  #
-  #       # For each mentorship in the mentorship_array_received, see if it
-  #       # already exists in the database
-  #       # If it exists, update it. If not, create it.
-  #       mentorship_array_received.each do |mentorship|
-  #
-  #         # mentorship[:postdoc_id] should be set to nil if it is a new mentorship
-  #         # Maybe this instead: if mentorship_array.include? mentorship[:postdoc_id]
-  #         unless mentorship[:postdoc_id].nil?
-  #
-  #           # Person_id should still stay the same. Everything else is updated.
-  #           # *There's probably a nicer way of updating all info at once*
-  #           mentor_id = FindId.person(mentorship[:pdSupervisor])
-  #           institution_id = FindId.institution(mentorship[:pdInstitution])
-  #           Mentorship.update(mentorship[:postdoc_id], mentor_id: mentor_id)
-  #           Mentorship.update(mentorship[:postdoc_id], institution_id: institution_id)
-  #           Mentorship.update(mentorship[:postdoc_id], start: mentorship[:pdStartYear])
-  #           Mentorship.update(mentorship[:postdoc_id], end: mentorship[:pdEndYear])
-  #
-  #           # Remove id from the mentorship_array
-  #           mentorship_array.delete(mentorship[:postdoc_id])
-  #
-  #         # If the mentorship is not in the array, it is a new mentorship that
-  #         # must be added (the mentorship[:postdoc_id] should be nil)
-  #         else
-  #           Mentorship.new_mentorship(person_name,
-  #                                     mentorship[:pdSupervisor],
-  #                                     mentorship[:pdInstitution],
-  #                                     mentorship[:pdStartYear],
-  #                                     mentorship[:pdEndYear])
-  #         end
-  #       end
-  #
-  #       # If there's anything left in the mentorship_array after, remove them
-  #       unless mentorship_array.nil?
-  #         mentorship_array.each do |mentorship_id|
-  #           Mentorship.delete(mentorship_id)
-  #         end
-  #       end
-  #
-  #
-  #
-  #
-  #       end
-  #     end
-  #   end
-  # end
+    # Make an array of mentorship ids that are connected to the person in the database
+    mentorship_array = Array.new
+    mentorship_list = Mentorship.where(:mentor_id => id)
+    mentorship_list.each do |mentorship_single|
+      mentorship_array.push(mentorship_single.id)
+    end
+
+    # Check that the mentorship array is not nil
+    unless mentorship_array.nil?
+
+      # Check that the mentorship_array_received is not nil
+      unless mentorship_array_received.nil?
+
+        # For each mentorship in the mentorship_array_received,
+        # see if it already exists in the database
+        # IF so, then the mentorship is present and can be removed from the mentorship_array
+        # as well as the mentorship_array_received
+        mentorship_array_received.each do |mentorship|
+          if mentorship.has_key?(:id)
+            mentorship_array.delete(mentorship[:id])
+            mentorship_array_received.delete(mentorship)
+          end
+        end
+
+        # The results left are ones that were either deleted or new
+        # Check if mentorship_array is not empty
+        unless mentorship_array.empty?
+
+          # Check if the mentorship_array_received is not empty
+          unless mentorship_array_received.empty?
+
+            # For each of the ids left in the array, update them with a new postdoc information
+            mentorship_array.each do |mentorship_id|
+              unless mentorship_array_received.empty?
+                new_mentorship = mentorship_array_received[0]
+                mentored_id = FindId.person(new_mentorship[:superDocNameOfPerson])
+                institution_id = FindId.institution(new_mentorship[:superDocInstitution])
+                Mentorship.update(mentorship_id, person_id: mentored_id)
+                Mentorship.update(mentorship_id, institution_id: institution_id)
+                Mentorship.update(mentorship_id, start: new_mentorship[:superDocStartYear])
+                Mentorship.update(mentorship_id, end: new_mentorship[:superDocEndYear])
+
+                mentorship_array.delete(mentorship_id)
+                mentorship_array_received.delete(new_mentorship)
+              end
+            end
+
+            # If there are any mentorships left in the mentorship_array, delete them
+            unless mentorship_array.empty?
+              mentorship_array.each do |mentorship_id|
+                Mentorship.delete(mentorship_id)
+              end
+            end
+
+            # If there are any mentorships left in the mentorship_array_received, create them
+            unless mentorship_array_received.empty?
+              mentorship_array_received.each do |mentorship|
+                Mentorship.new_mentorship(mentorship[:superDocNameOfPerson],
+                                          person_name,
+                                          mentorship[:superDocInstitution],
+                                          mentorship[:superDocStartYear],
+                                          mentorship[:superDocEndYear])
+              end
+            end
+
+          # If the mentorship_array_received is empty,
+          # then the rest of the mentorships connected to the person are removed from the database
+          else
+            mentorship_array.each do |mentorship_id|
+              Mentorship.delete(mentorship_id)
+            end
+          end
+        # If mentorship_array empty, add remaining mentorships to the database
+        else
+          unless mentorship_array_received.empty?
+            mentorship_array_received.each do |mentorship|
+              Mentorship.new_mentorship(mentorship[:superDocNameOfPerson],
+                                        person_name,
+                                        mentorship[:superDocInstitution],
+                                        mentorship[:superDocStartYear],
+                                        mentorship[:superDocEndYear])
+            end
+          end
+        end
+
+      # If the mentorship_array_received is nil (or the person no longer has mentorships they supervised),
+      # then all mentorships connected to the person are removed from the database
+      else
+        mentorship_array.each do |mentorship_id|
+          Mentorship.delete(mentorship_id)
+        end
+      end
+
+    # If mentorship_array is nil (or person has no mentorships they supervised),
+    # then if mentorship_array_received (or the mentorships received from edit page)
+    # is not nil, then add all of them to the table
+    # These should just be using the same format as a new postdoc
+    else
+      unless mentorship_array_received.nil?
+        mentorship_array_received.each do |mentorship|
+          Mentorship.new_mentorship(mentorship[:superDocNameOfPerson],
+                                    person_name,
+                                    mentorship[:superDocInstitution],
+                                    mentorship[:superDocStartYear],
+                                    mentorship[:superDocEndYear])
+        end
+      end
+    end
+  end
 
   # Makes a serialized postdoc to be sent to the frontend in a JSON format.
   # @note Could probably take id off if the frontend isn't using it
