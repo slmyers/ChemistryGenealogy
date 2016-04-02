@@ -37,7 +37,7 @@
             Supervised
           </md-content>
         </md-list-item>
-        <md-list-item>
+        <md-list-item ng-if="loggedIn()">
           <md-content ng-click="gotoEdit()" id="viewPageGoToEditButton">
             Edit Person
           </md-content>
