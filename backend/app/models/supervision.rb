@@ -54,13 +54,22 @@ class Supervision < ActiveRecord::Base
       # Check that the supervision_array_received is not nil
       unless supervision_array_received.nil?
 
+        # Create a temporary array to iterate through
+        temp_array_received = Array.new
+        supervision_array_received.each do |supervision|
+          temp_array_received.push(supervision)
+        end
+
         # For each supervision in the supervision_array_received,
         # see if it already exists in the database
         # If so, then the supervision is present and can be removed from the supervision_array
         # as well as the supervision_array_received
-        supervision_array_received.each do |supervision|
-          if supervision.has_key?(:id)
-            supervision_array.delete(supervision[:id])
+        temp_array_received.each do |supervision|
+          if supervision.is_a?(Array)
+            supervision = supervision[0]
+          end
+          if supervision.has_key?("id")
+            supervision_array.delete(supervision["id"])
             supervision_array_received.delete(supervision)
           end
         end
@@ -72,12 +81,21 @@ class Supervision < ActiveRecord::Base
           # Check if the supervision_array_received is not empty
           unless supervision_array_received.empty?
 
-            # For each of the ids left in the array, update them with a new supervision information
+            # Create a temporary array to iterate through
+            temp_array = Array.new
             supervision_array.each do |supervision_id|
+              temp_array.push(supervision_id)
+            end
+
+            # For each of the ids left in the array, update them with a new supervision information
+            temp_array.each do |supervision_id|
               unless supervision_array_received.empty?
                 new_supervision = supervision_array_received[0]
-                supervisor_id = FindId.person(new_supervision[:supervisor])
-                degree_id = FindId.degree(new_supervision[:year], new_supervision[:type], new_supervision[:institution])
+                if new_supervision.is_a?(Array)
+                  new_supervision = new_supervision[0]
+                end
+                supervisor_id = FindId.person(new_supervision["supervisor"])
+                degree_id = FindId.degree(new_supervision["year"], new_supervision["type"], new_supervision["institution"])
                 Supervision.update(supervision_id, supervisor_id: supervisor_id)
                 Supervision.update(supervision_id, degree_id: degree_id)
 
@@ -96,12 +114,15 @@ class Supervision < ActiveRecord::Base
             # If there are any supervisions left in the supervision_array_received, create them
             unless supervision_array_received.empty?
               supervision_array_received.each do |supervision|
-                Degree.new_degree(supervision[:year], supervision[:type], supervision[:institution])
-                Supervision.new_supervision(supervision[:year],
-                                            supervision[:type],
-                                            supervision[:institution],
+                if supervision.is_a?(Array)
+                  supervision = supervision[0]
+                end
+                Degree.new_degree(supervision["year"], supervision["type"], supervision["institution"])
+                Supervision.new_supervision(supervision["year"],
+                                            supervision["type"],
+                                            supervision["institution"],
                                             name,
-                                            supervision[:supervisor])
+                                            supervision["supervisor"])
               end
             end
 
@@ -116,12 +137,15 @@ class Supervision < ActiveRecord::Base
         else
           unless supervision_array_received.empty?
             supervision_array_received.each do |supervision|
-              Degree.new_degree(supervision[:year], supervision[:type], supervision[:institution])
-              Supervision.new_supervision(supervision[:year],
-                                          supervision[:type],
-                                          supervision[:institution],
+              if supervision.is_a?(Array)
+                supervision = supervision[0]
+              end
+              Degree.new_degree(supervision["year"], supervision["type"], supervision["institution"])
+              Supervision.new_supervision(supervision["year"],
+                                          supervision["type"],
+                                          supervision["institution"],
                                           name,
-                                          supervision[:supervisor])
+                                          supervision["supervisor"])
             end
           end
         end
@@ -140,12 +164,15 @@ class Supervision < ActiveRecord::Base
     else
       unless supervision_array_received.nil?
         supervision_array_received.each do |supervision|
-          Degree.new_degree(supervision[:year], supervision[:type], supervision[:institution])
-          Supervision.new_supervision(supervision[:year],
-                                      supervision[:type],
-                                      supervision[:institution],
+          if supervision.is_a?(Array)
+            supervision = supervision[0]
+          end
+          Degree.new_degree(supervision["year"], supervision["type"], supervision["institution"])
+          Supervision.new_supervision(supervision["year"],
+                                      supervision["type"],
+                                      supervision["institution"],
                                       name,
-                                      supervision[:supervisor])
+                                      supervision["supervisor"])
         end
       end
     end
@@ -173,13 +200,22 @@ class Supervision < ActiveRecord::Base
       # Check that the supervision_array_received is not nil
       unless supervision_array_received.nil?
 
+        # Create a temporary array to iterate through
+        temp_array_received = Array.new
+        supervision_array_received.each do |supervision|
+          temp_array_received.push(supervision)
+        end
+
         # For each supervision in the supervision_array_received,
         # see if it already exists in the database
         # If so, then the supervision is present and can be removed from the supervision_array
         # as well as the supervision_array_received
-        supervision_array_received.each do |supervision|
-          if supervision.has_key?(:id)
-            supervision_array.delete(supervision[:id])
+        temp_array_received.each do |supervision|
+          if supervision.is_a?(Array)
+            supervision = supervision[0]
+          end
+          if supervision.has_key?("id")
+            supervision_array.delete(supervision["id"])
             supervision_array_received.delete(supervision)
           end
         end
@@ -191,14 +227,23 @@ class Supervision < ActiveRecord::Base
           # Check if the supervision_array_received is not empty
           unless supervision_array_received.empty?
 
-            # For each of the ids left in the array, update them with a new supervision information
+            # Create a temporary array to iterate through
+            temp_array = Array.new
             supervision_array.each do |supervision_id|
+              temp_array.push(supervision_id)
+            end
+
+            # For each of the ids left in the array, update them with a new supervision information
+            temp_array.each do |supervision_id|
               unless supervision_array_received.empty?
                 new_supervision = supervision_array_received[0]
-                supervised_id = FindId.person(new_supervision[:superDegNameOfPerson])
-                degree_id = FindId.degree(new_supervision[:superDegYear],
-                                          new_supervision[:superDegDegType],
-                                          new_supervision[:superDegInst])
+                if new_supervision.is_a?(Array)
+                  new_supervision = new_supervision[0]
+                end
+                supervised_id = FindId.person(new_supervision["superDegNameOfPerson"])
+                degree_id = FindId.degree(new_supervision["superDegYear"],
+                                          new_supervision["superDegDegType"],
+                                          new_supervision["superDegInst"])
                 Supervision.update(supervision_id, person_id: supervised_id)
                 Supervision.update(supervision_id, degree_id: degree_id)
 
@@ -217,16 +262,19 @@ class Supervision < ActiveRecord::Base
             # If there are any supervisions left in the supervision_array_received, create them
             unless supervision_array_received.empty?
               supervision_array_received.each do |supervision|
-                Person.new_person(supervision[:superDegNameOfPerson],
-                                  supervision[:superDegCurrPosition],
-                                  supervision[:superDegCurrInst])
-                Degree.new_degree(supervision[:superDegYear],
-                                  supervision[:superDegDegType],
-                                  supervision[:superDegInst])
-                Supervision.new_supervision(supervision[:superDegYear],
-                                            supervision[:superDegDegType],
-                                            supervision[:superDegInst],
-                                            supervision[:superDegNameOfPerson],
+                if supervision.is_a?(Array)
+                  supervision = supervision[0]
+                end
+                Person.new_person(supervision["superDegNameOfPerson"],
+                                  supervision["superDegCurrPosition"],
+                                  supervision["superDegCurrInst"])
+                Degree.new_degree(supervision["superDegYear"],
+                                  supervision["superDegDegType"],
+                                  supervision["superDegInst"])
+                Supervision.new_supervision(supervision["superDegYear"],
+                                            supervision["superDegDegType"],
+                                            supervision["superDegInst"],
+                                            supervision["superDegNameOfPerson"],
                                             name)
               end
             end
@@ -242,16 +290,19 @@ class Supervision < ActiveRecord::Base
         else
           unless supervision_array_received.empty?
             supervision_array_received.each do |supervision|
-              Person.new_person(supervision[:superDegNameOfPerson],
-                                supervision[:superDegCurrPosition],
-                                supervision[:superDegCurrInst])
-              Degree.new_degree(supervision[:superDegYear],
-                                supervision[:superDegDegType],
-                                supervision[:superDegInst])
-              Supervision.new_supervision(supervision[:superDegYear],
-                                          supervision[:superDegDegType],
-                                          supervision[:superDegInst],
-                                          supervision[:superDegNameOfPerson],
+              if supervision.is_a?(Array)
+                supervision = supervision[0]
+              end
+              Person.new_person(supervision["superDegNameOfPerson"],
+                                supervision["superDegCurrPosition"],
+                                supervision["superDegCurrInst"])
+              Degree.new_degree(supervision["superDegYear"],
+                                supervision["superDegDegType"],
+                                supervision["superDegInst"])
+              Supervision.new_supervision(supervision["superDegYear"],
+                                          supervision["superDegDegType"],
+                                          supervision["superDegInst"],
+                                          supervision["superDegNameOfPerson"],
                                           name)
             end
           end
@@ -271,16 +322,19 @@ class Supervision < ActiveRecord::Base
     else
       unless supervision_array_received.nil?
         supervision_array_received.each do |supervision|
-          Person.new_person(supervision[:superDegNameOfPerson],
-                            supervision[:superDegCurrPosition],
-                            supervision[:superDegCurrInst])
-          Degree.new_degree(supervision[:superDegYear],
-                            supervision[:superDegDegType],
-                            supervision[:superDegInst])
-          Supervision.new_supervision(supervision[:superDegYear],
-                                      supervision[:superDegDegType],
-                                      supervision[:superDegInst],
-                                      supervision[:superDegNameOfPerson],
+          if supervision.is_a?(Array)
+            supervision = supervision[0]
+          end
+          Person.new_person(supervision["superDegNameOfPerson"],
+                            supervision["superDegCurrPosition"],
+                            supervision["superDegCurrInst"])
+          Degree.new_degree(supervision["superDegYear"],
+                            supervision["superDegDegType"],
+                            supervision["superDegInst"])
+          Supervision.new_supervision(supervision["superDegYear"],
+                                      supervision["superDegDegType"],
+                                      supervision["superDegInst"],
+                                      supervision["superDegNameOfPerson"],
                                       name)
         end
       end

@@ -52,13 +52,22 @@ class Mentorship < ActiveRecord::Base
         # Check that the mentorship_array_received is not nil
         unless mentorship_array_received.nil?
 
+          # Create a temporary array to iterate through
+          temp_received_array = Array.new
+          mentorship_array_received.each do |mentorship|
+            temp_received_array.push(mentorship)
+          end
+
           # For each mentorship in the mentorship_array_received,
-          # see if it already exists in the database
+          # see if it already exists in th database
           # IF so, then the mentorship is present and can be removed from the mentorship_array
           # as well as the mentorship_array_received
-          mentorship_array_received.each do |mentorship|
-            if mentorship.has_key?(:id)
-              mentorship_array.delete(mentorship[:id])
+          temp_received_array.each do |mentorship|
+            if mentorship.is_a?(Array)
+              mentorship = mentorship[0]
+            end
+            if mentorship.has_key?("id")
+              mentorship_array.delete(mentorship["id"])
               mentorship_array_received.delete(mentorship)
             end
           end
@@ -70,16 +79,26 @@ class Mentorship < ActiveRecord::Base
             # Check if the mentorship_array_received is not empty
             unless mentorship_array_received.empty?
 
-              # For each of the ids left in the array, update them with a new postdoc information
+              # Create a temporary array to iterate through
+              temp_array = Array.new
               mentorship_array.each do |mentorship_id|
+                temp_array.push(mentorship_id)
+              end
+
+              # For each of the ids left in the array, update them with a new postdoc information
+              temp_array.each do |mentorship_id|
                 unless mentorship_array_received.empty?
                   new_mentorship = mentorship_array_received[0]
-                  mentor_id = FindId.person(new_mentorship[:pdSupervisor])
-                  institution_id = FindId.institution(new_mentorship[:pdInstitution])
+                  if new_mentorship.is_a?(Array)
+                    new_mentorship = new_mentorship[0]
+                  end
+                  mentor_id = FindId.person(new_mentorship["pdSupervisor"])
+                  institution_id = FindId.institution(new_mentorship["pdInstitution"])
                   Mentorship.update(mentorship_id, mentor_id: mentor_id)
                   Mentorship.update(mentorship_id, institution_id: institution_id)
-                  Mentorship.update(mentorship_id, start: new_mentorship[:pdStartYear])
-                  Mentorship.update(mentorship_id, end: new_mentorship[:pdEndYear])
+                  Mentorship.update(mentorship_id, start: new_mentorship["pdStartYear"])
+                  Mentorship.update(mentorship_id, end: new_mentorship["pdEndYear"])
+                  Mentorship.update(mentorship_id, approved: false)
 
                   mentorship_array.delete(mentorship_id)
                   mentorship_array_received.delete(new_mentorship)
@@ -96,11 +115,14 @@ class Mentorship < ActiveRecord::Base
               # If there are any mentorships left in the mentorship_array_received, create them
               unless mentorship_array_received.empty?
                 mentorship_array_received.each do |mentorship|
+                  if mentorship.is_a?(Array)
+                    mentorship = mentorship[0]
+                  end
                   Mentorship.new_mentorship(person_name,
-                                            mentorship[:pdSupervisor],
-                                            mentorship[:pdInstitution],
-                                            mentorship[:pdStartYear],
-                                            mentorship[:pdEndYear])
+                                            mentorship["pdSupervisor"],
+                                            mentorship["pdInstitution"],
+                                            mentorship["pdStartYear"],
+                                            mentorship["pdEndYear"])
                 end
               end
 
@@ -115,11 +137,14 @@ class Mentorship < ActiveRecord::Base
           else
             unless mentorship_array_received.empty?
               mentorship_array_received.each do |mentorship|
+                if mentorship.is_a?(Array)
+                  mentorship = mentorship[0]
+                end
                 Mentorship.new_mentorship(person_name,
-                                          mentorship[:pdSupervisor],
-                                          mentorship[:pdInstitution],
-                                          mentorship[:pdStartYear],
-                                          mentorship[:pdEndYear])
+                                          mentorship["pdSupervisor"],
+                                          mentorship["pdInstitution"],
+                                          mentorship["pdStartYear"],
+                                          mentorship["pdEndYear"])
               end
             end
           end
@@ -137,13 +162,16 @@ class Mentorship < ActiveRecord::Base
       # is not nil, then add all of them to the table
       # These should just be using the same format as a new postdoc
       else
-        unless mentorship_array_received.nil?
+        unless mentorship_array_received.empty?
           mentorship_array_received.each do |mentorship|
+            if mentorship.is_a?(Array)
+              mentorship = mentorship[0]
+            end
             Mentorship.new_mentorship(person_name,
-                                      mentorship[:pdSupervisor],
-                                      mentorship[:pdInstitution],
-                                      mentorship[:pdStartYear],
-                                      mentorship[:pdEndYear])
+                                      mentorship["pdSupervisor"],
+                                      mentorship["pdInstitution"],
+                                      mentorship["pdStartYear"],
+                                      mentorship["pdEndYear"])
           end
         end
       end
@@ -170,13 +198,22 @@ class Mentorship < ActiveRecord::Base
       # Check that the mentorship_array_received is not nil
       unless mentorship_array_received.nil?
 
+        # Create a temporary array to iterate through
+        temp_received_array = Array.new
+        mentorship_array_received.each do |mentorship|
+          temp_received_array.push(mentorship)
+        end
+
         # For each mentorship in the mentorship_array_received,
         # see if it already exists in the database
         # IF so, then the mentorship is present and can be removed from the mentorship_array
         # as well as the mentorship_array_received
-        mentorship_array_received.each do |mentorship|
-          if mentorship.has_key?(:id)
-            mentorship_array.delete(mentorship[:id])
+        temp_received_array.each do |mentorship|
+          if mentorship.is_a?(Array)
+            mentorship = mentorship[0]
+          end
+          if mentorship.has_key?("id")
+            mentorship_array.delete(mentorship["id"])
             mentorship_array_received.delete(mentorship)
           end
         end
@@ -188,16 +225,25 @@ class Mentorship < ActiveRecord::Base
           # Check if the mentorship_array_received is not empty
           unless mentorship_array_received.empty?
 
-            # For each of the ids left in the array, update them with a new postdoc information
+            # Create a temporary array to iterate through
+            temp_array = Array.new
             mentorship_array.each do |mentorship_id|
+              temp_array.push(mentorship_id)
+            end
+
+            # For each of the ids left in the array, update them with a new postdoc information
+            temp_array.each do |mentorship_id|
               unless mentorship_array_received.empty?
                 new_mentorship = mentorship_array_received[0]
-                mentored_id = FindId.person(new_mentorship[:superDocNameOfPerson])
-                institution_id = FindId.institution(new_mentorship[:superDocInstitution])
+                if new_mentorship.is_a?(Array)
+                  new_mentorship = new_mentorship[0]
+                end
+                mentored_id = FindId.person(new_mentorship["superDocNameOfPerson"])
+                institution_id = FindId.institution(new_mentorship["superDocInstitution"])
                 Mentorship.update(mentorship_id, person_id: mentored_id)
                 Mentorship.update(mentorship_id, institution_id: institution_id)
-                Mentorship.update(mentorship_id, start: new_mentorship[:superDocStartYear])
-                Mentorship.update(mentorship_id, end: new_mentorship[:superDocEndYear])
+                Mentorship.update(mentorship_id, start: new_mentorship["superDocStartYear"])
+                Mentorship.update(mentorship_id, end: new_mentorship["superDocEndYear"])
 
                 mentorship_array.delete(mentorship_id)
                 mentorship_array_received.delete(new_mentorship)
@@ -214,11 +260,14 @@ class Mentorship < ActiveRecord::Base
             # If there are any mentorships left in the mentorship_array_received, create them
             unless mentorship_array_received.empty?
               mentorship_array_received.each do |mentorship|
-                Mentorship.new_mentorship(mentorship[:superDocNameOfPerson],
+                if mentorship.is_a?(Array)
+                  mentorship = mentorship[0]
+                end
+                Mentorship.new_mentorship(mentorship["superDocNameOfPerson"],
                                           person_name,
-                                          mentorship[:superDocInstitution],
-                                          mentorship[:superDocStartYear],
-                                          mentorship[:superDocEndYear])
+                                          mentorship["superDocInstitution"],
+                                          mentorship["superDocStartYear"],
+                                          mentorship["superDocEndYear"])
               end
             end
 
@@ -233,11 +282,14 @@ class Mentorship < ActiveRecord::Base
         else
           unless mentorship_array_received.empty?
             mentorship_array_received.each do |mentorship|
-              Mentorship.new_mentorship(mentorship[:superDocNameOfPerson],
+              if mentorship.is_a?(Array)
+                mentorship = mentorship[0]
+              end
+              Mentorship.new_mentorship(mentorship["superDocNameOfPerson"],
                                         person_name,
-                                        mentorship[:superDocInstitution],
-                                        mentorship[:superDocStartYear],
-                                        mentorship[:superDocEndYear])
+                                        mentorship["superDocInstitution"],
+                                        mentorship["superDocStartYear"],
+                                        mentorship["superDocEndYear"])
             end
           end
         end
@@ -257,11 +309,14 @@ class Mentorship < ActiveRecord::Base
     else
       unless mentorship_array_received.nil?
         mentorship_array_received.each do |mentorship|
-          Mentorship.new_mentorship(mentorship[:superDocNameOfPerson],
+          if mentorship.is_a?(Array)
+            mentorship = mentorship[0]
+          end
+          Mentorship.new_mentorship(mentorship["superDocNameOfPerson"],
                                     person_name,
-                                    mentorship[:superDocInstitution],
-                                    mentorship[:superDocStartYear],
-                                    mentorship[:superDocEndYear])
+                                    mentorship["superDocInstitution"],
+                                    mentorship["superDocStartYear"],
+                                    mentorship["superDocEndYear"])
         end
       end
     end
