@@ -11,41 +11,27 @@
       <md-sidenav class="md-sidenav-left md-whiteframe-z2"
         md-component-id="left"
         md-is-locked-open="$mdMedia('gt-sm')">
-        <md-list-item>
-          <md-content ng-click="allDetails()" id="viewPageAllDetailsButton">
-            Full Details
-          </md-content>
-        </md-list-item>
-        <md-list-item>
-          <md-content ng-click="onlyMentorDetails()" id="viewPageMentorDetailsButton">
-            Postdocs
-          </md-content>
-        </md-list-item>
-        <md-list-item>
-          <md-content ng-click="onlyMentoredDetails()" id="viewPageMentoredDetailsButton">
-            Mentored
-          </md-content>
-        </md-list-item>
-        <md-list-item>
-          <md-content ng-click="onlySupervisorDetails()" id="viewPageSupervisorDetailsButton">
-            Degrees
-          </md-content>
-        </md-list-item>
-        <md-list-item>
-          <md-content ng-click="onlySupervisedDetails()" id="viewPageSupervisedDetailsButton">
-            Supervised
-          </md-content>
-        </md-list-item>
-        <md-list-item ng-if="loggedIn()">
-          <md-content ng-click="gotoEdit()" id="viewPageGoToEditButton">
-            Edit Person
-          </md-content>
-        </md-list-item>
-        <md-list-item>
-          <md-content ng-click="gotoHome()" id="viewPageGoToHomeButton">
-            Home
-          </md-content>
-        </md-list-item>
+        <md-button class="md-raised md-primary" ng-click="allDetails()" id="viewPageAllDetailsButton">
+         Full Details
+       </md-button>
+       <md-button class="md-raised md-primary" ng-click="onlyMentorDetails()" id="viewPageMentorDetailsButton">
+         Postdocs
+       </md-button>
+       <md-button class="md-raised md-primary" ng-click="onlyMentoredDetails()" id="viewPageMentoredDetailsButton">
+         Mentored
+       </md-button>
+       <md-button class="md-raised md-primary" ng-click="onlySupervisorDetails()" id="viewPageSupervisorDetailsButton">
+         Degrees
+       </md-button>
+       <md-button class="md-raised md-primary" ng-click="onlySupervisedDetails()" id="viewPageSupervisedDetailsButton">
+         Supervised
+       </md-button>
+       <md-button class="md-raised md-primary" ng-click="gotoHome()" id="viewPageGoToHomeButton">
+           Home
+       </md-button>
+       <md-button ng-if="loggedIn()" class="md-raised md-primary" ng-click="gotoEdit()" id="viewPageGoToEditButton">
+         Edit Person
+       </md-button>
       </md-sidenav>
       <div layout="column" style="width:80%;" id="viewContent">
         <md-toolbar id="viewPageTopBar" class="md-warn" layout-align="center center" layout="column" id="viewContentHeader">
