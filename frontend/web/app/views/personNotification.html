@@ -3,7 +3,6 @@
   #viewContent{
     height: 100%;
     height: 100vh;
-    position: fixed;
     overflow: scroll;
   }
 </style>
@@ -17,7 +16,7 @@
             <md-button id="adminPersonApproveButton" class="md-raised md-primary" ng-click="verifyPerson()">
               Approve
             </md-button class="md-raised md-primary">
-            <md-button id="adminPersonRejectButton" class="md-raised md-primary" ng-click="rejectPerson()">
+            <md-button id="adminPersonRejectButton" class="md-raised md-warn" ng-click="rejectPerson()">
               Reject
             </md-button class="md-raised md-primary">
           </md-content>
