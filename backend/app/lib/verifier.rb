@@ -35,19 +35,16 @@ class Verifier
     if @mentorship.institution != nil
       if @mentorship.institution.approved == false
         @mentorship.institution.approved = true
+        @mentorship.institution.save
       end
     end
 
     @mentorship.approved = true
-
-    if @mentorship.save && @mentorship.institution.save
-      return {
-        'mentorship' => @mentorship,
-        'institution' => @mentorship.institution
-      }
-    else
-      return nil
-    end
+    @mentorship.save
+    return {
+      'mentorship' => @mentorship,
+      'institution' => @mentorship.institution
+    }
   end
 
   def self.verify_supervision(supervision_id)
@@ -57,28 +54,25 @@ class Verifier
     if @supervision.degree != nil
       if @supervision.degree.approved == false
         @supervision.degree.approved = true
+        @supervision.degree.save
       end
-    end
-
-    if @supervision.degree.institution != nil
-      if @supervision.degree.institution.approved == false
-        @supervision.degree.institution.approved = true
+      if @supervision.degree.institution != nil
+        if @supervision.degree.institution.approved == false
+          @supervision.degree.institution.approved = true
+          @supervision.degree.institution.save
+        end
       end
     end
 
     @supervision.approved = true
-
-    if @supervision.save && @supervision.degree.save && @supervision.degree.institution.save
-      return {
-        'supervision' => @supervision,
-        'degree' => {
-          'data' => @supervision.degree,
-          'institution' => @supervision.degree.institution
-        }
+    @supervision.save
+    return {
+      'supervision' => @supervision,
+      'degree' => {
+        'data' => @supervision.degree,
+        'institution' => @supervision.degree.institution
       }
-    else
-      return nil
-    end
+    }
   end
 
   # goes through every single thing related to a person and approves it
@@ -108,50 +102,80 @@ class Verifier
 
     @person["person"].mentorships.each do |m|
       m.approved = true
-      m.institution.approved = true
-      m.mentor.approved = true
-      m.mentor.institution.approved = true
-      m.mentor.institution.save
-      m.mentor.save
-      m.institution.save
+      if m.institution != nil
+        m.institution.approved = true
+        m.institution.save
+      end
+      if m.mentor != nil
+        m.mentor.approved = true
+        m.mentor.save
+        if m.mentor.institution != nil
+          m.mentor.institution.approved = true
+          m.mentor.institution.save
+        end
+      end
       m.save
     end
 
     @person["person"].supervisions.each do |s|
       s.approved = true
-      s.degree.approved = true
-      s.degree.institution.approved = true
-      s.supervisor.institution.approved = true
-      s.supervisor.approved = true
+      if s.degree != nil
+        s.degree.approved = true
+        s.degree.save
+        if s.degree.institution != nil
+          s.degree.institution.approved = true
+          s.degree.institution.save
+        end
+      end
+
+      if s.supervisor != nil
+        s.supervisor.approved = true
+        s.supervisor.save
+        if s.supervisor.institution != nil
+          s.supervisor.institution.approved = true
+          s.supervisor.institution.save
+        end
+      end
       s.save
-      s.degree.save
-      s.degree.institution.save
-      s.supervisor.institution.save
-      s.supervisor.save
     end
 
     @person["mentored"].each do |m|
       m.approved = true
-      m.institution.approved = true
-      m.person.approved = true
-      m.person.institution.approved = true
-      m.person.institution.save
-      m.person.save
-      m.institution.save
+      if m.institution != nil
+        m.institution.approved = true
+        m.institution.save
+      end
+      if m.person != nil
+        m.person.approved = true
+        m.person.save
+        if m.person.institution != nil
+          m.person.institution.approved = true
+          m.person.institution.save
+        end
+      end
       m.save
     end
 
     @person["supervised"].each do |s|
       s.approved = true
-      s.degree.approved = true
-      s.degree.institution.approved = true
-      s.person.approved = true
-      s.person.institution.approved = true
+      if s.degree != nil
+        s.degree.approved = true
+        if s.degree.institution != nil
+          s.degree.institution.approved = true
+          s.degree.institution.save
+        end
+        s.degree.save
+      end
+
+      if s.person != nil
+        s.person.approved = true
+        if s.person.institution != nil
+          s.person.institution.approved = true
+          s.person.institution.save
+        end
+        s.person.save
+      end
       s.save
-      s.degree.save
-      s.degree.institution.save
-      s.person.save
-      s.person.institution.save
     end
 
     return {
