@@ -8,36 +8,26 @@
           <md-button id="adminMentorshipDetailAcceptButton" class="md-raised md-primary" ng-click="verifySupervision()">
             Approve
           </md-button class="md-raised md-primary">
-          <md-button id="adminMentorshipDetailRejectButton" class="md-raised md-primary" ng-click="rejectSupervision()">
+          <md-button id="adminMentorshipDetailRejectButton" class="md-raised md-warn" ng-click="rejectSupervision()">
             Reject
-          </md-button class="md-raised md-primary">
+          </md-button>
         </md-content>
       </md-list-item>
-      <md-list-item>
-        <md-content id="adminMentorshipDetailAllDetailsButton" ng-click="allDetails()">
+      <md-button class="md-raised md-primary" id="adminMentorshipDetailAllDetailsButton" ng-click="allDetails()">
           Full Details
-        </md-content>
-      </md-list-item>
-      <md-list-item>
-        <md-content id="adminMentorshipDetailMentorOnlyButton" ng-click="onlyMentorDetails()">
-          Postdocs
-        </md-content>
-      </md-list-item>
-      <md-list-item>
-        <md-content id="adminMentorshipDetailMentoredOnlyButton" ng-click="onlyMentoredDetails()">
-          Mentored
-        </md-content>
-      </md-list-item>
-      <md-list-item>
-        <md-content id="adminMentorshipDetailSupervisorOnlyButton" ng-click="onlySupervisorDetails()">
-          Degrees
-        </md-content>
-      </md-list-item>
-      <md-list-item>
-        <md-content id="adminMentorshipDetailSupervisedOnlyButton" ng-click="onlySupervisedDetails()">
-          Supervised
-        </md-content>
-      </md-list-item>
+      </md-button>
+      <md-button class="md-raised md-primary" id="adminMentorshipDetailMentorOnlyButton" ng-click="onlyMentorDetails()">
+        Postdocs
+      </md-button>
+      <md-button class="md-raised md-primary" id="adminMentorshipDetailMentoredOnlyButton" ng-click="onlyMentoredDetails()">
+        Mentored
+      </md-button>
+      <md-button class="md-raised md-primary" id="adminMentorshipDetailSupervisorOnlyButton" ng-click="onlySupervisorDetails()">
+        Degrees
+      </md-button>
+      <md-button class="md-raised md-primary" id="adminMentorshipDetailSupervisedOnlyButton" ng-click="onlySupervisedDetails()">
+        Supervised
+      </md-button>
     </md-sidenav>
     <div flex style="border-right: solid;">
       <md-toolbar class="md-warn" layout-align="center center" layout="column">

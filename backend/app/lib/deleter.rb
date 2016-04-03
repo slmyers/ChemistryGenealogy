@@ -28,26 +28,31 @@ class Deleter
     @mentorship = Mentorship.includes(:institution)
                   .where(:id => mentorship_id).first
 
-    if @mentorship.destroy
-      return {"success" => true}
+    if @mentorship != nil
+      if @mentorship.destroy
+        return {"success" => true}
+      end
+      return {"error" => 'unable to delete'}
     end
-    return {"error" => 'unable to delete'}
+    return {}
   end
 
   def self.delete_supervision(supervision_id)
     @supervision = Supervision.includes(degree: :institution)
                     .where(:id => supervision_id).first
-
-    if @supervision.destroy
-      return {"success" => true}
+    if @supervision != nil
+      if @supervision.destroy
+        return {"success" => true}
+      end
+      return {"error" => 'unable to delete'}
     end
-    return {"error" => 'unable to delete'}
+    return {}
   end
 
   # TODO: I'm sure this is leaving "ghost rows" as described at the
   # begining of this class
   def self.delete_person(person_id)
-    @person = Search.person_info(person_id, false)
+    @person = Search.person_info(person_id)
 
     @person["person"].mentorships.each do |m|
       m.destroy

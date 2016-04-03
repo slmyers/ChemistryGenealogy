@@ -2,14 +2,14 @@
  * @author Steven Myers
  */
 angular.module('chemGeno')
-.service('autoService', function($q, $http) {
+.service('autoService', function($q, $http, urlService) {
   var autoPerson = function(name) {
     console.log('called with ' + name)
     var d = $q.defer();
     $http({
       header: 'Content-Type: application/json',
       method: 'GET',
-      url: 'http://localhost:3000/auto_complete',
+      url: urlService.baseUrl() + 'auto_complete',
       params: {name: name}
     }).success(function (result){
       console.log(result)

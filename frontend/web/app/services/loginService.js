@@ -2,7 +2,7 @@
  * @author Steven Myers
  */
 angular.module('chemGeno')
-.service('loginService', function(store, $q, $http, $state) {
+.service('loginService', function(store, $q, $http, $state, urlService) {
   var userNamespace = '401ChemGenoUser'
     /**
      * When evoked will check if the user can be obtained, if the user is not equal to null we must have a user logged
@@ -42,7 +42,7 @@ angular.module('chemGeno')
         return $http({
           header: 'Content-Type: application/json',
           method: 'POST',
-          url: 'http://localhost:3000/authenticate',
+          url: urlService.baseUrl() + 'authenticate',
           data: {email: user.email, password: user.password}
         }).success(function(resp) {
           store.set(userNamespace, resp);

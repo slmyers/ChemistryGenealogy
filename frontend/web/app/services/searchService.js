@@ -2,7 +2,7 @@
  * @author Steven Myers
  */
 angular.module('chemGeno')
-.service('searchService', function($q, $http, $rootScope, $state) {
+.service('searchService', function($q, $http, $rootScope, $state, urlService) {
   var searchPerson = function(type, id) {
     var d = $q.defer();
     var self = this;
@@ -10,7 +10,7 @@ angular.module('chemGeno')
       return $http({
         method: 'GET',
         params: {id: id},
-        url: 'http://localhost:3000/search',
+        url: urlService.baseUrl() + 'search',
       }).success(function(resp) {
         d.resolve(resp);
       }).error(function(err){
@@ -20,7 +20,7 @@ angular.module('chemGeno')
       return $http({
         method: 'GET',
         params: {name: id},
-        url: 'http://localhost:3000/search',
+        url: urlService.baseUrl() + 'search',
       }).success(function(resp) {
         d.resolve(resp);
       }).error(function(err){

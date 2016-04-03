@@ -2,7 +2,7 @@
  *  @author Steven Myers
  */
 angular.module('chemGeno')
-.service('adminPanelService', function($q, $http, loginService) {
+.service('adminPanelService', function($q, $http, loginService, urlService) {
 
   var loadNotifications = function() {
     if (!loginService.isAdmin()) {
@@ -16,7 +16,7 @@ angular.module('chemGeno')
           "Authorization": token
         },
         method: 'GET',
-        url: 'http://localhost:3000/api/notification',
+        url: urlService.baseUrl() + 'api/notification',
     }).success(function (resp) {
         d.resolve(resp);
     }).error(function (resp) {
@@ -33,7 +33,7 @@ angular.module('chemGeno')
     var d = $q.defer();
     return $http({
       method: 'GET',
-      url: 'http://localhost:3000/user'
+      url: urlService.baseUrl() + 'user'
     }).success(function(res){
       d.resolve(res);
     }).error(function(res){
@@ -49,7 +49,7 @@ angular.module('chemGeno')
     var d = $q.defer();
     return $http({
       method: 'GET',
-      url: 'http://localhost:3000/admins'
+      url: urlService.baseUrl() + 'admins'
     }).success(function(res){
       d.resolve(res);
     }).error(function(res){
