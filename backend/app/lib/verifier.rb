@@ -32,8 +32,10 @@ class Verifier
     @mentorship = Mentorship.includes(:institution)
                   .where(:id => mentorship_id).first
 
-    if @mentorship.institution.approved == false
-      @mentorship.institution.approved = true
+    if @mentorship.institution != nil
+      if @mentorship.institution.approved == false
+        @mentorship.institution.approved = true
+      end
     end
 
     @mentorship.approved = true
@@ -52,12 +54,16 @@ class Verifier
     @supervision = Supervision.includes(degree: :institution)
                     .where(:id => supervision_id).first
 
-    if @supervision.degree.approved == false
-      @supervision.degree.approved = true
+    if @supervision.degree != nil
+      if @supervision.degree.approved == false
+        @supervision.degree.approved = true
+      end
     end
 
-    if @supervision.degree.institution.approved == false
-      @supervision.degree.institution.approved = true
+    if @supervision.degree.institution != nil
+      if @supervision.degree.institution.approved == false
+        @supervision.degree.institution.approved = true
+      end
     end
 
     @supervision.approved = true
@@ -92,9 +98,12 @@ class Verifier
       @person["person"].name = @person["person"].name.downcase
       @person["person"].save
     end
-    if @person["person"].institution.approved == false
-      @person["person"].institution.approved = true
-      @person["person"].institution.save
+
+    if @person["person"].institution != nil
+      if @person["person"].institution.approved == false
+        @person["person"].institution.approved = true
+        @person["person"].institution.save
+      end
     end
 
     @person["person"].mentorships.each do |m|

@@ -41,7 +41,7 @@ function($scope, viewService, $stateParams, verificationService, $state) {
       console.log(resp);
       $state.go('main.admin');
     }, function(error){
-      alert(error);
+      console.log(error);
     });
   };
 
