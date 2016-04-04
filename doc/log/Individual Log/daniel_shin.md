@@ -39,8 +39,8 @@
 ###Sprint 4
 
 #####March 5, 2016 - March 11, 2016
-- made some mock visualizaions without getting data from the backend
-- 
+* made some mock visualizaions without getting data from the backend
+
 #####March 12, 2016 - March 18, 2016
 * Visualization complete in tandem with the search use case
 
