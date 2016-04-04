@@ -1,0 +1,6 @@
+/frontend/web/app/services/urlService.js
+
+This file contains a service holding a function that returns the base url
+that points to the Rails API for the frontend application. One should change
+this url from 'http://localhost:3000/' to the appropriate value. An example
+appropriate value is commented out in the function.
