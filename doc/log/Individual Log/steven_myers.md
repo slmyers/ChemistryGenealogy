@@ -122,3 +122,11 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * found bugs in search 
 * found bugs in autocomplete
 * found bugs in verification 
+
+--- 
+
+###After 
+
+* deployed application 
+* made presentation 
+* made screencast
