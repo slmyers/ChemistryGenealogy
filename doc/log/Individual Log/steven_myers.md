@@ -101,6 +101,8 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 
 ####March 7, 2016 - March 13, 2016
 
+* connor sheremeta was unable to produce a functional frontend search, so I discarded his code and started from 
+_scratch_ to implement a proper system -- his only filtered names in local memory, ie a hardcoded array. 
 * implemented frontend autocomplete 
 * implemented frontend search 
 
@@ -130,3 +132,34 @@ https://github.com/401ChemistryGenealogy/ChemistryGenealogy/wiki/Initial-Softwar
 * deployed application 
 * made presentation 
 * made screencast
+
+--- 
+
+###Note: 
+
+It's come to my attention that people have claimed to have aided or worked on stories that I completed single handedly. I view any such claim as a form of academic dishonesty that I can, and will, vehemently contest. As such I implore the administration to thoughoughly inspect all claims that anyone, besides myself, had any hand in completing the following: 
+
+1. Search (frontend + backend + backend testing)
+2. Autocomplete (frontend + backend + backend testing)
+3. Authentication (frontend + backend + backend testing) => tests apply to certain routes requiring an authentication token 
+4. Registration (frontend + backend) 
+5. Logout (frontend, no backend is present)
+6. Designing the data model (Meysam did help)
+7. Implementing the data model (wrote ActiveRecord migrations)
+8. Detail/View person (frontend + backend)
+9. Admin notifications (frontend + backend + backend testing) 
+10. Approval and Rejection of Admin notifications (frontend + backend + backend testing)
+11. User management (frontend + backend)
+12. Frontend views for all notifications 
+13. implementing the testing framework for both the backend RSpec, and the rake tasks to load test data into the test database. 
+14. The frontend admin panel (Connor Sheremeta did add a button). 
+15. The backend for visualization or the service that loads data from the backend (I wrote all of that). 
+
+
+My significant contributions: 
+
+1. I also contributed to the submit story (the submit service) and the edit story via my view service (they load all the data with my code). 
+2. Cole Evans did write _all_ of our e2e tests, however I wrote the first e2e test as an example, showed him the proper version of protractor to use and set up the conf.js file for the first successful running of a test suite. 
+
+
+I've literally put hundreds of hours into this course and feel I deserve nothing less than the full credit for every contribution to this project that I've made. 
