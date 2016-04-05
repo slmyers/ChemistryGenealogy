@@ -63,3 +63,9 @@
 * Edit updated to include new sections
 * Edit completed
 * Updated documentation for submit and edit
+
+---
+
+#####Post Sprint 5
+* Worked on the Design Document for the final documenation
+* Worked on updating the Wiki pages
