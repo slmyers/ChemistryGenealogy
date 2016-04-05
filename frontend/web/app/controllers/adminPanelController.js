@@ -68,6 +68,10 @@ function($scope, adminPanelService, verificationService, $state) {
       });
   }
 
+  $scope.gotoEdits = function(){
+    $state.go('main.auditTrail', {}, {reload:true});
+  }
+
   $scope.gotoHome = function(){
     $state.go('main.search', {}, {reload:true});
   }

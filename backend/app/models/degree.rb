@@ -3,9 +3,6 @@ class Degree < ActiveRecord::Base
   belongs_to :institution, :class_name => 'Institution'
   has_many :supervisions
 
-  # Tracks changes
-  has_paper_trail
-
   # Creates a new degree
   #
   # @param year [Number] year the degree was awarded
