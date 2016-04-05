@@ -158,7 +158,7 @@ It's come to my attention that people have claimed to have aided or worked on st
 
 My significant contributions: 
 
-1. I also contributed to the submit story (the submit service) and the edit story via my view service (they load all the data with my code). 
+1. I also contributed to the submit story (I added the authentication logic to the client request and aided Cole Evans in writing the service) and the edit story via my view service (edit loads all the initial data using backend code written by myself). 
 2. Cole Evans did write _all_ of our e2e tests, however I wrote the first e2e test as an example, showed him the proper version of protractor to use and set up the conf.js file for the first successful running of a test suite. 
 
 
