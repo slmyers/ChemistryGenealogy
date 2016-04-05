@@ -154,7 +154,7 @@ It's come to my attention that people have claimed to have aided or worked on st
 13. implementing the testing framework for both the backend RSpec, and the rake tasks to load test data into the test database. 
 14. The frontend admin panel (Connor Sheremeta did add a button). 
 15. The backend for visualization or the service that loads data from the backend (I wrote all of that). 
-
+16. Generating the HTML Rails documentation. (I beleive others might have done so after I instructed them how to do it but all of our submitted generated documention is due to my efforts). 
 
 My significant contributions: 
 
