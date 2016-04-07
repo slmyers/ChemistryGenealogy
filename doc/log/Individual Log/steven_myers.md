@@ -137,7 +137,7 @@ _scratch_ to implement a proper system -- his only filtered names in local memor
 
 ###Note: 
 
-It's come to my attention that people have claimed to have aided or worked on stories that I completed single handedly. I view any such claim as a form of academic dishonesty that I can, and will, vehemently contest. As such I implore the administration to thoughoughly inspect all claims that anyone, besides myself, had any hand in completing the following: 
+My total contributions:
 
 1. Search (frontend + backend + backend testing)
 2. Autocomplete (frontend + backend + backend testing)
@@ -160,6 +160,3 @@ My significant contributions:
 
 1. I also contributed to the submit story (I added the authentication logic to the client request and aided Cole Evans in writing the service) and the edit story via my view service (edit loads all the initial data using backend code written by myself). 
 2. Cole Evans did write _all_ of our e2e tests, however I wrote the first e2e test as an example, showed him the proper version of protractor to use and set up the conf.js file for the first successful running of a test suite. 
-
-
-I've literally put hundreds of hours into this course and feel I deserve nothing less than the full credit for every contribution to this project that I've made. 
