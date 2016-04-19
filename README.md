@@ -1,3 +1,6 @@
+# NOTE 
+I'm planning on extending this project and have forked this is a reference only. There are multiple issues I have with the codebase, so if anyone is "looking at it" please be aware that I consider this unfinished/unpolished. 
+
 # ChemistryGenealogy
 401 project for the client: Dr. Todd Lowary
 
